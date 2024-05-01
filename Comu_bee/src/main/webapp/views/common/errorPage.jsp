@@ -11,7 +11,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%@ include file="/views/common/menubar.jsp" %>
+	<%@ include file="/views/common/header.jsp" %>
 
 	<h1 align="center" style="color:red"><%=errorMsg %></h1>
 	

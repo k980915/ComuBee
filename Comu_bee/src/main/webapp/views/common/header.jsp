@@ -65,12 +65,42 @@
             <button>검색</button>
         </div>
     
-        <div class="login-area">
-            <input type="text" placeholder="아이디"> 
-            <input type="password" placeholder="비밀번호"> 
-            <button>로그인</button>
-            <button>회원가입</button>
-        </div>
+
+    <div class="login-area">
+
+        <form id="login-form" action="" method="post">
+            <table>
+                <tr>
+                    <th>아이디</th>
+                    <td><input type="text" name="userId" required placeholder="아이디"></td>
+                </tr>
+                <tr>
+                    <th>비밀번호</th>
+                    <td><input type="password" name="userPwd" required placehoder="비밀번호"></td>
+                </tr>
+                <tr>
+                    <th colspan="2">
+                        <button type="submit">로그인</button>
+                        <button type="button">회원가입</button>
+                    </th>
+                </tr>
+            </table>
+        </form>
+     </div>
+ 
+
+    <!--float 해제-->
+    <br clear="both">
+    <div class="main-menu">
+        <ul>
+            <li><a href="#">메뉴 1</a></li>
+            <li><a href="#">메뉴 2</a></li>
+            <li><a href="#">메뉴 3</a></li>
+            <!-- 필요한 만큼 메뉴를 추가하세요 -->
+        </ul>
     </div>
+    <!-- 추가적인 컨텐츠 및 섹션을 여기에 추가할 수 있습니다. -->
+  </div>
+
 </body>
 </html>
