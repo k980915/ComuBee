@@ -2,9 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
     
-<%
 
-%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,85 +10,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>메뉴바</title>
     
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>             
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>         
 	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">	
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 	<!-- Popper JS -->
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>	
 	<!-- Latest compiled JavaScript -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <style>
-	  #login-form,#user-info{
-            float: right;
-        }
-        #user-info a{
-            text-decoration: none;
-            color: black;
-            font-size: 12px;
-        }
-        .nav-area{
-            background-color: rgb(51, 50, 50);
-        }
-        .menu{
-            display: inline-block;
-            height: 50px;
-            width: 150px;
-        }
-        .menu a{
-            text-decoration: none;
-            color: white;
-            font-size: 20px;
-            font-weight: bold;
-            display: block;
-            width: 100%;
-            height: 100%;
-            line-height: 50px;
-        }
-        .menu a:hover{
-            background-color: darkgray;
-        }
-        
-         .outer{
-            background-color: lightgray;
-            color: black;
-            width: 1000px;
-            margin: auto;
-            margin-top: 50px; 
-        }
-        #enroll-form table{
-        	margin: auto;
-        }
-        #enroll-form input{
-        	margin: 5px;
-        }
-        #myPage-form table{
-        	margin: auto;
-        }
-        #myPage-form input{
-        	margin: 5px;
-        }
+         .head-area {
+        overflow: hidden;
+        text-align: center;
+    }
+    .logo-area,
+    .search-area,
+    .login-area {
+        display: inline-block; 
+        vertical-align: middle; 
+    }
+    .logo-img {
+        width: 50px; 
+        height: 50px; 
+    }
+    .title{
+        border: none;
+        font-size: 35px;
+        font-weight: 900;
+    }
+    .search-area {
+        text-align: left;
+        margin-top: 10px;
+    }
+    .search-input {
+        width: 400px;
+        height: 40px;
+    }
+    .login-area{
+        margin-top: 20px;
+        float: right;
+    }
     </style>
 </head>
+
 <body>
-	
-	<!-- EL표기법으로 contextPath 사용하기 위한 작업 -->
-	<c:set var="contextPath" value="${pageContext.request.contextPath }"/>
-
-
-    <h1 float="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;COMU-BEE</h1>
+ <div class="head-area">
+        <div class="logo-area">
+            <img src="../HTML/resources/1690813477931.jpg" class="logo-img">
+            <input type="text" class="title" value="COMU-BEE" disabled>
+        </div>
+       
+        <div class="search-area">
+            <input type="text" class="search-input" placeholder="영화 또는 드라마 등 컨텐츠 검색">
+            <button>검색</button>
+        </div>
     
+
     <div class="login-area">
 
         <form id="login-form" action="" method="post">
             <table>
                 <tr>
                     <th>아이디</th>
-                    <td><input type="text" name="userId" required></td>
+                    <td><input type="text" name="userId" required placeholder="아이디"></td>
                 </tr>
                 <tr>
                     <th>비밀번호</th>
-                    <td><input type="password" name="userPwd" required></td>
+                    <td><input type="password" name="userPwd" required placehoder="비밀번호"></td>
                 </tr>
                 <tr>
                     <th colspan="2">
@@ -114,7 +100,7 @@
         </ul>
     </div>
     <!-- 추가적인 컨텐츠 및 섹션을 여기에 추가할 수 있습니다. -->
-
+  </div>
 
 </body>
 </html>
