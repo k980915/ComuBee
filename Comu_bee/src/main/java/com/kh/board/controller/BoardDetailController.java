@@ -48,7 +48,7 @@ public class BoardDetailController extends HttpServlet {
 			request.setAttribute("b",b);
 			request.setAttribute("atList",atList);
 			request.setAttribute("cList", cList);
-			request.getRequestDispatcher("views/board/boardDetailView.jsp").forward(request, response);
+			request.getRequestDispatcher("views/board/boardDetail.jsp").forward(request, response);
 
 		}else {
 			request.getSession().setAttribute("alertMsg", "조회실패");
