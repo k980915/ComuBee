@@ -87,19 +87,9 @@
             </table>
         </form>
      </div>
- 
 
-    <!--float 해제-->
     <br clear="both">
-    <div class="main-menu">
-        <ul>
-            <li><a href="#">메뉴 1</a></li>
-            <li><a href="#">메뉴 2</a></li>
-            <li><a href="#">메뉴 3</a></li>
-            <!-- 필요한 만큼 메뉴를 추가하세요 -->
-        </ul>
-    </div>
-    <!-- 추가적인 컨텐츠 및 섹션을 여기에 추가할 수 있습니다. -->
+
   </div>
 
 </body>
