@@ -76,7 +76,7 @@
                 </tr>
                 <tr>
                     <th>비밀번호</th>
-                    <td><input type="password" name="userPwd" required placehoder="비밀번호"></td>
+                    <td><input type="password" name="userPwd" required placeholder="비밀번호"></td>
                 </tr>
                 <tr>
                     <th colspan="2" align="center">

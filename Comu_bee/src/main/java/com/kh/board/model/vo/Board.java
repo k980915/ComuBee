@@ -5,7 +5,7 @@ import java.sql.Date;
 public class Board {
 	private int boardNo;
 	private String userId;
-	private int atNo;
+	private String atNo;
 	private String category;
 	private String contentsId;
 	private String title;
@@ -21,7 +21,7 @@ public class Board {
 	public Board() {
 		super();
 	}
-	public Board(int boardNo, String userId, int atNo, String category, String contentsId, String title,
+	public Board(int boardNo, String userId, String atNo, String category, String contentsId, String title,
 			String boardContent, Date createDate, Date updateDate, String status, int boardLike, int hate, int count) {
 		super();
 		this.boardNo = boardNo;
@@ -50,6 +50,24 @@ public class Board {
 		this.boardLike = boardLike;
 		this.count = count;
 	}
+	
+	
+	public Board(int boardNo, String userId, String atNo, String category, String contentsId, String title,
+			String boardContent, Date createDate, Date updateDate, int boardLike, int hate, int count) {
+		super();
+		this.boardNo = boardNo;
+		this.userId = userId;
+		this.atNo = atNo;
+		this.category = category;
+		this.contentsId = contentsId;
+		this.title = title;
+		this.boardContent = boardContent;
+		this.createDate = createDate;
+		this.updateDate = updateDate;
+		this.boardLike = boardLike;
+		this.hate = hate;
+		this.count = count;
+	}
 	public int getBoardNo() {
 		return boardNo;
 	}
@@ -62,10 +80,10 @@ public class Board {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	public int getAtNo() {
+	public String getAtNo() {
 		return atNo;
 	}
-	public void setAtNo(int atNo) {
+	public void setAtNo(String atNo) {
 		this.atNo = atNo;
 	}
 	public String getCategory() {
