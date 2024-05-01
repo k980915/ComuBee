@@ -50,7 +50,7 @@
                 <td style="width: 200px;"><a href="">이미지</a></td>
             </tr>
             <tr>
-                <td><a href="">리뷰</a></td>
+                <td><a href="">리뷰입니다</a></td>
                 <td><a href="">리뷰</a></td>
                 <td><a href="">리뷰</a></td>
             </tr>
