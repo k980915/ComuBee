@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>메뉴바</title>
+    <title>헤더</title>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>         
 	<!-- Latest compiled and minified CSS -->
@@ -19,44 +19,44 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <style>
-         .head-area {
-        overflow: hidden;
-        text-align: center;
-    }
-    .logo-area,
-    .search-area,
-    .login-area {
-        display: inline-block; 
-        vertical-align: middle; 
-    }
-    .logo-img {
-        width: 50px; 
-        height: 50px; 
-    }
-    .title{
-        border: none;
-        font-size: 35px;
-        font-weight: 900;
-    }
-    .search-area {
-        text-align: left;
-        margin-top: 10px;
-    }
-    .search-input {
-        width: 400px;
-        height: 40px;
-    }
-    .login-area{
-        margin-top: 20px;
-        float: right;
-    }
+	    .head-area {
+	        overflow: hidden;
+	        text-align: center;
+	    }
+	    .logo-area,
+	    .search-area,
+	    .login-area {
+	        display: inline-block; 
+	        vertical-align: middle; 
+	    }
+	    .logo-img {
+	        width: 50px; 
+	        height: 50px; 
+	    }
+	    .title{
+	        border: none;
+	        font-size: 35px;
+	        font-weight: 900;
+	    }
+	    .search-area {
+	        text-align: left;
+	        margin-top: 10px;
+	    }
+	    .search-input {
+	        width: 400px;
+	        height: 40px;
+	    }
+	    .login-area{
+	        margin-top: 20px;
+	        float: right;
+	    }
     </style>
 </head>
 
 <body>
  <div class="head-area">
         <div class="logo-area">
-            <img src="../HTML/resources/1690813477931.jpg" class="logo-img">
+            <img src="/resources/uplodaFiles" class="logo-img">
             <input type="text" class="title" value="COMU-BEE" disabled>
         </div>
        
@@ -79,7 +79,7 @@
                     <td><input type="password" name="userPwd" required placehoder="비밀번호"></td>
                 </tr>
                 <tr>
-                    <th colspan="2">
+                    <th colspan="2" align="center">
                         <button type="submit">로그인</button>
                         <button type="button">회원가입</button>
                     </th>
