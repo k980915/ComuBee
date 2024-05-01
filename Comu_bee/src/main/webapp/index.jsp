@@ -74,7 +74,7 @@
         <table border="1px solid black">
             <tr>
                 <td>
-                    <a href=""><img src="../HTML/resources/1690813477931.jpg"  style="height: 400px; width: 400px;"></a>
+                    <a href=""><img src=""  style="height: 400px; width: 400px;"></a>
                 </td>
                 <td style="width: 100px;"></td>
                 <td style="width: 300px;">
@@ -83,7 +83,7 @@
             </tr>
             <tr>
                 <td>
-                    <a href=""><img src="../HTML/resources/1690813477931.jpg"  style="height: 400px; width: 400px;"></a>
+                    <a href=""><img src=""  style="height: 400px; width: 400px;"></a>
                 </td>
                 <td style="width: 100px;"></td>
                 <td style="width: 300px;">
@@ -101,19 +101,19 @@
         <table>
             <tr>
                 <td>
-                    <a href=""><img src="../HTML/resources/1690813477931.jpg"  style="height: 200px; width: 200px;"></a>
+                    <a href=""><img src=""  style="height: 200px; width: 200px;"></a>
                 </td>
                 <td></td>
                 <td>
-                    <a href=""><img src="../HTML/resources/1690813477931.jpg"  style="height: 200px; width: 200px;"></a>
+                    <a href=""><img src=""  style="height: 200px; width: 200px;"></a>
                 </td>
                 <td></td>
                 <td>
-                    <a href=""><img src="../HTML/resources/1690813477931.jpg"  style="height: 200px; width: 200px;"></a>
+                    <a href=""><img src=""  style="height: 200px; width: 200px;"></a>
                 </td>
                 <td></td>
                 <td>
-                    <a href=""><img src="../HTML/resources/1690813477931.jpg"  style="height: 200px; width: 200px;"></a>
+                    <a href=""><img src=""  style="height: 200px; width: 200px;"></a>
                 </td>
                 <td></td>
             </tr>
@@ -137,19 +137,19 @@
         <table>
             <tr>
                 <td>
-                    <a href=""><img src="../HTML/resources/1690813477931.jpg"  style="height: 200px; width: 200px;"></a>
+                    <a href=""><img src=""  style="height: 200px; width: 200px;"></a>
                 </td>
                 <td></td>
                 <td>
-                    <a href=""><img src="../HTML/resources/1690813477931.jpg"  style="height: 200px; width: 200px;"></a>
+                    <a href=""><img src=""  style="height: 200px; width: 200px;"></a>
                 </td>
                 <td></td>
                 <td>
-                    <a href=""><img src="../HTML/resources/1690813477931.jpg"  style="height: 200px; width: 200px;"></a>
+                    <a href=""><img src=""  style="height: 200px; width: 200px;"></a>
                 </td>
                 <td></td>
                 <td>
-                    <a href=""><img src="../HTML/resources/1690813477931.jpg"  style="height: 200px; width: 200px;"></a>
+                    <a href=""><img src=""  style="height: 200px; width: 200px;"></a>
                 </td>
                 <td></td>
             </tr>
