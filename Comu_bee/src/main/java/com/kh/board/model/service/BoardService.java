@@ -65,4 +65,12 @@ public class BoardService {
 		return atList;
 	}
 
+	public ArrayList<Board> selectListById(PageInfo pi, String userId) {
+		// TODO Auto-generated method stub
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<Board> list = new BoardDao().selectListById(conn,pi,userId);
+		JDBCTemplate.close(conn);
+		return list;
+	}
+
 }
