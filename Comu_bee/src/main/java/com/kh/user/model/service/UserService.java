@@ -14,6 +14,13 @@ public class UserService {
 		
 		int result = new UserDao().insertUser(conn,u);
 		
+		if (result > 0) { // 성공시 확정
+			JDBCTemplate.commit(conn);
+		} else {// 실패시 되돌리기
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		
 		return result;
 	}
 	//로그인

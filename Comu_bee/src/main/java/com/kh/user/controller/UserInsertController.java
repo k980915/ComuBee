@@ -47,28 +47,29 @@ public class UserInsertController extends HttpServlet {
 		String userId = request.getParameter("userId");
 		String userName = request.getParameter("userName");
 		String userPwd = request.getParameter("userPwd");
-		String userGender = request.getParameter("userGender");
-		int userBirth = Integer.parseInt(request.getParameter("userBirth"));
-		String userEmail = request.getParameter("userEmail");
-		int point = Integer.parseInt(request.getParameter("point"));
+		String userGender = request.getParameter("gender");
+		String userBirth = request.getParameter("birth");
+		String userEmail = request.getParameter("email");
+		
 
-		User u = new User(userId, userName, userPwd, userGender, userBirth, userEmail, point);
+		User u = new User(userId, userName, userPwd, userEmail, userBirth, userGender);
+		System.out.println(userBirth);
+		System.out.println(userGender);
 
 		int result = new UserService().insertUser(u);
 
-		if (result > 0) {// 성공시 화면
-			// 성공 메세지와 함께 메인페이지로 재요청
-			// 메인페이지에서 알림메세지를 확인해야하니 session영역에 담아주기
+		if (result > 0) {
+		
 			HttpSession session = request.getSession();
 			session.setAttribute("alertMsg", "회원가입 성공.");
 
-			// 메인페이지로 재요청( /jsp )
+			
 			response.sendRedirect(request.getContextPath());
 
-		} else { // 실패시 화면
-			// 실패 메세지와 함께 에러페이지로 포워딩(위임)
+		} else {
+			
 			request.setAttribute("errorMsg", "회원가입 실패");
-			// 에러페이지 경로를 넣어 dispatcher 객체 생성후 위임하기
+			
 			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 
 		}

@@ -41,38 +41,38 @@ public class UserLoginController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("URF-8");
+		request.setCharacterEncoding("UTF-8");
 		
 		String userId = request.getParameter("userId");
 		String userPwd = request.getParameter("userPwd");
 		
-		Cookie cookie = null;
+		//Cookie cookie = null;
 		
 		String saveId = request.getParameter("saveId");
 		
-		User loginUser = new UserService().loginUser(userId, userPwd);
-		if(saveId!=null) {
-			cookie= new Cookie("userId",userId);
-			
-			cookie.setMaxAge(60*60*24);
-			
-			response.addCookie(cookie);
-		}else {
-			cookie = new Cookie("userId",null);
-			cookie.setMaxAge(0);
-			
-			response.addCookie(cookie);
-		}
+		User u = new UserService().loginUser(userId, userPwd);
+//		if(saveId!=null) {
+//			cookie= new Cookie("userId",userId);
+//			
+//			cookie.setMaxAge(60*60*24);
+//			
+//			response.addCookie(cookie);
+//		}else {
+//			cookie = new Cookie("userId",null);
+//			cookie.setMaxAge(0);
+//			
+//			response.addCookie(cookie);
+//		}
 		HttpSession session = request.getSession();
 		
-		if(loginUser==null) {
+		if(u.getUserId()==null) {
 			
 			request.setAttribute("errorMsg", "로그인 실패!");
 			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
 			view.forward(request, response);
 			
 		}else {
-			session.setAttribute("loginUser", loginUser);
+			session.setAttribute("loginUser", u);
 			session.setAttribute("alertMsg", "로그인 성공!");
 			
 			response.sendRedirect(request.getContextPath());

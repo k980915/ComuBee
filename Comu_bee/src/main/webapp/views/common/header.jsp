@@ -1,7 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.kh.user.model.vo.User"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
     
+<% User loginUser = (User)session.getAttribute("loginUser"); 
+	String alertMsg = (String)session.getAttribute("alertMsg");
+	String contextPath = request.getContextPath();
+	
+
+	
+	
+	%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -54,6 +62,7 @@
 </head>
 
 <body>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
  <div class="head-area">
         <div class="logo-area">
             <img src="/resources/uplodaFiles" class="logo-img">
@@ -64,11 +73,22 @@
             <input type="text" class="search-input" placeholder="영화 또는 드라마 등 컨텐츠 검색">
             <button>검색</button>
         </div>
+<script>
+	var msg = "<%=alertMsg%>";
+	
+	if(msg!="null"){
+		alert(msg);
+		<%session.removeAttribute("alertMsg");%>
+		
+	}
+
+</script>
     
 
     <div class="login-area">
 
-        <form id="login-form" action="" method="post">
+          <%if(loginUser==null){ %>
+        <form id="login-form" action="<%=contextPath%>/login.us" method="post">
             <table>
                 <tr>
                     <th>아이디</th>
@@ -76,21 +96,53 @@
                 </tr>
                 <tr>
                     <th>비밀번호</th>
-                    <td><input type="password" name="userPwd" required placehoder="비밀번호"></td>
+                    <td><input type="password" name="userPwd" required placeholder="비밀번호"></td>
+                </tr>
+                <tr>
+                	<td colspan="2">
+                	<label for="saveId"> 아이디 저장: </label> <input id="saveId" type="checkbox"  name= "saveId"></td>
                 </tr>
                 <tr>
                     <th colspan="2" align="center">
                         <button type="submit">로그인</button>
-                        <button type="button">회원가입</button>
+                        <button type="button" onclick="enrollForm();">회원가입</button>
                     </th>
                 </tr>
             </table>
         </form>
+        
+        <script>
+        
+        $(function(){
+        	
+        	var saveId ="${cookie.userId.value}"
+        	
+        	if(saveId!=""){
+        		$("#saveId").attr("checked",true);
+        		$("#loginId").val(saveId);
+        	}
+        	
+        	console.log("확인");
+        	console.log(saveId);
+        	
+        });
+        
+        function enrollForm(){
+        	location.href ="<%=contextPath%>/views/user/userEnrollForm.jsp";
+        }
+        
+        </script>
+        <% }else{ %>]
+        <div id ="user-info">
+        	<b><%=loginUser.getUserId()%>님 환영합니다.</b>
+        	<a href="<%=contextPath%>/myPage.me">마이페이지</a>
+        	<a href="<%=contextPath %>/logout.us">로그아웃</a>
+        </div>
      </div>
 
     <br clear="both">
 
   </div>
-
+<%} %>
 </body>
 </html>
