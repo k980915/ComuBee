@@ -116,7 +116,7 @@
         </script>
         <% }else{ %>]
         <div id ="user-info">
-        	<b><%=loginUser.getUserId()%>님 환영합니다.</b>
+        	<b><%=loginUser.getUserId()%>님 환영합니다!</b>
         	<a href="<%=contextPath%>/myPage.me">마이페이지</a>
         	<a href="<%=contextPath %>/logout.us">로그아웃</a>
         </div>
