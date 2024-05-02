@@ -56,7 +56,6 @@
 
 <body>
 
-<body>
 
     
     <div class="outer">
@@ -79,7 +78,7 @@
            
         </div>
     </div> <br><br>
-</body>
+
 
 
 </body>
