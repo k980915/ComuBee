@@ -40,7 +40,7 @@ public class BoardDao {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
-			
+			rset=pstmt.executeQuery();
 			while(rset.next()) {
 				list.add(new Board(
 						rset.getInt("BOARDNO"),
@@ -202,18 +202,75 @@ public class BoardDao {
 
 	public ArrayList<Board> selectListById(Connection conn, PageInfo pi, String userId) {
 		// TODO Auto-generated method stub
+		ArrayList<Board> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("selectListById");
-		
+		int startRow=(pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
+		int endRow=pi.getCurrentPage()*pi.getBoardLimit();
+		String sql = prop.getProperty("selectList");
 		try {
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(2, userId);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			pstmt.setString(3, userId);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				list.add(new Board(
+						rset.getInt("BOARDNO"),
+						rset.getString("CATEGORY"),
+						rset.getString("TITLE"),
+						rset.getString("USERID"),
+						rset.getDate("CREATEDATE"),
+						rset.getInt("BOARDLIKE"),
+						rset.getInt("COUNT")
+						));
+			}
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
 		}
-		return null;
+		
+		return list;
+	}
+
+	public ArrayList<Board> selectListbyCategory(Connection conn, PageInfo pi, String ca) {
+		ArrayList<Board> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int startRow=(pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
+		int endRow=pi.getCurrentPage()*pi.getBoardLimit();
+		String sql = prop.getProperty("selectList");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			pstmt.setString(3, ca);
+			rset=pstmt.executeQuery();
+			while(rset.next()) {
+				list.add(new Board(
+						rset.getInt("BOARDNO"),
+						rset.getString("CATEGORY"),
+						rset.getString("TITLE"),
+						rset.getString("USERID"),
+						rset.getDate("CREATEDATE"),
+						rset.getInt("BOARDLIKE"),
+						rset.getInt("COUNT")
+						));
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return list;
 	}
 
 }

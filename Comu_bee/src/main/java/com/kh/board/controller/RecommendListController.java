@@ -90,7 +90,8 @@ public class RecommendListController extends HttpServlet {
 		}
 		
 		PageInfo pi = new PageInfo(listCount,currentPage,pageLimit,boardLimit,maxPage,startPage,endPage);
-
+		request.setAttribute("category", "RECOMMEND");
+		
 		String ca = request.getParameter("category");
 		// 게시글 목록
 		ArrayList<Board> list = new BoardService().selectListByCategory(pi,ca);
@@ -99,7 +100,6 @@ public class RecommendListController extends HttpServlet {
 		
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
-		
 		request.getRequestDispatcher("views/board/recommendList.jsp").forward(request, response);
 	}
 

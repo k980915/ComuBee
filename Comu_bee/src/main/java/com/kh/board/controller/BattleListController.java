@@ -88,6 +88,7 @@ public class BattleListController extends HttpServlet {
 		if(endPage>maxPage) {
 			endPage=maxPage;
 		}
+		request.setAttribute("category", "BATTLE");
 		
 		PageInfo pi = new PageInfo(listCount,currentPage,pageLimit,boardLimit,maxPage,startPage,endPage);
 
@@ -99,7 +100,6 @@ public class BattleListController extends HttpServlet {
 		
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
-		
 		request.getRequestDispatcher("views/board/battleList.jsp").forward(request, response);
 	}
 
