@@ -14,7 +14,7 @@
 </style>
 </head>
 <body>
-	<%@ include file="/views/common/header.jsp" %>
+	<%@ include file="/views/board/boardMenuBar.jsp" %>
 <div class="outer">
 
 	<div class="boardMenuBar">

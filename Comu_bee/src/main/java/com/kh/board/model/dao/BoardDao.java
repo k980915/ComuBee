@@ -31,12 +31,13 @@ public class BoardDao {
 	public ArrayList<Board> selectList(Connection conn, PageInfo pi) {
 		// TODO Auto-generated method stub
 		ArrayList<Board> list = new ArrayList<>();
-		Statement stmt = null;
+		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("selectList");
 		try {
-			stmt=conn.createStatement();
-			rset=stmt.executeQuery(sql);
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, pi.getStartRow);
+			pstmt.setInt(2, endRow);
 			
 			while(rset.next()) {
 				list.add(new Board(
@@ -195,6 +196,22 @@ public class BoardDao {
 			JDBCTemplate.close(pstmt);
 		}		
 		return atList;
+	}
+
+	public ArrayList<Board> selectListById(Connection conn, PageInfo pi, String userId) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectListById");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(2, userId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }
