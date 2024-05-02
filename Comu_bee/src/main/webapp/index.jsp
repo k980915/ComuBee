@@ -7,6 +7,18 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+		 .outer{
+            margin: auto;
+            margin-left: 300px;
+            margin-right: 300px;
+        }
+        .menu {
+        display: flex;
+        align-items: center;
+        }
+        .menu label {
+            margin-left: 10px; 
+        }
 	    .menu{
             height: 50px;
             width: 300px;
@@ -35,13 +47,14 @@
 	
 	<%@ include file = "/views/common/header.jsp" %>
 
+	<div class="outer">
 	   <div class="nav-area" align="center">
         <form action="">
-            <div class="menu">
-                <a href="">한줄 리뷰</a>
-                <input type="checkbox">추천순
-                <input type="checkbox">최신순
-            </div>
+                <div class="menu">
+                    <a href=""><h1>한줄리뷰</h1></a>
+                    <label><input type="checkbox">추천순</label>
+                    <label><input type="checkbox">최신순</label>
+                </div><br>
         </form>
         <table border="1px solid black">
             <tr style="height: 250px;">
@@ -165,12 +178,13 @@
             </tr>
         </table>
 
-
-
-
-
-
-    </div>
-
+	    </div>
+	   
+	    
+	</div>
 </body>
+<footer>
+ 	확인
+	    <%@ include file="/views/contents/contentsDetailView.jsp" %>
+</footer>
 </html>

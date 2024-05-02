@@ -19,78 +19,70 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <style>
-	    .head-area {
-	        overflow: hidden;
-	        text-align: center;
-	    }
-	    .logo-area,
-	    .search-area,
-	    .login-area {
-	        display: inline-block; 
-	        vertical-align: middle; 
-	    }
-	    .logo-img {
-	        width: 50px; 
-	        height: 50px; 
-	    }
-	    .title{
-	        border: none;
-	        font-size: 35px;
-	        font-weight: 900;
-	    }
-	    .search-area {
-	        text-align: left;
-	        margin-top: 10px;
-	    }
-	    .search-input {
-	        width: 400px;
-	        height: 40px;
-	    }
-	    .login-area{
-	        margin-top: 20px;
-	        float: right;
-	    }
+	.outer{
+        margin: auto;
+        margin-left: 300px;
+        margin-right: 300px;
+    }
+    .head-area {
+        display: flex; 
+        justify-content: space-between;
+        align-items: center;
+        text-align: center;
+    }
+    .logo-area {
+        display: flex; 
+        align-items: center; 
+    }
+    .logo-img {
+        width: 50px;
+        height: 50px;
+    }
+    .title {
+        margin-left: 10px; 
+        font-size: 35px;
+        font-weight: 900;
+    }
+    .search-area {
+        flex: 1; 
+        text-align: center;
+        margin-top: 10px;
+    }
+    .search-input {
+        width: 400px;
+        height: 40px;
+    }
+    .login-area {
+        margin-top: 20px;
+        float: right;
+    }
     </style>
 </head>
 
 <body>
- <div class="head-area">
-        <div class="logo-area">
-            <img src="/resources/uplodaFiles" class="logo-img">
-            <input type="text" class="title" value="COMU-BEE" disabled>
+    <body>
+    <div class="outer">
+        <div class="head-area">
+            <a href="">
+                <div class="logo-area">
+                    <img src="../HTML/resources/1690813477931.jpg" class="logo-img">
+                    <h1 class="title">COMU-BEE</h1>
+                </div>
+            </a>
+            <div class="search-area">
+                <input type="text" class="search-input" placeholder="영화 또는 드라마 등 컨텐츠 검색">
+                <button>검색</button>
+            </div>
+        
+            <div class="login-area">
+                <input type="text" placeholder="아이디"> 
+                <input type="password" placeholder="비밀번호"> 
+                <button>로그인</button>
+                <button>회원가입</button>
+            </div>
         </div>
-       
-        <div class="search-area">
-            <input type="text" class="search-input" placeholder="영화 또는 드라마 등 컨텐츠 검색">
-            <button>검색</button>
-        </div>
-    
-
-    <div class="login-area">
-
-        <form id="login-form" action="" method="post">
-            <table>
-                <tr>
-                    <th>아이디</th>
-                    <td><input type="text" name="userId" required placeholder="아이디"></td>
-                </tr>
-                <tr>
-                    <th>비밀번호</th>
-                    <td><input type="password" name="userPwd" required placeholder="비밀번호"></td>
-                </tr>
-                <tr>
-                    <th colspan="2" align="center">
-                        <button type="submit">로그인</button>
-                        <button type="button">회원가입</button>
-                    </th>
-                </tr>
-            </table>
-        </form>
-     </div>
-
-    <br clear="both">
-
-  </div>
+    </div>    <br><br>
+</body> 
 
 </body>
 </html>
