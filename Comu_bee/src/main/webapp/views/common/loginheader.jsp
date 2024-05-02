@@ -4,12 +4,7 @@
     
 <% User loginUser = (User)session.getAttribute("loginUser"); 
 	String alertMsg = (String)session.getAttribute("alertMsg");
-	String contextPath = request.getContextPath();
-	
-
-	
-	
-	%>
+	String contextPath = request.getContextPath();%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -63,16 +58,8 @@
 
 <body>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
- <div class="head-area">
-        <div class="logo-area">
-            <img src="/resources/uplodaFiles" class="logo-img">
-            <input type="text" class="title" value="COMU-BEE" disabled>
-        </div>
-       
-        <div class="search-area">
-            <input type="text" class="search-input" placeholder="영화 또는 드라마 등 컨텐츠 검색">
-            <button>검색</button>
-        </div>
+
+ 
 <script>
 	var msg = "<%=alertMsg%>";
 	
@@ -85,8 +72,8 @@
 </script>
     
 
+	<%@include file="/views/common/header.jsp" %>
     <div class="login-area">
-
           <%if(loginUser==null){ %>
         <form id="login-form" action="<%=contextPath%>/login.us" method="post">
             <table>
@@ -140,9 +127,7 @@
         </div>
      </div>
 
-    <br clear="both">
 
-  </div>
 <%} %>
 </body>
 </html>

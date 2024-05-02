@@ -62,7 +62,25 @@
 </head>
 
 <body>
-<%@include file="/views/common/loginheader.jsp" %>
+<body>
+    <div class="outer">
+        <div class="head-area">
+            <a href="">
+                <div class="logo-area">
+                    <img src="../HTML/resources/1690813477931.jpg" class="logo-img">
+                    <h1 class="title">COMU-BEE</h1>
+                </div>
+            </a>
+            <div class="search-area">
+                <input type="text" class="search-input" placeholder="영화 또는 드라마 등 컨텐츠 검색">
+                <button>검색</button>
+            </div>
+
+           
+        </div>
+    </div> <br><br>
+</body>
+
 
 </body>
 </html>
