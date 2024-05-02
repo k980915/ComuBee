@@ -33,6 +33,7 @@ public class UserService {
 		
 		return u;
 	}
+	
 	public Boolean checkId(String inputId) {
 		Connection conn = JDBCTemplate.getConnection();
 		
@@ -42,6 +43,8 @@ public class UserService {
 		JDBCTemplate.close(conn);
 		return flag;
 	}
+	
+	
 	
 	
 	
