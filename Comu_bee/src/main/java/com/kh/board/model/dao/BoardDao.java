@@ -33,10 +33,12 @@ public class BoardDao {
 		ArrayList<Board> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
+		int startRow=(pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
+		int endRow=pi.getCurrentPage()*pi.getBoardLimit();
 		String sql = prop.getProperty("selectList");
 		try {
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setInt(1, pi.getStartRow);
+			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
 			
 			while(rset.next()) {
@@ -56,7 +58,7 @@ public class BoardDao {
 			e.printStackTrace();
 		}finally {
 			JDBCTemplate.close(rset);
-			JDBCTemplate.close(stmt);
+			JDBCTemplate.close(pstmt);
 		}
 		
 		return list;

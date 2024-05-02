@@ -14,16 +14,16 @@ import com.kh.board.model.vo.Board;
 import com.kh.common.model.vo.PageInfo;
 
 /**
- * Servlet implementation class NoticeListController
+ * Servlet implementation class BattleListController
  */
-@WebServlet("/list.no")
-public class NoticeListController extends HttpServlet {
+@WebServlet("/list.bt")
+public class BattleListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeListController() {
+    public BattleListController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -100,7 +100,7 @@ public class NoticeListController extends HttpServlet {
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
 		
-		request.getRequestDispatcher("views/board/noticeList.jsp").forward(request, response);
+		request.getRequestDispatcher("views/board/battleList.jsp").forward(request, response);
 	}
 
 	/**
