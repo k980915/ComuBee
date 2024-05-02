@@ -23,7 +23,13 @@
             <a href="${contextPath}/list.rc?currentPage=1">추천게시판</a>
         </div>
         <div class="board-menuBar">
-            <a href="${contextPath}/list.bt?currentPage=1">토론게시판</a>
+            <a href="${contextPath}/list.rv?currentPage=1">리뷰게시판</a>
+        </div>
+        <div class="board-menuBar">
+            <a href="${contextPath}/list.db?currentPage=1">토론게시판</a>
+        </div>
+        <div class="board-menuBar">
+            <a href="${contextPath}/list.fr?currentPage=1">자유게시판</a>
         </div>
 
     </div>

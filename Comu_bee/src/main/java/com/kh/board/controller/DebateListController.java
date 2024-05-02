@@ -16,14 +16,14 @@ import com.kh.common.model.vo.PageInfo;
 /**
  * Servlet implementation class BattleListController
  */
-@WebServlet("/list.bt")
-public class BattleListController extends HttpServlet {
+@WebServlet("/list.db")
+public class DebateListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BattleListController() {
+    public DebateListController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -100,7 +100,7 @@ public class BattleListController extends HttpServlet {
 //		
 //		request.setAttribute("pi", pi);
 //		request.setAttribute("list", list);
-		request.getRequestDispatcher("views/board/battleList.jsp").forward(request, response);
+		request.getRequestDispatcher("views/board/debateBoard.jsp").forward(request, response);
 	}
 
 	/**

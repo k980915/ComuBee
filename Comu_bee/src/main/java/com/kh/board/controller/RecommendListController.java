@@ -100,7 +100,7 @@ public class RecommendListController extends HttpServlet {
 //		
 //		request.setAttribute("pi", pi);
 //		request.setAttribute("list", list);
-		request.getRequestDispatcher("views/board/recommendList.jsp").forward(request, response);
+		request.getRequestDispatcher("views/board/recommendBoard.jsp").forward(request, response);
 	}
 
 	/**
