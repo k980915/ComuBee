@@ -51,6 +51,17 @@
 		<table border="1px solid black">
 			<thead class="boardListToolBar"> 
 				<tr>
+					<td>
+					<form action="">
+						<!-- 카테고리 항목 선택 시 해당 카테고리 조회 결과 리스트 조회(비동기통신 이용할 듯) -->
+						<select name="categoryList">
+							<c:forEach var="c" items="${category}">
+								<option value="${c.categoryNo}">"${c.categoryName}"</option>
+							</c:forEach>
+						</select>
+					</form>
+						
+					</td>
 					<td colspan="6">
 						검색기능, 카테고리 별 분류기능 뭐 이런 거 넣을 공간
 					</td>
