@@ -4,134 +4,107 @@ import java.util.Date;
 
 public class User {
 	
-	public User(String userId, String userName, String userPwd, String gender, int userBirth, String userEmail,
-			int point) {
-		// TODO Auto-generated constructor stub
-	}
-
-	private String userId;
+	private String UserId;
+	private String userName;
 	private String userPwd;
-	private String gender;
-	private int userBirth;
+	private String userGender;
+	private String userBirth;
 	private String userEmail;
+	private Date joinDate;
 	private int point;
-	public String userName;
-
+	
+	public User(String userId, String userName, String userPwd, String userGender, String userBirth, String userEmail,
+			Date joinDate, int point) {
+		super();
+		this.UserId = userId;
+		this.userName = userName;
+		this.userPwd = userPwd;
+		this.userGender = userGender;
+		this.userBirth = userBirth;
+		this.userEmail = userEmail;
+		this.joinDate = joinDate;
+		this.point = point;
+	}
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
-	public User(String userId, String userPwd, String gender, int userBirth, String userEmail, Date sysdate,
-			int point,String userName) {
+	
+	
+	public User(String userId, String userName, String userPwd, String userGender, String userBirth, String userEmail) {
 		super();
-		this.userId = userId;
+		UserId = userId;
+		this.userName = userName;
 		this.userPwd = userPwd;
-		this.gender = gender;
+		this.userGender = userGender;
 		this.userBirth = userBirth;
 		this.userEmail = userEmail;
-		this.point = point;
-		this.userName =userName;
 	}
-	
-	
-	
-	
-
-
-	public User(String userId, String userPwd, String gender, int userBirth, String userEmail,Date sysdate) {
-		super();
-		this.userId = userId;
-		this.userPwd = userPwd;
-		this.gender = gender;
-		this.userBirth = userBirth;
-		this.userEmail = userEmail;
-		
+	public User(String userId, String userName, String userPwd, String userGender, int userBirth,
+			String userEmail, int poin2) {
+		// TODO Auto-generated constructor stub
 	}
-
+	public String getUserId() {
+		return UserId;
+	}
+	public void setUserId(String userId) {
+		UserId = userId;
+	}
 	public String getUserName() {
 		return userName;
 	}
-
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-
-	public User(String userId, String userPwd, String gender, int userBirth, String userEmail) {
-		super();
-		this.userId = userId;
-		this.userPwd = userPwd;
-		this.gender = gender;
-		this.userBirth = userBirth;
-		this.userEmail = userEmail;
-	}
-
-	public String getUserId() {
-		return userId;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-
 	public String getUserPwd() {
 		return userPwd;
 	}
-
 	public void setUserPwd(String userPwd) {
 		this.userPwd = userPwd;
 	}
-
-	public String getGender() {
-		return gender;
+	public String getUserGender() {
+		return userGender;
 	}
-
-	public void setGender(String gender) {
-		this.gender = gender;
+	public void setUserGender(String userGender) {
+		this.userGender = userGender;
 	}
-
-	public int getUserBirth() {
+	public String getUserBirth() {
 		return userBirth;
 	}
-
-	public void setUserBirth(int userBirth) {
+	public void setUserBirth(String userBirth) {
 		this.userBirth = userBirth;
 	}
-
 	public String getUserEmail() {
 		return userEmail;
 	}
-
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
 	}
-
-
+	public Date getJoinDate() {
+		return joinDate;
+	}
+	public void setJoinDate(Date joinDate) {
+		this.joinDate = joinDate;
+	}
 	public int getPoint() {
 		return point;
 	}
-
 	public void setPoint(int point) {
 		this.point = point;
 	}
-
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", userPwd=" + userPwd + ", gender=" + gender + ", userBirth=" + userBirth
-				+ ", userEmail=" + userEmail + ", point=" + point + ", userName=" + userName + "]";
+		return "User [UserId=" + UserId + ", userName=" + userName + ", userPwd=" + userPwd + ", userGender="
+				+ userGender + ", userBirth=" + userBirth + ", userEmail=" + userEmail + ", joinDate=" + joinDate
+				+ ", point=" + point + "]";
 	}
+	
+	
+	
+	
+	
 
-	public User(String userId, String userPwd, String gender, int userBirth, String userEmail, int point,
-			String userName) {
-		super();
-		this.userId = userId;
-		this.userPwd = userPwd;
-		this.gender = gender;
-		this.userBirth = userBirth;
-		this.userEmail = userEmail;
-		this.point = point;
-		this.userName = userName;
-	}
 
 
 

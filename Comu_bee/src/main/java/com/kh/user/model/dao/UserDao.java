@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
@@ -35,8 +36,8 @@ public class UserDao {
 			pstmt.setString(2, u.getUserPwd());
 			pstmt.setString(3, u.getUserName());
 			pstmt.setString(4, u.getUserEmail());
-			pstmt.setString(5, u.getGender());
-			pstmt.setInt(6, u.getUserBirth());
+			pstmt.setString(5, u.getUserGender());
+			pstmt.setString(6, u.getUserBirth());
 			
 			result = pstmt.executeUpdate();
 			
@@ -47,6 +48,45 @@ public class UserDao {
 			JDBCTemplate.close(pstmt);
 		}
 		return result;
+	}
+
+	public User loginUser(String userId,String userPwd, Connection conn) {
+		ResultSet rset=null;
+		PreparedStatement pstmt = null;
+		User u = new User();
+		
+		
+		String sql = prop.getProperty("loginUser");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,userId);
+			pstmt.setString(2, userPwd);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				
+				u= new User(
+						rset.getString("USERID")
+						,rset.getString("USERPWD")
+						,rset.getString("USERNAME")
+						,rset.getString("EMAIL")
+						,rset.getString("STATUS")
+						,rset.getString("USERBIRTH")
+						,rset.getDate("JOINDATE")
+						,rset.getInt("POINT"));
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return u;
 	}
 	
 

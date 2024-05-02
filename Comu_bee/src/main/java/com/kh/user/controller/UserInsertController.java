@@ -14,7 +14,7 @@ import com.kh.user.model.vo.User;
 /**
  * Servlet implementation class UserInsertController
  */
-@WebServlet("/login.us")
+@WebServlet("/insert.us")
 public class UserInsertController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -47,12 +47,12 @@ public class UserInsertController extends HttpServlet {
 		String userId = request.getParameter("userId");
 		String userName = request.getParameter("userName");
 		String userPwd = request.getParameter("userPwd");
-		String gender = request.getParameter("gender");
+		String userGender = request.getParameter("userGender");
 		int userBirth = Integer.parseInt(request.getParameter("userBirth"));
 		String userEmail = request.getParameter("userEmail");
 		int point = Integer.parseInt(request.getParameter("point"));
 
-		User u = new User(userId, userName, userPwd, gender, userBirth, userEmail, point);
+		User u = new User(userId, userName, userPwd, userGender, userBirth, userEmail, point);
 
 		int result = new UserService().insertUser(u);
 

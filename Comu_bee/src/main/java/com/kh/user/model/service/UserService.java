@@ -16,5 +16,18 @@ public class UserService {
 		
 		return result;
 	}
+	//로그인
+	public User loginUser(String userId, String userPwd) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		User u = new UserDao().loginUser(userId, userPwd, conn);
+		
+		JDBCTemplate.close(conn);
+		
+		return u;
+	}
+	
+	
+	
 
 }
