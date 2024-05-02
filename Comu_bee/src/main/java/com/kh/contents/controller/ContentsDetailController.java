@@ -1,4 +1,4 @@
-package com.kh.board.controller;
+package com.kh.contents.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class TestServlet
+ * Servlet implementation class ContentsDetailView
  */
-@WebServlet("/TestServlet")
-public class TestServlet extends HttpServlet {
+@WebServlet("/ContentsDetailView")
+public class ContentsDetailController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
     /**
-     * Default constructor. 
+     * @see HttpServlet#HttpServlet()
      */
-    public TestServlet() {
+    public ContentsDetailController() {
+        super();
         // TODO Auto-generated constructor stub
     }
 

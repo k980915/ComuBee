@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>자유게시판</title>
 
     <!-- CSS only -->
@@ -24,8 +25,8 @@
 
     <canvas class="my-4 w-100" id="myChart" width="10000" height="380"></canvas>
 
-    <h2>자유게시판</h2>
-    <br>
+
+
     <div class="table-responsive small">
         <table class="table table-striped table-sm table-hover">
             <thead>

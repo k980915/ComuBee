@@ -14,16 +14,16 @@ import com.kh.board.model.vo.Board;
 import com.kh.common.model.vo.PageInfo;
 
 /**
- * Servlet implementation class ControllerTest
+ * Servlet implementation class NoticeListController
  */
-@WebServlet("/Comu_bee.bo")
-public class BoardController extends HttpServlet {
+@WebServlet("/Comu_bee.no")
+public class NoticeListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardController() {
+    public NoticeListController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -90,9 +90,10 @@ public class BoardController extends HttpServlet {
 		}
 		
 		PageInfo pi = new PageInfo(listCount,currentPage,pageLimit,boardLimit,maxPage,startPage,endPage);
+
 		
 		// 게시글 목록
-		ArrayList<Board> list = new BoardService().selectList(pi);
+		ArrayList<Board> list = new BoardService().selectListById(pi,"admin");
 		
 		//위임하기 위한 데이터 담아주기
 		

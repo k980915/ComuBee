@@ -20,6 +20,69 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <style>
+
+	.outer{
+        margin: auto;
+        margin-left: 300px;
+        margin-right: 300px;
+    }
+    .head-area {
+        display: flex; 
+        justify-content: space-between;
+        align-items: center;
+        text-align: center;
+    }
+    .logo-area {
+        display: flex; 
+        align-items: center; 
+    }
+    .logo-img {
+        width: 50px;
+        height: 50px;
+    }
+    .title {
+        margin-left: 10px; 
+        font-size: 35px;
+        font-weight: 900;
+    }
+    .search-area {
+        flex: 1; 
+        text-align: center;
+        margin-top: 10px;
+    }
+    .search-input {
+        width: 400px;
+        height: 40px;
+    }
+    .login-area {
+        margin-top: 20px;
+        float: right;
+    }
+	    
+/* 	    <!-- 게시판 용 메뉴바 시작  --!> */
+	    .nav-area {
+            background-color: black;
+            
+        }
+	    .board-menuBar {
+            display:inline-block;
+            height: 50px;
+            width: 150px;
+        }
+        .board-menuBar a {
+            text-decoration: none;
+            color:white;
+            font-size: 20px;
+            font-weight: bold;
+            display: block;
+            width: 100%;
+            height: 100%;
+            line-height: 50px;
+        }
+        .board-menuBar a:hover{
+            background-color: rgb(144, 142, 142);
+        }
+/* 	    <!-- 게시판 용 메뉴바 끝 --!> */	    
 	    .head-area {
 	        overflow: hidden;
 	        text-align: center;
