@@ -2,14 +2,7 @@
     pageEncoding="UTF-8" import="com.kh.user.model.vo.User"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
     
-<% User loginUser = (User)session.getAttribute("loginUser"); 
-	String alertMsg = (String)session.getAttribute("alertMsg");
-	String contextPath = request.getContextPath();
-	
 
-	
-	
-	%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -62,7 +55,10 @@
 </head>
 
 <body>
+
 <body>
+
+    
     <div class="outer">
         <div class="head-area">
             <a href="">
@@ -75,6 +71,10 @@
                 <input type="text" class="search-input" placeholder="영화 또는 드라마 등 컨텐츠 검색">
                 <button>검색</button>
             </div>
+            <div>
+            <%@include file="/views/common/loginheader.jsp" %>
+            </div>
+            
 
            
         </div>

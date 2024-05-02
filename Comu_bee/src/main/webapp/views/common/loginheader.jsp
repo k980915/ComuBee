@@ -1,10 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.kh.user.model.vo.User"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
-    
-<% User loginUser = (User)session.getAttribute("loginUser"); 
+ <% User loginUser = (User)session.getAttribute("loginUser"); 
 	String alertMsg = (String)session.getAttribute("alertMsg");
-	String contextPath = request.getContextPath();%>
+	String contextPath = request.getContextPath();
+	
+
+	
+	
+	%>   
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -60,19 +65,9 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
  
-<script>
-	var msg = "<%=alertMsg%>";
+
+
 	
-	if(msg!="null"){
-		alert(msg);
-		<%session.removeAttribute("alertMsg");%>
-		
-	}
-
-</script>
-    
-
-	<%@include file="/views/common/header.jsp" %>
     <div class="login-area">
           <%if(loginUser==null){ %>
         <form id="login-form" action="<%=contextPath%>/login.us" method="post">
@@ -129,5 +124,17 @@
 
 
 <%} %>
+
+<script>
+	var msg = "<%=alertMsg%>";
+	
+	if(msg!="null"){
+		alert(msg);
+		<%session.removeAttribute("alertMsg");%>
+		
+	}
+
+</script>
 </body>
 </html>
+
