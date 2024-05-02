@@ -33,6 +33,17 @@ public class UserService {
 		
 		return u;
 	}
+	public Boolean checkId(String inputId) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		Boolean flag = new UserDao().checkId(inputId,conn);
+		
+		
+		JDBCTemplate.close(conn);
+		return flag;
+	}
+	
+	
 	
 	
 	

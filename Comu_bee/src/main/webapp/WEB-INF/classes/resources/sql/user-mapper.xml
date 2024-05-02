@@ -27,6 +27,12 @@ INSERT INTO MEMBERINFO(USERID
 	AND STATUS ='Y'
 </entry>
 
+<entry key="checkId">
+	SELECT *
+	FROM MEMBERINFO
+	WHERE USERID=?
+</entry>
+
 
 
 
