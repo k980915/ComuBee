@@ -1,23 +1,28 @@
 package com.kh.message.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.message.model.service.MessageService;
+import com.kh.message.model.vo.Message;
+
 /**
  * Servlet implementation class MessageBoxController
  */
-@WebServlet("/MessageBoxController")
-public class MessageBoxController extends HttpServlet {
+@WebServlet("/messageMain.ms")
+public class MessageMainController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MessageBoxController() {
+    public MessageMainController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,8 +31,13 @@ public class MessageBoxController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		String userId=request.getParameter("userId");
+		
+		ArrayList<Message> list = new MessageService().selectNewMessage(userId);
+		request.setAttribute("list", list);
+		
+		request.getRequestDispatcher("views/message/messageMainView.jsp").forward(request, response);
 	}
 
 	/**

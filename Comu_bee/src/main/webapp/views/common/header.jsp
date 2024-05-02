@@ -65,9 +65,9 @@
             <button>검색</button>
         </div>
     
-
+	<c:choose>
+	<c:when test="${loginUser eq null}">
     <div class="login-area">
-
         <form id="login-form" action="" method="post">
             <table>
                 <tr>
@@ -87,6 +87,17 @@
             </table>
         </form>
      </div>
+     </c:when>
+     <c:otherwise>
+       <div id="user-info">
+            <b><%-- <%=loginUser.getUserName()%> --%>님 환영합니다.</b>
+            <div align="center">
+                <a href="/myPage.me">마이페이지</a> 
+                <a href="/logout.me">로그아웃</a>
+            </div>
+        </div>
+      </c:otherwise>
+      </c:choose>
 
     <br clear="both">
 
