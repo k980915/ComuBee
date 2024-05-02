@@ -91,9 +91,9 @@ public class BattleListController extends HttpServlet {
 		
 		PageInfo pi = new PageInfo(listCount,currentPage,pageLimit,boardLimit,maxPage,startPage,endPage);
 
-		
+		String ca = request.getParameter("category");
 		// 게시글 목록
-		ArrayList<Board> list = new BoardService().selectListById(pi,"admin");
+		ArrayList<Board> list = new BoardService().selectListById(pi,ca);
 		
 		//위임하기 위한 데이터 담아주기
 		
