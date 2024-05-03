@@ -60,10 +60,6 @@
     }
 	    
 /* 	    <!-- 게시판 용 메뉴바 시작  --!> */
-	    .nav-area {
-            background-color: black;
-            
-        }
 	    .board-menuBar {
             display:inline-block;
             height: 50px;
@@ -137,12 +133,13 @@
             <%@include file="/views/common/loginheader.jsp" %>
             </div>
             
-
-           
         </div>
-    </div> <br><br>
+    </div>    <br><br>
+</body> 
+<%-- !!!!!! 해당 구간 관리자 마이페이지 및 방문자 조회수 증가 구문입니다. 기능구현은 완료했으며 마이페이지가 완료되면 주석처리 삭제하겠습니다.
+	<%@ include file="/views/common/hitsHeader.jsp"%>
+	<%@ include file="/views/common/myPageadmin.jsp"%>
 
-
-
+ --%>
 </body>
 </html>
