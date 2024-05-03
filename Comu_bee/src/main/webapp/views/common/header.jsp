@@ -125,14 +125,14 @@
                     <h1 class="title">COMU-BEE</h1>
                 </div>
             </a>
-            <div class="search-area">
-                <input type="text" class="search-input" placeholder="영화 또는 드라마 등 컨텐츠 검색">
-                <button>검색</button>
-            </div>
+             <!-- 검색 구문 -->
+            <form action="search.jsp" method="get" class="search-area">
+                <input type="text" name="search_keyword" class="search-input" placeholder="영화 또는 드라마 등 컨텐츠 검색">
+                <button type="submit">검색</button>
+            </form>
             <div>
-            <%@include file="/views/common/loginheader.jsp" %>
+                <%@include file="/views/common/loginheader.jsp" %>
             </div>
-            
         </div>
     </div>    <br><br>
 </body> 
