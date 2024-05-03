@@ -42,7 +42,7 @@
             <div class="form-group mb-3">
                 <label for="bdContent" class="form-label">내용</label>
                 <textarea class="form-control" id="bdContent" rows="10" name="bdContent" placeholder="내용을 작성해주세요" required></textarea>
-                <button type="submit" class="btn btn-primary form-submit-button">제출하기</button>
+                <button type="submit" class="btn btn-outline-secondary form-submit-button">제출하기</button>
             </div>
         </form>
     </div>
