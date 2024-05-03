@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+	<entry key="adminHits">
+	SELECT TODAYHITS
+	FROM HITS
+	WHERE YRARSELECT = ?
+	AND   MONTHSELECT = ?
+	</entry>
+	
+	<entry key="adminHitsUpdate">
+	UPDATE HITS
+	SET TODAYHITS = TODAYHITS+ ?
+	,MONTHHITS = MONTHHITS+ ?
+	WHERE YRARSELECT = '2024년'
+	AND MONTHSELECT = '5월'
+	</entry>
+
+
+	<entry key="monthHits">
+	SELECT TODAYHITS
+	FROM HITS
+	WHERE YRARSELECT = ?
+	AND   MONTHSELECT = ?
+	</entry>
+</properties>

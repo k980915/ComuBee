@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.kh.user.model.vo.User"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
     
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -59,10 +60,6 @@
     }
 	    
 /* 	    <!-- 게시판 용 메뉴바 시작  --!> */
-	    .nav-area {
-            background-color: black;
-            
-        }
 	    .board-menuBar {
             display:inline-block;
             height: 50px;
@@ -117,7 +114,9 @@
 </head>
 
 <body>
-    <body>
+
+
+    
     <div class="outer">
         <div class="head-area">
             <a href="">
@@ -130,16 +129,17 @@
                 <input type="text" class="search-input" placeholder="영화 또는 드라마 등 컨텐츠 검색">
                 <button>검색</button>
             </div>
-        
-            <div class="login-area">
-                <input type="text" placeholder="아이디"> 
-                <input type="password" placeholder="비밀번호"> 
-                <button>로그인</button>
-                <button>회원가입</button>
+            <div>
+            <%@include file="/views/common/loginheader.jsp" %>
             </div>
+            
         </div>
     </div>    <br><br>
 </body> 
+<%-- !!!!!! 해당 구간 관리자 마이페이지 및 방문자 조회수 증가 구문입니다. 기능구현은 완료했으며 마이페이지가 완료되면 주석처리 삭제하겠습니다.
+	<%@ include file="/views/common/hitsHeader.jsp"%>
+	<%@ include file="/views/common/myPageadmin.jsp"%>
 
+ --%>
 </body>
 </html>
