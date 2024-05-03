@@ -2,16 +2,20 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 	<entry key="selectList">
-		SELECT BOARDNO,
-				CATEGORY,
-				TITLE,
-				USERID,
-				CREATEDATE,
-				BOARDLIKE,
-				COUNT 
-		FROM BOARD B 
-		JOIN CATEGORY USING(CATEGORYNO) 
-		WHERE B.STATUS='Y'
+		SELECT * FROM(
+			SELECT ROWNUM,S.* FROM(
+				SELECT BOARDNO,
+					CATEGORY,
+					TITLE,
+					USERID,
+					CREATEDATE,
+					BOARDLIKE,
+					COUNT 
+				FROM BOARD B 
+				JOIN CATEGORY USING(CATEGORYNO) 
+				WHERE B.STATUS='Y') S
+				)
+				WHERE "ROWNUM" BETWEEN ? AND ?
 	</entry>
 	<entry key="listCount">
 		SELECT COUNT(*) COUNT FROM BOARD WHERE STATUS='Y'

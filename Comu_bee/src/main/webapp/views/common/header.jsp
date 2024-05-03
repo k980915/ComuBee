@@ -133,8 +133,6 @@
             <%@include file="/views/common/loginheader.jsp" %>
             </div>
             
-
-           
         </div>
     </div>    <br><br>
 </body> 

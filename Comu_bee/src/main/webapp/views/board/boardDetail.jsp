@@ -6,9 +6,18 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+	.outer{
+		
+	}
 	.boardBody>div{
-	float:left;
-	border:1px solid black;
+		float:left;
+		border:1px solid black;
+	}
+	.boardMain{
+		width:70%;
+	}
+	.boardSide{
+		width:30%;
 	}
 
 </style>
@@ -152,7 +161,7 @@
 							});
 							
 						}
-						function replyLike(){
+<%--						function replyLike(){
 							var likeCheck = ${this.children().first().val()}
 							$.ajax({
 								url : "likeReply.bo",
@@ -179,6 +188,7 @@
 								}
 							})
 						}
+--%>
 					</script>
 			</div>
 		
@@ -193,55 +203,11 @@
 						</c:forEach>
 					</select>
 				</form>
-				<table border="1px solid black">
-					<thead class="boardListToolBar"> 
-						<tr>
-							<td>
-								
-							</td>
-							<td colspan="6">
-							</td>
-						</tr>
-						<tr>
-							<td colspan="6">
-								한줄이면 심심하니까 두줄로 예시
-							</td>
-						</tr>
-					</thead>
-					<tbody class="boardList">
-						<!-- 반복문 활용해서 양식에 따라 자동 작성 -->
-						<tr>
-							<td>카테고리</td>
-							<td>글제목</td>
-							<td>작성자</td>
-							<td>조회수</td>
-							<td>추천</td>
-							<td>작성일</td>
-						</tr>
-						<tr>
-							<td>카테고리</td>
-							<td>글제목</td>
-							<td>작성자</td>
-							<td>조회수</td>
-							<td>추천</td>
-							<td>작성일</td>
-						</tr>
-						<tr>
-							<td>카테고리</td>
-							<td>글제목</td>
-							<td>작성자</td>
-							<td>조회수</td>
-							<td>추천</td>
-							<td>작성일</td>
-						</tr>
-					</tbody>
-					
-				</table>
-					
+				<%@ include file="/views/board/FreeBoard.jsp" %>
 			</div>
 		</div>
 	</div>
-	<div class="boardSide">
+	<div class="boardSide" style="width:400px;border:1px solid black;">
 		<div class="contentPopUp">
 		</div>
 		<div class="boardPopUp">

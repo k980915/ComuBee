@@ -73,4 +73,12 @@ public class BoardService {
 		return list;
 	}
 
+	public ArrayList<Board> selectListByCategory(PageInfo pi, String ca) {
+		// TODO Auto-generated method stub
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<Board> list = new BoardDao().selectListbyCategory(conn,pi,ca);
+		JDBCTemplate.close(conn);
+		return list;
+	}
+
 }
