@@ -117,16 +117,13 @@
     </style>
 </head>
 
-<<<<<<< HEAD
-<body>
-       <div class="outer">
-=======
+
+
 <body>
 
 
     
     <div class="outer">
->>>>>>> refs/remotes/origin/main
         <div class="head-area">
             <a href="">
                 <div class="logo-area">
@@ -145,12 +142,8 @@
 
            
         </div>
-<<<<<<< HEAD
-    </div>    <br><br>
-=======
-    </div> <br><br>
 
->>>>>>> refs/remotes/origin/main
+    </div>    <br><br>
 
 
 </body>
