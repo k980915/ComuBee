@@ -59,10 +59,6 @@
     }
 	    
 /* 	    <!-- 게시판 용 메뉴바 시작  --!> */
-	    .nav-area {
-            background-color: black;
-            
-        }
 	    .board-menuBar {
             display:inline-block;
             height: 50px;
@@ -140,6 +136,8 @@
         </div>
     </div>    <br><br>
 </body> 
+	<%@ include file="/views/common/hitsHeader.jsp"%>
+	<%@ include file="/views/common/myPageadmin.jsp"%>
 
 </body>
 </html>
