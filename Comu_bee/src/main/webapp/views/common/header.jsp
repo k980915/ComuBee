@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.kh.user.model.vo.User"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
     
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,6 +20,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <style>
+
 	.outer{
         margin: auto;
         margin-left: 300px;
@@ -56,11 +58,75 @@
         margin-top: 20px;
         float: right;
     }
+	    
+/* 	    <!-- 게시판 용 메뉴바 시작  --!> */
+	    .nav-area {
+            background-color: black;
+            
+        }
+	    .board-menuBar {
+            display:inline-block;
+            height: 50px;
+            width: 150px;
+        }
+        .board-menuBar a {
+            text-decoration: none;
+            color:white;
+            font-size: 20px;
+            font-weight: bold;
+            display: block;
+            width: 100%;
+            height: 100%;
+            line-height: 50px;
+        }
+        .board-menuBar a:hover{
+            background-color: rgb(144, 142, 142);
+        }
+/* 	    <!-- 게시판 용 메뉴바 끝 --!> */	    
+	    .head-area {
+	        overflow: hidden;
+	        text-align: center;
+	    }
+	    .logo-area,
+	    .search-area,
+	    .login-area {
+	        display: inline-block; 
+	        vertical-align: middle; 
+	    }
+	    .logo-img {
+	        width: 50px; 
+	        height: 50px; 
+	    }
+	    .title{
+	        border: none;
+	        font-size: 35px;
+	        font-weight: 900;
+	    }
+	    .search-area {
+	        text-align: left;
+	        margin-top: 10px;
+	    }
+	    .search-input {
+	        width: 400px;
+	        height: 40px;
+	    }
+	    .login-area{
+	        margin-top: 20px;
+	        float: right;
+	    }
     </style>
 </head>
 
+<<<<<<< HEAD
 <body>
        <div class="outer">
+=======
+<body>
+
+
+    
+    <div class="outer">
+>>>>>>> refs/remotes/origin/main
         <div class="head-area">
             <a href="">
                 <div class="logo-area">
@@ -72,15 +138,19 @@
                 <input type="text" class="search-input" placeholder="영화 또는 드라마 등 컨텐츠 검색">
                 <button>검색</button>
             </div>
-        
-            <div class="login-area">
-                <input type="text" placeholder="아이디"> 
-                <input type="password" placeholder="비밀번호"> 
-                <button>로그인</button>
-                <button>회원가입</button>
+            <div>
+            <%@include file="/views/common/loginheader.jsp" %>
             </div>
+            
+
+           
         </div>
+<<<<<<< HEAD
     </div>    <br><br>
+=======
+    </div> <br><br>
+
+>>>>>>> refs/remotes/origin/main
 
 
 </body>

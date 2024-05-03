@@ -26,7 +26,7 @@
 
     <%@ include file="/views/board/boardMenuBar.jsp" %>
 	<div class="boardTitle">
-		<h2>자유게시판</h2>	
+		<h2>리뷰게시판</h2>	
 	</div>
 	
 	<%@ include file="/views/board/listSample.jsp" %>

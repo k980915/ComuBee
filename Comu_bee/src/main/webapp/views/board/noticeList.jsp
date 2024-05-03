@@ -7,8 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%@ include file="/views/common/header.jsp"%>
-
+	<%@ include file="/views/board/boardMenuBar.jsp" %>
+	<div class="boardTitle">
+		<h2>공지게시판</h2>	
+	</div>
+	
+	<%@ include file="/views/board/listSample.jsp" %>
 
 </body>
 </html>
