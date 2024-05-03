@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.kh.user.model.vo.User"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
     
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -113,7 +114,9 @@
 </head>
 
 <body>
-    <body>
+
+
+    
     <div class="outer">
         <div class="head-area">
             <a href="">
@@ -126,18 +129,18 @@
                 <input type="text" class="search-input" placeholder="영화 또는 드라마 등 컨텐츠 검색">
                 <button>검색</button>
             </div>
-        
-            <div class="login-area">
-                <input type="text" placeholder="아이디"> 
-                <input type="password" placeholder="비밀번호"> 
-                <button>로그인</button>
-                <button>회원가입</button>
+            <div>
+            <%@include file="/views/common/loginheader.jsp" %>
             </div>
+            
+
+           
         </div>
     </div>    <br><br>
 </body> 
 	<%@ include file="/views/common/hitsHeader.jsp"%>
 	<%@ include file="/views/common/myPageadmin.jsp"%>
+
 
 </body>
 </html>
