@@ -6,32 +6,42 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-	.outer{
-		
-	}
-	.boardBody>div{
-		float:left;
+	.boardOuter{
+		width:100%;
+		}
+	.boardOuter>div{
+		display:inline;
 		border:1px solid black;
+		float:left;
+		box-sizing:border-box;
+		margin:0px;
+		padding:0px;
 	}
-	.boardMain{
-		width:70%;
+
+	.boardMain>*{
+		width:100%;
+		margin:0px;
+		padding:0px;
+	}
+	.boardBody{
+		width:70%
 	}
 	.boardSide{
 		width:30%;
 	}
 
+
 </style>
 </head>
 <body>
 	<%@ include file="/views/board/boardMenuBar.jsp" %>
-<div class="outer">
-
-	<div class="boardMenuBar">
-		<h3>게시판</h3>
-		<!-- 게시판 용 메뉴바가 필요하지 않을까 싶은? -->
-	</div>
+<div class="boardOuter">
 	
 	<div class="boardBody">
+		<div class="boardMenuBar">
+			<h3>${b.category}게시판</h3>
+			<!-- 게시판 용 메뉴바가 필요하지 않을까 싶은? -->
+		</div>
 		<div class="boardMain">
 			<div class="boardTitle">
 				<table border="1px solid black">
@@ -148,8 +158,6 @@
 											+"<td>"+rList[i].replyWriter+"</td>"
 											+"<td>"+rList[i].replyContent+"</td>"
 											+"<td>"+rList[i].createDate+"</td>"
-											+"<td>"+"<button onclick='replyLike();'>"+List[i].like+"</button>"+"</td>"
-											+"<td>"+"<button onclick='replyHate();'>"+List[i].hate+"</button>"+"</td>"
 											+"</tr>";
 									}
 									$("#reply-area tbody").html(tr);
@@ -203,27 +211,154 @@
 						</c:forEach>
 					</select>
 				</form>
-				<%@ include file="/views/board/FreeBoard.jsp" %>
+				<%@ include file="/views/board/listSample.jsp" %>
 			</div>
 		</div>
 	</div>
-	<div class="boardSide" style="width:400px;border:1px solid black;">
+	
+	<div class="boardSide">
 		<div class="contentPopUp">
+			<h3>컨텐츠</h3>
+			<table class="popUp">
+				<thead>
+					<tr>
+						<th onclick="searchBestCont();">추천</th>
+						<th onclick="searchNewCont();">최신</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="p" items="popNewList">
+						<tr>
+							<td> <input type=hidden value='${p.contentNo}'> </td>
+							<td>
+								<img src="${contextPath}${p.thumbnailImg}"width="200px" height="150px"> <br>
+								${p.title}
+							</td>
+						</tr>
+					</c:forEach>
+					
+				</tbody>
+			</table>		
 		</div>
-		<div class="boardPopUp">
+		<div class="bestPopUp">
+			<h3>인기 게시글</h3>
+			<table class="popUp">
+				<thead>
+					<tr>
+						<c:forEach var="c" items="${category}">
+							<th onclick="searchBestCat();">${c.categoryName}<th>
+						</c:forEach>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="p" items="bestPopList">
+						<tr>
+							<td> <input type=hidden value='${p.boardNo}'> </td>
+							<td>${p.title}</td>
+							<td>(${p.like})</td><!-- 추천수 표시 -->
+						</tr>
+					</c:forEach>
+					
+				</tbody>
+			</table>
+		</div>
+		<div class="newPopUp">
 			<h3>신규 게시글</h3>
 			<table class="popUp">
 				<thead>
 					<tr>
 						<c:forEach var="c" items="${category}">
-							<th>${c.categoryName}<th>
+							<th onclick="searchNewCat();">${c.categoryName}<th>
 						</c:forEach>
 					</tr>
 				</thead>
 				<tbody>
-					<tr></tr>
+					<c:forEach var="p" items="newPopList">
+						<tr>
+							<td> <input type=hidden value='${p.boardNo}'> </td>
+							<td>${p.title}</td>
+						</tr>
+					</c:forEach>
+					
 				</tbody>
 			</table>
+			<script>
+			function searchBestCont(){
+				$.ajax({
+					url : "bestPopUp.co",
+					success : function(list){
+						var str = "";
+						for var(i=0;i<list.length;i++){
+							str+="<tr>"
+							+"<td>"+list[i].title+"</td>"
+							+"</tr>"
+						}
+						${".contentPopUp thead"}.html(str);
+					},
+					error : function(){
+						console.log("통신오류")
+					}
+					
+				});
+			function searchNewCat(){
+				$.ajax({
+					url : "newPopUp.co",
+					success : function(list){
+						var str = "";
+						for var(i=0;i<list.length;i++){
+							str+="<tr>"
+							+"<td>"+list[i].title+"</td>"
+							+"</tr>"
+						}
+						${".contentPopUp thead"}.html(str);
+					},
+					error : function(){
+						console.log("통신오류")
+					}
+					
+				});
+			function searchNewCat(){
+				$.ajax({
+					url : "newPopUp.bo",
+					success : function(list){
+						var str = "";
+						for var(i=0;i<list.length;i++){
+							str+="<tr>"
+							+"<td>"+list[i].title+"</td>"
+							+"</tr>"
+						}
+						${".newPopUp thead"}.html(str);
+					},
+					error : function(){
+						console.log("통신오류")
+					}
+					
+				});
+			function searchBestCat(){
+				$.ajax({
+					url : "bestPopUp.bo",
+					success : function(list){
+						var str = "";
+						for var(i=0;i<list.length;i++){
+							str+="<tr>"
+							+"<td>"+list[i].title+"</td>"
+							+"</tr>"
+						}
+						${".bestPopUp thead"}.html(str);
+					},
+					error : function(){
+						console.log("통신오류")
+					}
+					
+				});
+			}
+				
+				$(".popUp>tbody>tr").click(function(){
+					var bno = $(this).children.eq(0).text();
+					location.href='<%=contextPath%>/detail.bo?bno='+bno;
+					}
+				})
+			</script>
 		</div>
 	</div>
 	<!-- footer 있으면 그대로 다시 따오기 -->

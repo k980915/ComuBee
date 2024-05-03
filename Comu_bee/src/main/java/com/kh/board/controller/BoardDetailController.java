@@ -17,7 +17,7 @@ import com.kh.board.model.vo.Category;
 /**
  * Servlet implementation class BoardDetailController
  */
-@WebServlet("/BoardDetailController")
+@WebServlet("/detail.bo")
 public class BoardDetailController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
