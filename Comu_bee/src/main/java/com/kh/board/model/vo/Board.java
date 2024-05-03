@@ -68,6 +68,18 @@ public class Board {
 		this.hate = hate;
 		this.count = count;
 	}
+	
+	public Board(int boardNo, String title) {
+		super();
+		this.boardNo = boardNo;
+		this.title = title;
+	}
+	public Board(int boardNo, String title, int boardLike) {
+		super();
+		this.boardNo = boardNo;
+		this.title = title;
+		this.boardLike=boardLike;
+	}
 	public int getBoardNo() {
 		return boardNo;
 	}

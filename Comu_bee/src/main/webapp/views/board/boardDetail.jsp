@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <% %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,7 +41,7 @@
 		
 		<div class="boardBody">
 			<div class="boardMenuBar">
-				<h3>"${b.category}"게시판</h3>
+				<h3>${b.categoryName}게시판</h3>
 				<!-- 게시판 용 메뉴바가 필요하지 않을까 싶은? -->
 			</div>
 			<div class="boardMain">
@@ -51,7 +52,7 @@
 								<td class="boardCategory">[카테고리]</td>
 								<td class="boardFreeTitle" colspan="2">제목</td>
 								<!-- 관리자 or 작성자라면 게시글 수정/삭제 버튼이 보이게 처리하기 -->
-								<c:if test="${loginUser.userId eq admin or loginUser.userId eq b.userId}">
+								<c:if test="${loginUser.userId eq 'admin' or loginUser.userId eq b.userId}">
 									<td>
 										<button type="button" onclick="">수정</button><button type="button" onclick="deleteYN();">삭제</button>
 									</td>
@@ -201,9 +202,9 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="p" items="popNewList">
+						<c:forEach var="p" items="${bestContList}">
 							<tr>
-								<td> <input type=hidden value='${p.contentNo}'> </td>
+								<td> <input type=hidden value='${p.contentsId}'> </td>
 								<td>
 									<img src="${contextPath}${p.thumbnailImg}"width="200px" height="150px"> <br>
 									${p.title}
@@ -225,7 +226,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="p" items="bestPopList">
+						<c:forEach var="p" items="${bestPopList}">
 							<tr>
 								<td> <input type=hidden value='${p.boardNo}'> </td>
 								<td>${p.title}</td>
@@ -247,7 +248,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="p" items="newPopList">
+						<c:forEach var="p" items="${newPopList}">
 							<tr>
 								<td> <input type=hidden value='${p.boardNo}'> </td>
 								<td>${p.title}</td>
@@ -256,7 +257,7 @@
 						
 					</tbody>
 				</table>
-				<script>
+<%--				<script>
 				function searchBestCont(){
 					$.ajax({
 						url : "bestPopUp.co",
@@ -336,6 +337,7 @@
 						})
 
 				</script>
+--%>
 			</div>
 		</div>
 		<!-- footer 있으면 그대로 다시 따오기 -->
