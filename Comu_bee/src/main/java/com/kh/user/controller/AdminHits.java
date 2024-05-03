@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.user.model.service.AdminService;
 import com.kh.user.model.service.UserService;
 
 /**
@@ -34,7 +35,7 @@ public class AdminHits extends HttpServlet {
 		//response.setContentType("text/html;charset=UTF-8");
 		//PrintWriter out = response.getWriter();
 		
-		int result = new UserService().AdminHitsView();
+		int result = new AdminService().AdminHitsView();
 		
 		System.out.println(result);
 		response.setContentType("text/html;charset=UTF-8");

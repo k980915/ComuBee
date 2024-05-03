@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.kh.user.model.service.AdminService;
 import com.kh.user.model.service.UserService;
 
 /**
@@ -34,7 +35,7 @@ public class HitsViewUpdate extends HttpServlet {
 		int hitLog = Integer.parseInt(request.getParameter("hit")) ;
 		
 		
-		int result = new UserService().AdminHitsViewUpdate(hitLog);
+		int result = new AdminService().AdminHitsViewUpdate(hitLog);
 		
 		System.out.println("hit의 수는 : "+result);
 		response.setContentType("text/html;charset=UTF-8");
