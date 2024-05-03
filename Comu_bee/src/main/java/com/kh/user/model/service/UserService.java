@@ -44,6 +44,28 @@ public class UserService {
 		return flag;
 	}
 	
+	public User updateUser(User u) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new UserDao().updateUser(conn, u);
+		
+		User updateUser = null;
+		
+		if (result > 0) {// 성공
+			JDBCTemplate.commit(conn);
+			// 갱신된 회원의 정보를 조회하여 반환하기
+			// selectMember 메소드를 이용해서 userId만 가지고 회원정보 조회해오기
+			updateUser = new UserDao().selectUser(conn, u.getUserId());
+
+		} else { // 실패
+			JDBCTemplate.rollback(conn);
+		}
+
+		JDBCTemplate.close(conn);
+
+		return updateUser;
+		
+	}
+	
 	
 	
 	

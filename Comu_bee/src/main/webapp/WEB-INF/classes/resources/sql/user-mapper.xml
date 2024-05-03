@@ -24,13 +24,19 @@ INSERT INTO MEMBERINFO(USERID
 	FROM MEMBERINFO
 	WHERE USERID =?
 	AND USERPWD =?
-	AND STATUS ='Y'
 </entry>
 
 <entry key="checkId">
 	SELECT *
 	FROM MEMBERINFO
 	WHERE USERID=?
+</entry>
+<entry key="updateUser">
+	UPDATE USER 
+	SET USERNAME=?
+		USERGENDER=?
+		USEREMAIL=?
+		WHERE USERID=? 
 </entry>
 
 
