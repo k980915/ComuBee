@@ -95,11 +95,12 @@ public class ReviewListController extends HttpServlet {
 //		String ca = request.getParameter("category");
 //		// 게시글 목록
 //		ArrayList<Board> list = new BoardService().selectListByCategory(pi,ca);
-//		
+//		ArrayList<Board> noList = new BoardService().selectNoticeListByCategory(pi,ca);
 //		//위임하기 위한 데이터 담아주기
 //		
 //		request.setAttribute("pi", pi);
 //		request.setAttribute("list", list);
+//		request.setAttribute("noList",noList);
 		request.getRequestDispatcher("views/board/reviewBoard.jsp").forward(request, response);
 	}
 
