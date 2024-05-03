@@ -7,10 +7,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.contents.model.service.ContentsService;
+import com.kh.contents.model.vo.Contents;
+
 /**
  * Servlet implementation class ContentsDetailView
  */
-@WebServlet("/ContentsDetailView")
+@WebServlet("/detail.co")
 public class ContentsDetailController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -26,8 +29,21 @@ public class ContentsDetailController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		int contentsId = Integer.parseInt(request.getParameter("contentsId"));
+		String title = request.getParameter("title");
+		String englishTitle = request.getParameter("englishTitle");
+		String overView = request.getParameter("overView");
+		String posterPath = request.getParameter("posterPath");
+		String runtime = request.getParameter("runtime");
+		String releaseDate = request.getParameter("releaseDate");
+		String ageLimit = request.getParameter("ageLimit");
+		double rate = Double.parseDouble(request.getParameter("rate"));
+		String actors = request.getParameter("actors");
+		String director = request.getParameter("director");
+		
+		Contents co = new Contents(contentsId, title, englishTitle, overView, posterPath, runtime, releaseDate, ageLimit, rate, actors, director);
+		
+		Contents c = new ContentsService().DetailContents(co);
 	}
 
 	/**

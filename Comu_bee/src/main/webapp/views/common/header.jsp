@@ -60,8 +60,7 @@
 </head>
 
 <body>
-    <body>
-    <div class="outer">
+       <div class="outer">
         <div class="head-area">
             <a href="">
                 <div class="logo-area">
@@ -82,7 +81,7 @@
             </div>
         </div>
     </div>    <br><br>
-</body> 
+
 
 </body>
 </html>

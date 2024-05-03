@@ -1,6 +1,5 @@
 package com.kh.contents.model.vo;
 
-import java.sql.Date;
 
 public class Contents {
 		private int contentsId;
@@ -8,8 +7,8 @@ public class Contents {
 		private String englishTitle;
 		private String overView;
 		private String posterPath;
-		private int runtime;
-		private Date releaseDate;
+		private String runtime;
+		private String releaseDate;
 		private String ageLimit;
 		private double rate;
 		private String actors;
@@ -20,7 +19,7 @@ public class Contents {
 		}
 
 		public Contents(int contentsId, String title, String englishTitle, String overView, String posterPath,
-				int runtime, Date releaseDate, String ageLimit, double rate, String actors, String director) {
+				String runtime, String releaseDate, String ageLimit, double rate, String actors, String director) {
 			super();
 			this.contentsId = contentsId;
 			this.title = title;
@@ -75,19 +74,19 @@ public class Contents {
 			this.posterPath = posterPath;
 		}
 
-		public int getRuntime() {
+		public String getRuntime() {
 			return runtime;
 		}
 
-		public void setRuntime(int runtime) {
+		public void setRuntime(String runtime) {
 			this.runtime = runtime;
 		}
 
-		public Date getReleaseDate() {
+		public String getReleaseDate() {
 			return releaseDate;
 		}
 
-		public void setReleaseDate(Date releaseDate) {
+		public void setReleaseDate(String releaseDate) {
 			this.releaseDate = releaseDate;
 		}
 
@@ -130,7 +129,8 @@ public class Contents {
 					+ ", releaseDate=" + releaseDate + ", ageLimit=" + ageLimit + ", rate=" + rate + ", actors="
 					+ actors + ", director=" + director + "]";
 		}
-		
-		
 
+		
+		
+	
 }
