@@ -14,16 +14,16 @@ import com.kh.board.model.vo.Board;
 import com.kh.common.model.vo.PageInfo;
 
 /**
- * Servlet implementation class NoticeListController
+ * Servlet implementation class RecommendListController
  */
-@WebServlet("/list.no")
-public class NoticeListController extends HttpServlet {
+@WebServlet("/list.rv")
+public class ReviewListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeListController() {
+    public ReviewListController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -90,17 +90,18 @@ public class NoticeListController extends HttpServlet {
 //		}
 //		
 //		PageInfo pi = new PageInfo(listCount,currentPage,pageLimit,boardLimit,maxPage,startPage,endPage);
-//
+//		request.setAttribute("category", "RECOMMEND");
 //		
+//		String ca = request.getParameter("category");
 //		// 게시글 목록
-//		ArrayList<Board> list = new BoardService().selectListById(pi,"admin");
-//		
+//		ArrayList<Board> list = new BoardService().selectListByCategory(pi,ca);
+//		ArrayList<Board> noList = new BoardService().selectNoticeListByCategory(pi,ca);
 //		//위임하기 위한 데이터 담아주기
 //		
 //		request.setAttribute("pi", pi);
 //		request.setAttribute("list", list);
-//		
-		request.getRequestDispatcher("views/board/noticeList.jsp").forward(request, response);
+//		request.setAttribute("noList",noList);
+		request.getRequestDispatcher("views/board/reviewBoard.jsp").forward(request, response);
 	}
 
 	/**
