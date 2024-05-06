@@ -32,11 +32,27 @@ INSERT INTO MEMBERINFO(USERID
 	WHERE USERID=?
 </entry>
 <entry key="updateUser">
-	UPDATE USER 
+	UPDATE MEMBERINFO 
 	SET USERNAME=?
-		USERGENDER=?
-		USEREMAIL=?
-		WHERE USERID=? 
+		,USERGENDER=?
+		,USEREMAIL=?
+	WHERE USERID=? 
+</entry>
+<entry key="selectUser">
+	SELECT *FROM MEMBERINFO
+	WHERE USERID=?
+</entry>
+
+<entry key="updatePwd">
+		UPDATE MEMBERINFO
+		SET USERPWD = ?
+		WHERE USERID = ?
+		AND USERPWD = ?		
+</entry>
+
+<entry key="deleteUser">
+	DELETE FROM MEMBERINFO 
+	WHERE USERID=?
 </entry>
 
 

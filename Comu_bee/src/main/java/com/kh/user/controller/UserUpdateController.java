@@ -47,14 +47,17 @@ public class UserUpdateController extends HttpServlet {
 		String email = request.getParameter("email");
 		
 		User u = new User(userId,userName, gender, email);
+		System.out.println("입력받은상태"+u);
 		
 		User updateUser = new UserService().updateUser(u);
+		System.out.println("업데이트된 상태"+updateUser);
 		
 		if(updateUser == null) {
 			request.setAttribute("errorMsg", "정보수정실패");
 			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
 			//포워딩하기 (위임)
 			view.forward(request, response);
+			System.out.println("정보수정 실패");
 		}else {
 			//정보수정 성공시 - 마이페이지로 재요청 
 			//정보수정된 회원정보를 로그인정보에 갱신시켜주기 위해 재조회해오기 
@@ -64,6 +67,7 @@ public class UserUpdateController extends HttpServlet {
 			session.setAttribute("alertMsg", "정보수정성공");
 			session.setAttribute("loginUser",updateUser);
 			//마이페이지 요청매핑을 이용해서 페이지 재요청하기
+			System.out.println("정보수정 성공");
 			response.sendRedirect(request.getContextPath()+"/myPage.us");
 			
 		}

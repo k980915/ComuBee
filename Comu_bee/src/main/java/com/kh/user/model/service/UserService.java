@@ -47,7 +47,7 @@ public class UserService {
 	public User updateUser(User u) {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = new UserDao().updateUser(conn, u);
-		
+		System.out.println("서비스에서 result : "+result);
 		User updateUser = null;
 		
 		if (result > 0) {// 성공
@@ -63,7 +63,41 @@ public class UserService {
 		JDBCTemplate.close(conn);
 
 		return updateUser;
+	}
+	
+	public int updatePwd(String userId,String userPwd,String updatePwd) {
+		//연결객체 얻어오기
+		Connection conn = JDBCTemplate.getConnection();
 		
+		int result = new UserDao().updatePwd(conn,userId,userPwd,updatePwd);
+		
+		//dml구문이니 트랜잭션처리할것
+		if(result>0) {//성공시 확정
+			JDBCTemplate.commit(conn); 
+		}else {//실패시 되돌리기
+			JDBCTemplate.rollback(conn);
+		}
+	
+		//자원반납
+		JDBCTemplate.close(conn); 
+		
+		return result;
+	}
+	
+	public int deleteUser(String userId) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = new UserDao().deleteUser(conn, userId);
+		if(result>0) {//성공시 확정
+			JDBCTemplate.commit(conn); 
+		}else {//실패시 되돌리기
+			JDBCTemplate.rollback(conn);
+		}
+	
+		//자원반납
+		JDBCTemplate.close(conn); 
+		
+		return result;
 	}
 	
 	

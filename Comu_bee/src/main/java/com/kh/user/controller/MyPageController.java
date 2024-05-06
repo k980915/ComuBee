@@ -27,6 +27,7 @@ public class MyPageController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("views/user/myPage.jsp").forward(request, response);
+		
 	}
 
 	/**

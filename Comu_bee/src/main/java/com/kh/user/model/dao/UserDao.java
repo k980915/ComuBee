@@ -69,9 +69,13 @@ public class UserDao {
 				
 				u= new User(
 						rset.getString("USERID")
-						,rset.getString("USERPWD"));
-
-				
+						,rset.getString("USERNAME")
+						,rset.getString("USERPWD")
+						,rset.getString("USERGENDER")
+						,rset.getString("USERBIRTH")
+						,rset.getString("USEREMAIL")
+						,rset.getDate("JOINDATE")
+						,rset.getInt("POINT"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -121,9 +125,7 @@ public class UserDao {
 			pstmt.setString(3, u.getUserEmail());
 			pstmt.setString(4, u.getUserId());
 			
-			
-			//완성된 sql구문 실행 및 결과 받기 
-			result = pstmt.executeUpdate();//처리된 행수
+			result=pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -172,7 +174,52 @@ public class UserDao {
 		}
 		
 		return u;//결과객체 반환
+	}
+	
+	public int updatePwd(Connection conn,String userId,String userPwd,String updatePwd) {
+		//DML - update
+		int result = 0; //처리된 행수를 받아줄 변수 
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updatePwd");
 		
+		try {
+			//미완성 sql구문 전달하며 pstmt 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//미완성 sql구문 완성하기 (위치홀더 채워주기)
+			pstmt.setString(1, updatePwd);
+			pstmt.setString(2, userId);
+			pstmt.setString(3, userPwd);
+			
+			//완성된 sql구문 실행 및 결과 반환받기 
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result; //결과값 반환	
+	}
+	
+	public int deleteUser(Connection conn, String userId) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("delteUser");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
 	}
 	
 

@@ -22,7 +22,7 @@
 
 		<h2 align="center">마이페이지</h2>
 
-		<form id="myPage-form" action="<%=contextPath %>/update.me" method="post">
+		<form id="myPage-form" action="${contextPath}/update.us" method="post">
 			<!-- 아이디,비밀번호,이름,전화번호,주소,취미,이메일 -->
 			<table>
 				<!-- (tr>td*3)*8 -->
@@ -133,11 +133,11 @@
 	      	   2번. 컨트롤러에서 로그인정보에서 꺼내기 (session에서 loginUser)
 	       -->
 	      <div class="modal-body" align="center">
-	       		<form action="<%=contextPath%>/updatePwd.me" method="post">
+	       		<form action="${contextPath}/updatePwd.us" method="post">
 						<!-- 현재 비밀번호,변경할 비밀번호,변경할 비밀번호 재입력 -->
 					<!-- 회원의 아이디를 전송하기 (hidden) - 식별자용도 -->
 					<!-- 사용자에겐 보이지 않지만 서버엔 전송될수 있는 타입 -->
-					<input type="hidden" name="userId" value="<%=userId%>">
+					<input type="hidden" name="userId" value="${loginUser.userId }">
 					
 					<table>
 						<tr>
@@ -162,7 +162,7 @@
 	      			//변경할 비밀번호와 비밀번호 확인이 일치하는지 체크하기
 	      			var updatePwd = $("input[name=updatePwd]").val();
 	      			var checkPwd = $("#chkPwd").val();
-	      			
+	      			  
 	      			//비교후 같으면 true 다르면 false 를 반환하여 기본이벤트 막아주기
 	      			
 	      			if(updatePwd != checkPwd){
@@ -190,13 +190,13 @@
 	      <!-- Modal Header -->
 	      <div class="modal-header">
 	        <h4 class="modal-title" align="center">회원 탈퇴</h4>
-	        <button type="button" cla	ss="close" data-dismiss="modal">&times;</button>
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
 	      </div>
 	
 	      <div class="modal-body" align="center">
-	       		<form action="<%=contextPath%>/delete.me" method="post">
+	       		<form action="${contextPath}/delete.us" method="post">
 					<!-- 식별자용 아이디 전달하기 -->
-					<input type="hidden" name="userId" value="<%=userId%>">
+					<input type="hidden" name="userId" value="${loginUser.userId}">
 					<table>
 						<tr>
 							<td>현재 비밀번호 : </td>
