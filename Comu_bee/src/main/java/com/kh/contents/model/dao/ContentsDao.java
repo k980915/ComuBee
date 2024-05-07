@@ -18,7 +18,7 @@ public class ContentsDao {
 private Properties prop = new Properties();
 	
 	public ContentsDao() {
-		String filePath = ContentsDao.class.getResource("/resources/sql/board-mapper.xml").getPath();
+		String filePath = ContentsDao.class.getResource("/resources/sql/contents-mapper.xml").getPath();
 		try {
 			prop.loadFromXML(new FileInputStream(filePath));
 		} catch (IOException e) {
@@ -93,11 +93,9 @@ private Properties prop = new Properties();
 			JDBCTemplate.close(stmt);
 			JDBCTemplate.close(rset);
 		}
+		
 		return list;
 	}
-	
-
-	
 
 	public Contents selectContents(Connection conn, int cid) {
 		PreparedStatement pstmt = null;

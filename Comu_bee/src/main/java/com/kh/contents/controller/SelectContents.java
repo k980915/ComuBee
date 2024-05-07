@@ -14,7 +14,7 @@ import com.kh.contents.model.vo.Contents;
 /**
  * Servlet implementation class SelectContents
  */
-@WebServlet("/detail.co")
+@WebServlet("/sa")
 public class SelectContents extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

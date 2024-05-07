@@ -15,7 +15,7 @@ import com.kh.contents.model.vo.Contents;
 /**
  * Servlet implementation class ContentsDetailList
  */
-@WebServlet("/ContentsDetailList")
+@WebServlet("/detail.co")
 public class ContentsDetailList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -34,7 +34,8 @@ public class ContentsDetailList extends HttpServlet {
 		ArrayList<Contents> list = new ContentsService().DetailContentsList();
     	
     	request.setAttribute("list", list);
-    	request.getRequestDispatcher("index.jsp").forward(request, response);
+    	request.getRequestDispatcher("views/contents/contentsDetailView.jsp").forward(request, response);
+    	System.out.println(list);
 	}
 
 	/**
