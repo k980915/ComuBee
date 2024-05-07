@@ -33,7 +33,7 @@ public class Contents {
 			this.actors = actors;
 			this.director = director;
 		}
-		
+
 
 		
 		public Contents(String title, String englishTitle, String overView, String runtime, String releaseDate,
@@ -60,6 +60,7 @@ public class Contents {
 			this.rate = rate;
 			this.actors = actors;
 			this.director = director;
+
 		}
 
 		public int getContentsId() {

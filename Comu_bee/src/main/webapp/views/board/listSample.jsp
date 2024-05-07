@@ -8,14 +8,12 @@
     
     <title>자유게시판</title>
 
-    <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <style>
         .pagination a {
-            color: black; /* Ensures text color is black */
+            color: black; 
         }
     </style>
 
@@ -172,7 +170,6 @@
             </tbody>
         </table>
     </div>
-    <!-- Pagination -->
     <nav aria-label="Page navigation example" style="text-align: center;">
         <ul class="pagination justify-content-center">
             <li class="page-item">
@@ -192,6 +189,26 @@
             </li>
         </ul>
     </nav>
+    
+    <script>
+    	$("tbody tr").click(function(){
+    		var bno = $(this).children.eq(0).text();
+    		location.href="<%=contextPath%>/detail.bo?bno="+bno;
+    	});
+		$(".page-link").click(function(){
+			var btnNo=Number($(this).text());
+			location.href="list.${category}?currentPage="+btnNo;
+		});
+		var currentPage=${pi.currentPage}
+		function prev(){
+			location.href='list.${category}?currentPage='+(currentPage-1);
+		}
+		function next(){
+			location.href='list.${category}?currentPage='+(currentPage+1);
+		}
+	</script>
+    	
+    </script>
 
 </body>
 </html>
