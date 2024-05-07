@@ -203,7 +203,7 @@
 						</c:forEach>
 					</select>
 				</form>
-				<%@ include file="/views/board/FreeBoard.jsp" %>
+				<%-- <%@ include file="/views/board/FreeBoard.jsp" %> --%>
 			</div>
 		</div>
 	</div>

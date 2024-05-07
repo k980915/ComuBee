@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.kh.common.JDBCTemplate;
-import com.kh.member.model.dao.MemberDao;
+import com.kh.message.model.dao.MessageDao;
 import com.kh.message.model.vo.Message;
 
 	public class MessageDao {
@@ -21,7 +21,7 @@ import com.kh.message.model.vo.Message;
 		public MessageDao() {
 			//message-mapper파일의 물리적인 주소(경로) 알아오기
 			// getResource에서 /로 시작하면 classes 가 기준이 됨
-			String filePath = MemberDao.class
+			String filePath = MessageDao.class
 									   .getResource("/resources/sql/message-mapper.xml")
 									   .getPath();
 //			System.out.println(filePath);
