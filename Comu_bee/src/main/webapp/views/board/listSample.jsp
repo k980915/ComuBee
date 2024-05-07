@@ -189,6 +189,26 @@
             </li>
         </ul>
     </nav>
+    
+    <script>
+    	$("tbody tr").click(function(){
+    		var bno = $(this).children.eq(0).text();
+    		location.href="<%=contextPath%>/detail.bo?bno="+bno;
+    	});
+		$(".page-link").click(function(){
+			var btnNo=Number($(this).text());
+			location.href="list.${category}?currentPage="+btnNo;
+		});
+		var currentPage=${pi.currentPage}
+		function prev(){
+			location.href='list.${category}?currentPage='+(currentPage-1);
+		}
+		function next(){
+			location.href='list.${category}?currentPage='+(currentPage+1);
+		}
+	</script>
+    	
+    </script>
 
 </body>
 </html>

@@ -15,6 +15,7 @@ import com.kh.board.model.vo.Board;
 import com.kh.board.model.vo.Category;
 import com.kh.common.JDBCTemplate;
 import com.kh.common.model.vo.PageInfo;
+import com.kh.contents.model.vo.Contents;
 
 public class BoardDao {
 	private Properties prop = new Properties();
@@ -207,17 +208,17 @@ public class BoardDao {
 		ResultSet rset = null;
 		int startRow=(pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
 		int endRow=pi.getCurrentPage()*pi.getBoardLimit();
-		String sql = prop.getProperty("selectList");
+		String sql = prop.getProperty("selectListById");
 		try {
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, endRow);
-			pstmt.setString(3, userId);
+			pstmt.setString(1, userId);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
 			rset = pstmt.executeQuery();
 			while(rset.next()) {
 				list.add(new Board(
 						rset.getInt("BOARDNO"),
-						rset.getString("CATEGORY"),
+						rset.getString("CATEGORYNAME"),
 						rset.getString("TITLE"),
 						rset.getString("USERID"),
 						rset.getDate("CREATEDATE"),
@@ -243,7 +244,7 @@ public class BoardDao {
 		ResultSet rset = null;
 		int startRow=(pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
 		int endRow=pi.getCurrentPage()*pi.getBoardLimit();
-		String sql = prop.getProperty("selectList");
+		String sql = prop.getProperty("selectListByCategory");
 		try {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
@@ -253,7 +254,7 @@ public class BoardDao {
 			while(rset.next()) {
 				list.add(new Board(
 						rset.getInt("BOARDNO"),
-						rset.getString("CATEGORY"),
+						rset.getString("CATEGORYNAME"),
 						rset.getString("TITLE"),
 						rset.getString("USERID"),
 						rset.getDate("CREATEDATE"),
@@ -269,6 +270,92 @@ public class BoardDao {
 			JDBCTemplate.close(rset);
 			JDBCTemplate.close(pstmt);
 		}
+		
+		return list;
+	}
+
+	public ArrayList<Board> newPopList(Connection conn, Board b) {
+		// TODO Auto-generated method stub
+		ArrayList<Board> list = new ArrayList<>();
+		PreparedStatement pstmt=null;
+		ResultSet rset=null;
+		String sql=prop.getProperty("newPopList");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, b.getCategory());
+			
+			rset=pstmt.executeQuery();
+			while(rset.next()) {
+				list.add(new Board(
+						rset.getInt("BOARDNO"),
+						rset.getString("TITLE")
+						));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return list;
+	}
+
+	public ArrayList<Board> bestPopList(Connection conn, Board b) {
+		ArrayList<Board> list = new ArrayList<>();
+		PreparedStatement pstmt=null;
+		ResultSet rset=null;
+		String sql=prop.getProperty("bestPopList");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, b.getCategory());
+			
+			rset=pstmt.executeQuery();
+			while(rset.next()) {
+				list.add(new Board(
+						rset.getInt("BOARDNO"),
+						rset.getString("TITLE"),
+						rset.getInt("BOARDLIKE")
+						));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return list;
+	}
+
+	public ArrayList<Contents> bestContList(Connection conn) {
+		// TODO Auto-generated method stub
+		ArrayList<Contents> list=new ArrayList<>();
+		Statement stmt=null;
+		ResultSet rset=null;
+		String sql=prop.getProperty("bestContList");
+		try {
+			stmt=conn.createStatement();
+			rset=stmt.executeQuery(sql);
+			
+			while(rset.next()) {
+				list.add(new Contents(
+						rset.getInt("CONTENTSID"),
+						rset.getString("TITLE"),
+						rset.getString("POSTERPATH"),
+						rset.getDouble("RATE")
+						));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(stmt);
+		}
+		
 		
 		return list;
 	}
