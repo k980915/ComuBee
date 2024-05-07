@@ -4,6 +4,7 @@ import java.sql.Connection;
 
 import com.kh.common.JDBCTemplate;
 import com.kh.user.model.dao.AdminDao;
+import com.kh.user.model.vo.AdminHits;
 
 public class AdminService {
 	public int AdminHitsView() {
@@ -27,6 +28,16 @@ public class AdminService {
 			JDBCTemplate.rollback(conn);
 		}
 		
+
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
+
+	public int MonthHitsView(AdminHits adh) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = new AdminDao().MonthHitsView(conn,adh);
 
 		JDBCTemplate.close(conn);
 		

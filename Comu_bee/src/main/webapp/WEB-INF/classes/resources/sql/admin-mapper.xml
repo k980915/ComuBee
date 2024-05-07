@@ -17,9 +17,9 @@
 	AND MONTHSELECT = '5월'
 	</entry>
 
-
-	<entry key="monthHits">
-	SELECT TODAYHITS
+	
+	<entry key="adminMonthHitsView">
+	SELECT MONTHHITS
 	FROM HITS
 	WHERE YRARSELECT = ?
 	AND   MONTHSELECT = ?

@@ -19,6 +19,14 @@ public class AdminHits {
 		this.hits = hits;
 		this.toDayHits = toDayHits;
 	}
+	
+	
+
+	public AdminHits(String yeatSelect, String monthSelect) {
+		super();
+		this.yeatSelect = yeatSelect;
+		this.monthSelect = monthSelect;
+	}
 
 	public String getYeatSelect() {
 		return yeatSelect;

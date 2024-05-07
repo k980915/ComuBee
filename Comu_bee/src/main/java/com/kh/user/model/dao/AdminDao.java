@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 import com.kh.common.JDBCTemplate;
+import com.kh.user.model.vo.AdminHits;
 
 public class AdminDao {
 	private Properties prop = new Properties();
@@ -72,6 +73,36 @@ public class AdminDao {
 		}finally {
 			JDBCTemplate.close(pstmt);
 		}
+		return result;
+	}
+
+	public int MonthHitsView(Connection conn, AdminHits adh) {
+		ResultSet rset = null;
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("adminMonthHitsView");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, adh.getYeatSelect());
+			pstmt.setString(2, adh.getMonthSelect());
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				result = rset.getInt("MONTHHITS");
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
 		return result;
 	}
 
