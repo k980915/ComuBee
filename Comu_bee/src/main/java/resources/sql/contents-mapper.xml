@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+	<entry key="DetailContents">
+	SELECT *
+	FROM CONTENTS
+	</entry>
+	
+	<entry key="DetailContentsList">
+	SELECT *
+	FROM CONTENTS
+	</entry>
+	
+	<entry key="selectContents">
+	SELECT *
+	FROM CONTENTS
+	WHERE CONTENTSID = ?
+	</entry>
+
+</properties>
