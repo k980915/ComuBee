@@ -33,6 +33,34 @@ public class Contents {
 			this.actors = actors;
 			this.director = director;
 		}
+		
+
+		
+		public Contents(String title, String englishTitle, String overView, String runtime, String releaseDate,
+				String ageLimit) {
+			super();
+			this.title = title;
+			this.englishTitle = englishTitle;
+			this.overView = overView;
+			this.runtime = runtime;
+			this.releaseDate = releaseDate;
+			this.ageLimit = ageLimit;
+		}
+
+		public Contents(String title, String englishTitle, String overView, String posterPath, String runtime,
+				String releaseDate, String ageLimit, double rate, String actors, String director) {
+			super();
+			this.title = title;
+			this.englishTitle = englishTitle;
+			this.overView = overView;
+			this.posterPath = posterPath;
+			this.runtime = runtime;
+			this.releaseDate = releaseDate;
+			this.ageLimit = ageLimit;
+			this.rate = rate;
+			this.actors = actors;
+			this.director = director;
+		}
 
 		public int getContentsId() {
 			return contentsId;

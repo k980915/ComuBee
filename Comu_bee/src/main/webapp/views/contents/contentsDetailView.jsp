@@ -1,5 +1,10 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.kh.contents.model.vo.Contents"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	ArrayList<Contents> list = (ArrayList<Contents>)request.getAttribute("list");
+%>
     
 <!DOCTYPE html>
 <html lang="en">
@@ -7,33 +12,37 @@
 <meta charset="UTF-8">
 <title>contentDetail</title>
     <style>
-        .outer{
-            margin: auto;
-            margin-left: 300px;
-            margin-right: 300px;
-        }
+
         .menu {
         display: flex;
         align-items: center;
         }
 
         .menu label {
-            margin-left: 20px; 
+            margin-left: 10px; 
         }
 
     </style>
 </head>
 <body>
+<%@include file="/views/common/header.jsp" %>
+
 	  <div class="outer">
-	  	<form id="detail-form" action="<%=contextPath %>/detail.co">
+	  
+	  	<form id="detail-form" action="<%=contextPath%>/detail.co">
+
+	  	
 	        <table style="width: 100%;">
+	        <%if(!list.isEmpty()){ %>
+	        	<%for(Contents c : list) { %>
 	            <tr>
 	                <td rowspan="3" style="width: 50%; height: 600px;"><img src="" style="height: 800px; width: 100%;"></td>
 	                <td rowspan="3" style="width: 10%;"></td>
-	                <td colspan="3" style="width: 30%; height: 10px;" align="center"><h1>서울의봄</h1></td>
+	                <td colspan="3" style="width: 30%; height: 10px;" align="center"><h1><%= c.getTitle() %></h1></td>
+	                
 	            </tr>
 	            <tr>
-	                <td colspan="4" style="height: 10px;" align="center"><h2>12 : 12 THE DAY     。 2024</h2></td>
+	                <td colspan="4" style="height: 10px;" align="center"><h2><%= c.getEnglishTitle() %></h2></td>
 	            </tr>
 	            <tr>
 	                <td colspan="3" rowspan="2">
@@ -50,13 +59,13 @@
 	                                        <td style="height: 50px;">장르</td>
 	                                        <td>0</td>
 	                                        <td>개봉일</td>
-	                                        <td>0</td>
+	                                        <td><%= c.getReleaseDate() %></td>
 	                                    </tr>
 	                                    <tr>
-	                                        <td style="height: 50px;">연령 등급</td>
-	                                        <td>0</td>
+	                                        <td style="height: 50px;"><%= c.getAgeLimit() %></td>
+	                                        <td>12세</td>
 	                                        <td>러닝타임</td>
-	                                        <td>0</td>
+	                                        <td><%= c.getRuntime() %>분</td>
 	                                    </tr>
 	                                    <tr>
 	                                        <td style="height: 50px;">제작 국가</td>
@@ -65,11 +74,13 @@
 	                                        <td>0</td>
 	                                    </tr>
 	                                    <tr>
-	                                        <td style="height: 50px;" colspan="4">overview</td>
+	                                        <td style="height: 50px;" colspan="4">소개</td>
 	                                    </tr>
 	                                    <tr>
-	                                        <td colspan="4" align="center">줄거리줄거리줄거리줄거리줄거리줄거리줄거리줄거리줄거리줄거리줄거리줄거리줄거리줄거리줄거리줄거리줄거리줄거리줄거리줄거리줄거리줄거리줄거리줄거리줄거리줄거리줄거리</td>
+	                                        <td colspan="4" align="center">${c.overView }</td>
 	                                    </tr>
+	                   <%} %>
+				<%} %>
 	                                </table>
 	                            </td>
 	                        </tr>
@@ -81,14 +92,14 @@
         <div>
             <form action="">
                 <div class="menu">
-                    <a href=""><h1>한줄 리뷰</h1></a>
+                    <a href="${contextPath}/list.rv?currentPage=1"><h1>한줄 리뷰</h1></a>
                     <label><input type="checkbox">추천순</label>
                     <label><input type="checkbox">최신순</label>
                 </div>
             </form>
             <table>
                 <tr>
-                    <td><img src="../HTML/resources/20211129_202923.jpg" style="width: 20px; height: 20px;"></td>
+                    <td><img src="/resources/uploadFiles/20211114_033329.jpg" style="width: 20px; height: 20px;"></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -97,7 +108,7 @@
 
             </table>
         </div>
-    
+
 
 
 

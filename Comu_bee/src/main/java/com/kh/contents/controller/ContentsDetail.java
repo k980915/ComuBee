@@ -1,26 +1,26 @@
 package com.kh.contents.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.contents.model.service.ContentsService;
 import com.kh.contents.model.vo.Contents;
 
 /**
- * Servlet implementation class ContentsDetailView
+ * Servlet implementation class ContentsDetail
  */
-@WebServlet("/detail.co")
-public class ContentsDetailController extends HttpServlet {
+@WebServlet("/ContentsDetail")
+public class ContentsDetail extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ContentsDetailController() {
+    public ContentsDetail() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,6 +29,7 @@ public class ContentsDetailController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		int contentsId = Integer.parseInt(request.getParameter("contentsId"));
 		String title = request.getParameter("title");
 		String englishTitle = request.getParameter("englishTitle");
@@ -41,9 +42,9 @@ public class ContentsDetailController extends HttpServlet {
 		String actors = request.getParameter("actors");
 		String director = request.getParameter("director");
 		
-		Contents co = new Contents(contentsId, title, englishTitle, overView, posterPath, runtime, releaseDate, ageLimit, rate, actors, director);
-		
-		Contents c = new ContentsService().DetailContents(co);
+		Contents con = new Contents(contentsId, title, englishTitle, overView, posterPath, runtime, releaseDate, ageLimit, rate, actors, director);
+	
+//		request.getRequestDispatcher("views/contents/contentsDetailView.jsp").forward(request, response);
 	}
 
 	/**
