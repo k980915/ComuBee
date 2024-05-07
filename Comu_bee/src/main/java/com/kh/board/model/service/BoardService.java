@@ -9,6 +9,7 @@ import com.kh.board.model.vo.Board;
 import com.kh.board.model.vo.Category;
 import com.kh.common.JDBCTemplate;
 import com.kh.common.model.vo.PageInfo;
+import com.kh.contents.model.vo.Contents;
 
 public class BoardService {
 
@@ -77,6 +78,30 @@ public class BoardService {
 		// TODO Auto-generated method stub
 		Connection conn = JDBCTemplate.getConnection();
 		ArrayList<Board> list = new BoardDao().selectListbyCategory(conn,pi,ca);
+		JDBCTemplate.close(conn);
+		return list;
+	}
+
+	public ArrayList<Board> newPopList(Board b) {
+		// TODO Auto-generated method stub
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<Board> list = new BoardDao().newPopList(conn,b);
+		JDBCTemplate.close(conn);
+		return list;
+	}
+
+	public ArrayList<Board> bestPopList(Board b) {
+		// TODO Auto-generated method stub
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<Board> list = new BoardDao().bestPopList(conn,b);
+		JDBCTemplate.close(conn);
+		return list;
+	}
+
+	public ArrayList<Contents> bestContList() {
+		// TODO Auto-generated method stub
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<Contents> list=new BoardDao().bestContList(conn);
 		JDBCTemplate.close(conn);
 		return list;
 	}

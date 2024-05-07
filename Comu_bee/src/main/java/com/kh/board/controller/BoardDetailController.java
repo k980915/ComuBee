@@ -13,11 +13,12 @@ import com.kh.board.model.service.BoardService;
 import com.kh.board.model.vo.Attachment;
 import com.kh.board.model.vo.Board;
 import com.kh.board.model.vo.Category;
+import com.kh.contents.model.vo.Contents;
 
 /**
  * Servlet implementation class BoardDetailController
  */
-@WebServlet("/BoardDetailController")
+@WebServlet("/detail.bo")
 public class BoardDetailController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -36,18 +37,25 @@ public class BoardDetailController extends HttpServlet {
 		// TODO Auto-generated method stub
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 		int bno = Integer.parseInt(request.getParameter("bno"));
+		BoardService bs = new BoardService();
 		
 		int result=new BoardService().increaseCount(bno);
 		if(result>0) {
-			ArrayList<Category> cList = new BoardService().selectCategoryList();
+			ArrayList<Category> cList = bs.selectCategoryList();
 			Board b = new BoardService().selectBoard(bno);
 //			System.out.println(b);
 			// 첨부파일 정보도 조회하기
-			ArrayList<Attachment> atList = new BoardService().selectAttachment(bno);
+			ArrayList<Attachment> atList = bs.selectAttachment(bno);
 //			System.out.println(at);
+			ArrayList<Contents> bestContList=bs.bestContList();
+			ArrayList<Board> newPopList=bs.newPopList(b);
+			ArrayList<Board> bestPopList=bs.bestPopList(b);
 			request.setAttribute("b",b);
 			request.setAttribute("atList",atList);
 			request.setAttribute("cList", cList);
+			request.setAttribute("newPopList", newPopList);
+			request.setAttribute("bestPopList", bestPopList);
+			request.setAttribute("bestContList", bestContList);
 			request.getRequestDispatcher("views/board/boardDetail.jsp").forward(request, response);
 
 		}else {
