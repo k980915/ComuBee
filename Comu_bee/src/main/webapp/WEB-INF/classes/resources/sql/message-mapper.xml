@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+<entry key="insertMessage">
+	INSERT INTO MESSAGE VALUES(SEQ_MMNO.NEXTVAL,?,?,?,SYSDATE)
+</entry>
+<entry key="selectSendMessage">
+	SELECT*FROM MESSAGE WHERE SENDNAME=?
+</entry>
+<entry key="selectReceiveMessage">
+	SELECT*FROM MESSAGE WHERE RECEIVENAME=?
+</entry>
+</properties>

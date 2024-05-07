@@ -1,8 +1,6 @@
 package com.kh.message.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,16 +11,16 @@ import com.kh.message.model.service.MessageService;
 import com.kh.message.model.vo.Message;
 
 /**
- * Servlet implementation class MessageBoxController
+ * Servlet implementation class MessageServiceController
  */
-@WebServlet("/messageMain.ms")
-public class MessageMainController extends HttpServlet {
+@WebServlet("/insertMessage.ms")
+public class MessageSendController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MessageMainController() {
+    public MessageSendController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,21 +29,31 @@ public class MessageMainController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String userId=request.getParameter("userId");
-		
-		ArrayList<Message> list = new MessageService().selectReceiveMessage(userId);
-		request.setAttribute("list", list);
-		
-		request.getRequestDispatcher("views/message/messageMainView.jsp").forward(request, response);
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		request.setCharacterEncoding("UTF-8");
+		
+		//form 태그에서 보내준 값 받아오기 
+		String senderId=request.getParameter("senderId");
+		String receiverId=request.getParameter("receiverId");
+		String message = request.getParameter("message");
+		
+		Message m = new Message(senderId, receiverId,message);
+		int result=new MessageService().insertMessage(m);
+		if(result>0) {
+			request.setAttribute("alertMsg", "메시지 전송 성공");
+		}else {
+			request.setAttribute("alertMsg", "메시지 전송 실패");
+		}
+		response.sendRedirect(request.getContextPath());
+		
+		
 	}
 
 }

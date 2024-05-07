@@ -206,7 +206,7 @@ public class UserDao {
 	public int deleteUser(Connection conn, String userId) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String sql = prop.getProperty("delteUser");
+		String sql = prop.getProperty("deleteUser");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);

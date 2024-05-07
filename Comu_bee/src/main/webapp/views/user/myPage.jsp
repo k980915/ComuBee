@@ -77,13 +77,13 @@
 				<button type="button"  class="btn btn-primary" data-toggle="modal" data-target="#updatePwdForm">비밀번호변경</button>
 				<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteForm">회원탈퇴</button>
 				<div class="menu">
-           			 <a href="<%=contextPath%>/boardList.me?myBoardCurrentPage=1&userId=${loginUser.userId}">내가 쓴 글 </a>
+           			 <a href="<%=contextPath%>/boardList.us?myBoardCurrentPage=1&userId=${loginUser.userId}">내가 쓴 글 </a>
         		</div>
         		<div class="menu">
-           			 <a href="<%=contextPath%>/replyList.me?myReplyCurrentPage=1&userId=${loginUser.userId}">내가 쓴 댓글 </a>
+           			 <a href="<%=contextPath%>/replyList.us?myReplyCurrentPage=1&userId=${loginUser.userId}">내가 쓴 댓글 </a>
         		</div>
         		<div class="menu">
-           			 <a href="<%=contextPath%>/messageMain.ms?userId=<%=userId%>">쪽지</a>
+           			 <a href="<%=contextPath%>/messageMain.ms?userId=${loginUser.userId}">쪽지</a>
         		</div>
 			</div> 
 		</form>
