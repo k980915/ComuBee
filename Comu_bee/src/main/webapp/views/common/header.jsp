@@ -12,11 +12,8 @@
     <title>헤더</title>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>         
-	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-	<!-- Popper JS -->
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>	
-	<!-- Latest compiled JavaScript -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <style>
@@ -125,10 +122,13 @@
                     <h1 class="title">COMU-BEE</h1>
                 </div>
             </a>
-            <div class="search-area">
-                <input type="text" class="search-input" placeholder="영화 또는 드라마 등 컨텐츠 검색">
-                <button>검색</button>
-            </div>
+	<div class="search-area">
+<form action="${pageContext.request.contextPath}/board.se" method="get">
+    <input type="text" name="title" class="search-input" placeholder="영화 또는 드라마 등 컨텐츠 검색">
+    <button type="submit">검색</button>
+</form>
+
+	</div>
             <div>
             <%@include file="/views/common/loginheader.jsp" %>
             </div>
