@@ -100,6 +100,7 @@ public class NoticeListController extends HttpServlet {
 //		request.setAttribute("pi", pi);
 //		request.setAttribute("list", list);
 //		
+// 		request.setAttribute("category","NOTICE");
 		request.getRequestDispatcher("views/board/noticeList.jsp").forward(request, response);
 	}
 

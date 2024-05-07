@@ -27,6 +27,8 @@
     </style>
 </head>
 <body>
+  
+  
     <div class="container mt-4">
         <h2>게시글 작성하기</h2>
         <form action="writerAction" method="post">

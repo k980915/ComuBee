@@ -8,7 +8,7 @@ public class Attachment {
 	private int boardNo;
 	private String originName;
 	private String changeName;
-	private String atFilePatl;
+	private String atFilePath;
 	private Date atUploadDate;
 	private String status;
 	
@@ -16,7 +16,7 @@ public class Attachment {
 	public Attachment() {
 		super();
 	}
-	public Attachment(int atNo, int categoryNo, int boardNo, String originName, String changeName, String atFilePatl,
+	public Attachment(int atNo, int categoryNo, int boardNo, String originName, String changeName, String atFilePath,
 			Date atUploadDate, String status) {
 		super();
 		this.atNo = atNo;
@@ -24,14 +24,14 @@ public class Attachment {
 		this.boardNo = boardNo;
 		this.originName = originName;
 		this.changeName = changeName;
-		this.atFilePatl = atFilePatl;
+		this.atFilePath = atFilePath;
 		this.atUploadDate = atUploadDate;
 		this.status = status;
 	}
 	
 	
 	
-	public Attachment(int atNo, int categoryNo, int boardNo, String originName, String changeName, String atFilePatl,
+	public Attachment(int atNo, int categoryNo, int boardNo, String originName, String changeName, String atFilePath,
 			Date atUploadDate) {
 		super();
 		this.atNo = atNo;
@@ -39,7 +39,7 @@ public class Attachment {
 		this.boardNo = boardNo;
 		this.originName = originName;
 		this.changeName = changeName;
-		this.atFilePatl = atFilePatl;
+		this.atFilePath = atFilePath;
 		this.atUploadDate = atUploadDate;
 	}
 	public int getAtNo() {
@@ -72,11 +72,11 @@ public class Attachment {
 	public void setChangeName(String changeName) {
 		this.changeName = changeName;
 	}
-	public String getAtFilePatl() {
-		return atFilePatl;
+	public String getAtFilePath() {
+		return atFilePath;
 	}
-	public void setAtFilePatl(String atFilePatl) {
-		this.atFilePatl = atFilePatl;
+	public void setAtFilePatl(String atFilePath) {
+		this.atFilePath = atFilePath;
 	}
 	public Date getAtUploadDate() {
 		return atUploadDate;
@@ -95,7 +95,7 @@ public class Attachment {
 	@Override
 	public String toString() {
 		return "Attachment [atNo=" + atNo + ", categoryNo=" + categoryNo + ", boardNo=" + boardNo + ", originName="
-				+ originName + ", changeName=" + changeName + ", atFilePatl=" + atFilePatl + ", atUploadDate="
+				+ originName + ", changeName=" + changeName + ", atFilePath=" + atFilePath + ", atUploadDate="
 				+ atUploadDate + ", status=" + status + "]";
 	}
 	

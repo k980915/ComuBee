@@ -106,4 +106,17 @@ public class BoardService {
 		return list;
 	}
 
+	public int deleteBoard(int bno) {
+		// TODO Auto-generated method stub
+		Connection conn=JDBCTemplate.getConnection();
+		int result=new BoardDao().deleteBoard(conn,bno);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
 }
