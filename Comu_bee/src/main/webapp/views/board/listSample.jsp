@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>자유게시판</title>
+    <title>리스트 양식</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -38,7 +38,25 @@
                 </tr>
             </thead>
             <tbody>
-            	
+            	<c:choose>
+            		<c:when test="${not empty list}">
+		            	<c:forEach items="${list}" var="li">
+					        <tr>
+			                    <td class="text-center">${li.boardNo }</td>
+			                    <td>${li.title}</td>
+			                    <td>${li.userId}</td>
+			                    <td>${li.createDate}</td>
+			                    <td>${li.count }</td>
+			                    <td class="text-center">${li.like}</td>
+			                </tr>
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<tr>
+							<td>조회된 데이터가 없습니다.</td>
+						</tr>
+					</c:otherwise>
+				</c:choose>	
                 <tr>
                     <td class="text-center">1</td>
                     <td>random</td>
@@ -193,7 +211,7 @@
     <script>
     	$("tbody tr").click(function(){
     		var bno = $(this).children.eq(0).text();
-    		location.href="<%=contextPath%>/detail.bo?bno="+bno;
+    		location.href="${contextPath}/detail.bo?bno="+bno;
     	});
 		$(".page-link").click(function(){
 			var btnNo=Number($(this).text());
