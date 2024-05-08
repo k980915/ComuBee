@@ -33,6 +33,8 @@ public class JDBCTemplate {
 											  ,prop.getProperty("password"));
 			// 1-3) autoCommit 해제 (트랜잭션 직접처리)
 			conn.setAutoCommit(false);
+	        System.out.println("데이터 연결 완료.");
+
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

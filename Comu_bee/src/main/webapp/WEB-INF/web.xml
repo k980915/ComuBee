@@ -37,8 +37,7 @@
    	<url-pattern>/myPage.me</url-pattern>
   	<url-pattern>/insert.bo</url-pattern>
   	<url-pattern>/update.bo</url-pattern>
-  	<!-- 특정패턴을 가진 요청 매핑 전부 처리하기 -->
-  	<!-- <url-pattern>/*.me</url-pattern> -->
+
   </filter-mapping>
   
   
