@@ -1,6 +1,5 @@
 package com.kh.contents.model.vo;
 
-import java.sql.Date;
 
 public class Contents {
 		private int contentsId;
@@ -8,8 +7,8 @@ public class Contents {
 		private String englishTitle;
 		private String overView;
 		private String posterPath;
-		private int runtime;
-		private Date releaseDate;
+		private String runtime;
+		private String releaseDate;
 		private String ageLimit;
 		private double rate;
 		private String actors;
@@ -20,7 +19,7 @@ public class Contents {
 		}
 
 		public Contents(int contentsId, String title, String englishTitle, String overView, String posterPath,
-				int runtime, Date releaseDate, String ageLimit, double rate, String actors, String director) {
+				String runtime, String releaseDate, String ageLimit, double rate, String actors, String director) {
 			super();
 			this.contentsId = contentsId;
 			this.title = title;
@@ -33,6 +32,35 @@ public class Contents {
 			this.rate = rate;
 			this.actors = actors;
 			this.director = director;
+		}
+
+
+		
+		public Contents(String title, String englishTitle, String overView, String runtime, String releaseDate,
+				String ageLimit) {
+			super();
+			this.title = title;
+			this.englishTitle = englishTitle;
+			this.overView = overView;
+			this.runtime = runtime;
+			this.releaseDate = releaseDate;
+			this.ageLimit = ageLimit;
+		}
+
+		public Contents(String title, String englishTitle, String overView, String posterPath, String runtime,
+				String releaseDate, String ageLimit, double rate, String actors, String director) {
+			super();
+			this.title = title;
+			this.englishTitle = englishTitle;
+			this.overView = overView;
+			this.posterPath = posterPath;
+			this.runtime = runtime;
+			this.releaseDate = releaseDate;
+			this.ageLimit = ageLimit;
+			this.rate = rate;
+			this.actors = actors;
+			this.director = director;
+
 		}
 
 		public int getContentsId() {
@@ -75,19 +103,19 @@ public class Contents {
 			this.posterPath = posterPath;
 		}
 
-		public int getRuntime() {
+		public String getRuntime() {
 			return runtime;
 		}
 
-		public void setRuntime(int runtime) {
+		public void setRuntime(String runtime) {
 			this.runtime = runtime;
 		}
 
-		public Date getReleaseDate() {
+		public String getReleaseDate() {
 			return releaseDate;
 		}
 
-		public void setReleaseDate(Date releaseDate) {
+		public void setReleaseDate(String releaseDate) {
 			this.releaseDate = releaseDate;
 		}
 
@@ -130,7 +158,8 @@ public class Contents {
 					+ ", releaseDate=" + releaseDate + ", ageLimit=" + ageLimit + ", rate=" + rate + ", actors="
 					+ actors + ", director=" + director + "]";
 		}
-		
-		
 
+		
+		
+	
 }
