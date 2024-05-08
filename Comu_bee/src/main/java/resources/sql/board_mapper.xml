@@ -108,10 +108,10 @@
 		WHERE "ROWNUM" BETWEEN 1 AND 5
 	</entry>
 	
-<entry key="searchByKeyword">
-    SELECT TITLE, BOARDCONTENT
-    FROM BOARD
-    WHERE (TITLE LIKE ? OR BOARDCONTENT LIKE ?) AND STATUS = 'Y';
-</entry>
+    <entry key="searchByKeyword">
+SELECT TITLE, BOARDCONTENT, USERID, CREATEDATE
+FROM BOARD
+WHERE TITLE LIKE ? OR BOARDCONTENT LIKE ?;
+    </entry>
 	
 </properties>

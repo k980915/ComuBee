@@ -15,8 +15,8 @@ public class BoardSearchDao {
         ArrayList<Board> list = new ArrayList<>();  // 결과를 저장할 ArrayList
         PreparedStatement pstmt = null;
         ResultSet rset = null;
-        String sql = "SELECT TITLE, BOARDCONTENT FROM BOARD WHERE (TITLE LIKE ? OR BOARDCONTENT LIKE ?) AND STATUS = 'Y'";
-
+        String sql = "SELECT TITLE, BOARDCONTENT, USERID, CREATEDATE FROM BOARD WHERE (TITLE LIKE ? OR BOARDCONTENT LIKE ?)";
+        
         try {
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, "%" + keyword + "%");  // 첫 번째 매개변수 (TITLE 검색)
@@ -28,7 +28,13 @@ public class BoardSearchDao {
                 
                 board.setTitle(rset.getString("TITLE"));
                 board.setBoardContent(rset.getString("BOARDCONTENT"));
+                board.setUserId(rset.getString("USERID"));
+                board.setCreateDate(rset.getDate("CREATEDATE"));
                 list.add(board);
+                
+                //로그찍기
+                System.out.println("타이틀: Title " + board.getTitle() + ", 컨텐츠 " + board.getBoardContent());
+                
             }
         } catch (SQLException e) {
             e.printStackTrace();

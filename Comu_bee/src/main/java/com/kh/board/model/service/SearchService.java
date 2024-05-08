@@ -16,7 +16,6 @@ public class SearchService {
         
         ArrayList<Board> result= new BoardSearchDao().search(conn,keyword);
         System.out.println(result);
-        
         JDBCTemplate.close(conn);
         return result;
     }

@@ -1,7 +1,8 @@
-package com.kh.board.controller;
+package com.kh.contents.controller;
 
-import com.kh.board.model.service.SearchService;
-import com.kh.board.model.vo.Board;
+import com.kh.contents.model.service.ContentsSearchService;
+import com.kh.contents.model.vo.Contents;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,19 +11,20 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
-@WebServlet("/board.se")
-public class BoardSearchController extends HttpServlet {
+@WebServlet("/contents.se")
+public class ContentsSearchController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String keyword = request.getParameter("title");
         
-        SearchService searchService = new SearchService();
+        ContentsSearchService ContentsSearchService = new ContentsSearchService();
         
-            ArrayList<Board> boardList = searchService.search(keyword);
-            request.setAttribute("boardList", boardList);
+            ArrayList<Contents> contentsList = ContentsSearchService.search(keyword);
+            request.setAttribute("contentsList", contentsList);
             request.getRequestDispatcher("/views/common/searchResults.jsp").forward(request, response);
         
         
     }
+    
 }
