@@ -30,6 +30,7 @@
 	<div id="detail-area"></div>
 	<div id="messages-area">
 		<table border="1" align="center">
+			
 			<thead>
 				<tr>
 					<td>쪽지 번호</td>
@@ -66,7 +67,7 @@
 		</table>
 	</div>
 	<div>
-		<form action="<%=contextPath%>/insertMessage.ms" method="post">
+		<form action="<%=contextPath%>/sendMessage.ms" method="post">
 			<div class="message-input-area">
 				<label for="name">name</label> 
 				<input type="hidden" name="senderId"value="${loginUser.userId}"> 
@@ -102,12 +103,13 @@
 					var div ="";
 					console.log(list);
 					//전부 추가하기
+					var messageContent = list[i].messageContent.length > 10 ? list[i].messageContent.substring(0, 10) + "..." : list[i].messageContent;
 					for(var i in list){
 						tr +="<tr>"
 							+"<td>"+ list[i].mNo +"</td>"
 							+"<td>"+ list[i].sendName +"</td>"
 							+"<td>"+ list[i].receiveName +"</td>"
-							+"<td>"+ list[i].messageContent +"</td>"
+							+"<td>"+ messageContent +"</td>"
 							+"<td>"+ list[i].sendDate +"</td>"
 							+"<td>"+ list[i].scrabCheck +"</td>"
 							+"</tr>";
@@ -133,22 +135,28 @@
 				success : function(list){
 					console.log("성공");
 					$("#messages-area tbody>tr").remove();
-					//전부 추가하기
 					var tr = "";
-					console.log(list);
-					//전부 추가하기
-					for(var i in list){
+					if(list==null){
 						tr +="<tr>"
-							+"<td>"+ list[i].mNo +"</td>"
-							+"<td>"+ list[i].sendName +"</td>"
-							+"<td>"+ list[i].receiveName +"</td>"
-							+"<td>"+ list[i].messageContent +"</td>"
-							+"<td>"+ list[i].sendDate +"</td>"
-							+"<td>"+ list[i].scrabCheck +"</td>"
-							+"</tr>";
+							+"<td>"+"조회된 메시지가 없습니다"+"</td>"
+					}else{
+						console.log(list);
+						//전부 추가하기
+						for(var i in list){
+							var messageContent = list[i].messageContent.length > 10 ? list[i].messageContent.substring(0, 10) + "..." : list[i].messageContent;
+							tr +="<tr>"
+								+"<td>"+ list[i].mNo +"</td>"
+								+"<td>"+ list[i].sendName +"</td>"
+								+"<td>"+ list[i].receiveName +"</td>"
+								+"<td>"+ messageContent +"</td>"
+								+"<td>"+ list[i].sendDate +"</td>"
+								+"<td>"+ list[i].scrabCheck +"</td>"
+								+"</tr>";
+						}
+						
+						$("#messages-area tbody").html(tr);
 					}
 					
-					$("#messages-area tbody").html(tr);
 				},
 				error : function(){
 					console.log("통신오류");
@@ -174,11 +182,12 @@ function scrabList(){
 					console.log(list);
 					//전부 추가하기
 					for(var i in list){
+						var messageContent = list[i].messageContent.length > 10 ? list[i].messageContent.substring(0, 10) + "..." : list[i].messageContent;
 						tr +="<tr>"
 							+"<td>"+ list[i].mNo +"</td>"
 							+"<td>"+ list[i].sendName +"</td>"
 							+"<td>"+ list[i].receiveName +"</td>"
-							+"<td>"+ list[i].messageContent +"</td>"
+							+"<td>"+ messageContent +"</td>"
 							+"<td>"+ list[i].sendDate +"</td>"
 							+"<td>"+ list[i].scrabCheck +"</td>"
 							+"</tr>";
@@ -189,14 +198,39 @@ function scrabList(){
 				error : function(){
 					console.log("통신오류");
 				}
-				
 			});
 		}
-		$(function(){
-			$("table").on("click","tbody>tr",function(){
-				
-            });
-		})
+	$("table").on("click", "tbody>tr", function() {
+		
+    	var messageId = $(this).find("td:first").text(); 
+		var check=$(this)
+   		 $.ajax({
+      		  url: "updateReadCheck.ms", 
+       		 type: "post",
+       		 data: {
+       		     messageId: messageId,
+       		  	 userId : "${loginUser.userId}"
+       		 },
+       		 success: function(result) {
+       		     // 업데이트가 성공하면 필요에 따라 여기서 추가 작업을 수행할 수 있습니다
+       			if(result>0){
+       				 check.remove();
+       			}
+       		 },
+       		 error: function() {
+       		     
+       		 }
+    		});
+		});
+	
+	
+	
+	
+	
+		
+		
+		
+		
 		
 	
 	</script>

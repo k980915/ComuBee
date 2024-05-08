@@ -34,7 +34,8 @@ public class MessageMainController extends HttpServlet {
 		
 		String userId=request.getParameter("userId");
 		
-		ArrayList<Message> list = new MessageService().selectReceiveMessage(userId);
+		ArrayList<Message> list = new MessageService().selectNewMessage(userId);
+		System.out.println(list);
 		request.setAttribute("list", list);
 		
 		request.getRequestDispatcher("views/message/messageMainView.jsp").forward(request, response);

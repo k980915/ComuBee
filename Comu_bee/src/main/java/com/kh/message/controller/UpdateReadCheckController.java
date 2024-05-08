@@ -8,19 +8,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.message.model.service.MessageService;
-import com.kh.message.model.vo.Message;
 
 /**
- * Servlet implementation class MessageServiceController
+ * Servlet implementation class UpdateReadCheckController
  */
-@WebServlet("/sendMessage.ms")
-public class MessageSendController extends HttpServlet {
+@WebServlet("/updateReadCheck.ms")
+public class UpdateReadCheckController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MessageSendController() {
+    public UpdateReadCheckController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,21 +36,12 @@ public class MessageSendController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		
-		//form 태그에서 보내준 값 받아오기 
-		String senderId=request.getParameter("senderId");
-		String receiverId=request.getParameter("receiverId");
-		String message = request.getParameter("message");
-		
-		Message m = new Message(senderId, receiverId,message);
-		int result=new MessageService().sendMessage(m);
-		if(result>0) {
-			request.setAttribute("alertMsg", "메시지 전송 성공");
-		}else {
-			request.setAttribute("alertMsg", "메시지 전송 실패");
-		}
-		response.sendRedirect(request.getContextPath());
+		int messageNum = Integer.parseInt(request.getParameter("messageId"));
+		String userId = request.getParameter("userId");
+		System.out.println(messageNum);
+		int result = 0;
+		result = new MessageService().updateReadCheck(messageNum,userId);
+		response.getWriter().print(result);
 		
 		
 	}

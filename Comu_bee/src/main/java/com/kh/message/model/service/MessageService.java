@@ -3,17 +3,19 @@ package com.kh.message.model.service;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import javax.servlet.http.Cookie;
+
 import com.kh.common.JDBCTemplate;
 import com.kh.message.model.dao.MessageDao;
 import com.kh.message.model.vo.Message;
 
 public class MessageService {
-	public int insertMessage(Message m) {
+	public int sendMessage(Message m) {
 		
 		Connection conn = JDBCTemplate.getConnection();
 
 		// DAO에게 전달받은 데이터와 Connection 객체 전달하기
-		int result=new MessageDao().insertMessage(conn, m);
+		int result=new MessageDao().sendMessage(conn, m);
 
 		if(result>0) {
 			JDBCTemplate.commit(conn);
@@ -50,6 +52,19 @@ public class MessageService {
 		ArrayList<Message> list = new MessageDao().selectNewMessage(conn, userId);
 		JDBCTemplate.close(conn);
 		return list;
+	}
+	public int updateReadCheck(int messageNum, String userId) {
+		Connection conn  = JDBCTemplate.getConnection();
+		int result = 0;
+		result = new MessageDao().updateReadCheck(conn, messageNum,userId);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		//트랜잭션 처리되었으니 자원반납
+		JDBCTemplate.close(conn);
+		return result;
 	}
 	
 }

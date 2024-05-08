@@ -34,10 +34,10 @@ import com.kh.message.model.vo.Message;
 			}
 		}
 		
-	public int insertMessage(Connection conn, Message m) {
+	public int sendMessage(Connection conn, Message m) {
 		int result= 0;
 		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("insertMessage");
+		String sql = prop.getProperty("sendMessage");
 		try {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, m.getSendName());
@@ -179,6 +179,26 @@ import com.kh.message.model.vo.Message;
 			JDBCTemplate.close(pstmt);
 		}
 		return list;
+	}
+	
+	public int updateReadCheck(Connection conn, int messageNum,String userId) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("updateReadCheck");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, messageNum);
+			pstmt.setString(2, userId);
+			
+			result =pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
 	}
 
 }
