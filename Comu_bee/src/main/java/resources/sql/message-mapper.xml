@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+<entry key="sendMessage">
+	INSERT INTO MESSAGE VALUES(SEQ_MMNO.NEXTVAL,?,?,?,SYSDATE,'N','N')
+</entry>
+<entry key="selectSendMessage">
+	SELECT*FROM MESSAGE WHERE SENDNAME=?
+</entry>
+<entry key="selectReceiveMessage">
+	SELECT*FROM MESSAGE WHERE RECEIVENAME=?
+</entry>
+<entry key="updateReadCheck">
+	UPDATE MESSAGE SET READ_CHECK = 'Y' 
+	WHERE MNO=?
+	AND RECEIVENAME=?
+	AND READ_CHECK='N'
+</entry>
+<entry key="selectNewMessage">
+	SELECT*FROM MESSAGE WHERE RECEIVENAME=?
+	AND READ_CHECK='N'
+</entry>
+
+
+</properties>
