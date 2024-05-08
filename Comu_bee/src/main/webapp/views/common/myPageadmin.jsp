@@ -13,12 +13,12 @@
 <body>
 	<br>
 	<br>
-	<div id="hitslog">
-		<fieldset>
-			<legend>방문자수 확인</legend>
-			<h3>금일 방문수 :</h3>
-			<button onclick="toDayHits();">확인하기</button>
-			<h3>월별 방문자수 :</h3>
+	<div id="hitslog" align="center">
+	
+			<h2>방문자수 확인</h2><br><br>
+			<h4>금일 방문수 : 
+			  <button onclick="toDayHits();">확인하기</button></h4> <br><br>
+			<h4>월별 방문자수 :
 			<select id="yearSelectId">
 				<option value="2023년">2023년</option>
 				<option value="2024년">2024년</option>
@@ -35,12 +35,12 @@
 				<option value="10월" id="10Month">10월</option>
 				<option value="11월" id="11Month">11월</option>
 				<option value="12월" id="12Month">12월</option>
-			</select> <input type="button" id="monthB" value="확인하기">
+			</select> <input type="button" id="monthB" value="확인하기"></h4><br><br>
 
-			<h3>
+			<h4>
 				콘텐츠별 방문자수 Top5 :
 				<button onclick="();">확인하기</button>
-			</h3>
+			</h4><br><br>
 
 
 			<!-- 금일 조회수 값을 저장하려면 해당날짜 id나 기타등등으로 값을 저장(update)후 출력
@@ -50,7 +50,7 @@
 			<!-- 컨텐츠별 조회수는 콘텐츠 상위 top5 나열 sql구문의 값(제목, 조회수)을 가져오면됨 -->
 
 			<!-- 월별은 각 option에 해당하는 value에 의한 연도와 월의 금일조회수(30일or31일)치 총합의 조회수값  -->
-		</fieldset>
+
 	</div>
 
 	<script> // 금일 방문자수 조회구문

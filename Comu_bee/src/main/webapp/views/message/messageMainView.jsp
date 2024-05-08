@@ -103,13 +103,13 @@
 					var div ="";
 					console.log(list);
 					//전부 추가하기
-					var messageContent = list[i].messageContent.length > 10 ? list[i].messageContent.substring(0, 10) + "..." : list[i].messageContent;
+					
 					for(var i in list){
 						tr +="<tr>"
 							+"<td>"+ list[i].mNo +"</td>"
 							+"<td>"+ list[i].sendName +"</td>"
 							+"<td>"+ list[i].receiveName +"</td>"
-							+"<td>"+ messageContent +"</td>"
+							+"<td>"+ list[i].messageContent +"</td>"
 							+"<td>"+ list[i].sendDate +"</td>"
 							+"<td>"+ list[i].scrabCheck +"</td>"
 							+"</tr>";

@@ -36,12 +36,10 @@
 				}
 			});
 			function updateHit(hit) {
-				//console.log(hit);
 				$.ajax({
 					url : "hitsViewUpdate.ad",
 					data : {hit : hit},
 					success : function(result) {
-						//console.log("hit성공")
 						alert("조회수 업데이트 완료 : " + result);
 					},
 					error : function() {

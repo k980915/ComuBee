@@ -90,9 +90,13 @@
 		<br>
 		<br>
 	</div>	
-	
+	<!-- admin 제한 설정 -->
+<%if((loginUser != null) && loginUser.getUserId().equals("admin")){ %>
+<%@ include file="/views/common/myPageadmin.jsp"%><br><br>
+<%@ include file="/views/common/hitsGraph.jsp"%>
+<%@ include file="/views/common/adminSuspendModal.jsp"%>
+ <%} %>
 
-	
 	<!-- 
 		회원탈퇴용 모달영역 만들어서 연결하고 
 		모달영역에서는 
@@ -156,7 +160,9 @@
 					<br>
 					<button type="submit" class="btn btn-secondary" onclick="return checkPwd();">비밀번호 변경</button>
 	       		</form>
+
 	      </div>
+
 	      <script>
 	      		function checkPwd(){
 	      			//변경할 비밀번호와 비밀번호 확인이 일치하는지 체크하기
@@ -180,7 +186,7 @@
 	    </div>
 	  </div>
 	</div>
-	
+
 	
 	<!-- 회원탈퇴 모달용 영역 -->
 	<div class="modal" id="deleteForm">
@@ -207,6 +213,7 @@
 					<button type="submit" class="btn btn-danger" onclick="return deleteMember();">회원탈퇴</button>
 	       		</form>
 	      </div>
+
 	      <script>
 	      		function deleteMember(){
 	      			//현재 입력한 비밀번호와 세션에 담겨있던 비밀번호가 일치한다면 
@@ -234,6 +241,7 @@
 	      		}
 	      </script>
 	      
+	
 		<!--  Modal footer -->
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -242,9 +250,7 @@
 	    </div>
 	  </div>
 	</div>
-	
-	
-	
+<br><br><br><br><br><br><br><br>
 	
 </body>
 </html>

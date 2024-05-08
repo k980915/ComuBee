@@ -11,16 +11,16 @@
 </head>
 <body>
 
-
-	<h3>연도별 전체 방문자수 조회 :</h3>
+<div align="center">
+	<h4>연도별 전체 방문자수 조회 :
 	<select id="yearSelectId2">
 		<option value="2023년">2023년</option>
 		<option value="2024년">2024년</option>
 	</select>
-	<input type="button" id="btnG" value="확인하기">
+	<input type="button" id="btnG" value="확인하기"></h4> <br>
 
-	<canvas id="myChart" style="max-width: 400px; max-height: 400px;"></canvas>
-
+	<canvas id="myChart" style="max-width: 500px; max-height: 500px;"></canvas>
+</div>
 	<script>
 		//연도 조회 그래프 
 		$(function() {
@@ -63,7 +63,7 @@
 					data : {
 						labels : labels,
 						datasets : [ {
-							label : '통 계',
+							label : '방문자 수',
 							data : data,
 							backgroundColor : [ 'rgba(255, 99, 132, 0.2)',
 									'rgba(54, 162, 235, 0.2)',
