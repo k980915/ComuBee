@@ -2,29 +2,27 @@ package com.kh.user.controller;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
 import com.kh.user.model.service.UserService;
-import com.kh.user.model.vo.User;
 
 /**
- * Servlet implementation class UserLoginController
+ * Servlet implementation class PwdUpdateController
  */
-@WebServlet("/login.us")
-public class UserLoginController extends HttpServlet {
+@WebServlet("/updatePwd.us")
+public class PwdUpdateController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UserLoginController() {
+    public PwdUpdateController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,44 +39,39 @@ public class UserLoginController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		request.setCharacterEncoding("UTF-8");
 		
 		String userId = request.getParameter("userId");
 		String userPwd = request.getParameter("userPwd");
+		String updatePwd = request.getParameter("updatePwd");
 		
-		//Cookie cookie = null;
+//		HashMap<String,String> map = new HashMap<>();
+//		
+//		map.put("userId", userId);
+//		map.put("userPwd", userPwd);
+//		map.put("updatePwd", updatePwd);
 		
-		String saveId = request.getParameter("saveId");
+		int result = new UserService().updatePwd(userId,userPwd,updatePwd);
 		
-		User u = new UserService().loginUser(userId, userPwd);
-		System.out.println(u);
-//		if(saveId!=null) {
-//			cookie= new Cookie("userId",userId);
-//			
-//			cookie.setMaxAge(60*60*24);
-//			
-//			response.addCookie(cookie);
-//		}else {
-//			cookie = new Cookie("userId",null);
-//			cookie.setMaxAge(0);
-//			
-//			response.addCookie(cookie);
-//		}
 		HttpSession session = request.getSession();
-		
-		if(u.getUserId()==null) {
+		//결과에따라서 사용자에게 응답뷰 지정하기 
+		if(result>0) {//성공시 비밀번호가 변경되었으니 재로그인을 하라는 안내와함께 로그아웃시키기
+			session.setAttribute("alertMsg", "비밀번호가 변경되었습니다. 다시 로그인해주세요");
+			session.removeAttribute("loginUser"); //로그인정보 지우기
 			
-			request.setAttribute("errorMsg", "로그인 실패!");
-			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
-			view.forward(request, response);
-			
-		}else {
-			session.setAttribute("loginUser", u);
-			session.setAttribute("alertMsg", "로그인 성공!");
-			
+			//메인페이지로 보내기
 			response.sendRedirect(request.getContextPath());
+			
+		}else {//실패
+			session.setAttribute("alertMsg", "비밀번호 변경실패");
+			
+			//마이페이지로 보내기
+			response.sendRedirect(request.getContextPath()+"/myPage.us");
+			
 		}
 		
+	
 	}
 
 }
