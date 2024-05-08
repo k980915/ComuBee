@@ -1,6 +1,9 @@
 package com.kh.board.controller;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,10 +13,16 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
+import com.kh.board.model.service.BoardService;
+import com.kh.board.model.vo.Attachment;
+import com.kh.board.model.vo.Board;
+import com.kh.common.MyFileRenamePolicy;
+import com.oreilly.servlet.MultipartRequest;
+
 /**
  * Servlet implementation class BoardCreatePostController
  */
-@WebServlet("/create.bo")
+@WebServlet("/insert.bo")
 public class BoardCreatePostController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -44,12 +53,27 @@ public class BoardCreatePostController extends HttpServlet {
 //		doGet(request, response);
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
-		// 카테고리 번호지만 vo에서 String으로 정의했기 때문에 문자열로 받아 주기
 		String category = (String)session.getAttribute("category");
-		/*			
+		String ca = "";
+		String categoryNo="";
+		switch(category){
+		case "DEBATE": ca+="db";categoryNo="11";
+		break;
+		case "FREE": ca+="fr";categoryNo="22";
+		break;
+		case "NOTICE": ca+="no";categoryNo="33";
+		break;
+		case "RECOMMEND": ca+="rc";categoryNo="44";
+		break;
+		case "REVIEW": ca+="rv";categoryNo="55";
+		break;
+		}
+		// 카테고리 번호지만 vo에서 String으로 정의했기 때문에 문자열로 받아 주기
+//		String category = (String)session.getAttribute("category");
 //		String title = request.getParameter("title");
 //		String content = request.getParameter("content");
 //		String uploadFile = request.getParameter("uploadFile");
+		/*			
 //		
 //		System.out.println(category);
 //		System.out.println(title);
@@ -61,7 +85,7 @@ public class BoardCreatePostController extends HttpServlet {
 		// multipart 형식으로 변경하여 전달받아야 한다.
 		
 		// 지금 요청이 multipart 형식인지 판별하여 작업하기
-		
+		*/
 		if(ServletFileUpload.isMultipartContent(request)) {
 //			System.out.println("멀티파트 맞아요");
 			// 파일 업로드를 위한 라이브러리 cos.jar 등록
@@ -89,71 +113,64 @@ public class BoardCreatePostController extends HttpServlet {
 			// 게시글 정보는 Board에, 첨부파일에 대한 정보는 Attachment에 담아서 전달하기
 			// 기존 request 객체에서는 전달데이터 추출 불가
 			// multiRequest에서 추출해야 한다.
-			String category = multiRequest.getParameter("category");
 			String title = multiRequest.getParameter("title");
 			String content = multiRequest.getParameter("content");
-			String boardWriter = multiRequest.getParameter("userNo");
-			
+			String boardWriter = multiRequest.getParameter("userId");
+			System.out.println(category);
+			System.out.println(title);
+			System.out.println(content);
+			System.out.println(boardWriter);
 			Board b = new Board();
-			b.setCategory(category);
+			
+			b.setCategory(categoryNo);
 			b.setBoardContent(content);
-			b.setBoardTitle(title);
-			b.setBoardWriter(boardWriter);
+			b.setTitle(title);
+			b.setUserId(boardWriter);
 			// 게시글 정보는 Board 테이블에 insert
 			// 첨부파일 정보는 Attachment 테이블에 insert
 			
 			// 첨부파일이 없을 경우에 대비하여 있을 때 생성해서 전달하기
-			Attachment at = null; 
+			ArrayList<Attachment> atList = null; 
 			// 첨부파일이 있는지 없는지 판별하기
+
 			if(multiRequest.getOriginalFileName("uploadFile")!=null) {
-				at = new Attachment();
-				at.setOriginName(multiRequest.getOriginalFileName("uploadFile"));
-				at.setChangeName(multiRequest.getFilesystemName("uploadFile"));
-				at.setFilePath("/resources/uploadFiles/");
+				for(int i=1;i<5;i++) {
+					String key = "file"+i; // key 값 작성
+					if(multiRequest.getOriginalFileName(key)!=null) {
+						Attachment at = new Attachment();
+						at.setOriginName(multiRequest.getOriginalFileName(key));
+						at.setChangeName(multiRequest.getFilesystemName(key));
+						at.setAtFilePath("/resources/uploadFiles/");
+
+						atList.add(at);
+					}
 			}
-			
+			}
 			// 게시글 정보와 첨부파일 정보를 담았으니 서비스 요청하기
-			int result = new BoardService().insertBoard(b,at);
-			HttpSession session = request.getSession();
-		 */
-			String ca = "";
-			switch(category){
-				case "DEBATE": ca+="db";
-					break;
-				case "FREE": ca+="fr";
-					break;
-				case "NOTICE": ca+="no";
-					break;
-				case "RECOMMEND": ca+="rc";
-					break;
-				case "REVIEW": ca+="rv";
-					break;
-			}
-			/*
+			int result = new BoardService().insertBoard(b,atList);
+
 			if(result>0) {
 				// 세션에 게시글 등록 성공 메시지 담고
 				// 게시판 목록으로 이동시키기
 				session.setAttribute("alertMsg", "게시글 등록 성공");
 				
 
-			}else {
+			}else { 
 				// 세션에 게시글 등록 실패 메시지 담고
 				// 게시판 목록으로 이동시키기
 				// 만약 첨부파일이 있다면 해당 파일 서버에서 삭제하기
-				if(at!=null) {
+				if(atList!= null) {
 					//삭제하고자 하는 파일 경로로 파일 객체 연결한 뒤 삭제 메소드 실행
-					
-					new File(savePath+at.getChangeName()).delete();
+					for(Attachment at :atList) {
+						new File(savePath+at.getChangeName()).delete();
+					}
 				}
 				session.setAttribute("alertMsg", "게시글 등록 실패");
 			}
-*/				
-		
-		response.sendRedirect(request.getContextPath()+"/list."+ca+"?currentPage=1");
+			response.sendRedirect(request.getContextPath()+"/list."+ca+"?currentPage=1");
 		}
-	
 	}
-
+}
 
 
 

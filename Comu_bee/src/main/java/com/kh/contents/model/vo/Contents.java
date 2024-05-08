@@ -62,6 +62,15 @@ public class Contents {
 			this.director = director;
 
 		}
+		
+
+		public Contents(int contentsId, String title, String posterPath, double rate) {
+			super();
+			this.contentsId = contentsId;
+			this.title = title;
+			this.posterPath = posterPath;
+			this.rate = rate;
+		}
 
 		public int getContentsId() {
 			return contentsId;

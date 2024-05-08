@@ -29,7 +29,7 @@
 		<h2>리뷰게시판</h2>	
 	</div>
 	
-	<a href="<%=request.getContextPath()%>/create.bo" class="btn btn-outline-secondary create-post-button">게시글 작성</a>	
+	<a href="${contextPath}/insert.bo" class="btn btn-outline-secondary create-post-button">게시글 작성</a>	
 	<%@ include file="/views/board/listSample.jsp" %>
 </body>
 </html>

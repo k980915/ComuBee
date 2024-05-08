@@ -20,7 +20,7 @@ import com.kh.contents.model.vo.Contents;
 public class BoardDao {
 	private Properties prop = new Properties();
 	public BoardDao() {
-		String filepath = BoardDao.class.getResource("/resources/sql/board-mapper.xml").getPath();
+		String filepath = BoardDao.class.getResource("/resources/sql/board_mapper.xml").getPath();
 			try {
 				prop.loadFromXML(new FileInputStream(filepath));
 			} catch (IOException e) {
@@ -407,6 +407,28 @@ public class BoardDao {
 			JDBCTemplate.close(stmt);
 		}
 		return noList;
+	}
+
+	public int insertBoard(Connection conn, Board b, ArrayList<Attachment> atList) {
+		// TODO Auto-generated method stub
+		int result=0;
+		PreparedStatement pstmt=null;
+		String sql=prop.getProperty("insertBoard");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, b.getUserId());
+			pstmt.setString(2, b.getCategory());
+			pstmt.setString(3, b.getTitle());
+			pstmt.setString(4, b.getBoardContent());
+			result=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
 	}
 
 }

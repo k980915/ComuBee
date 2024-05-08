@@ -33,11 +33,11 @@
                     <th scope="col">제목</th>
                     <th scope="col">글쓴이</th>
                     <th scope="col">작성일</th>
-                    <th scope="col">조회</th>
+                    <th scope="col">조회수</th>
                     <th scope="col" class="text-center">추천</th>
                 </tr>
             	<c:if test="${not category eq 'NOTICE'}">
-            		<c:forEach items="${noList} var="li">
+            		<c:forEach items="${noList}" var="li">
 	            		<tr>
 				             <td class="text-center">${li.boardNo }</td>
 				             <td>${li.title}</td>
@@ -55,12 +55,12 @@
             		<c:when test="${not empty list}">
 		            	<c:forEach items="${list}" var="li">
 					        <tr>
-			                    <td class="text-center">${li.boardNo }</td>
+			                    <td class="text-center">${li.boardNo}</td>
 			                    <td>${li.title}</td>
 			                    <td>${li.userId}</td>
 			                    <td>${li.createDate}</td>
 			                    <td>${li.count }</td>
-			                    <td class="text-center">${li.like}</td>
+			                    <td class="text-center">${li.boardLike}</td>
 			                </tr>
 						</c:forEach>
 					</c:when>
@@ -203,21 +203,24 @@
     </div>
     <nav aria-label="Page navigation example" style="text-align: center;">
         <ul class="pagination justify-content-center">
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                    <span class="sr-only">Previous</span>
-                </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </li>
+        	<c:if test="${pi.currentPage gt 1}">
+	            <li class="page-item">
+	                <button class="page-link" aria-label="Previous">
+	                    <span aria-hidden="true">&laquo;</span>
+	                    <span class="sr-only" onclick="prev();">Previous</span>
+	                </button>
+	            </li>
+        	</c:if>
+            <c:forEach var="i" begin="${pi.startPage}" end="${pi.endPage}">
+           		<li class="page-item"><button class="page-link">${i}</button></li>
+            </c:forEach>
+	            <c:if test="${pi.currentPage lt pi.maxPage}">
+	                <button class="page-link" aria-label="Next">
+	                    <span aria-hidden="true">&raquo;</span>
+	                    <span class="sr-only" onclick="next();">Next</span>
+	                </button>
+	            </li>
+            </c:if>
         </ul>
     </nav>
     
@@ -228,18 +231,18 @@
     	});
 		$(".page-link").click(function(){
 			var btnNo=Number($(this).text());
-			location.href="list.${category}?currentPage="+btnNo;
+			location.href="list.${cat}?currentPage="+btnNo;
 		});
 		var currentPage=${pi.currentPage}
 		function prev(){
-			location.href='list.${category}?currentPage='+(currentPage-1);
+			location.href='list.${cat}?currentPage='+(currentPage-1);
 		}
 		function next(){
-			location.href='list.${category}?currentPage='+(currentPage+1);
+			location.href='list.${cat}?currentPage='+(currentPage+1);
 		}
 	</script>
     	
-    </script>
+
 
 </body>
 </html>

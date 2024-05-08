@@ -75,7 +75,7 @@ public class Attachment {
 	public String getAtFilePath() {
 		return atFilePath;
 	}
-	public void setAtFilePatl(String atFilePath) {
+	public void setAtFilePath(String atFilePath) {
 		this.atFilePath = atFilePath;
 	}
 	public Date getAtUploadDate() {
@@ -98,7 +98,7 @@ public class Attachment {
 				+ originName + ", changeName=" + changeName + ", atFilePath=" + atFilePath + ", atUploadDate="
 				+ atUploadDate + ", status=" + status + "]";
 	}
-	
+
 	
 	
 }
