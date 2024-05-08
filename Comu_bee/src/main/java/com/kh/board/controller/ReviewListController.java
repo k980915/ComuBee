@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.board.model.service.BoardService;
 import com.kh.board.model.vo.Board;
@@ -95,12 +96,14 @@ public class ReviewListController extends HttpServlet {
 //		String ca = request.getParameter("category");
 //		// 게시글 목록
 //		ArrayList<Board> list = new BoardService().selectListByCategory(pi,ca);
-//		ArrayList<Board> noList = new BoardService().selectNoticeListByCategory(pi,ca);
+//		ArrayList<Board> noList = new BoardService().selectNoticeListByCategory(pi);
 //		//위임하기 위한 데이터 담아주기
 //		
 //		request.setAttribute("pi", pi);
 //		request.setAttribute("list", list);
 //		request.setAttribute("noList",noList);
+		HttpSession session = request.getSession();
+		session.setAttribute("category","REVIEW");
 		request.getRequestDispatcher("views/board/reviewBoard.jsp").forward(request, response);
 	}
 

@@ -85,7 +85,7 @@
 				SELECT *
 				FROM BOARD B
 				JOIN CATEGORY USING (CATEGORYNO)
-				WHERE B.STATUS='Y
+				WHERE B.STATUS='Y'
 				ORDER BY BOARDLIKE DESC)
 				)
 				WHERE "ROWNUM" BETWEEN 1 AND 5
@@ -107,5 +107,31 @@
 			)
 		WHERE "ROWNUM" BETWEEN 1 AND 5
 	</entry>
+	<entry key="deleteBoard">
+		UPDATE BOARD SET STATUS='N'
+		WHERE BOARDNO=?
+	</entry>
+	<entry key="selectNoticeListByCategory">
+		SELECT * FROM(
+			SELECT BOARDNO,
+					CATEGORYNAME,
+					TITLE,
+					USERID,
+					CREATEDATE,
+					BOARDLIKE,
+					COUNT 
+			FROM BOARD B 
+			JOIN CATEGORY USING(CATEGORYNO) 
+			WHERE B.STATUS='Y'
+			AND USERID='admin'
+			ORDER BY CREATEDATE
+			)
+		WHERE ROWNUM BETWEEN 1 AND 5
+	</entry>
+    <entry key="searchByKeyword">
+SELECT TITLE, BOARDCONTENT, USERID, CREATEDATE
+FROM BOARD
+WHERE TITLE LIKE ? OR BOARDCONTENT LIKE ?;
+    </entry>
 	
 </properties>

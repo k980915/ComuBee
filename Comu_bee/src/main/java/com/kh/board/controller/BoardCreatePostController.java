@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
@@ -30,8 +31,8 @@ public class BoardCreatePostController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
-		String category = request.getParameter("category");
-		request.setAttribute("category", category);
+		HttpSession session = request.getSession();
+		String category = (String)session.getAttribute("category");
 		request.getRequestDispatcher("views/board/createPost.jsp").forward(request, response);
 	}
 
@@ -41,10 +42,11 @@ public class BoardCreatePostController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 //		doGet(request, response);
-/*			
 		request.setCharacterEncoding("UTF-8");
+		HttpSession session = request.getSession();
 		// 카테고리 번호지만 vo에서 String으로 정의했기 때문에 문자열로 받아 주기
-//		String category = request.getParameter("category");
+		String category = (String)session.getAttribute("category");
+		/*			
 //		String title = request.getParameter("title");
 //		String content = request.getParameter("content");
 //		String uploadFile = request.getParameter("uploadFile");
@@ -113,11 +115,27 @@ public class BoardCreatePostController extends HttpServlet {
 			// 게시글 정보와 첨부파일 정보를 담았으니 서비스 요청하기
 			int result = new BoardService().insertBoard(b,at);
 			HttpSession session = request.getSession();
+		 */
+			String ca = "";
+			switch(category){
+				case "DEBATE": ca+="db";
+					break;
+				case "FREE": ca+="fr";
+					break;
+				case "NOTICE": ca+="no";
+					break;
+				case "RECOMMEND": ca+="rc";
+					break;
+				case "REVIEW": ca+="rv";
+					break;
+			}
+			/*
 			if(result>0) {
 				// 세션에 게시글 등록 성공 메시지 담고
 				// 게시판 목록으로 이동시키기
 				session.setAttribute("alertMsg", "게시글 등록 성공");
-				response.sendRedirect(request.getContextPath()+"/list.bo?currentPage=1");
+				
+
 			}else {
 				// 세션에 게시글 등록 실패 메시지 담고
 				// 게시판 목록으로 이동시키기
@@ -128,9 +146,11 @@ public class BoardCreatePostController extends HttpServlet {
 					new File(savePath+at.getChangeName()).delete();
 				}
 				session.setAttribute("alertMsg", "게시글 등록 실패");
-				response.sendRedirect(request.getContextPath()+"/list.bo?currentPage=1");
 			}
-*/		}
+*/				
+		
+		response.sendRedirect(request.getContextPath()+"/list."+ca+"?currentPage=1");
+		}
 	
 	}
 

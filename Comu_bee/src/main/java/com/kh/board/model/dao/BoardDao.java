@@ -379,4 +379,34 @@ public class BoardDao {
 		return result;
 	}
 
+	public ArrayList<Board> selectNoticeListByCategory(Connection conn) {
+		// TODO Auto-generated method stub
+		ArrayList<Board> noList=new ArrayList<>();
+		Statement stmt=null;
+		ResultSet rset=null;
+		String sql=prop.getProperty("selectNoticeListByCategory");
+		try {
+			stmt=conn.createStatement();
+			rset=stmt.executeQuery(sql);
+			while(rset.next()) {
+				noList.add(new Board(
+						rset.getInt("BOARDNO"),
+						rset.getString("CATEGORYNAME"),
+						rset.getString("TITLE"),
+						rset.getString("USERID"),
+						rset.getDate("CREATEDATE"),
+						rset.getInt("BOARDLIKE"),
+						rset.getInt("COUNT")
+						));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(stmt);
+		}
+		return noList;
+	}
+
 }

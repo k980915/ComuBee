@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    <% String category = (String)request.getAttribute("category"); %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,7 +33,7 @@
 		<h2>자유게시판</h2>	
 	</div>
 	
-	<a href="<%=request.getContextPath()%>/views/board/createPost.jsp" class="btn btn-outline-secondary create-post-button">게시글 작성</a>
+	<a href="${contextPath}/create.bo" class="btn btn-outline-secondary create-post-button">게시글 작성</a>
 	<%@ include file="/views/board/listSample.jsp" %>
 
 </body>

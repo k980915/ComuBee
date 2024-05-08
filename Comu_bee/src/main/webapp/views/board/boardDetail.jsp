@@ -83,8 +83,10 @@
 								<td class="boardSearchTag" colspan="4">
 									태그 : 관련검색어 본인이 입력할 수 있게?
 								</td>
-								<c:if test="${b.category eq 'recommend'}">
-									관련 컨텐츠 제목 선택할 수 있는 영역 만들기
+								<c:if test="${b.category eq 'RECOMMEND'}">
+									<td class="boardToContent" onclick="${contextPath}/">
+										${b.contentsId} 보러가기
+									</td> 
 								</c:if>
 							</tr>
 						</tbody>

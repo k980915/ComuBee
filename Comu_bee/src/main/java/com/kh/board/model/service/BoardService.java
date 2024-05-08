@@ -118,5 +118,12 @@ public class BoardService {
 		JDBCTemplate.close(conn);
 		return result;
 	}
+	public ArrayList<Board> selectNoticeListByCategory(){
+		ArrayList<Board> noList=new ArrayList<>();
+		Connection conn = JDBCTemplate.getConnection();
+		noList=new BoardDao().selectNoticeListByCategory(conn);
+		JDBCTemplate.close(conn);
+		return noList;
+	}
 
 }
