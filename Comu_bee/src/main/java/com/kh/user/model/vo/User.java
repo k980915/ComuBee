@@ -20,9 +20,9 @@ public class User {
 	}
 	
 	public User(String userId, String userName, String userPwd, String userGender, String userBirth, String userEmail,
-			Date joinDate, int point, String status) {
+			Date joinDate, int point) {
 		super();
-		this.userId = userId;
+		this.userId = userId; 
 		this.userName = userName;
 		this.userPwd = userPwd;
 		this.userGender = userGender;
@@ -30,7 +30,6 @@ public class User {
 		this.userEmail = userEmail;
 		this.joinDate = joinDate;
 		this.point = point;
-		this.status = status;
 	}
 
 	public User(String userId, String userName, String userPwd, String userEmail, String userBirth,
@@ -41,8 +40,15 @@ public class User {
 		this.userPwd = userPwd;
 		this.userEmail = userEmail;
 		this.userGender = userGender;
-		this.userBirth = userBirth;
-			
+		this.userBirth = userBirth;	
+	}
+	
+	public User(String userId, String userName, String userGender, String userEmail) {
+		super();
+		this.userId = userId;
+		this.userName = userName;
+		this.userEmail = userEmail;
+		this.userGender = userGender;
 	}
 	
 	
