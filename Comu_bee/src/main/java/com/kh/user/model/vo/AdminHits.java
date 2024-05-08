@@ -20,7 +20,12 @@ public class AdminHits {
 		this.toDayHits = toDayHits;
 	}
 	
-	
+
+	public AdminHits(String monthSelect, int hits) {
+		super();
+		this.monthSelect = monthSelect;
+		this.hits = hits;
+	}
 
 	public AdminHits(String yeatSelect, String monthSelect) {
 		super();

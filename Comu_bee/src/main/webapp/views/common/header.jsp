@@ -161,6 +161,7 @@
 
  --%>
 <%@ include file="/views/common/hitsHeader.jsp"%>
-<%@ include file="/views/common/suspend.jsp"%>
+<%@ include file="/views/common/myPageadmin.jsp"%>
+<%@ include file="/views/common/hitsGraph.jsp"%>
 </body>
 </html>

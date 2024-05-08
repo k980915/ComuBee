@@ -22,8 +22,7 @@
 			<select id="yearSelectId">
 				<option value="2023년">2023년</option>
 				<option value="2024년">2024년</option>
-			</select> 
-			<select id="monthHitsId">
+			</select> <select id="monthHitsId">
 				<option value="1월" id="1Month">1월</option>
 				<option value="2월" id="2Month">2월</option>
 				<option value="3월" id="3Month">3월</option>
@@ -36,22 +35,11 @@
 				<option value="10월" id="10Month">10월</option>
 				<option value="11월" id="11Month">11월</option>
 				<option value="12월" id="12Month">12월</option>
-			</select> 
-			<input type="button" id="monthB" value="확인하기">
-			
+			</select> <input type="button" id="monthB" value="확인하기">
+
 			<h3>
 				콘텐츠별 방문자수 Top5 :
 				<button onclick="();">확인하기</button>
-			</h3>
-			
-
-			<h3>
-				연도별 전체 방문자수 :
-				<select id="yearSelectId2">
-				<option value="2023년">2023년</option>
-				<option value="2024년">2024년</option>
-				</select> 
-				<input type="button" id="btnG" value="확인하기">
 			</h3>
 
 
@@ -86,7 +74,7 @@
 	</script>
 
 	<script> // 연도 및 월별 방문자수 조회구문
-	 
+	
 	 $(function () {
 		$("#monthB").click(function () {
 			var yearData = $("#yearSelectId").val();
@@ -119,20 +107,10 @@
 			 	}) 
 			 
 			}
-		})		
+		})
 	</script>
 
-	<script>  //연도 조회 그래프
-		$(function () {
-			$("#btnG").click(function () {
-				var yearData2 = $("#yearSelectId2").val();
-				console.log(yearData2);
-			});
-			
-		})
-	
-	
-	</script>
+
 
 
 

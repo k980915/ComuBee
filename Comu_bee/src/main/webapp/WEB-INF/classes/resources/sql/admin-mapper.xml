@@ -24,4 +24,14 @@
 	WHERE YRARSELECT = ?
 	AND   MONTHSELECT = ?
 	</entry>
+	
+	<entry key="HitsYearSelectAll">
+	
+	SELECT MONTHSELECT ,MONTHHITS
+	FROM HITS
+	WHERE YRARSELECT = ?
+	
+	</entry>
+
+	
 </properties>
