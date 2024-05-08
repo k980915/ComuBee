@@ -129,9 +129,16 @@
 </style>
 </head>
 
+<<<<<<< HEAD
 <body>
+=======
 
 
+<body>
+>>>>>>> refs/remotes/origin/main
+
+
+<<<<<<< HEAD
 
 	<div class="outer">
 		<div class="head-area">
@@ -155,13 +162,35 @@
 	<br>
 	<br>
 </body>
-<%-- !!!!!! 해당 구간 관리자 마이페이지 및 방문자 조회수 증가 구문입니다. 기능구현은 완료했으며 마이페이지가 완료되면 주석처리 삭제하겠습니다.
-	<%@ include file="/views/common/hitsHeader.jsp"%>
-	<%@ include file="/views/common/myPageadmin.jsp"%>
+    <div class="outer">
+        <div class="head-area">
+            <a href="">
+                <div class="logo-area">
+                    <img src="../HTML/resources/1690813477931.jpg" class="logo-img">
+                    <h1 class="title">COMU-BEE</h1>
+                </div>
+            </a>
+            <div class="search-area">
+                <input type="text" class="search-input" placeholder="영화 또는 드라마 등 컨텐츠 검색">
+                <button>검색</button>
+            </div>
+            <div>
+            <%@include file="/views/common/loginheader.jsp" %>
+            </div>
+            
+        </div>
+    </div>    <br><br>
+</body> 
+<body>
 
- --%>
+<%-- !!!!!! 해당 구간 관리자 마이페이지 및 방문자 조회수 증가 구문입니다. 기능구현은 완료했으며 마이페이지가 완료되면 주석처리 삭제하겠습니다.
+
 <%@ include file="/views/common/hitsHeader.jsp"%>
 <%@ include file="/views/common/myPageadmin.jsp"%>
 <%@ include file="/views/common/hitsGraph.jsp"%>
+
+ --%>
+
+
 </body>
 </html>
