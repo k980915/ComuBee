@@ -134,4 +134,10 @@ FROM BOARD
 WHERE TITLE LIKE ? OR BOARDCONTENT LIKE ?;
     </entry>
 	
+    <entry key="searchByKeyword">
+SELECT TITLE, BOARDCONTENT, USERID, CREATEDATE
+FROM BOARD
+WHERE TITLE LIKE ? OR BOARDCONTENT LIKE ?;
+    </entry>
+	
 </properties>
