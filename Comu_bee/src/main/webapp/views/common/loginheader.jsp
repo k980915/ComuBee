@@ -127,7 +127,6 @@
 	if(msg!="null"){
 		alert(msg);
 		<%session.removeAttribute("alertMsg");%>
-		
 	}
 
 </script>

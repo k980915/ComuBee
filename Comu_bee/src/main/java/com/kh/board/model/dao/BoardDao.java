@@ -20,7 +20,7 @@ import com.kh.contents.model.vo.Contents;
 public class BoardDao {
 	private Properties prop = new Properties();
 	public BoardDao() {
-		String filepath = BoardDao.class.getResource("/resources/sql/board-mapper.xml").getPath();
+		String filepath = BoardDao.class.getResource("/resources/sql/board_mapper.xml").getPath();
 			try {
 				prop.loadFromXML(new FileInputStream(filepath));
 			} catch (IOException e) {
@@ -358,6 +358,77 @@ public class BoardDao {
 		
 		
 		return list;
+	}
+
+	public int deleteBoard(Connection conn, int bno) {
+		// TODO Auto-generated method stub
+		int result=0;
+		PreparedStatement pstmt=null;
+		String sql=prop.getProperty("deleteBoard");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, bno);
+			result=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public ArrayList<Board> selectNoticeListByCategory(Connection conn) {
+		// TODO Auto-generated method stub
+		ArrayList<Board> noList=new ArrayList<>();
+		Statement stmt=null;
+		ResultSet rset=null;
+		String sql=prop.getProperty("selectNoticeListByCategory");
+		try {
+			stmt=conn.createStatement();
+			rset=stmt.executeQuery(sql);
+			while(rset.next()) {
+				noList.add(new Board(
+						rset.getInt("BOARDNO"),
+						rset.getString("CATEGORYNAME"),
+						rset.getString("TITLE"),
+						rset.getString("USERID"),
+						rset.getDate("CREATEDATE"),
+						rset.getInt("BOARDLIKE"),
+						rset.getInt("COUNT")
+						));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(stmt);
+		}
+		return noList;
+	}
+
+	public int insertBoard(Connection conn, Board b, ArrayList<Attachment> atList) {
+		// TODO Auto-generated method stub
+		int result=0;
+		PreparedStatement pstmt=null;
+		String sql=prop.getProperty("insertBoard");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, b.getUserId());
+			pstmt.setString(2, b.getCategory());
+			pstmt.setString(3, b.getTitle());
+			pstmt.setString(4, b.getBoardContent());
+			result=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
 	}
 
 }

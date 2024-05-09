@@ -27,23 +27,39 @@
     </style>
 </head>
 <body>
+  <%@ include file="/views/board/boardMenuBar.jsp" %>
+  
     <div class="container mt-4">
         <h2>게시글 작성하기</h2>
-        <form action="writerAction" method="post">
-            <input type="hidden" name="bdGroup" value="<%= request.getAttribute("bdGroup") %>">
-            <input type="hidden" name="bdOrder" value="<%= request.getAttribute("bdOrder") %>">
+        <form action="${contextPath}/insert.bo" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="bdGroup" value="${category}">
+            <input type="hidden" name="userId" value="${loginUser.userId}">
             <input type="hidden" name="bdIndent" value="<%= request.getAttribute("bdIndent") %>">
 
             <div class="mb-3">
-                <label for="bdTitle" class="form-label">제목</label>
-                <input type="text" class="form-control" id="bdTitle" name="bdTitle" placeholder="제목을 작성해주세요" required>
+                <label for="title" class="form-label">제목</label>
+                <input type="text" class="form-control" id="title" name="title" placeholder="제목을 작성해주세요" required>
             </div>
+            <c:if test="${category eq 'REVIEW'}">
+	            <div class="mb-3">
+	                <label for="bdCont" class="form-label">관련된 컨텐츠</label>
+	                <input type="text" class="form-control" id="bdCont" name="bdCont" placeholder="관련된 컨텐츠 제목을 적어주세요" required>
+	            </div>
+            </c:if>
             
             <div class="form-group mb-3">
-                <label for="bdContent" class="form-label">내용</label>
-                <textarea class="form-control" id="bdContent" rows="10" name="bdContent" placeholder="내용을 작성해주세요" required></textarea>
-                <button type="submit" class="btn btn-outline-secondary form-submit-button">제출하기</button>
+                <label for="content" class="form-label">내용</label>
+                <textarea class="form-control" id="bdContent" rows="10" name="content" placeholder="내용을 작성해주세요" required></textarea>
             </div>
+            <div class="form-group mb-3">
+                <label for="uploadFile" class="form-label">첨부파일</label>
+                <input type="file" class="form-control" id="uploadFile" name="uploadFile">
+            </div>
+            <div align="right">
+                <button type="submit" class="btn btn-outline-secondary form-submit-button">등록하기</button>
+                <button type="button" class="btn btn-outline-danger form-submit-button" onclick="history.back();">취소</button>
+            </div>
+            
         </form>
     </div>
 <div>
