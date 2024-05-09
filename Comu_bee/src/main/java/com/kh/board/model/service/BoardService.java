@@ -106,4 +106,37 @@ public class BoardService {
 		return list;
 	}
 
+	public int deleteBoard(int bno) {
+		// TODO Auto-generated method stub
+		Connection conn=JDBCTemplate.getConnection();
+		int result=new BoardDao().deleteBoard(conn,bno);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+	public ArrayList<Board> selectNoticeListByCategory(){
+		ArrayList<Board> noList=new ArrayList<>();
+		Connection conn = JDBCTemplate.getConnection();
+		noList=new BoardDao().selectNoticeListByCategory(conn);
+		JDBCTemplate.close(conn);
+		return noList;
+	}
+	
+	public int insertBoard(Board b,ArrayList<Attachment> atList) {
+		int result=0;
+		Connection conn= JDBCTemplate.getConnection();
+		result=new BoardDao().insertBoard(conn,b,atList);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
 }
