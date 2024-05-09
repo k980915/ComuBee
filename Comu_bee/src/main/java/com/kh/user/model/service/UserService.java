@@ -105,19 +105,19 @@ public class UserService {
 	
 	
 	//내가 쓴 글  갯수 가져오기 
-	public int myBoardListCount(String userNo) {
+	public int myBoardListCount(String userId) {
 		Connection conn = JDBCTemplate.getConnection();
-		int listCount = new UserDao().myBoardListCount(conn,userNo);
+		int listCount = new UserDao().myBoardListCount(conn,userId);
 		JDBCTemplate.close(conn);
 		
 		return listCount;
 	}
 	
 	//내가 쓴 글들 가져오기 
-	public ArrayList<Board> myBoardSelectList(PageInfo pi,String userNo) {
+	public ArrayList<Board> myBoardSelectList(PageInfo pi,String userId) {
 		Connection conn = JDBCTemplate.getConnection();
 		
-		ArrayList<Board> list = new UserDao().myBoardSelectList(conn,pi,userNo);
+		ArrayList<Board> list = new UserDao().myBoardSelectList(conn,pi,userId);
 		
 		//select 구문은 트랜잭션처리 필요없으니 자원반납만 하면 된다
 		JDBCTemplate.close(conn);
@@ -134,17 +134,17 @@ public class UserService {
 	}
 	
 	
-	//내가 쓴 댓글 가져오기 
-	public ArrayList<Reply> myReplySelectList(PageInfo pi,String userNo) {
-		Connection conn = JDBCTemplate.getConnection();
-		
-		ArrayList<Reply> list = new UserDao().myReplySelectList(conn,pi,userNo);
-		
-		//select 구문은 트랜잭션처리 필요없으니 자원반납만 하면 된다
-		JDBCTemplate.close(conn);
-		
-		return list;
-	}
+//	//내가 쓴 댓글 가져오기 
+//	public ArrayList<Reply> myReplySelectList(PageInfo pi,String userNo) {
+//		Connection conn = JDBCTemplate.getConnection();
+//		
+//		ArrayList<Reply> list = new UserDao().myReplySelectList(conn,pi,userNo);
+//		
+//		//select 구문은 트랜잭션처리 필요없으니 자원반납만 하면 된다
+//		JDBCTemplate.close(conn);
+//		
+//		return list;
+//	}
 	
 	
 	

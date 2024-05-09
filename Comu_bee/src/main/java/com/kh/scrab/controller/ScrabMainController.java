@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.board.model.vo.Board;
 import com.kh.common.model.vo.PageInfo;
+import com.kh.scrab.model.service.ScrabService;
 import com.kh.user.model.service.UserService;
 
 /**
@@ -41,10 +42,10 @@ public class ScrabMainController extends HttpServlet {
 		int startPage; //페이지 하단에 보여질 페이징바의 시작수
 		int endPage; //페이지 하단에 보여질 페이징바의 끝수
 		
-		String userNo=request.getParameter("userNo");
-		System.out.println(userNo);
+		String userId=request.getParameter("userId");
+		System.out.println(userId);
 		//listCount 현재 게시글 개수 - DB에서 조회해오기
-		listCount = new UserService().myBoardListCount(userNo);
+		listCount = new ScrabService().myScrabListCount(userId);
 		
 
 		//currentPage 현재 페이지정보 
@@ -103,7 +104,7 @@ public class ScrabMainController extends HttpServlet {
 		PageInfo pi = new PageInfo(listCount,currentPage,pageLimit,boardLimit,maxPage,startPage,endPage);
 		
 		//게시글 목록 
-		ArrayList<Board> list = new UserService().myBoardSelectList(pi,userNo);
+		ArrayList<Board> list = new ScrabService().myScrabSelectList(pi,userId);
 		
 		//위임하기 위해 데이터 담아주기
 		

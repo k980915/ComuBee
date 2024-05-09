@@ -43,10 +43,10 @@ public class MyBoardListController extends HttpServlet {
 		int startPage; //페이지 하단에 보여질 페이징바의 시작수
 		int endPage; //페이지 하단에 보여질 페이징바의 끝수
 		
-		String userNo=request.getParameter("userNo");
-		System.out.println(userNo);
+		String userId=request.getParameter("userId");
+		System.out.println(userId);
 		//listCount 현재 게시글 개수 - DB에서 조회해오기
-		listCount = new UserService().myBoardListCount(userNo);
+		listCount = new UserService().myBoardListCount(userId);
 		
 
 		//currentPage 현재 페이지정보 
@@ -105,14 +105,14 @@ public class MyBoardListController extends HttpServlet {
 		PageInfo pi = new PageInfo(listCount,currentPage,pageLimit,boardLimit,maxPage,startPage,endPage);
 		
 		//게시글 목록 
-		ArrayList<Board> list = new UserService().myBoardSelectList(pi,userNo);
+		ArrayList<Board> list = new UserService().myBoardSelectList(pi,userId);
 		
 		//위임하기 위해 데이터 담아주기
 		
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
 		
-		request.getRequestDispatcher("views/board/boardListView.jsp").forward(request, response);
+		request.getRequestDispatcher("views/user/MyBoardListView.jsp").forward(request, response);
 	}
 
 	/**
