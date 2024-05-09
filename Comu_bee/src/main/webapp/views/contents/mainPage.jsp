@@ -1,12 +1,18 @@
-	<%@page import="java.util.Collections"%>
-	<%@page import="java.util.List"%>
-	<%@page import="java.util.ArrayList"%>
-	<%@page import="com.kh.contents.model.vo.Contents"%>
-	<%@page import="com.kh.common.JDBCTemplate"%>
-	<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-	<%
+<%@page import="java.util.Random"%>
+<%@page import="java.util.Collections"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.kh.contents.model.vo.Contents"%>
+<%@page import="com.kh.common.JDBCTemplate"%>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
 		ArrayList<Contents> conList = (ArrayList<Contents>)request.getAttribute("conList");
 		ArrayList<Contents> bestList = (ArrayList<Contents>)request.getAttribute("bestList");
+		
+		Collections.shuffle(conList, new Random());
+		
+
 	%>
 	
 	<!DOCTYPE html>
@@ -71,9 +77,10 @@
 					    <tr style="height: 250px;">
 					        <c:forEach var="content" items="${conList}" varStatus="loop">
 					            <c:if test="${loop.index < 3}">
-					                <td style="width: 200px; height: 250px;">
+					                <td style="width: 300px; height: 250px;">
 					                    <input type="hidden" class="cid" value="${content.contentsId}">
-					                    <img src="${content.posterPath}" style="width: 100%; height: 100%; object-fit: cover;">
+					                    <img src="${content.posterPath}" style="width: 100%; height: 100%;">
+					                    
 					                </td>
 					            </c:if>
 					        </c:forEach>
@@ -86,9 +93,9 @@
 					    <tr style="height: 250px;">
 					        <c:forEach var="content" items="${conList}" varStatus="loop">
 					            <c:if test="${loop.index >= 3 && loop.index < 6}">
-					                <td style="width: 200px; height: 250px;">
+					                <td style="width: 300px; height: 250px;">
 					                    <input type="hidden" class="cid" value="${content.contentsId}">
-					                    <img src="${content.posterPath}" style="width: 100%; height: 100%; object-fit: cover;">
+					                    <img src="${content.posterPath}" style="width: 100%; height: 100%;">
 					                </td>
 					            </c:if>
 					        </c:forEach>
@@ -101,73 +108,31 @@
 					</table> <br><br>
 	
 	                <div class="menu">
-	                    <h1 align="center">오늘의 추천작품</h1>
+	                    <h1 align="center">랜덤 추천작품</h1>
 	                </div>
 	                <br><br>
 	                <table id="recommend">
-	                    <tr>
-	                    <c:forEach var="content" items="${conList}" varStatus="loop">
-				        <c:if test="${loop.index < 1}">
-	                        <td>
-	                        	<input type="hidden" class="cid" value="${content.contentsId}">
-	                            <img src="${content.posterPath}" style="height: 400px; width: 400px;">
-	                        </td>
-	                        <td style="width: 100px;"></td>
-	                        <td style="width: 300px;">
-	                            ${content.overView }
-	                        </td>
-	                    </c:if>
-				   		</c:forEach>
-	                    </tr>
-	                    <tr>
-	                    <c:forEach var="content" items="${conList}" varStatus="loop">
-				        <c:if test="${loop.index < 1}">
-	                        <td>
-	                        	<input type="hidden" class="cid" value="${content.contentsId}">
-	                            <img src="${content.posterPath}" style="height: 400px; width: 400px;">
-	                        </td>
-	                        <td style="width: 100px;"></td>
-	                        <td style="width: 300px;">
-	                            ${content.overView }
-	                        </td>
-	                    </c:if>
-				   		</c:forEach>
-	                    </tr>
-	                    <tr>
-	                    <c:forEach var="content" items="${conList}" varStatus="loop">
-				        <c:if test="${loop.index < 1}">
-	                        <td>
-	                        	<input type="hidden" class="cid" value="${content.contentsId}">
-	                            <img src="${content.posterPath}" style="height: 400px; width: 400px;">
-	                        </td>
-	                        <td style="width: 100px;"></td>
-	                        <td style="width: 300px;">
-	                            ${content.overView }
-	                        </td>
-	                    </c:if>
-				   		</c:forEach>
-	                    </tr>
-	                    <tr>
-	                    <c:forEach var="content" items="${conList}" varStatus="loop">
-				        <c:if test="${loop.index < 1}">
-	                        <td>
-	                        	<input type="hidden" class="cid" value="${content.contentsId}">
-	                            <img src="${content.posterPath}" style="height: 400px; width: 400px;">
-	                        </td>
-	                        <td style="width: 100px;"></td>
-	                        <td style="width: 300px;">
-	                            ${content.overView }
-	                        </td>
-	                    </c:if>
-				   		</c:forEach>
-	                    </tr>
-	                </table> <br><br>
-	
+					    <c:forEach var="content" items="${conList}" varStatus="loop">
+					        <c:if test="${loop.index < 4}">
+					            <tr>
+					                <td>
+					                    <input type="hidden" class="cid" value="${content.contentsId}">
+					                    <img src="${content.posterPath}" style="height: 400px; width: 400px;">
+					                </td>
+					                <td style="width: 100px;"></td>
+					                <td style="width: 300px;">
+					                    ${content.overView}
+					                </td>
+					            </tr>
+					        </c:if>
+					    </c:forEach>
+					</table> <br><br>
+						
 	                <div class="menu">
 	                    <h1 align="center">평점 상위 컨텐츠</h1>
 	                </div>
 	                <br><br>
-	                <table border=1 id="best">
+	                <table id="best">
 	                    <tr>
 	                    <c:forEach var="content" items="${bestList}" varStatus="loop">
 				        <c:if test="${loop.index < 4}">
