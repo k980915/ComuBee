@@ -1,10 +1,10 @@
-package com.kh.contents.model.service;
+package com.kh.search.model.service;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.kh.common.JDBCTemplate;
-import com.kh.contents.model.dao.ContentsSearchDao;
+import com.kh.search.model.dao.ContentsSearchDao;
 import com.kh.contents.model.vo.Contents;
 
 public class ContentsSearchService {

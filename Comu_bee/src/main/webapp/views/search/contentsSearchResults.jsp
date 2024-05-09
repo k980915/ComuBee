@@ -1,4 +1,4 @@
-<%@page import="com.kh.board.model.vo.Board"%>
+<%@page import="com.kh.contents.model.vo.Contents"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -38,7 +38,7 @@
             		<td>${contents.director}</td>
             		<td>${contents.englishTitle}</td>
             		<td>${contents.overView}</td>
-            		<td><img src="${contents.posterPath}" alt="Poster" style="width:100px;height:150px;"></td>
+            		<td><img src="${pageContext.request.contextPath}/resources/uploadFiles/${contents.posterPath}" alt="Poster" style="width:100px;height:150px;"></td>
             		<td>${contents.runtime}</td>
            		 	<td>${contents.releaseDate}</td>
         		</tr>
@@ -53,33 +53,6 @@
 
 <br><br>
 
-<h4>게시글</h4>
-<!-- 게시글 목록 표시 -->
-<table border="1">
-    <thead>
-        <tr>
-            <th>게시글 제목</th>
-            <th>컨텐츠</th>
-            <th>작성자</th>
-            <th>작성일</th>
-        </tr>
-    </thead>
-    <tbody>
-        <c:forEach items="${boardList}" var="board">
-            <tr>
-                <td>${board.title}</td>
-                <td>${board.boardContent}</td>
-                <td>${board.userId}</td>
-                <td>${board.createDate}</td>
-            </tr>
-        </c:forEach>
-        <c:if test="${empty boardList}">
-            <tr>
-                <td colspan="2">검색 결과가 없습니다.</td>
-            </tr>
-        </c:if>
-    </tbody>
-</table>
 
 </body>
 </html>
