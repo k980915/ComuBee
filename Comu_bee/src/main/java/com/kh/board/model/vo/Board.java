@@ -52,6 +52,7 @@ public class Board {
 	}
 	
 	
+	
 	public Board(int boardNo, String userId, String atNo, String category, String contentsId, String title,
 			String boardContent, Date createDate, Date updateDate, int boardLike, int hate, int count) {
 		super();
