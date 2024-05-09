@@ -142,36 +142,35 @@
                     <h1 class="title">COMU-BEE</h1>
                 </div>
 
-	<div class="search-area">
-
-    <form id="searchForm" action="" method="get">
-        <input type="text" name="title" class="search-input" placeholder="영화 또는 드라마 등 컨텐츠 검색">
-        <button type="submit">검색</button>
-    </form>
-    
-    <script>
-        var form = document.getElementById('searchForm');
-        form.action = '${pageContext.request.contextPath}/contents.se';
-    </script>
-    
-</div>
+		<div class="search-area">
+	
+		    <form id="searchForm" action="" method="get">
+		        <input type="text" name="title" class="search-input" placeholder="영화 또는 드라마 등 컨텐츠 검색">
+		        <button type="submit">검색</button>
+		    </form>
+		</div>
+		
             <div>
             <%@include file="/views/common/loginheader.jsp" %>
             </div>
             
         </div>
     </div>    <br><br>
+    
     <%@ include file="/views/common/hitsHeader.jsp"%>
-    
-    
+
+
+
    		<script>
 		    $('.logo-area').click(function() {
 		       
 				location.href = '${contextPath}/main.co';
 		    });
-		  
-		    
 		</script>
+		<script>
+	        var form = document.getElementById('searchForm');
+	        form.action = '${pageContext.request.contextPath}/contents.se';
+   		</script>
 
 <br>
 <br>
