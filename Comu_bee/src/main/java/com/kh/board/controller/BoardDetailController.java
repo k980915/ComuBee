@@ -13,6 +13,7 @@ import com.kh.board.model.service.BoardService;
 import com.kh.board.model.vo.Attachment;
 import com.kh.board.model.vo.Board;
 import com.kh.board.model.vo.Category;
+import com.kh.board.model.vo.Reply;
 import com.kh.contents.model.vo.Contents;
 
 /**
@@ -50,9 +51,11 @@ public class BoardDetailController extends HttpServlet {
 			ArrayList<Contents> bestContList=bs.bestContList();
 			ArrayList<Board> newPopList=bs.newPopList(b);
 			ArrayList<Board> bestPopList=bs.bestPopList(b);
+			ArrayList<Reply> rList = bs.replyList(bno);
 			request.setAttribute("b",b);
 			request.setAttribute("atList",atList);
 			request.setAttribute("cList", cList);
+			request.setAttribute("rList", rList);
 			request.setAttribute("newPopList", newPopList);
 			request.setAttribute("bestPopList", bestPopList);
 			request.setAttribute("bestContList", bestContList);
