@@ -1,6 +1,6 @@
-package com.kh.board.controller;
+package com.kh.search.controller;
 
-import com.kh.board.model.service.SearchService;
+import com.kh.search.model.service.BoardSearchService;
 import com.kh.board.model.vo.Board;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,11 +17,11 @@ public class BoardSearchController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String keyword = request.getParameter("title");
         
-        SearchService searchService = new SearchService();
+        BoardSearchService searchService = new BoardSearchService();
         
             ArrayList<Board> boardList = searchService.search(keyword);
             request.setAttribute("boardList", boardList);
-            request.getRequestDispatcher("/views/common/searchResults.jsp").forward(request, response);
+            request.getRequestDispatcher("/views/search/boardSearchResults.jsp").forward(request, response);
         
         
     }

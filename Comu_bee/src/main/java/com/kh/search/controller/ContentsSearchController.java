@@ -1,6 +1,6 @@
-package com.kh.contents.controller;
+package com.kh.search.controller;
 
-import com.kh.contents.model.service.ContentsSearchService;
+import com.kh.search.model.service.ContentsSearchService;
 import com.kh.contents.model.vo.Contents;
 
 import javax.servlet.ServletException;
@@ -22,7 +22,7 @@ public class ContentsSearchController extends HttpServlet {
         
             ArrayList<Contents> contentsList = ContentsSearchService.search(keyword);
             request.setAttribute("contentsList", contentsList);
-            request.getRequestDispatcher("/views/common/searchResults.jsp").forward(request, response);
+            request.getRequestDispatcher("/views/search/contentsSearchResults.jsp").forward(request, response);
         
         
     }

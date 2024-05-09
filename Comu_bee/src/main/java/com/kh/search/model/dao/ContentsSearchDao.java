@@ -1,4 +1,4 @@
-package com.kh.contents.model.dao;
+package com.kh.search.model.dao;
 
 import com.kh.common.JDBCTemplate;
 import com.kh.contents.model.vo.Contents;

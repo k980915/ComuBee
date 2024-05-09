@@ -46,7 +46,7 @@
 				             <td>${li.userId}</td>
 				             <td>${li.createDate}</td>
 				             <td>${li.count }</td>
-				             <td class="text-center">${li.like}</td>
+				             <td class="text-center">${li.boardLike}</td>
 				        </tr>
             		</c:forEach>
             	</c:if>
@@ -77,134 +77,7 @@
 						</tr>
 					</c:otherwise>
 				</c:choose>	
-<!--                 <tr> -->
-<!--                     <td class="text-center">1</td> -->
-<!--                     <td>random</td> -->
-<!--                     <td>data</td> -->
-<!--                     <td>placeholder</td> -->
-<!--                     <td>text</td> -->
-<!--                     <td class="text-center">20</td> -->
-<!--                 </tr> -->
-<!--                 <tr> -->
-<!--               <td class="text-center">2</td> -->
-<!--               <td>placeholder</td> -->
-<!--               <td>irrelevant</td> -->
-<!--               <td>visual</td> -->
-<!--               <td>layout</td> -->
-<!--               <td class="text-center">0</td> -->
-<!--             </tr> -->
-<!--             <tr> -->
-<!--               <td class="text-center">3</td> -->
-<!--               <td>data</td> -->
-<!--               <td>rich</td> -->
-<!--               <td>dashboard</td> -->
-<!--               <td>tabular</td> -->
-<!--               <td class="text-center">0</td> -->
-<!--             </tr> -->
-<!--             <tr> -->
-<!--               <td class="text-center">4</td> -->
-<!--               <td>information</td> -->
-<!--               <td>placeholder</td> -->
-<!--               <td>illustrative</td> -->
-<!--               <td>data</td> -->
-<!--               <td class="text-center">0</td> -->
-<!--             </tr> -->
-<!--             <tr> -->
-<!--               <td class="text-center">5</td> -->
-<!--               <td>text</td> -->
-<!--               <td>random</td> -->
-<!--               <td>layout</td> -->
-<!--               <td>dashboard</td> -->
-<!--               <td class="text-center">1</td> -->
-<!--             </tr> -->
-<!--             <tr> -->
-<!--               <td class="text-center">6</td> -->
-<!--               <td>dashboard</td> -->
-<!--               <td>irrelevant</td> -->
-<!--               <td>text</td> -->
-<!--               <td>placeholder</td> -->
-<!--               <td class="text-center">5</td> -->
-<!--             </tr> -->
-<!--             <tr> -->
-<!--               <td class="text-center">7</td> -->
-<!--               <td>dashboard</td> -->
-<!--               <td>illustrative</td> -->
-<!--               <td>rich</td> -->
-<!--               <td>data</td> -->
-<!--               <td class="text-center">0</td> -->
-<!--             </tr> -->
-<!--             <tr> -->
-<!--               <td class="text-center">8</td> -->
-<!--               <td>placeholder</td> -->
-<!--               <td>tabular</td> -->
-<!--               <td>information</td> -->
-<!--               <td>irrelevant</td> -->
-<!--               <td class="text-center">0</td> -->
-<!--             </tr> -->
-<!--             <tr> -->
-<!--               <td class="text-center">9</td> -->
-<!--               <td>random</td> -->
-<!--               <td>data</td> -->
-<!--               <td>placeholder</td> -->
-<!--               <td>text</td> -->
-<!--               <td class="text-center">0</td> -->
-<!--             </tr> -->
-<!--             <tr> -->
-<!--               <td class="text-center">10</td> -->
-<!--               <td>placeholder</td> -->
-<!--               <td>irrelevant</td> -->
-<!--               <td>visual</td> -->
-<!--               <td>layout</td> -->
-<!--               <td class="text-center">0</td> -->
-<!--             </tr> -->
-<!--             <tr> -->
-<!--               <td class="text-center">11</td> -->
-<!--               <td>data</td> -->
-<!--               <td>rich</td> -->
-<!--               <td>dashboard</td> -->
-<!--               <td>tabular</td> -->
-<!--               <td class="text-center">0</td> -->
-<!--             </tr> -->
-<!--             <tr> -->
-<!--               <td class="text-center">12</td> -->
-<!--               <td>information</td> -->
-<!--               <td>placeholder</td> -->
-<!--               <td>illustrative</td> -->
-<!--               <td>data</td> -->
-<!--               <td class="text-center">0</td> -->
-<!--             </tr> -->
-<!--             <tr> -->
-<!--               <td class="text-center">13</td> -->
-<!--               <td>text</td> -->
-<!--               <td>placeholder</td> -->
-<!--               <td>layout</td> -->
-<!--               <td>dashboard</td> -->
-<!--               <td class="text-center">0</td> -->
-<!--             </tr> -->
-<!--             <tr> -->
-<!--               <td class="text-center">14</td> -->
-<!--               <td>dashboard</td> -->
-<!--               <td>irrelevant</td> -->
-<!--               <td>text</td> -->
-<!--               <td>visual</td> -->
-<!--               <td class="text-center">0</td> -->
-<!--             </tr> -->
-<!--             <tr> -->
-<!--               <td class="text-center">15</td> -->
-<!--               <td>dashboard</td> -->
-<!--               <td>illustrative</td> -->
-<!--               <td>rich</td> -->
-<!--               <td>data</td> -->
-<!--               <td class="text-center">0</td> -->
-<!--             </tr> -->
-<!--             <tr> -->
-<!--               <td class="text-center">16</td> -->
-<!--               <td>random</td> -->
-<!--               <td>tabular</td> -->
-<!--               <td>information</td> -->
-<!--               <td>text</td> -->
-<!--               <td class="text-center">0</td> -->
-<!--             </tr> -->
+
             </tbody>
         </table>
     </div>
@@ -219,9 +92,12 @@
 	            </li>
         	</c:if>
             <c:forEach var="i" begin="${pi.startPage}" end="${pi.endPage}">
-           		<li class="page-item"><button class="page-link">${i}</button></li>
+           		<li class="page-item">
+           			<button class="page-link">${i}</button>
+           		</li>
             </c:forEach>
-	            <c:if test="${pi.currentPage lt pi.maxPage}">
+	           <c:if test="${pi.currentPage lt pi.maxPage}">
+           		<li class="page-item">
 	                <button class="page-link" aria-label="Next">
 	                    <span aria-hidden="true">&raquo;</span>
 	                    <span class="sr-only" onclick="next();">Next</span>
@@ -235,12 +111,12 @@
     
     <script>
     	$("tbody tr").click(function(){
-    		var bno = $(this).children.eq(0).text();
-    		location.href="${contextPath}/detail.bo?bno="+bno;
+    		var bno = $(this).children().eq(0).text();
+    		location.href='${contextPath}/detail.bo?bno='+bno;
     	});
 		$(".page-link").click(function(){
 			var btnNo=Number($(this).text());
-			location.href="list.${cat}?currentPage="+btnNo;
+			location.href='list.${cat}?currentPage='+btnNo;
 		});
 		var currentPage=${pi.currentPage}
 		function prev(){
@@ -251,7 +127,14 @@
 		}
 
 	</script>
-
+<div class="container mt-4">
+    <form action="${pageContext.request.contextPath}/board.se" method="get">
+        <div class="input-group mb-3">
+            <input type="text" name="title" class="form-control" placeholder="게시글 검색" aria-label="게시글 검색" aria-describedby="button-addon2">
+            <button class="btn btn-outline-secondary" type="submit" id="button-addon2">검색</button>
+        </div>
+    </form>
+</div>
 
 </body>
 </html>
