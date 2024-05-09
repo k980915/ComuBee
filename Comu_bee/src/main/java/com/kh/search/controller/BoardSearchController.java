@@ -21,7 +21,7 @@ public class BoardSearchController extends HttpServlet {
         
             ArrayList<Board> boardList = searchService.search(keyword);
             request.setAttribute("boardList", boardList);
-            request.getRequestDispatcher("/views/common/searchResults.jsp").forward(request, response);
+            request.getRequestDispatcher("/views/search/boardSearchResults.jsp").forward(request, response);
         
         
     }

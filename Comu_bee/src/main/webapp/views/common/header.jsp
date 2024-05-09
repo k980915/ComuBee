@@ -143,28 +143,17 @@
                     <h1 class="title">COMU-BEE</h1>
                 </div>
             </a>
-	<div class="search-area">
+<div class="search-area">
     <form id="searchForm" action="" method="get">
         <input type="text" name="title" class="search-input" placeholder="영화 또는 드라마 등 컨텐츠 검색">
-        <select id="searchType" onchange="changeAction()">
-            <option value="board">게시판 검색</option>
-            <option value="contents">콘텐츠 검색</option>
-        </select>
         <button type="submit">검색</button>
     </form>
+    
     <script>
-        function changeAction() {
-            var form = document.getElementById('searchForm');
-            var searchType = document.getElementById('searchType').value;
-            if (searchType === 'board') {
-                form.action = '${pageContext.request.contextPath}/board.se';
-            } else {
-                form.action = '${pageContext.request.contextPath}/contents.se';
-            }
-        }
-        // 초기 로드시 기본 액션 설정
-        changeAction();
+        var form = document.getElementById('searchForm');
+        form.action = '${pageContext.request.contextPath}/contents.se';
     </script>
+    
 </div>
             <div>
             <%@include file="/views/common/loginheader.jsp" %>

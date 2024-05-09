@@ -22,7 +22,7 @@ public class ContentsSearchController extends HttpServlet {
         
             ArrayList<Contents> contentsList = ContentsSearchService.search(keyword);
             request.setAttribute("contentsList", contentsList);
-            request.getRequestDispatcher("/views/common/searchResults.jsp").forward(request, response);
+            request.getRequestDispatcher("/views/search/contentsSearchResults.jsp").forward(request, response);
         
         
     }

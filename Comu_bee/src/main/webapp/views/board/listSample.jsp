@@ -241,7 +241,15 @@
 			location.href='list.${cat}?currentPage='+(currentPage+1);
 		}
 	</script>
-    	
+	
+<div class="container mt-4">
+    <form action="${pageContext.request.contextPath}/board.se" method="get">
+        <div class="input-group mb-3">
+            <input type="text" name="title" class="form-control" placeholder="게시글 검색" aria-label="게시글 검색" aria-describedby="button-addon2">
+            <button class="btn btn-outline-secondary" type="submit" id="button-addon2">검색</button>
+        </div>
+    </form>
+</div>
 
 
 </body>
