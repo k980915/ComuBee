@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <style>
 	.boardOuter{
-		width:100%;
+		width:1200;
 		}
 	.boardOuter>div{
 		display:inline;
@@ -41,7 +41,7 @@
 		
 		<div class="boardBody">
 			<div class="boardMenuBar">
-				<h3>${b.categoryName}게시판</h3>
+				<h3>${category}게시판</h3>
 				<!-- 게시판 용 메뉴바가 필요하지 않을까 싶은? -->
 			</div>
 			<div class="boardMain">
@@ -68,9 +68,9 @@
 							</tr>
 							<tr>
 								<td>작성자 : </td>
-								<td class="boardWriter" width="300">"${list.userNo}"</td>
-								<td class="boardCount" width="150">조회수 : ${list.count}</td>
-								<td class="boardLike" width="100">추천수 : ${list.like}</td>
+								<td class="boardWriter" width="300">"${b.userId}"</td>
+								<td class="boardCount" width="150">조회수 : ${b.count}</td>
+								<td class="boardLike" width="100">추천수 : ${b.boardLike}</td>
 							</tr>
 						</thead>
 						<tbody>
@@ -78,6 +78,11 @@
 								<td class="boardContent" height="400" colspan="4">
 									작성내용
 								</td>
+							</tr>
+							<tr align="center">
+								<td></td>
+								<td> <button onclick="recommendBoard();">추천하기</button> </td>
+								<td></td>
 							</tr>
 							<tr>
 								<td class="boardSearchTag" colspan="4">
@@ -136,7 +141,7 @@
 									data : {
 										content : $("#replyContent").val(),
 										bno : ${b.boardNo},
-										userNo : "${loginUser.userNo}"
+										userId : ${loginUser.userId}
 									},
 									success : function(result){
 										if(result>0){
@@ -198,7 +203,7 @@
 						<!--  검색 기능, 카테고리 별 조회, 추천수 많은 글 조회 등 조회내용 전송용 공간 -->
 						<!-- 카테고리 항목 선택 시 해당 카테고리 조회 결과 리스트 조회(비동기통신 이용할 듯) -->
 						<select name="categoryList">
-							<c:forEach var="c" items="${category}">
+							<c:forEach var="c" items="${cList}">
 								<option value="${c.categoryNo}">"${c.categoryName}"</option>
 							</c:forEach>
 						</select>
@@ -237,7 +242,7 @@
 				<table class="popUp">
 					<thead>
 						<tr>
-							<c:forEach var="c" items="${category}">
+							<c:forEach var="c" items="${cList}">
 								<th onclick="searchBestCat();">${c.categoryName}<th>
 							</c:forEach>
 						</tr>
@@ -259,7 +264,7 @@
 				<table class="popUp">
 					<thead>
 						<tr>
-							<c:forEach var="c" items="${category}">
+							<c:forEach var="c" items="${cList}">
 								<th onclick="searchNewCat();">${c.categoryName}<th>
 							</c:forEach>
 						</tr>

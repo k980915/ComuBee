@@ -148,8 +148,8 @@ public class BoardDao {
 				b=new Board(
 						bno,
 						rset.getString("USERID"),
-						rset.getString("ATPATHNAME"),
-						rset.getString("CATEGORY"),
+						rset.getString("ATNO"),
+						rset.getString("CATEGORYNO"),
 						rset.getString("CONTENTSID"),
 						rset.getString("TITLE"),
 						rset.getString("BOARDCONTENT"),
@@ -254,9 +254,9 @@ public class BoardDao {
 			while(rset.next()) {
 				list.add(new Board(
 						rset.getInt("BOARDNO"),
+						rset.getString("USERID"),
 						rset.getString("CATEGORYNAME"),
 						rset.getString("TITLE"),
-						rset.getString("USERID"),
 						rset.getDate("CREATEDATE"),
 						rset.getInt("BOARDLIKE"),
 						rset.getInt("COUNT")
@@ -391,9 +391,9 @@ public class BoardDao {
 			while(rset.next()) {
 				noList.add(new Board(
 						rset.getInt("BOARDNO"),
+						rset.getString("USERID"),
 						rset.getString("CATEGORYNAME"),
 						rset.getString("TITLE"),
-						rset.getString("USERID"),
 						rset.getDate("CREATEDATE"),
 						rset.getInt("BOARDLIKE"),
 						rset.getInt("COUNT")
