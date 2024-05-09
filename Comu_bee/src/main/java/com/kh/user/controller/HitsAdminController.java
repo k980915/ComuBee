@@ -1,7 +1,6 @@
 package com.kh.user.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,19 +9,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.user.model.service.AdminService;
-import com.kh.user.model.service.UserService;
 
 /**
  * Servlet implementation class AdminHitsView
  */
 @WebServlet("/hitsView.ad")
-public class AdminHits extends HttpServlet {
+public class HitsAdminController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminHits() {
+    public HitsAdminController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,7 +35,7 @@ public class AdminHits extends HttpServlet {
 		
 		int result = new AdminService().AdminHitsView();
 		
-		System.out.println(result);
+		//System.out.println(result);
 		response.setContentType("text/html;charset=UTF-8");
 		response.getWriter().print(result);
 	}
@@ -49,5 +47,4 @@ public class AdminHits extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
 }
