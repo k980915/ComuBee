@@ -13,6 +13,7 @@ import java.util.Properties;
 import com.kh.board.model.vo.Attachment;
 import com.kh.board.model.vo.Board;
 import com.kh.board.model.vo.Category;
+import com.kh.board.model.vo.Reply;
 import com.kh.common.JDBCTemplate;
 import com.kh.common.model.vo.PageInfo;
 import com.kh.contents.model.vo.Contents;
@@ -148,8 +149,8 @@ public class BoardDao {
 				b=new Board(
 						bno,
 						rset.getString("USERID"),
-						rset.getString("ATPATHNAME"),
-						rset.getString("CATEGORY"),
+						rset.getString("ATNO"),
+						rset.getString("CATEGORYNO"),
 						rset.getString("CONTENTSID"),
 						rset.getString("TITLE"),
 						rset.getString("BOARDCONTENT"),
@@ -254,9 +255,9 @@ public class BoardDao {
 			while(rset.next()) {
 				list.add(new Board(
 						rset.getInt("BOARDNO"),
+						rset.getString("USERID"),
 						rset.getString("CATEGORYNAME"),
 						rset.getString("TITLE"),
-						rset.getString("USERID"),
 						rset.getDate("CREATEDATE"),
 						rset.getInt("BOARDLIKE"),
 						rset.getInt("COUNT")
@@ -391,9 +392,9 @@ public class BoardDao {
 			while(rset.next()) {
 				noList.add(new Board(
 						rset.getInt("BOARDNO"),
+						rset.getString("USERID"),
 						rset.getString("CATEGORYNAME"),
 						rset.getString("TITLE"),
-						rset.getString("USERID"),
 						rset.getDate("CREATEDATE"),
 						rset.getInt("BOARDLIKE"),
 						rset.getInt("COUNT")
@@ -429,6 +430,58 @@ public class BoardDao {
 			JDBCTemplate.close(pstmt);
 		}
 		return result;
+	}
+
+	public int insertReply(Connection conn, Reply r) {
+		// TODO Auto-generated method stub
+		int result=0;
+		PreparedStatement pstmt=null;
+		String sql=prop.getProperty("insertReply");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, r.getUserId());
+			pstmt.setString(2, r.getReplyContent());
+			pstmt.setInt(3, r.getBoardNo());
+			result=pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public ArrayList<Reply> replyList(Connection conn, int bno) {
+		// TODO Auto-generated method stub
+		ArrayList<Reply> rList = new ArrayList<>();
+		PreparedStatement pstmt=null;
+		ResultSet rset=null;
+		String sql = prop.getProperty("replyList");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, bno);
+			rset=pstmt.executeQuery();
+			while(rset.next()) {
+				rList.add(new Reply(
+						rset.getInt("REPLYNO"),
+						rset.getString("USERID"),
+						rset.getString("REPLYCONTENT"),
+						rset.getDate("CREATEDATE")
+						));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return rList;
 	}
 
 }

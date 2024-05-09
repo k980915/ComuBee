@@ -8,8 +8,12 @@
 <title>COMU-BEE</title>
 </head>
 <body>
+	<div>
 	<%@ include file="/views/common/header.jsp" %>
+	</div>
+	<div>
 <%-- 		<%@ include file = "/views/contents/mainPage.jsp" %> --%>
+	</div>
 	<a href="${contextPath}/main.co">이동</a>
 	
 

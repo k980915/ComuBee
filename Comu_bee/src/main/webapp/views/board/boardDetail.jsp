@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <style>
 	.boardOuter{
-		width:100%;
+		width:1200;
 		}
 	.boardOuter>div{
 		display:inline;
@@ -30,6 +30,22 @@
 	.boardSide{
 		width:30%;
 	}
+	.boardReply{
+		width:100%;
+	}
+	.boardReply table{
+		width:100%;
+		box-sizing:border-box;
+	}
+	.boardWriter{
+		width: 15%;
+	}
+	.boardContent{
+		width: 65%;
+	}
+	.boardDate{
+		width: 20%;
+	}
 
 
 </style>
@@ -41,7 +57,7 @@
 		
 		<div class="boardBody">
 			<div class="boardMenuBar">
-				<h3>${b.categoryName}게시판</h3>
+				<h3>${category}게시판</h3>
 				<!-- 게시판 용 메뉴바가 필요하지 않을까 싶은? -->
 			</div>
 			<div class="boardMain">
@@ -68,9 +84,9 @@
 							</tr>
 							<tr>
 								<td>작성자 : </td>
-								<td class="boardWriter" width="300">"${list.userNo}"</td>
-								<td class="boardCount" width="150">조회수 : ${list.count}</td>
-								<td class="boardLike" width="100">추천수 : ${list.like}</td>
+								<td class="boardWriter" width="300">"${b.userId}"</td>
+								<td class="boardCount" width="150">조회수 : ${b.count}</td>
+								<td class="boardLike" width="100">추천수 : ${b.boardLike}</td>
 							</tr>
 						</thead>
 						<tbody>
@@ -78,6 +94,11 @@
 								<td class="boardContent" height="400" colspan="4">
 									작성내용
 								</td>
+							</tr>
+							<tr align="center">
+								<td></td>
+								<td> <button onclick="recommendBoard();">추천하기</button> </td>
+								<td></td>
 							</tr>
 							<tr>
 								<td class="boardSearchTag" colspan="4">
@@ -92,104 +113,51 @@
 						</tbody>
 					</table>
 				</div>
-				<div class="boardReply">
-								
+				<div class="boardReply">							
 					<table border="1" align="center">
+						<c:choose>
+							<c:when test="${not empty loginUser}">
+								<tr>
+									<th>댓글작성</th>
+									<td>
+										<textarea id="replyContent" rows="3" cols="50" style="resize:none;"></textarea>
+									</td>
+									<td>
+										<button onclick="insertReply();">댓글작성</button>
+									</td>
+								</tr>
+							</c:when>
+							<c:otherwise>
+								<tr>
+									<th>댓글작성</th>
+									<td>
+										<textarea readonly rows="3" cols="50" style="resize:none;">로그인 후 이용 가능한 서비스입니다.</textarea>
+									</td>
+									<td><button disabled>댓글작성</button></td>
+								</tr>
+							</c:otherwise>
+						</c:choose>
+					</table>
+					<table border="1" align="center" class="writtenReply">
 						<thead>
-							<c:choose>
-								<c:when test="${not empty loginUser}">
-									<tr>
-										<th>댓글작성</th>
-										<td>
-											<textarea id="replyContent" rows="3" cols="50" style="resize:none;"></textarea>
-										</td>
-										<td><button onclick="insertReply();">댓글작성</button></td>
-									</tr>
-								</c:when>
-								<c:otherwise>
-									<tr>
-										<th>댓글작성</th>
-										<td>
-											<textarea readonly rows="3" cols="50" style="resize:none;">로그인 후 이용 가능한 서비스입니다.</textarea>
-										</td>
-										<td><button disabled>댓글작성</button></td>
-									</tr>
-								</c:otherwise>
-							</c:choose>
-						</thead>
-						<tbody id="">
 							<tr>
-								<td>작성자</td>
-								<td>내용</td>
-								<td>작성일</td>
+								<td class="replyWriter">작성자</td>
+								<td class="replyContent">내용</td>
+								<td class="replyDate">작성일</td>
 							</tr>
-						
+						</thead>
+						<tbody>
+						<c:forEach items="${rList}" var="r">
+							<tr>
+								<td>${r.userId}</td>
+								<td>${r.replyContent}</td>
+								<td>${r.createDate}</td>
+							</tr>
+						</c:forEach>
 						</tbody>
 					</table>
 					
-						<script>
-							function insertReply(){
-								
-								$.ajax({
-									url : "insertReply.bo",
-									type : "post",
-									data : {
-										content : $("#replyContent").val(),
-										bno : ${b.boardNo},
-										userNo : "${loginUser.userNo}"
-									},
-									success : function(result){
-										if(result>0){
-											alert("댓글 작성 성공");	
-											replyList();
-										}else{
-											alert("작성실패");
-										}
-										$("#replyContent").val("");
-									},
-									error : function(){
-										console.log("통신 오류")
-									}
-								
-								});
-								$(function(){
-									replyList();
-								});
-									
-							}
-							function replyList(){
-								$.ajax({
-									url : "replyList.bo",
-									data : {
-										bno : ${b.boardNo}
-									},
-									success : function(){
-											var tr="";
-										if(rList.isEmpty()){
-											tr="<tr>"
-												+"<td span='3'>
-												+"현재 댓글이 없습니다."
-												+"</td>"
-												+"</tr>";
-										}else{
-											for(var i in rList){
-												tr+="<tr>"
-													+"<td>"+rList[i].replyWriter+"</td>"
-													+"<td>"+rList[i].replyContent+"</td>"
-													+"</tr>";
-										}
-									}
-										$("#boardReply tbody").html(tr);
-										},
-									error : function(){
-										console.log("통신 오류")
-									}
-									
-								});
-								
-							}
-
-						</script>
+						
 				</div>
 			
 			
@@ -198,7 +166,7 @@
 						<!--  검색 기능, 카테고리 별 조회, 추천수 많은 글 조회 등 조회내용 전송용 공간 -->
 						<!-- 카테고리 항목 선택 시 해당 카테고리 조회 결과 리스트 조회(비동기통신 이용할 듯) -->
 						<select name="categoryList">
-							<c:forEach var="c" items="${category}">
+							<c:forEach var="c" items="${cList}">
 								<option value="${c.categoryNo}">"${c.categoryName}"</option>
 							</c:forEach>
 						</select>
@@ -237,7 +205,7 @@
 				<table class="popUp">
 					<thead>
 						<tr>
-							<c:forEach var="c" items="${category}">
+							<c:forEach var="c" items="${cList}">
 								<th onclick="searchBestCat();">${c.categoryName}<th>
 							</c:forEach>
 						</tr>
@@ -259,7 +227,7 @@
 				<table class="popUp">
 					<thead>
 						<tr>
-							<c:forEach var="c" items="${category}">
+							<c:forEach var="c" items="${cList}">
 								<th onclick="searchNewCat();">${c.categoryName}<th>
 							</c:forEach>
 						</tr>
@@ -360,5 +328,70 @@
 		<!-- footer 있으면 그대로 다시 따오기 -->
 	
 	</div>	
+	
+	<script>
+							function insertReply(){
+								
+								$.ajax({
+									url : "insertReply.bo",
+									type : "post",
+									data : {
+										content : $("#replyContent").val(),
+										bno : ${b.boardNo},
+										userId : "${loginUser.userId}"
+									},
+									success : function(result){
+										if(result>0){
+											alert("댓글 작성 성공");	
+											replyList();
+										}else{
+											alert("작성실패");
+										}
+										$("#replyContent").val("");
+									},
+									error : function(){
+										console.log("통신 오류")
+									}
+								
+								});
+								$(function(){
+									replyList();
+								});
+									
+							}
+							function replyList(){
+								var tr="";
+								$.ajax({
+									url : "replyList.bo",
+									data : {
+										bno : ${b.boardNo}
+									},
+									success : function(rList){
+										if(rList==null){
+											tr="<tr>"
+												+"<td span='3'>"
+												+"현재 댓글이 없습니다."
+												+"</td>"
+												+"</tr>";
+										}else{
+											for(var i in rList){
+												tr+="<tr>"
+													+"<td>"+rList[i].userId+"</td>"
+													+"<td>"+rList[i].replyContent+"</td>"
+													+"<td>"+rList[i].createDate+"</td>"
+													+"</tr>";
+										}
+									}
+										$(".writtenReply tbody").html(tr);
+										},
+									error : function(){
+										console.log("통신 오류")
+									}
+									
+								});
+								
+							}
+
+						</script>
 </body>
 </html>
