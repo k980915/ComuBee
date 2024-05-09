@@ -4,6 +4,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+	String posterPath = request.getParameter("posterPath");
+%>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +23,7 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     <meta charset="UTF-8">
-    <title>contentDetail</title>
+    <title>미디어 상세 페이지</title>
     <style>
         .menu {
             display: flex;
@@ -36,14 +40,14 @@
         <form action="${contextPath}/detail.co">
             <table style="width: 100%;">
                 <c:forEach var="c" items="${list}">
+                <c:if test="${c.contentsId eq param.contentsId}">
                     <tr>
                         <td rowspan="3" style="width: 50%; height: 600px;">
-                            <!-- 이미지 경로를 채워주세요 -->
-                            <img id="titleImg" src="" style="height: 800px; width: 100%;">
+                            <img id="titleImg" src="${c.posterPath}" style="height: 800px; width: 100%;">
                         </td>
                         <td rowspan="3" style="width: 10%;"></td>
                         <td colspan="3" style="width: 30%; height: 10px;" align="center">
-                            <h1>제목 : ${c.title}</h1>
+                            <h1>${c.title}</h1>
                         </td>
                     </tr>
                     <tr>
@@ -56,15 +60,15 @@
                             <table border="1" style="height: 600px;"> 
                                 <tr>
                                     <th style="height: 100px;"><a href="">작품정보</a></th>
-                                    <th><a href="">커뮤니티</a></th>
+                                    <th><a href="${contextPath}/list.rv?currentPage=1">커뮤니티</a></th>
                                     <th><a href="">트레일러</a></th>
                                 </tr>
                                 <tr>
                                     <td colspan="3">
                                         <table border="1" style="width: 100%; height: 100%;">
                                             <tr>
-                                                <td style="height: 50px;">장르</td>
-                                                <td>장르컬럼추가해야됨</td>
+                                                <td style="height: 50px;">평점</td>
+                                                <td>${c.rate}</td>
                                                 <td>개봉일</td>
                                                 <td>${c.releaseDate}</td>
                                             </tr>
@@ -92,6 +96,7 @@
                             </table>
                         </td>
                     </tr>
+                </c:if>
                 </c:forEach>
             </table>
         </form>

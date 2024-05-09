@@ -27,39 +27,78 @@ private Properties prop = new Properties();
 		}
 	}
 
+//	public Contents DetailContents(Connection conn, Contents con) {
+//		ResultSet rset = null;
+//		Statement stmt = null;
+//		Contents c = null;
+//		
+//		String sql = prop.getProperty("DetailContents");
+//		
+//		try {
+//			stmt = conn.createStatement();
+//			rset = stmt.executeQuery(sql);
+//			
+//			while(rset.next()) {
+//				c = new Contents(rset.getInt("CONTENTSID")
+//							    ,rset.getString("TITLE")
+//							    ,rset.getString("ENGLISHTITLE")
+//							    ,rset.getString("OVERVIEW")
+//							    ,rset.getString("POSTERPATH")
+//							    ,rset.getString("RUNTIME")
+//							    ,rset.getString("RELEASEDATE")
+//							    ,rset.getString("AGELIMIT")
+//							    ,rset.getDouble("RATE")
+//							    ,rset.getString("ACTORS")
+//							    ,rset.getString("DIRECTOR"));
+//			}
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}finally {
+//			JDBCTemplate.close(stmt);
+//			JDBCTemplate.close(rset);
+//		}
+//		return c;
+//	}
+	// 확인용
 	public Contents DetailContents(Connection conn, Contents con) {
 		ResultSet rset = null;
-		Statement stmt = null;
+		 PreparedStatement pstmt = null;
 		Contents c = null;
 		
 		String sql = prop.getProperty("DetailContents");
 		
 		try {
-			stmt = conn.createStatement();
-			rset = stmt.executeQuery(sql);
+			pstmt = conn.prepareStatement(sql);
+	        pstmt.setInt(1, con.getContentsId()); 
+	        rset = pstmt.executeQuery();
 			
-			while(rset.next()) {
-				c = new Contents(rset.getInt("CONTENTSID")
-							    ,rset.getString("TITLE")
-							    ,rset.getString("ENGLISHTITLE")
-							    ,rset.getString("OVERVIEW")
-							    ,rset.getString("POSTERPATH")
-							    ,rset.getString("RUNTIME")
-							    ,rset.getString("RELEASEDATE")
-							    ,rset.getString("AGELIMIT")
-							    ,rset.getDouble("RATE")
-							    ,rset.getString("ACTORS")
-							    ,rset.getString("DIRECTOR"));
-			}
+	        if(rset.next()) {
+	            c = new Contents(rset.getInt("CONTENTSID"),
+	                             rset.getString("TITLE"),
+	                             rset.getString("ENGLISHTITLE"),
+	                             rset.getString("OVERVIEW"),
+	                             rset.getString("POSTERPATH"),
+	                             rset.getString("RUNTIME"),
+	                             rset.getString("RELEASEDATE"),
+	                             rset.getString("AGELIMIT"),
+	                             rset.getDouble("RATE"),
+	                             rset.getString("ACTORS"),
+	                             rset.getString("DIRECTOR"));
+	        }
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
-			JDBCTemplate.close(stmt);
+			JDBCTemplate.close(pstmt);
 			JDBCTemplate.close(rset);
 		}
+		System.out.println(c);
+
 		return c;
 	}
+	
+	
 
 	public ArrayList<Contents> DetailContentsList(Connection conn) {
 		Statement stmt = null;
@@ -96,6 +135,8 @@ private Properties prop = new Properties();
 		
 		return list;
 	}
+	
+	
 
 	public Contents selectContents(Connection conn, int cid) {
 		PreparedStatement pstmt = null;
@@ -110,7 +151,7 @@ private Properties prop = new Properties();
 			
 			rset = pstmt.executeQuery();
 			
-			if(rset.next()) {
+			
 				c = new Contents(rset.getString("TITLE")
 							    ,rset.getString("ENGLISHTITLE")
 							    ,rset.getString("OVERVIEW")
@@ -121,7 +162,7 @@ private Properties prop = new Properties();
 							    ,rset.getDouble("RATE")
 							    ,rset.getString("ACTORS")
 							    ,rset.getString("DIRECTOR"));
-	}
+	
 		} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -130,6 +171,76 @@ private Properties prop = new Properties();
 			JDBCTemplate.close(pstmt);
 		}
 		return c;	
+	}
+
+	public ArrayList<Contents> ForReview(Connection conn) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		ArrayList<Contents> list = new ArrayList<>();
+		
+		String sql = prop.getProperty("ForReview");
+		
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(sql);
+			
+			while(rset.next()) {
+				list.add(new Contents(rset.getInt("CONTENTSID")
+									 ,rset.getString("TITLE")
+									 ,rset.getString("ENGLISHTITLE")
+									 ,rset.getString("OVERVIEW")
+									 ,rset.getString("POSTERPATH")
+									 ,rset.getString("RUNTIME")
+									 ,rset.getString("RELEASEDATE")
+									 ,rset.getString("AGELIMIT")
+									 ,rset.getDouble("RATE")
+									 ,rset.getString("ACTORS")
+									 ,rset.getString("DIRECTOR")));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(stmt);
+			JDBCTemplate.close(rset);
+		}	
+		return list;
+	}
+
+	public ArrayList<Contents> BestContentsList(Connection conn) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		ArrayList<Contents> list = new ArrayList<>();
+		
+		String sql = prop.getProperty("BestContentsList");
+		
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(sql);
+			
+			while(rset.next()) {
+				list.add(new Contents(rset.getInt("CONTENTSID")
+									 ,rset.getString("TITLE")
+									 ,rset.getString("ENGLISHTITLE")
+									 ,rset.getString("OVERVIEW")
+									 ,rset.getString("POSTERPATH")
+									 ,rset.getString("RUNTIME")
+									 ,rset.getString("RELEASEDATE")
+									 ,rset.getString("AGELIMIT")
+									 ,rset.getDouble("RATE")
+									 ,rset.getString("ACTORS")
+									 ,rset.getString("DIRECTOR")));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(stmt);
+			JDBCTemplate.close(rset);
+		}	
+		return list;
 	}
 
 	

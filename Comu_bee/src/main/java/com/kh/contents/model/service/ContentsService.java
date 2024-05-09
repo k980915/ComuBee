@@ -37,6 +37,24 @@ public class ContentsService {
 		return c;
 	}
 
+	public ArrayList<Contents> ForReview() {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		ArrayList<Contents> list = new ContentsDao().ForReview(conn);	
+		
+		JDBCTemplate.close(conn);	
+		return list;
+	}
+
+	public ArrayList<Contents> BestContentsList() {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		ArrayList<Contents> list = new ContentsDao().BestContentsList(conn);	
+		
+		JDBCTemplate.close(conn);	
+		return list;
+	}
+
 	
 	
 	
