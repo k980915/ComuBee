@@ -55,6 +55,50 @@ INSERT INTO MEMBERINFO(USERID
 	WHERE USERID=?
 </entry>
 
+<entry key="myBoardListCount">
+		SELECT COUNT(*) COUNT
+		FROM BOARD 
+		WHERE USERID=?
+</entry>
+
+<entry key="myBoardSelectList">
+	SELECT * 
+		FROM (
+		        SELECT ROWNUM RNUM,S.* 
+		        FROM (SELECT BOARD_NO
+		              ,CATEGORY_NAME	
+		              ,BOARD_TITLE
+		              ,USER_ID
+		              ,COUNT
+		              ,CREATE_DATE
+		                FROM BOARD B
+		                JOIN CATEGORY USING(CATEGORY_NO)
+		                JOIN MEMBER ON (USER_NO=BOARD_WRITER)
+		                WHERE B.STATUS = 'Y'
+		                AND BOARD_WRITER=?
+		                ORDER BY CREATE_DATE DESC) S)
+		WHERE RNUM BETWEEN ? AND ?
+</entry>
+<entry key="myReplyListCount">
+		SELECT COUNT(*) COUNT
+		FROM REPLY 
+		WHERE REPLY_WRITER=?
+	</entry>
+	<entry key="myReplySelectList">
+		SELECT * 
+		FROM (
+		        SELECT ROWNUM RNUM,S.* 
+		        FROM (SELECT REPLY_NO
+		      		  ,REPLY_CONTENT
+		      		  ,USER_ID
+		      		  ,CREATE_DATE
+		      		  ,REF_BNO
+				FROM REPLY R
+				JOIN MEMBER M ON (REPLY_WRITER=USER_NO)
+				WHERE R.STATUS ='Y'
+				AND REPLY_WRITER = ?) S)
+		WHERE RNUM BETWEEN ? AND ?
+	</entry>
 
 
 

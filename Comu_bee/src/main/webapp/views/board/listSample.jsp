@@ -193,7 +193,7 @@
     <script>
     	$("tbody tr").click(function(){
     		var bno = $(this).children.eq(0).text();
-    		location.href="<%=contextPath%>/detail.bo?bno="+bno;
+    		location.href="${contextPath}/detail.bo?bno="+bno;
     	});
 		$(".page-link").click(function(){
 			var btnNo=Number($(this).text());
