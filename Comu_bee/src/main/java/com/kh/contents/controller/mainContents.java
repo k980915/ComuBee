@@ -63,6 +63,7 @@ public class mainContents extends HttpServlet {
 
 //		System.out.println(conList);
 		request.getRequestDispatcher("views/contents/mainPage.jsp").forward(request, response);
+//		request.getRequestDispatcher("views/search/contentsSearchResults.jsp").forward(request, response);
 
 		
 	}
