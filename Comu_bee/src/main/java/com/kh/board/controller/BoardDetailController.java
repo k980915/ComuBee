@@ -42,17 +42,14 @@ public class BoardDetailController extends HttpServlet {
 		int result=new BoardService().increaseCount(bno);
 		if(result>0) {
 			ArrayList<Category> cList = bs.selectCategoryList();
-			Board b = bs.selectBoard(bno);
+			Board b = new BoardService().selectBoard(bno);
 //			System.out.println(b);
 			// 첨부파일 정보도 조회하기
 			ArrayList<Attachment> atList = bs.selectAttachment(bno);
 //			System.out.println(at);
 			ArrayList<Contents> bestContList=bs.bestContList();
-			System.out.println(bestContList);
 			ArrayList<Board> newPopList=bs.newPopList(b);
-			System.out.println(newPopList);
 			ArrayList<Board> bestPopList=bs.bestPopList(b);
-			System.out.println(bestPopList);
 			request.setAttribute("b",b);
 			request.setAttribute("atList",atList);
 			request.setAttribute("cList", cList);
