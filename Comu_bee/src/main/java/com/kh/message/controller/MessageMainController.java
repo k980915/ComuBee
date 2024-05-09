@@ -1,7 +1,7 @@
-package com.kh.user.controller;
+package com.kh.message.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,20 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.user.model.service.AdminService;
-import com.kh.user.model.service.UserService;
+import com.kh.message.model.service.MessageService;
+import com.kh.message.model.vo.Message;
 
 /**
- * Servlet implementation class AdminHitsView
+ * Servlet implementation class MessageBoxController
  */
-@WebServlet("/hitsView.ad")
-public class AdminHits extends HttpServlet {
+@WebServlet("/messageMain.ms")
+public class MessageMainController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminHits() {
+    public MessageMainController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,14 +32,13 @@ public class AdminHits extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//response.setContentType("text/html;charset=UTF-8");
-		//PrintWriter out = response.getWriter();
+		String userId=request.getParameter("userId");
 		
-		int result = new AdminService().AdminHitsView();
+		ArrayList<Message> list = new MessageService().selectNewMessage(userId);
+		System.out.println(list);
+		request.setAttribute("list", list);
 		
-		System.out.println(result);
-		response.setContentType("text/html;charset=UTF-8");
-		response.getWriter().print(result);
+		request.getRequestDispatcher("views/message/messageMainView.jsp").forward(request, response);
 	}
 
 	/**

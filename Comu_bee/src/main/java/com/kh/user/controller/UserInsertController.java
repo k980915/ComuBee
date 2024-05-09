@@ -53,8 +53,7 @@ public class UserInsertController extends HttpServlet {
 		
 
 		User u = new User(userId, userName, userPwd, userEmail, userBirth, userGender);
-		System.out.println(userBirth);
-		System.out.println(userGender);
+		
 
 		int result = new UserService().insertUser(u);
 

@@ -90,9 +90,9 @@ public class BoardController extends HttpServlet {
 		}
 		
 		PageInfo pi = new PageInfo(listCount,currentPage,pageLimit,boardLimit,maxPage,startPage,endPage);
-		
+		String category=request.getParameter("category");
 		// 게시글 목록
-		ArrayList<Board> list = new BoardService().selectList(pi);
+		ArrayList<Board> list = new BoardService().selectListByCategory(pi,category);
 		
 		//위임하기 위한 데이터 담아주기
 		

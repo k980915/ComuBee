@@ -2,28 +2,25 @@ package com.kh.user.controller;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.kh.user.model.service.AdminService;
-import com.kh.user.model.service.UserService;
 
 /**
- * Servlet implementation class hitsViewUpdate
+ * Servlet implementation class AdminHitsView
  */
-@WebServlet("/hitsViewUpdate.ad")
-public class HitsViewUpdate extends HttpServlet {
+@WebServlet("/hitsView.ad")
+public class HitsAdminController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HitsViewUpdate() {
+    public HitsAdminController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,15 +29,15 @@ public class HitsViewUpdate extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int hitLog = Integer.parseInt(request.getParameter("hit")) ;
 		
+		//response.setContentType("text/html;charset=UTF-8");
+		//PrintWriter out = response.getWriter();
 		
-		int result = new AdminService().AdminHitsViewUpdate(hitLog);
+		int result = new AdminService().AdminHitsView();
 		
-		System.out.println("hit의 수는 : "+result);
+		//System.out.println(result);
 		response.setContentType("text/html;charset=UTF-8");
 		response.getWriter().print(result);
-		
 	}
 
 	/**
@@ -50,5 +47,4 @@ public class HitsViewUpdate extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
 }

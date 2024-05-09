@@ -54,7 +54,15 @@
 								<!-- 관리자 or 작성자라면 게시글 수정/삭제 버튼이 보이게 처리하기 -->
 								<c:if test="${loginUser.userId eq 'admin' or loginUser.userId eq b.userId}">
 									<td>
-										<button type="button" onclick="">수정</button><button type="button" onclick="deleteYN();">삭제</button>
+										<button type="button" onclick="location.href='${contextPath}/update.bo?bno=${b.boardNo}'">수정</button><button type="button" onclick="deleteYN();">삭제</button>
+											<script>
+												function deleteYN(){
+													var result=window.confirm("정말 삭제하시겠습니까?");
+													if(result){
+														location.href='${contextPath}/delete.bo?bno=${b.boardNo}';
+													}
+												}
+											</script>
 									</td>
 								</c:if>
 							</tr>
@@ -75,8 +83,10 @@
 								<td class="boardSearchTag" colspan="4">
 									태그 : 관련검색어 본인이 입력할 수 있게?
 								</td>
-								<c:if test="${b.category eq 'recommend'}">
-									관련 컨텐츠 제목 선택할 수 있는 영역 만들기
+								<c:if test="${b.category eq 'RECOMMEND'}">
+									<td class="boardToContent" onclick="${contextPath}/">
+										${b.contentsId} 보러가기
+									</td> 
 								</c:if>
 							</tr>
 						</tbody>
@@ -107,7 +117,7 @@
 								</c:otherwise>
 							</c:choose>
 						</thead>
-						<tbody>
+						<tbody id="">
 							<tr>
 								<td>작성자</td>
 								<td>내용</td>
@@ -153,17 +163,23 @@
 										bno : ${b.boardNo}
 									},
 									success : function(){
-										var tr = "";
-										for(var i in rList){
-											tr+="<tr>"
-												+"<td>"+"<input type='hidden' class='likeCheck' value='0'>"+"</td>"
-												+"<td>"+rList[i].replyWriter+"</td>"
-												+"<td>"+rList[i].replyContent+"</td>"
-												+"<td>"+rList[i].createDate+"</td>"
+											var tr="";
+										if(rList.isEmpty()){
+											tr="<tr>"
+												+"<td span='3'>
+												+"현재 댓글이 없습니다."
+												+"</td>"
 												+"</tr>";
+										}else{
+											for(var i in rList){
+												tr+="<tr>"
+													+"<td>"+rList[i].replyWriter+"</td>"
+													+"<td>"+rList[i].replyContent+"</td>"
+													+"</tr>";
 										}
-										$("#reply-area tbody").html(tr);
-									},
+									}
+										$("#boardReply tbody").html(tr);
+										},
 									error : function(){
 										console.log("통신 오류")
 									}

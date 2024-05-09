@@ -51,6 +51,7 @@ public class UserLoginController extends HttpServlet {
 		String saveId = request.getParameter("saveId");
 		
 		User u = new UserService().loginUser(userId, userPwd);
+		System.out.println(u);
 //		if(saveId!=null) {
 //			cookie= new Cookie("userId",userId);
 //			
