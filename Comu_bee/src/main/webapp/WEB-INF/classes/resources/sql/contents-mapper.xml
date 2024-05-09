@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+	<entry key="DetailContents">
+	SELECT *
+	FROM CONTENTS
+	WHERE CONTENTSID = ?
+	</entry>
+	
+	<entry key="DetailContentsList">
+	SELECT *
+	FROM CONTENTS
+	</entry>
+	
+	<entry key="selectContents">
+	SELECT *
+	FROM CONTENTS
+	WHERE CONTENTSID = ?
+	</entry>
+	
+	<entry key="ForReview">
+	SELECT * FROM (
+    SELECT * FROM contents
+    ORDER BY RATE DESC)
+    WHERE ROWNUM &lt;= 6
+	</entry>
+	
+	<entry key ="BestContentsList">
+	SELECT * FROM CONTENTS
+	ORDER BY RATE DESC
+	</entry>
+	
+	
+
+
+    <!-- 검색 쿼리 추가 -->
+	<entry key="searchContents">
+    	SELECT CONTENTSID, TITLE, ENGLISHTITLE, OVERVIEW, POSTERPATH, RUNTIME, RELEASEDATE, DIRECTOR
+    	FROM SEMIPRJ.CONTENTS
+    	WHERE UPPER(TITLE) LIKE UPPER(?) OR UPPER(DIRECTOR) LIKE UPPER(?);
+	</entry>
+    
+</properties>

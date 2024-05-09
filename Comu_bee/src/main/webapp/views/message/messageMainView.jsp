@@ -26,7 +26,7 @@
 	
 	<button id="sendView" onclick="sendList();" >내가 보낸 쪽지 </button>
 	<button id="receiveView" onclick="receiveList();">내가 받은 쪽지</button>
-	<button id="scrabView" onclick="scrabList();">보관함</button>
+	<!-- <button id="scrabView" onclick="scrabList();">보관함</button> -->
 	<div id="detail-area"></div>
 	<div id="messages-area">
 		<table border="1" align="center">
@@ -165,7 +165,7 @@
 			});
 		}
 		
-function scrabList(){
+/* function scrabList(){
 			
 			$.ajax({
 				url : "selectList.ms",
@@ -199,29 +199,56 @@ function scrabList(){
 					console.log("통신오류");
 				}
 			});
-		}
-	$("table").on("click", "tbody>tr", function() {
-		
-    	var messageId = $(this).find("td:first").text(); 
-		var check=$(this)
-   		 $.ajax({
-      		  url: "updateReadCheck.ms", 
-       		 type: "post",
-       		 data: {
-       		     messageId: messageId,
-       		  	 userId : "${loginUser.userId}"
-       		 },
-       		 success: function(result) {
-       		     // 업데이트가 성공하면 필요에 따라 여기서 추가 작업을 수행할 수 있습니다
-       			if(result>0){
-       				 check.remove();
-       			}
-       		 },
-       		 error: function() {
-       		     
-       		 }
-    		});
-		});
+		} */
+$("table").on("click", "tbody>tr", function(event) {
+    if ($(event.target).is('td') && $(event.target).index() >= 0 && $(event.target).index() <= 4) {
+        var messageId = $(this).find("td:first").text();
+        var check = $(this);
+        $.ajax({
+            url: "updateReadCheck.ms",
+            type: "post",
+            data: {
+                messageId: messageId,
+                userId: "${loginUser.userId}"
+            },
+            success: function(result) {
+                // 업데이트가 성공하면 필요에 따라 여기서 추가 작업을 수행할 수 있습니다
+                if (result > 0) {
+                    check.remove();
+                }
+            },
+            error: function() {
+
+            }
+        });
+    }
+});
+
+$("table").on("click", "tbody>tr", function(event) {
+    if ($(event.target).is('td') && $(event.target).index() >=5) {
+        var messageId = $(this).find("td:first").text();
+        var scrabCheck=$(this).find("td:last").text();
+        var check = $(this);
+        $.ajax({
+            url: "updateScrabCheck.ms",
+            type: "post",
+            data: {
+                messageId: messageId,
+                userId: "${loginUser.userId}",
+                scrabCheck :scrabCheck
+            },
+            success: function(result) {
+                // 업데이트가 성공하면 필요에 따라 여기서 추가 작업을 수행할 수 있습니다
+                if (result > 0) {
+                    check.remove();
+                }
+            },
+            error: function() {
+
+            }
+        });
+    }
+});
 	
 	
 	

@@ -1,13 +1,13 @@
-package com.kh.board.model.service;
+package com.kh.search.model.service;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import com.kh.board.model.dao.BoardSearchDao;
+import com.kh.search.model.dao.BoardSearchDao;
 import com.kh.board.model.vo.Board;
 import com.kh.common.JDBCTemplate;
 
-public class SearchService {
+public class BoardSearchService {
 
     public ArrayList<Board> search(String keyword) {
         //BoardSearchDao dao = new BoardSearchDao();

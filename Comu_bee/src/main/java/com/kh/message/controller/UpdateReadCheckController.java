@@ -38,7 +38,6 @@ public class UpdateReadCheckController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int messageNum = Integer.parseInt(request.getParameter("messageId"));
 		String userId = request.getParameter("userId");
-		System.out.println(messageNum);
 		int result = 0;
 		result = new MessageService().updateReadCheck(messageNum,userId);
 		response.getWriter().print(result);
