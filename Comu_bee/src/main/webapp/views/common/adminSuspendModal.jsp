@@ -7,7 +7,8 @@
 <title>adminSuspendModal</title>
 </head>
 <body>
-	<div align="center">
+
+	
 		<!-- Button to Open the Modal -->
 		<button align="center" type="button" class="btn btn-primary"
 			data-toggle="modal" data-target="#myModal">회원 정보</button>
@@ -23,16 +24,17 @@
 						<h4 class="modal-title">회원 정보</h4>
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
 					</div>
-
-					<!-- Modal body -->
-					<div class="modal-body">
-						<p>이름 : ${list.userName}</p> 
+				<!-- list에 값 더 담아 오기 -->
+					<div class="modal-body">  
+						<p>아이디 : ${li.userId}</p> 
 						<br>
-						<p>가입일 : ${list.joinDate}</p>
+						<p>이 름 : asd</p> 
 						<br>
-						<p>이메일 : ${list.userEmail}</p>
+						<p>가입일 : asd</p>
 						<br>
-						<p>포인트 : ${list.point}</p>
+						<p>이메일 : asd</p>
+						<br>
+						<p>포인트 : asd</p>
 						<br>
 						<p>회원 정지 기간</p>
 						<form id="suspendDay">
@@ -60,23 +62,33 @@
 				</div>
 			</div>
 		</div>
-	</div>
+
 	<script>
+	
+	
 		function suspendDays() {
 			var susDays = $("#suspendDay").val();
+			var userIdval = ${li.userId};
 			$.ajax({
 				url : "suspendDays.ad" ,
 				data : {
-					susDays : susDays
+					susDays : susDays,
+					userIdval : userIdval
 				},
 				error : function() {
 					console.log("처리 실패");
 				},
-				success : function(/* status Timer값 */) {
-					
+				success : function(result) {
+					if(result>0){
+						alert(userIdval+"님을 "+susDays+"정지했습니다.")
+					}else{
+						alert("정지를 실패했습니다.")
+					}
 				}
 			});
 		}
+		
 	</script>
+
 </body>
 </html>

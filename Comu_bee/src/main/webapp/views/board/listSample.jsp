@@ -20,6 +20,7 @@
 </head>
 
 <body>
+				
 
     <canvas class="my-4 w-100" id="myChart" width="10000" height="380"></canvas>
 
@@ -36,6 +37,7 @@
                     <th scope="col">조회수</th>
                     <th scope="col" class="text-center">추천</th>
                 </tr>
+                
             	<c:if test="${not category eq 'NOTICE'}">
             		<c:forEach items="${noList}" var="li">
 	            		<tr>
@@ -57,10 +59,15 @@
 					        <tr>
 			                    <td class="text-center">${li.boardNo}</td>
 			                    <td>${li.title}</td>
-			                    <td>${li.userId}</td>
+			                    <td>${li.userId}
+			                    	<c:if test="${loginUser.userId eq 'admin'}">
+		<%@ include file="/views/common/adminSuspendModal.jsp"%>
+	</c:if>
+			                    </td>
 			                    <td>${li.createDate}</td>
 			                    <td>${li.count }</td>
 			                    <td class="text-center">${li.boardLike}</td>
+			                  
 			                </tr>
 						</c:forEach>
 					</c:when>
@@ -224,6 +231,8 @@
         </ul>
     </nav>
     
+    
+    
     <script>
     	$("tbody tr").click(function(){
     		var bno = $(this).children.eq(0).text();
@@ -240,8 +249,8 @@
 		function next(){
 			location.href='list.${cat}?currentPage='+(currentPage+1);
 		}
+
 	</script>
-    	
 
 
 </body>

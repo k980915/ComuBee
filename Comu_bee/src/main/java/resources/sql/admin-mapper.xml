@@ -33,5 +33,23 @@
 	
 	</entry>
 
+	<entry key="suspendDays">
+	
+	UPDATE MEMBERINFO
+	SET STATUS = 'N'
+	WHERE USERID = ?
+	
+	
+	</entry>
+	
+	<entry key="unsuspendDays">
+	
+	UPDATE MEMBERINFO
+	SET STATUS = 'Y'
+	WHERE USERID = ?
+	
+	
+	</entry>
+
 	
 </properties>

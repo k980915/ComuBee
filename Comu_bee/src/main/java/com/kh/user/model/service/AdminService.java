@@ -55,4 +55,38 @@ public class AdminService {
 
 	}
 
+	public int suspendDays(String susDays, String userIdval) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = new AdminDao().suspendDays(conn, susDays,userIdval);
+		
+		if (result > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
+
+	public static int unSuspend(String userIdval) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = new AdminDao().unSuspend(conn, userIdval);
+		
+		if (result > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
+
+	
+
 }

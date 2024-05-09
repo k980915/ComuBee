@@ -15,7 +15,7 @@
 		<a href="<%=request.getContextPath()%>/create.bo" class="btn btn-outline-secondary create-post-button">게시글 작성</a>	
 	</c:if>
 	
-	<%@ include file="/views/board/listSample.jsp" %>
+
 
 </body>
 </html>

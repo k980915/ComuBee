@@ -1,29 +1,26 @@
 package com.kh.user.controller;
 
 import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+import com.kh.common.TimerDays;
 import com.kh.user.model.service.AdminService;
-import com.kh.user.model.service.UserService;
 
 /**
- * Servlet implementation class hitsViewUpdate
+ * Servlet implementation class UserSuspendController
  */
-@WebServlet("/hitsViewUpdate.ad")
-public class HitsViewUpdateController extends HttpServlet {
+@WebServlet("/suspendDays.ad")
+public class UserSuspendController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HitsViewUpdateController() {
+    public UserSuspendController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,14 +29,26 @@ public class HitsViewUpdateController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int hitLog = Integer.parseInt(request.getParameter("hit")) ;
+		String susDays = request.getParameter("susDays");
+		String userIdval = request.getParameter("userIdval");
 		
 		
-		int result = new AdminService().AdminHitsViewUpdate(hitLog);
+		int result = new AdminService().suspendDays(susDays,userIdval);
 		
-		//System.out.println("hit의 수는 : "+result);
-		response.setContentType("text/html;charset=UTF-8");
-		response.getWriter().print(result);
+		
+		if(result>0) {
+			if(susDays.equals("3일")) {
+				response.setContentType("text/html;charset=UTF-8");
+				response.getWriter().print(result);
+				TimerDays.Timer3days(userIdval);
+			}
+			
+			
+		}else { //실패시 그대로 전송
+			response.setContentType("text/html;charset=UTF-8");
+			response.getWriter().print(result);
+		}
+		
 		
 		
 	}
