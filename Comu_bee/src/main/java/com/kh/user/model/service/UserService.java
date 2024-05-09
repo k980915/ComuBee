@@ -43,6 +43,19 @@ public class UserService {
 		JDBCTemplate.close(conn);
 		return flag;
 	}
+	public User findId(String userName, String userEmail) {
+		Connection conn = JDBCTemplate.getConnection();
+		User u = new UserDao().findId(userName,userEmail,conn);
+		
+		JDBCTemplate.close(conn);
+		
+		return u;
+	}
+	public User findPwd(String userId, String userName, String userEmail) {
+		Connection conn = JDBCTemplate.getConnection();
+		User u = new UserDao().findPwd(userId,userName,userEmail,conn);
+		return u;
+	}
 	
 	
 	

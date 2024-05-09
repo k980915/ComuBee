@@ -52,6 +52,16 @@ public class User {
 		this.userId = userId;
 		this.userPwd = userPwd;
 	}
+	
+	
+	
+	public User(String userId,String userName, String userEmail) {
+		super();
+		this.userId = userId;
+		this.userName =userName;
+		this.userEmail=userEmail;
+		
+	}
 
 	public String getUserId() {
 		return userId;

@@ -6,22 +6,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.kh.user.model.service.UserService;
 import com.kh.user.model.vo.User;
 
 /**
- * Servlet implementation class UserInsertController
+ * Servlet implementation class FindPwdController
  */
-@WebServlet("/insert.us")
-public class UserInsertController extends HttpServlet {
+@WebServlet("/findPwd.us")
+public class FindPwdController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public UserInsertController() {
+	public FindPwdController() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -42,36 +41,29 @@ public class UserInsertController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-
+		// TODO Auto-generated method stub
 		String userId = request.getParameter("userId");
 		String userName = request.getParameter("userName");
-		String userPwd = request.getParameter("userPwd");
-		String userGender = request.getParameter("gender");
-		String userBirth = request.getParameter("birth");
-		String userEmail = request.getParameter("email");
-		
+		String userEmail = request.getParameter("userEmail");
 
-		User u = new User(userId, userName, userPwd, userEmail, userBirth, userGender);
-		
+		User u = new UserService().findPwd(userId, userName, userEmail);
 
-		int result = new UserService().insertUser(u);
+		if (u != null) {
+			String userPwd = u.getUserPwd();
+			if (u.getUserId().equals(userId)&& 
+					u.getUserName().equals(userName)
+					&& u.getUserEmail().equals(userEmail)) {
 
-		if (result > 0) {
-		
-			HttpSession session = request.getSession();
-			session.setAttribute("alertMsg", "회원가입 성공.");
+				  request.setAttribute("finduserPwd", userPwd);
+			        System.out.println(userPwd);
+			        request.getRequestDispatcher("/views/user/findUserPwd.jsp").forward(request, response);
+				
 
-			
-			response.sendRedirect(request.getContextPath());
-
-		} else {
-			
-			request.setAttribute("errorMsg", "회원가입 실패");
-			
-			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
-
+			}else {
+				request.setAttribute("errorMsg", "사용자 정보가 일치하지 않습니다.");
+			    request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
+			}
 		}
-
 	}
+
 }

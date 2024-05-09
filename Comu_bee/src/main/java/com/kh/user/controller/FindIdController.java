@@ -1,11 +1,8 @@
 package com.kh.user.controller;
 
 import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,16 +12,16 @@ import com.kh.user.model.service.UserService;
 import com.kh.user.model.vo.User;
 
 /**
- * Servlet implementation class UserLoginController
+ * Servlet implementation class FindIdController
  */
-@WebServlet("/login.us")
-public class UserLoginController extends HttpServlet {
+@WebServlet("/findId.us")
+public class FindIdController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UserLoginController() {
+    public FindIdController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -43,41 +40,46 @@ public class UserLoginController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
-		String userId = request.getParameter("userId");
-		String userPwd = request.getParameter("userPwd");
+		String userName= request.getParameter("findUserName");
+		String userEmail = request.getParameter("findUserEmail");
 		
-		Cookie cookie = null;
 		
-		String saveId = request.getParameter("saveId");
 		
-		User u = new UserService().loginUser(userId, userPwd);
-		if(saveId!=null) {
-			cookie= new Cookie("userId",userId);
-			
-			cookie.setMaxAge(60*60*24);
-			
-			response.addCookie(cookie);
-		}else {
-			cookie = new Cookie("userId",null);
-			cookie.setMaxAge(0);
-			
-			response.addCookie(cookie);
-		}
-		HttpSession session = request.getSession();
+		User u = new UserService().findId(userName, userEmail);
 		
-		if(u.getUserId()==null) {
-			
-			request.setAttribute("errorMsg", "로그인 실패!");
-			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
-			view.forward(request, response);
-			
-		}else {
-			session.setAttribute("loginUser", u);
-			session.setAttribute("alertMsg", "로그인 성공!");
-			
-			response.sendRedirect(request.getContextPath());
-		}
 		
-	}
 
+		
+		if(u != null) {
+		   
+		String userId = u.getUserId();
+		
+		    if(u.getUserName().equals(userName) && u.getUserEmail().equals(userEmail)) {
+		       
+		    	
+		    	response.setContentType("text/html;charset=UTF-8");
+				response.getWriter().print(userId);
+
+		    } 
+		} else {
+		    
+		    request.setAttribute("errorMsg", "사용자 정보를 가져올 수 없습니다.");
+		    request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
+		}
+	}
 }
+
+		
+		 
+	
+
+
+	
+		
+	
+	
+	
+
+	
+
+

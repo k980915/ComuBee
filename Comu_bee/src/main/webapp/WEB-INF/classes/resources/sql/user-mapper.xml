@@ -2,40 +2,53 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 
-<entry key="insertUser">
+	<entry key="insertUser">
 
-INSERT INTO MEMBERINFO(USERID
-,USERPWD
-,USERNAME
-,USEREMAIL
-,USERBIRTH
-,USERGENDER)VALUES(?
-,?
-,?
-,?
-,?
-,?)
-
-
-</entry>
-
-<entry key="loginUser">
-	SELECT *
-	FROM MEMBERINFO
-	WHERE USERID =?
-	AND USERPWD =?
-	AND STATUS ='Y'
-</entry>
-
-<entry key="checkId">
-	SELECT *
-	FROM MEMBERINFO
-	WHERE USERID=?
-</entry>
+		INSERT INTO MEMBERINFO(USERID
+		,USERPWD
+		,USERNAME
+		,USEREMAIL
+		,USERBIRTH
+		,USERGENDER)VALUES(?
+		,?
+		,?
+		,?
+		,?
+		,?)
 
 
+	</entry>
+
+	<entry key="loginUser">
+		SELECT *
+		FROM MEMBERINFO
+		WHERE USERID =?
+		AND USERPWD =?
+		AND STATUS ='Y'
+	</entry>
+
+	<entry key="checkId">
+		SELECT *
+		FROM MEMBERINFO
+		WHERE USERID=?
+	</entry>
 
 
+
+	<entry key="findId">
+		SELECT USERID,USERNAME,USEREMAIL FROM MEMBERINFO
+		WHERE USERNAME =?
+		AND USEREMAIL=?
+
+	</entry>
+
+	<entry key="findPwd">
+		SELECT USERPWD FROM MEMBERINFO
+		WHERE USERID= ?
+		AND USERNAME=?
+		AND USEREMAIL= ?
+
+	</entry>
 
 
 

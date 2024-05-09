@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" 
+contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.kh.user.model.vo.User"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
  <% User loginUser = (User)session.getAttribute("loginUser"); 
@@ -90,6 +91,12 @@
                         <button type="button" onclick="enrollForm();">회원가입</button>
                     </th>
                 </tr>
+                <tr>
+                	<th> <input type="button" onclick="findId();" value="아이디 찾기"></th>
+                
+                	<th> <input type = "button" onclick="findPwd();" value="비밀번호 찾기"></th>
+                </tr>
+               	
             </table>
         </form>
         
@@ -104,8 +111,7 @@
         		$("#loginId").val(saveId);
         	}
         	
-        	console.log("확인");
-        	console.log(saveId);
+        	
         	
         });
         
@@ -114,7 +120,7 @@
         }
         
         </script>
-        <% }else{ %>]
+        <% }else{ %>
         <div id ="user-info">
         	<b><%=loginUser.getUserId()%>님 환영합니다!</b>
         	<a href="<%=contextPath%>/myPage.me">마이페이지</a>
@@ -134,6 +140,17 @@
 		
 	}
 
+</script>
+
+<script>
+	function findId(){
+		location.href ="<%=contextPath%>/views/user/findUserId.jsp";
+		 
+	}
+	
+	function findPwd(){
+		location.href="<%=contextPath%>/views/user/findUserPwd.jsp";
+	}
 </script>
 </body>
 </html>
