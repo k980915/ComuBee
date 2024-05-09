@@ -1,6 +1,6 @@
-package com.kh.contents.controller;
+package com.kh.search.controller;
 
-import com.kh.contents.model.service.ContentsSearchService;
+import com.kh.search.model.service.ContentsSearchService;
 import com.kh.contents.model.vo.Contents;
 
 import javax.servlet.ServletException;

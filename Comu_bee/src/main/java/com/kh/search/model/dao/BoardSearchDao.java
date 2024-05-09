@@ -1,4 +1,4 @@
-package com.kh.board.model.dao;
+package com.kh.search.model.dao;
 
 import com.kh.board.model.vo.Board;
 import com.kh.common.JDBCTemplate;
