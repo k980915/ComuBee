@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import com.kh.common.JDBCTemplate;
 import com.kh.user.model.dao.AdminDao;
 import com.kh.user.model.vo.AdminHits;
+import com.kh.user.model.vo.User;
 
 public class AdminService {
 	public int AdminHitsView() {
@@ -85,6 +86,16 @@ public class AdminService {
 		JDBCTemplate.close(conn);
 		
 		return result;
+	}
+
+	public ArrayList<User> UserInfoList() {
+		Connection conn = JDBCTemplate.getConnection();
+
+		ArrayList<User> list = new AdminDao().UserInfoList(conn);
+
+		JDBCTemplate.close(conn);
+		
+		return list;
 	}
 
 	

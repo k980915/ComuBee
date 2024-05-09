@@ -50,6 +50,15 @@
 	
 	
 	</entry>
+	
+	<entry key="UserInfoList">
+	
+	SELECT USERNAME, USEREMAIL,JOINDATE, POINT
+	FROM MEMBERINFO
+	WHERE USERID = ?
+	
+	
+	</entry>
 
 	
 </properties>

@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="com.kh.user.model.vo.User"%>
+	<%
+	//로그인 정보 추출하기 
+	User listInfo = (User)session.getAttribute("listInfo");
+	%>
+	
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +16,7 @@
 
 	
 		<!-- Button to Open the Modal -->
-		<button align="center" type="button" class="btn btn-primary"
+		<button align="center" type="button" class="btn btn-primary" id="listInfo"
 			data-toggle="modal" data-target="#myModal">회원 정보</button>
 
 		<!-- The Modal -->
@@ -23,12 +29,13 @@
 					<div class="modal-header">
 						<h4 class="modal-title">회원 정보</h4>
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
-					</div>
+					</div>		
+					
 				<!-- list에 값 더 담아 오기 -->
 					<div class="modal-body">  
 						<p>아이디 : ${li.userId}</p> 
 						<br>
-						<p>이 름 : asd</p> 
+						<p>이 름 : ${listInfo.userName}</p> 
 						<br>
 						<p>가입일 : asd</p>
 						<br>
@@ -87,6 +94,8 @@
 				}
 			});
 		}
+		
+
 		
 	</script>
 

@@ -11,6 +11,7 @@ import java.util.Properties;
 
 import com.kh.common.JDBCTemplate;
 import com.kh.user.model.vo.AdminHits;
+import com.kh.user.model.vo.User;
 
 public class AdminDao {
 	private Properties prop = new Properties();
@@ -185,6 +186,35 @@ public class AdminDao {
 		
 		
 		return result;
+	}
+
+	public ArrayList<User> UserInfoList(Connection conn) {
+		ArrayList<User> list = new ArrayList<>();
+		ResultSet rset = null;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("UserInfoList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while (rset.next()) {
+				list.add(new User(rset.getString("USERNAME")
+										,rset.getString("USEREMAIL")
+										,rset.getDate("JOINDATE")
+										,rset.getInt("POINT")));
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return list;
 	}
 
 

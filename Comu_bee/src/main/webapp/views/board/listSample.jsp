@@ -59,7 +59,7 @@
 					        <tr>
 			                    <td class="text-center">${li.boardNo}</td>
 			                    <td>${li.title}</td>
-			                    <td>${li.userId}
+			                    <td on>${li.userId}
 			                    	<c:if test="${loginUser.userId eq 'admin'}">
 		<%@ include file="/views/common/adminSuspendModal.jsp"%>
 	</c:if>
