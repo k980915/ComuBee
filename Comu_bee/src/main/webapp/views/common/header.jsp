@@ -137,12 +137,10 @@
     
     <div class="outer">
         <div class="head-area">
-            <a href="">
                 <div class="logo-area">
                     <img src="resources/uploadFiles/2.png" class="logo-img">
                     <h1 class="title">COMU-BEE</h1>
                 </div>
-            </a>
 	<div class="search-area">
     <form id="searchForm" action="" method="get">
         <input type="text" name="title" class="search-input" placeholder="영화 또는 드라마 등 컨텐츠 검색">
@@ -173,7 +171,17 @@
         </div>
     </div>    <br><br>
     <%@ include file="/views/common/hitsHeader.jsp"%>
-</body> 
+    
+    
+   		<script>
+		    $('.logo-area').click(function() {
+		       
+				location.href = '${contextPath}/main.co';
+		    });
+		  
+		    
+		</script>
+
 <br>
 <br>
 </body>
