@@ -32,7 +32,7 @@
 	<entry key="selectAttachment">
 		SELECT * FROM ATTACHMENT WHERE BOARDNO=? AND STATUS='Y'
 	</entry>
-	<entry key="selectListbyId">
+	<entry key="selectListById">
 		SELECT * FROM(
 			SELECT ROWNUM,S.* FROM(
 				SELECT BOARDNO,
@@ -131,7 +131,7 @@
     <entry key="searchByKeyword">
 		SELECT TITLE, BOARDCONTENT, USERID, CREATEDATE
 		FROM BOARD
-		WHERE TITLE LIKE ? OR BOARDCONTENT LIKE ?;
+		WHERE TITLE LIKE ? OR BOARDCONTENT LIKE ?
     </entry>
 	<entry key="insertBoard">
 		INSERT INTO BOARD(BOARDNO,USERID,CATEGORYNO,TITLE,BOARDCONTENT) 
