@@ -58,7 +58,7 @@
 		            	<c:forEach items="${list}" var="li">
 					        <tr>
 			                    <td class="text-center">${li.boardNo}</td>
-			                    <td>${li.title}</td>
+			                    <td class="boardListTitle">${li.title}</td>
 			                    <td on>${li.userId}
 			                    	<c:if test="${loginUser.userId eq 'admin'}">
 		<%@ include file="/views/common/adminSuspendModal.jsp"%>
@@ -110,8 +110,8 @@
     
     
     <script>
-    	$("tbody tr").click(function(){
-    		var bno = $(this).children().eq(0).text();
+    	$(".boardListTitle").click(function(){
+    		var bno = $(this).siblings().eq(0).text();
     		location.href='${contextPath}/detail.bo?bno='+bno;
     	});
 		$(".page-link").click(function(){

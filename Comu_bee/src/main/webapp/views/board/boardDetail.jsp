@@ -30,6 +30,22 @@
 	.boardSide{
 		width:30%;
 	}
+	.boardReply{
+		width:100%;
+	}
+	.boardReply table{
+		width:100%;
+		box-sizing:border-box;
+	}
+	.boardWriter{
+		width: 15%;
+	}
+	.boardContent{
+		width: 65%;
+	}
+	.boardDate{
+		width: 20%;
+	}
 
 
 </style>
@@ -97,104 +113,51 @@
 						</tbody>
 					</table>
 				</div>
-				<div class="boardReply">
-								
+				<div class="boardReply">							
 					<table border="1" align="center">
+						<c:choose>
+							<c:when test="${not empty loginUser}">
+								<tr>
+									<th>댓글작성</th>
+									<td>
+										<textarea id="replyContent" rows="3" cols="50" style="resize:none;"></textarea>
+									</td>
+									<td>
+										<button onclick="insertReply();">댓글작성</button>
+									</td>
+								</tr>
+							</c:when>
+							<c:otherwise>
+								<tr>
+									<th>댓글작성</th>
+									<td>
+										<textarea readonly rows="3" cols="50" style="resize:none;">로그인 후 이용 가능한 서비스입니다.</textarea>
+									</td>
+									<td><button disabled>댓글작성</button></td>
+								</tr>
+							</c:otherwise>
+						</c:choose>
+					</table>
+					<table border="1" align="center" class="writtenReply">
 						<thead>
-							<c:choose>
-								<c:when test="${not empty loginUser}">
-									<tr>
-										<th>댓글작성</th>
-										<td>
-											<textarea id="replyContent" rows="3" cols="50" style="resize:none;"></textarea>
-										</td>
-										<td><button onclick="insertReply();">댓글작성</button></td>
-									</tr>
-								</c:when>
-								<c:otherwise>
-									<tr>
-										<th>댓글작성</th>
-										<td>
-											<textarea readonly rows="3" cols="50" style="resize:none;">로그인 후 이용 가능한 서비스입니다.</textarea>
-										</td>
-										<td><button disabled>댓글작성</button></td>
-									</tr>
-								</c:otherwise>
-							</c:choose>
-						</thead>
-						<tbody id="">
 							<tr>
-								<td>작성자</td>
-								<td>내용</td>
-								<td>작성일</td>
+								<td class="replyWriter">작성자</td>
+								<td class="replyContent">내용</td>
+								<td class="replyDate">작성일</td>
 							</tr>
-						
+						</thead>
+						<tbody>
+						<c:forEach items="${rList}" var="r">
+							<tr>
+								<td>${r.userId}</td>
+								<td>${r.replyContent}</td>
+								<td>${r.createDate}</td>
+							</tr>
+						</c:forEach>
 						</tbody>
 					</table>
 					
-						<script>
-							function insertReply(){
-								
-								$.ajax({
-									url : "insertReply.bo",
-									type : "post",
-									data : {
-										content : $("#replyContent").val(),
-										bno : ${b.boardNo},
-										userId : ${loginUser.userId}
-									},
-									success : function(result){
-										if(result>0){
-											alert("댓글 작성 성공");	
-											replyList();
-										}else{
-											alert("작성실패");
-										}
-										$("#replyContent").val("");
-									},
-									error : function(){
-										console.log("통신 오류")
-									}
-								
-								});
-								$(function(){
-									replyList();
-								});
-									
-							}
-							function replyList(){
-								$.ajax({
-									url : "replyList.bo",
-									data : {
-										bno : ${b.boardNo}
-									},
-									success : function(){
-											var tr="";
-										if(rList.isEmpty()){
-											tr="<tr>"
-												+"<td span='3'>
-												+"현재 댓글이 없습니다."
-												+"</td>"
-												+"</tr>";
-										}else{
-											for(var i in rList){
-												tr+="<tr>"
-													+"<td>"+rList[i].replyWriter+"</td>"
-													+"<td>"+rList[i].replyContent+"</td>"
-													+"</tr>";
-										}
-									}
-										$("#boardReply tbody").html(tr);
-										},
-									error : function(){
-										console.log("통신 오류")
-									}
-									
-								});
-								
-							}
-
-						</script>
+						
 				</div>
 			
 			
@@ -365,5 +328,70 @@
 		<!-- footer 있으면 그대로 다시 따오기 -->
 	
 	</div>	
+	
+	<script>
+							function insertReply(){
+								
+								$.ajax({
+									url : "insertReply.bo",
+									type : "post",
+									data : {
+										content : $("#replyContent").val(),
+										bno : ${b.boardNo},
+										userId : "${loginUser.userId}"
+									},
+									success : function(result){
+										if(result>0){
+											alert("댓글 작성 성공");	
+											replyList();
+										}else{
+											alert("작성실패");
+										}
+										$("#replyContent").val("");
+									},
+									error : function(){
+										console.log("통신 오류")
+									}
+								
+								});
+								$(function(){
+									replyList();
+								});
+									
+							}
+							function replyList(){
+								var tr="";
+								$.ajax({
+									url : "replyList.bo",
+									data : {
+										bno : ${b.boardNo}
+									},
+									success : function(rList){
+										if(rList==null){
+											tr="<tr>"
+												+"<td span='3'>"
+												+"현재 댓글이 없습니다."
+												+"</td>"
+												+"</tr>";
+										}else{
+											for(var i in rList){
+												tr+="<tr>"
+													+"<td>"+rList[i].userId+"</td>"
+													+"<td>"+rList[i].replyContent+"</td>"
+													+"<td>"+rList[i].createDate+"</td>"
+													+"</tr>";
+										}
+									}
+										$(".writtenReply tbody").html(tr);
+										},
+									error : function(){
+										console.log("통신 오류")
+									}
+									
+								});
+								
+							}
+
+						</script>
 </body>
 </html>
