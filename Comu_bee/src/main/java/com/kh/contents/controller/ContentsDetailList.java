@@ -32,10 +32,10 @@ public class ContentsDetailList extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArrayList<Contents> list = new ContentsService().DetailContentsList();
-    	
+
     	request.setAttribute("list", list);
     	request.getRequestDispatcher("views/contents/contentsDetailView.jsp").forward(request, response);
-    	System.out.println(list);
+//    	System.out.println(list); // 출력 잘됨
 	}
 
 	/**

@@ -103,9 +103,7 @@
         		$("#saveId").attr("checked",true);
         		$("#loginId").val(saveId);
         	}
-        	
-        	console.log("확인");
-        	console.log(saveId);
+
         	
         });
         

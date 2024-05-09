@@ -123,7 +123,7 @@
         <div class="head-area">
             <a href="">
                 <div class="logo-area">
-                    <img src="../HTML/resources/1690813477931.jpg" class="logo-img">
+                    <img src="resources/uploadFiles/2.png" class="logo-img">
                     <h1 class="title">COMU-BEE</h1>
                 </div>
             </a>

@@ -14,7 +14,7 @@ import com.kh.contents.model.vo.Contents;
 /**
  * Servlet implementation class SelectContents
  */
-@WebServlet("/sa")
+//@WebServlet("/main.co")
 public class SelectContents extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -34,9 +34,10 @@ public class SelectContents extends HttpServlet {
 		
 		Contents c = new ContentsService().selectContents(cid);
 		request.setAttribute("c", c);
-//		request.getRequestDispatcher("views/contents/contentsDetailView.jsp").forward(request, response);
-		
-		System.out.println(cid);
+//		request.getRequestDispatcher("index.jsp").forward(request, response);
+//		
+//		System.out.println(cid);
+//		System.out.println(c);
 	}
 
 	/**

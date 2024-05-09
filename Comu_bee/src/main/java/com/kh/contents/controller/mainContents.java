@@ -1,6 +1,9 @@
 package com.kh.contents.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,7 +15,7 @@ import com.kh.contents.model.service.ContentsService;
 import com.kh.contents.model.vo.Contents;
 
 /**
- * Servlet implementation class ContentsDetail
+ * Servlet implementation class mainContents
  */
 @WebServlet("/main.co")
 public class mainContents extends HttpServlet {
@@ -30,25 +33,37 @@ public class mainContents extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		int contentsId = Integer.parseInt(request.getParameter("contentsId"));
+//		String title = request.getParameter("title");
+//		String englishTitle = request.getParameter("englishTitle");
+//		String overView = request.getParameter("overView");
+//		String posterPath = request.getParameter("posterPath");
+//		String runtime = request.getParameter("runtime");
+//		String releaseDate = request.getParameter("releaseDate");
+//		String ageLimit = request.getParameter("ageLimit");
+//		double rate = Double.parseDouble(request.getParameter("rate"));
+//		String actors = request.getParameter("actors");
+//		String director = request.getParameter("director");
+//		
+//		Contents con = new Contents(contentsId, title, englishTitle, overView, posterPath, runtime, releaseDate, ageLimit, rate, actors, director);
+//		Contents c = new ContentsService().DetailContents(con);
+//		request.setAttribute("c", c);
+	
+//		ArrayList<Contents> recommendReview = new ArrayList<>();
+//		recommendReview = new ContentsService().ForReview();
 
-		int contentsId = Integer.parseInt(request.getParameter("contentsId"));
-		String title = request.getParameter("title");
-		String englishTitle = request.getParameter("englishTitle");
-		String overView = request.getParameter("overView");
-		String posterPath = request.getParameter("posterPath");
-		String runtime = request.getParameter("runtime");
-		String releaseDate = request.getParameter("releaseDate");
-		String ageLimit = request.getParameter("ageLimit");
-		double rate = Double.parseDouble(request.getParameter("rate"));
-		String actors = request.getParameter("actors");
-		String director = request.getParameter("director");
+		ArrayList<Contents> conList = new ArrayList<>();
+		conList = new ContentsService().DetailContentsList();
 		
-		Contents con = new Contents(contentsId, title, englishTitle, overView, posterPath, runtime, releaseDate, ageLimit, rate, actors, director);
-		
-		Contents c = new ContentsService().DetailContents(con);
-		
-		request.setAttribute("c", c);
-		request.getRequestDispatcher("index.jsp").forward(request, response);
+		ArrayList<Contents> bestList = new ArrayList<>();
+		bestList = new ContentsService().BestContentsList();
+
+		request.setAttribute("conList", conList);
+		request.setAttribute("bestList", bestList);
+
+//		System.out.println(conList);
+		request.getRequestDispatcher("views/contents/mainPage.jsp").forward(request, response);
+
 		
 	}
 
