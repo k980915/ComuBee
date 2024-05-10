@@ -19,10 +19,9 @@
 	WHERE CONTENTSID = ?
 	</entry>
 	
-	<entry key="ForReview">
-	SELECT * FROM (
-    SELECT * FROM contents
-    ORDER BY RATE DESC)
+	<entry key="notUsing">
+	SELECT * FROM ( SELECT * FROM contents
+				    ORDER BY RATE DESC)
     WHERE ROWNUM &lt;= 6
 	</entry>
 	
@@ -31,6 +30,27 @@
 	ORDER BY RATE DESC
 	</entry>
 	
+
+	<entry key="ForReview">
+    SELECT b.CONTENTSID, b.USERID, b.BOARDCONTENT, b.CREATEDATE, b.BOARDLIKE, b.HATE, b.STATUS
+	FROM BOARD b
+	JOIN CONTENTS c ON b.CONTENTSID = c.CONTENTSID
+<!-- 	WHERE ROWNUM %lt; 7 -->
+	ORDER BY b.CREATEDATE DESC
+	</entry>
+	
+<!-- 	<entry key="ForReview"> -->
+<!--     SELECT b.CONTENTSID, b.USERID, b.BOARDCONTENT, b.CREATEDATE, b.BOARDLIKE, b.HATE, b.STATUS -->
+<!--     FROM BOARD b -->
+<!--     JOIN CONTENTS c ON b.CONTENTSID = c.CONTENTSID -->
+<!--     WHERE c.CONTENTSID = ? -->
+<!-- 	</entry> -->
+
+	
+	<entry key="ForSearch">
+	SELECT *
+	FROM CONTENTS
+	</entry>
 	
 
 
