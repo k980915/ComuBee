@@ -65,8 +65,11 @@
 					<table border="1px solid black">
 						<thead>
 							<tr>
-								<td class="boardCategory">[카테고리]</td>
-								<td class="boardFreeTitle" colspan="2">제목</td>
+								<c:if test="${category ne 'REVIEW'}">
+									<td class="boardCategory">[카테고리]</td>
+									<td class="boardFreeTitle" colspan="2">제목</td>
+								</c:if>
+								<td class="boardCreateDate">작성일 : ${b.createDate}</td>
 								<!-- 관리자 or 작성자라면 게시글 수정/삭제 버튼이 보이게 처리하기 -->
 								<c:if test="${loginUser.userId eq 'admin' or loginUser.userId eq b.userId}">
 									<td>
@@ -92,7 +95,7 @@
 						<tbody>
 							<tr>
 								<td class="boardContent" height="400" colspan="4">
-									작성내용
+									<span>${b.boardContent }</span>
 								</td>
 							</tr>
 							<tr align="center">
