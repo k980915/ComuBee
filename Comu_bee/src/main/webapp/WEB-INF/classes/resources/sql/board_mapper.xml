@@ -144,4 +144,7 @@
 	<entry key="replyList">
 		SELECT REPLYNO,USERID,REPLYCONTENT,CREATEDATE FROM REPLY WHERE BOARDNO=?
 	</entry>
+	<entry key="searchContentByTitle">
+		SELECT CONTENTSID, TITLE FROM CONTENTS WHERE TITLE LIKE ?
+	</entry>
 </properties>
