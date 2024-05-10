@@ -52,6 +52,19 @@ public class User {
 		this.userBirth = userBirth;	
 	}
 	
+	
+	
+
+
+	public User(String userId, String userName, String userEmail, Date joinDate, int point) {
+		super();
+		this.userId = userId;
+		this.userName = userName;
+		this.userEmail = userEmail;
+		this.joinDate = joinDate;
+		this.point = point;
+	}
+
 	public User(String userId, String userName, String userGender, String userEmail) {
 		super();
 		this.userId = userId;

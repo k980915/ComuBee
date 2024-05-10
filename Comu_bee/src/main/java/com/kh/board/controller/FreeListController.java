@@ -103,6 +103,7 @@ public class FreeListController extends HttpServlet {
 		ArrayList<Board> noList = new BoardService().selectNoticeListByCategory();
 		//위임하기 위한 데이터 담아주기
 		
+		
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
 		request.setAttribute("noList",noList);

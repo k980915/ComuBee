@@ -2,15 +2,15 @@ package com.kh.common.model.vo;
 
 public class PageInfo {
 
-	private int listCount; 
-	private int currentPage; 
-	private int pageLimit; 
-	private int boardLimit; 
-	
-	private int maxPage; 
-	private int startPage;
-	private int endPage;
-	
+	private int listCount; // 총 게시글 개수
+	private int currentPage; // 현재 페이지
+	private int pageLimit; // 페이지 하단에 보여질 페이징바에 최대 개수
+	private int boardLimit; // 한 페이지에 보여줄 게시글 개수
+
+	private int maxPage; // 가장 마지막 페이징바가 몇번인지 (총 페이지 개수)
+	private int startPage; // 페이지 하단에 보여질 페이징바의 시작수
+	private int endPage; // 페이지 하단에 보여질 페이징바의 끝수
+
 	public PageInfo() {
 		super();
 	}
@@ -26,8 +26,6 @@ public class PageInfo {
 		this.startPage = startPage;
 		this.endPage = endPage;
 	}
-	
-	
 
 	public int getListCount() {
 		return listCount;
@@ -91,8 +89,5 @@ public class PageInfo {
 				+ ", boardLimit=" + boardLimit + ", maxPage=" + maxPage + ", startPage=" + startPage + ", endPage="
 				+ endPage + "]";
 	}
-	
-	
-	
-	
+
 }
