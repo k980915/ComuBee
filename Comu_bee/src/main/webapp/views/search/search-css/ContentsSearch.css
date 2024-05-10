@@ -1,71 +1,84 @@
 @charset "UTF-8";
 
-body {
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #f6d365 10%, #fda085 100%);
-    color: #333;
-    margin: 0;
-    padding: 20px;
-}
-
+/* 영화 상세 정보 컨테이너 */
 .movie-details-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    display: flex; /* Flexbox 레이아웃 적용 */
+    flex-wrap: wrap; /* 내용이 넘칠 경우 다음 줄로 넘김 */
+    justify-content: space-around; /* 주변 여백을 균등하게 분포 */
 }
 
+/* 영화 항목 스타일 */
 .movie-item {
-    background-color: #fff;
-    border-radius: 8px;
-    border: none;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    margin: 10px;
-    padding: 15px;
-    width: 280px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #fff; /* 배경색은 흰색 */
+    border-radius: 8px; /* 모서리는 둥글게 */
+    border: none; /* 테두리 없음 */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* 그림자 효과 */
+    margin: 10px; /* 외부 여백 */
+    padding: 15px; /* 내부 여백 */
+    width: 280px; /* 너비 설정 */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* 애니메이션 효과 */
 }
 
+/* 영화 항목 호버 시 스타일 */
 .movie-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    transform: translateY(-5px); /* 위로 5px 이동 */
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2); /* 그림자 강조 */
 }
 
+/* 영화 포스터 이미지 스타일 */
 .movie-poster {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 8px 8px 0 0;
-    border-bottom: 4px solid #ddd;
+    width: 100%; /* 너비 100% */
+    height: auto; /* 높이 자동 조절 */
+    display: block; /* 블록 레벨 요소 */
+    border-radius: 8px 8px 0 0; /* 상단 모서리 둥글게 */
+    border-bottom: 4px solid #ddd; /* 하단 테두리 */
 }
 
+/* 영화 정보 텍스트 영역 */
 .movie-info h3, .movie-info p {
-    margin: 10px 0;
+    margin: 10px 0; /* 상하 여백 */
 }
 
 .movie-info h3 {
-    font-size: 1.6em;
-    color: #333;
-    text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+    font-size: 1.6em; /* 폰트 크기 */
+    color: #333; /* 폰트 색상 */
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.1); /* 텍스트 그림자 */
 }
 
 .movie-info small {
-    font-size: 0.8em;
-    color: #888;
+    font-size: 0.8em; /* 작은 텍스트 크기 */
+    color: #888; /* 색상 */
 }
 
+/* 영화 개요 설명 텍스트 */
 .overview {
-    font-size: 0.9em;
-    line-height: 1.4;
-    color: #666;
-    text-align: justify;
+    font-size: 0.9em; /* 폰트 크기 */
+    line-height: 1.4; /* 줄 간격 */
+    color: #666; /* 폰트 색상 */
+    text-align: justify; /* 정렬 */
 }
 
+/* 상영 시간 및 감독 정보 스타일 */
 .runtime, .director {
-    font-size: 0.9em;
-    font-weight: bold;
-    color: #444;
+    font-size: 0.9em; /* 폰트 크기 */
+    font-weight: bold; /* 글씨 두께 */
+    color: #444; /* 폰트 색상 */
 }
 
 .runtime {
-    margin-bottom: 5px;
+    margin-bottom: 5px; /* 하단 여백 */
 }
+
+/* 페이지 레이아웃 및 테이블 스타일 */
+.container {
+    max-width: 1200px; /* 최대 너비 */
+    margin: auto; /* 자동 마진으로 중앙 정렬 */
+    padding: 20px; /* 내부 여백 */
+    background-color: #fff; /* 배경색 */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* 그림자 효과 */
+}
+
+.table {
+    width: 100%; /* 테이블 너비 100% */
+    margin-top: 20px; /* 상단 여백 */
+    border-collapse: collapse
