@@ -35,11 +35,12 @@
             <input type="hidden" name="bdGroup" value="${category}">
             <input type="hidden" name="userId" value="${loginUser.userId}">
             <input type="hidden" name="bdIndent" value="<%= request.getAttribute("bdIndent") %>">
-
-            <div class="mb-3">
-                <label for="title" class="form-label">제목</label>
-                <input type="text" class="form-control" id="title" name="title" placeholder="제목을 작성해주세요" required>
-            </div>
+			<c:if test="${category ne 'REVIEW'}">
+	            <div class="mb-3">
+	                <label for="title" class="form-label">제목</label>
+	                <input type="text" class="form-control" id="title" name="title" placeholder="제목을 작성해주세요" required>
+	            </div>
+			</c:if>
             <c:if test="${category eq 'REVIEW'}">
 	            <div class="mb-3">
 	                <label for="bdCont" class="form-label">관련된 컨텐츠</label>
@@ -51,10 +52,12 @@
                 <label for="content" class="form-label">내용</label>
                 <textarea class="form-control" id="bdContent" rows="10" name="content" placeholder="내용을 작성해주세요" required></textarea>
             </div>
-            <div class="form-group mb-3">
-                <label for="uploadFile" class="form-label">첨부파일</label>
-                <input type="file" class="form-control" id="uploadFile" name="uploadFile">
-            </div>
+            <c:if test="${category ne 'REVIEW'}">
+	            <div class="form-group mb-3">
+	                <label for="uploadFile" class="form-label">첨부파일</label>
+	                <input type="file" class="form-control" id="uploadFile" name="uploadFile">
+	            </div>
+            </c:if>
             <div align="right">
                 <button type="submit" class="btn btn-outline-secondary form-submit-button">등록하기</button>
                 <button type="button" class="btn btn-outline-danger form-submit-button" onclick="history.back();">취소</button>

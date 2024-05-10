@@ -52,6 +52,7 @@ public class BoardDetailController extends HttpServlet {
 			ArrayList<Board> newPopList=bs.newPopList(b);
 			ArrayList<Board> bestPopList=bs.bestPopList(b);
 			ArrayList<Reply> rList = bs.replyList(bno);
+			ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
 			request.setAttribute("b",b);
 			request.setAttribute("atList",atList);
 			request.setAttribute("cList", cList);
@@ -59,6 +60,9 @@ public class BoardDetailController extends HttpServlet {
 			request.setAttribute("newPopList", newPopList);
 			request.setAttribute("bestPopList", bestPopList);
 			request.setAttribute("bestContList", bestContList);
+			request.setAttribute("list",list);
+			System.out.println(list);
+			System.out.println(bno);
 			request.getRequestDispatcher("views/board/boardDetail.jsp").forward(request, response);
 
 		}else {
