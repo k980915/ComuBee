@@ -116,6 +116,7 @@ public class BoardCreatePostController extends HttpServlet {
 			String title = multiRequest.getParameter("title");
 			String content = multiRequest.getParameter("content");
 			String boardWriter = multiRequest.getParameter("userId");
+			String contentsId = multiRequest.getParameter("contentsId");
 			System.out.println(category);
 			System.out.println(title);
 			System.out.println(content);
@@ -124,6 +125,7 @@ public class BoardCreatePostController extends HttpServlet {
 			
 			b.setCategory(categoryNo);
 			b.setBoardContent(content);
+			b.setContentsId(contentsId);
 			b.setTitle(title);
 			b.setUserId(boardWriter);
 			// 게시글 정보는 Board 테이블에 insert
