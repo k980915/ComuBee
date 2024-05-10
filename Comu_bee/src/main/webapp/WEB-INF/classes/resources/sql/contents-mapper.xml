@@ -31,11 +31,6 @@
 	ORDER BY RATE DESC
 	</entry>
 	
-	<entry key="ForSearch">
-	SELECT *
-	FROM CONTENTS
-	</entry>
-	
 	
 
 

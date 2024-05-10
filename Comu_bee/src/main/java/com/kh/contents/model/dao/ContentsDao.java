@@ -243,41 +243,6 @@ private Properties prop = new Properties();
 		return list;
 	}
 
-	public ArrayList<Contents> ForSearch(Connection conn) {
-		Statement stmt = null;
-		ResultSet rset = null;
-		
-		ArrayList<Contents> list = new ArrayList<>();
-		
-		String sql = prop.getProperty("ForSearch");
-		
-		try {
-			stmt = conn.createStatement();
-			rset = stmt.executeQuery(sql);
-			
-			while(rset.next()) {
-				list.add(new Contents(rset.getInt("CONTENTSID")
-									 ,rset.getString("TITLE")
-									 ,rset.getString("ENGLISHTITLE")
-									 ,rset.getString("OVERVIEW")
-									 ,rset.getString("POSTERPATH")
-									 ,rset.getString("RUNTIME")
-									 ,rset.getString("RELEASEDATE")
-									 ,rset.getString("AGELIMIT")
-									 ,rset.getDouble("RATE")
-									 ,rset.getString("ACTORS")
-									 ,rset.getString("DIRECTOR")));
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			JDBCTemplate.close(stmt);
-			JDBCTemplate.close(rset);
-		}	
-		return list;
-	}
-
 	
 	
 	
