@@ -66,8 +66,8 @@
 						<thead>
 							<tr>
 								<c:if test="${category ne 'REVIEW'}">
-									<td class="boardCategory">[카테고리]</td>
-									<td class="boardFreeTitle" colspan="2">제목</td>
+									<td>제목</td>
+									<td class="boardFreeTitle" colspan="2">${b.title }</td>
 								</c:if>
 								<td class="boardCreateDate">작성일 : ${b.createDate}</td>
 								<!-- 관리자 or 작성자라면 게시글 수정/삭제 버튼이 보이게 처리하기 -->
@@ -91,7 +91,7 @@
 							</tr>
 							<tr>
 								<td>작성자 : </td>
-								<td class="boardWriter" width="300">"${b.userId}"</td>
+								<td class="boardWriter" width="300">${b.userId}</td>
 								<td class="boardCount" width="150">조회수 : ${b.count}</td>
 								<td class="boardLike" width="100">추천수 : ${b.boardLike}</td>
 							</tr>
@@ -154,13 +154,13 @@
 							</tr>
 						</thead>
 						<tbody>
-						<c:forEach items="${rList}" var="r">
-							<tr>
-								<td>${r.userId}</td>
-								<td>${r.replyContent}</td>
-								<td>${r.createDate}</td>
-							</tr>
-						</c:forEach>
+							<c:forEach items="${rList}" var="r">
+								<tr>
+									<td>${r.userId}</td>
+									<td>${r.replyContent}</td>
+									<td>${r.createDate}</td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 					
@@ -169,15 +169,6 @@
 			
 			
 				<div class="boardList">
-					<form class="boardListToolBar" action="">
-						<!--  검색 기능, 카테고리 별 조회, 추천수 많은 글 조회 등 조회내용 전송용 공간 -->
-						<!-- 카테고리 항목 선택 시 해당 카테고리 조회 결과 리스트 조회(비동기통신 이용할 듯) -->
-						<select name="categoryList">
-							<c:forEach var="c" items="${cList}">
-								<option value="${c.categoryNo}">"${c.categoryName}"</option>
-							</c:forEach>
-						</select>
-					</form>
 					<%@ include file="/views/board/listSample.jsp" %>
 				</div>
 			</div>
@@ -374,7 +365,7 @@
 										bno : ${b.boardNo}
 									},
 									success : function(rList){
-										if(${empty rList}){
+										if(rList.length==0){
 											tr="<tr>"
 												+"<td span='3'>"
 												+"현재 댓글이 없습니다."

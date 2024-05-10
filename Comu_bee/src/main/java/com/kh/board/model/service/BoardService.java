@@ -171,4 +171,18 @@ public class BoardService {
 		return cList;
 	}
 
+	public int updateBoard(Board b, ArrayList<Attachment> atList) {
+		// TODO Auto-generated method stub
+		int result=0;
+		Connection conn=JDBCTemplate.getConnection();
+		result=new BoardDao().updateBoard(conn,b,atList);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
 }

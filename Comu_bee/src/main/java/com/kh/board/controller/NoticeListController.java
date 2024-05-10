@@ -99,10 +99,10 @@ public class NoticeListController extends HttpServlet {
 		
 		//위임하기 위한 데이터 담아주기
 		
-		request.setAttribute("pi", pi);
-		request.setAttribute("list", list);
-		request.setAttribute("cat","no");
 		HttpSession session = request.getSession();
+		session.setAttribute("pi", pi);
+		session.setAttribute("list", list);
+		request.setAttribute("cat","no");
 		session.setAttribute("category","NOTICE");
 		
 		request.getRequestDispatcher("views/board/noticeList.jsp").forward(request, response);

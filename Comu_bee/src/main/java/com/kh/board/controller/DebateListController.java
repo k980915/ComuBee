@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.board.model.service.BoardService;
 import com.kh.board.model.vo.Board;
@@ -88,7 +89,8 @@ public class DebateListController extends HttpServlet {
 		if(endPage>maxPage) {
 			endPage=maxPage;
 		}
-		request.setAttribute("category", "DEBATE");
+		HttpSession session = request.getSession();
+		session.setAttribute("category", "DEBATE");
 		
 		PageInfo pi = new PageInfo(listCount,currentPage,pageLimit,boardLimit,maxPage,startPage,endPage);
 
@@ -97,10 +99,9 @@ public class DebateListController extends HttpServlet {
 		ArrayList<Board> list = new BoardService().selectListById(pi,ca);
 		ArrayList<Board> noList = new BoardService().selectNoticeListByCategory();
 		//위임하기 위한 데이터 담아주기
-		
-		request.setAttribute("pi", pi);
-		request.setAttribute("list", list);
-		request.setAttribute("noList",noList);
+		session.setAttribute("pi", pi);
+		session.setAttribute("list", list);
+		session.setAttribute("noList",noList);
 
 		request.getRequestDispatcher("views/board/debateBoard.jsp").forward(request, response);
 	}

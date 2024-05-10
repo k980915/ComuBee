@@ -53,6 +53,7 @@
             <tbody>
             	<c:choose>
             		<c:when test="${not empty list}">
+            			<tr> <td><input type="hidden" name="list" value="${list}"></td></tr>
 		            	<c:forEach items="${list}" var="li">
 					        <tr>
 			                    <td class="text-center">${li.boardNo}</td>

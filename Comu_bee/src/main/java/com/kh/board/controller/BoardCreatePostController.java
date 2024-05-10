@@ -157,16 +157,11 @@ public class BoardCreatePostController extends HttpServlet {
 				session.setAttribute("alertMsg", "게시글 등록 성공");
 				
 
-			}else { 
-				// 세션에 게시글 등록 실패 메시지 담고
-				// 게시판 목록으로 이동시키기
-				// 만약 첨부파일이 있다면 해당 파일 서버에서 삭제하기
-				if(atList!= null) {
+			}else if(atList!= null) {
 					//삭제하고자 하는 파일 경로로 파일 객체 연결한 뒤 삭제 메소드 실행
 					for(Attachment at :atList) {
 						new File(savePath+at.getChangeName()).delete();
 					}
-				}
 				session.setAttribute("alertMsg", "게시글 등록 실패");
 			}
 			response.sendRedirect(request.getContextPath()+"/list."+ca+"?currentPage=1");

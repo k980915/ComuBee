@@ -38,7 +38,7 @@
 			<c:if test="${category ne 'REVIEW'}">
 	            <div class="mb-3">
 	                <label for="title" class="form-label">제목</label>
-	                <input type="text" class="form-control" id="title" name="contentsId" placeholder="제목을 작성해주세요" required>
+	                <input type="text" class="form-control" id="title" name="title" placeholder="제목을 작성해주세요" required>
 	            </div>
 			</c:if>
             <c:if test="${category eq 'REVIEW'}">

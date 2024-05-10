@@ -147,4 +147,12 @@
 	<entry key="searchContentByTitle">
 		SELECT CONTENTSID, TITLE FROM CONTENTS WHERE TITLE LIKE ?
 	</entry>
+	<entry key="updateBoard">
+		UPDATE BOARD SET
+					TITLE=?
+					, BOARDCONTENT=?
+					, UPDATEDATE=SYSDATE
+					WHERE BOARDNO=?
+					AND STATUS='Y'
+	</entry>
 </properties>

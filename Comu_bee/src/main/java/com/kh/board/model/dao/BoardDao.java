@@ -493,7 +493,7 @@ public class BoardDao {
 		
 		try {
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, contTitle);
+			pstmt.setString(1, "%"+contTitle+"%");
 			rset=pstmt.executeQuery();
 			while(rset.next()) {
 				Contents c=new Contents();
@@ -511,5 +511,27 @@ public class BoardDao {
 		
 		return cList;
 	}
+
+	public int updateBoard(Connection conn, Board b, ArrayList<Attachment> atList) {
+		// TODO Auto-generated method stub
+		int result=0;
+		PreparedStatement pstmt=null;
+		String sql=prop.getProperty("updateBoard");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, b.getTitle());
+			pstmt.setString(2, b.getBoardContent());
+			pstmt.setInt(3, b.getBoardNo());
+			result=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
+	
 
 }

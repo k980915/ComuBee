@@ -103,9 +103,9 @@ public class RecommendListController extends HttpServlet {
 
 //		//위임하기 위한 데이터 담아주기
 		
-		request.setAttribute("pi", pi);
-		request.setAttribute("list", list);
-		request.setAttribute("noList",noList);
+		session.setAttribute("pi", pi);
+		session.setAttribute("list", list);
+		session.setAttribute("noList",noList);
 
 		request.getRequestDispatcher("views/board/recommendBoard.jsp").forward(request, response);
 	}
