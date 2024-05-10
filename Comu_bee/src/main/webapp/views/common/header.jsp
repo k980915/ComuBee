@@ -27,8 +27,8 @@
 <style>
 .outer {
 	margin: auto;
-	margin-left: 300px;
-	margin-right: 300px;
+	margin-left: 200px;
+	margin-right: 200px;
 }
 
 .head-area {

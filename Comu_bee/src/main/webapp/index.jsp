@@ -14,7 +14,7 @@
 	<div>
 <%-- 		<%@ include file = "/views/contents/mainPage.jsp" %> --%>
 	</div>
-	<a href="${contextPath}/main.co">이동</a>
+
 	
 
 

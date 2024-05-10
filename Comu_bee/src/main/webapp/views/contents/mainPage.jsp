@@ -11,9 +11,7 @@
 		ArrayList<Contents> bestList = (ArrayList<Contents>)request.getAttribute("bestList");
 		
 		Collections.shuffle(conList, new Random());
-		
-
-	%>
+%>
 	
 	<!DOCTYPE html>
 	<html>
@@ -28,37 +26,17 @@
 	    <meta charset="UTF-8">
 	    <title>Main Page</title>
 	    <style>
-	        .outer {
-	            margin: auto;
-	            margin-left: 300px;
-	            margin-right: 300px;
-	        }
-	        .menu {
-	            display: flex;
-	            align-items: center;
-	        }
-	        .menu label {
-	            margin-left: 10px;
-	        }
-	        .menu {
-	            height: 50px;
-	            width: 300px;
-	            display: flex;
-	        }
-	        .menu a {
+	        .menu{
+	        	display: flex;
 	            text-decoration: none;
-	            font-size: 20px;
-	            font-weight: bold;
 	            display: block;
 	            width: 100%;
 	            height: 100%;
 	            line-height: 50px;
+	            text-align: center;
 	        }
-	        .menu a:hover {
-	            background-color: darkgray;
-	        }
-	        .menu input {
-	            width: 50px;
+	        .menu a{
+	        	color:black;
 	        }
 	    </style>
 	</head>
@@ -68,9 +46,9 @@
 	    <div class="outer">
 	        <form action="${contextPath}/main.co">
 	        
-	            <div class="nav-area" align="center">
-	                <div class="review">
-	                    <a href="${contextPath}/list.rv?currentPage=1"><h1>한줄리뷰</h1></a>
+	            <div align="center">
+	                <div class="menu">
+	                    <a href="${contextPath}/list.rv?currentPage=1"><h1>최신 한줄리뷰</h1></a>
 	                </div><br>
 	
 	                <table border="1" id="reviewImg">
@@ -108,7 +86,7 @@
 					</table> <br><br>
 	
 	                <div class="menu">
-	                    <h1 align="center">랜덤 추천작품</h1>
+	                    <h1>추천작품</h1>
 	                </div>
 	                <br><br>
 	                <table id="recommend">
@@ -129,7 +107,7 @@
 					</table> <br><br>
 						
 	                <div class="menu">
-	                    <h1 align="center">평점 상위 컨텐츠</h1>
+	                    <h1>평점 상위 컨텐츠</h1>
 	                </div>
 	                <br><br>
 	                <table id="best">
@@ -143,72 +121,21 @@
 	                        <td style="height: 200px; width: 200px;"></td>
 	                    </c:if>
 				   		</c:forEach>
-	<!--                         <td> -->
-	<!--                             <img src="" style="height: 200px; width: 200px;"> -->
-	<!--                         </td> -->
-	<!--                         <td></td> -->
-	<!--                         <td> -->
-	<!--                            <img src="" style="height: 200px; width: 200px;"> -->
-	<!--                         </td> -->
-	<!--                         <td></td> -->
-	<!--                         <td> -->
-	<!--                             <img src="" style="height: 200px; width: 200px;"> -->
-	<!--                         </td> -->
-	<!--                         <td></td> -->
 	                    </tr>
 	                    <tr align="center" id="bestTitle">
-	                        <c:forEach var="content" items="${bestList}" varStatus="loop">
-					        <c:if test="${loop.index < 4}">
+	                    <c:forEach var="content" items="${bestList}" varStatus="loop">
+					    <c:if test="${loop.index < 4}">
 					             <td>${content.title}</td>
 					             <td></td>
-					        </c:if>
-	       					</c:forEach>
-	<!--                         <td>화</td> -->
-	<!--                         <td></td> -->
-	<!--                         <td>제</td> -->
-	<!--                         <td></td> -->
-	<!--                         <td>목</td> -->
-	<!--                         <td></td> -->
+					    </c:if>
+	       				</c:forEach>
 	                    </tr>
 	                </table> <br><br>
 	
-<!-- 	                <div class="menu"> -->
-<!-- 	                    <h1 align="center">신작 드라마</h1> -->
-<!-- 	                </div> -->
-<!-- 	                <br><br> -->
-<!-- 	                <table> -->
-<!-- 	                    <tr> -->
-<!-- 	                        <td> -->
-<!-- 	                            <a href=""><img src="" style="height: 200px; width: 200px;"></a> -->
-<!-- 	                        </td> -->
-<!-- 	                        <td></td> -->
-<!-- 	                        <td> -->
-<!-- 	                            <a href=""><img src="" style="height: 200px; width: 200px;"></a> -->
-<!-- 	                        </td> -->
-<!-- 	                        <td></td> -->
-<!-- 	                        <td> -->
-<!-- 	                            <a href=""><img src="" style="height: 200px; width: 200px;"></a> -->
-<!-- 	                        </td> -->
-<!-- 	                        <td></td> -->
-<!-- 	                        <td> -->
-<!-- 	                            <a href=""><img src="" style="height: 200px; width: 200px;"></a> -->
-<!-- 	                        </td> -->
-<!-- 	                        <td></td> -->
-<!-- 	                    </tr> -->
-<!-- 	                    <tr align="center"> -->
-<!-- 	                        <td>신작</td> -->
-<!-- 	                        <td></td> -->
-<!-- 	                        <td>드</td> -->
-<!-- 	                        <td></td> -->
-<!-- 	                        <td>라</td> -->
-<!-- 	                        <td></td> -->
-<!-- 	                        <td>마</td> -->
-<!-- 	                        <td></td> -->
-<!-- 	                    </tr> -->
-<!-- 	                </table> -->
+
 	            </div>
 	        </form>    
-	    </div>
+	    </div> <br><br><br>
 		   <script>
 			    $('#reviewImg img').click(function() {
 			        var contentsId = $(this).closest('td').find('.cid').val();
