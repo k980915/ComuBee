@@ -58,8 +58,13 @@
 					</form>
 					<br><br>
 					
-				<button type="button" onclick="();">
+				<button type="button" class="cpCreate">
 					쿠폰 <br>발급
+				</button>
+				<br><br>
+				
+				<button type="button" onclick="();">
+					100포인트 <br>지급
 				</button>
 				<br><br>
 				
@@ -132,7 +137,33 @@
 				}
 			});
 		}
+		/* function createCoupon() {
+			var userIdval = "${listInfo.userId}";
+			var couponStr = "7L+g7Y+w7J2AIOyXhuyKteuLiOuLpC4="
+			location.href='/Comu_bee/messageMain.ms?userId='+'admin';
+			console.log(userIdval,couponStr);
+		} */
+		/* function createCoupon() {
+		    // userIdval 및 couponStr 값 설정
+		    var userIdval = "${listInfo.userId}";
+		    var couponStr = "7L+g7Y+w7J2AIOyXhuyKteuLiOuLpC4=";
+
+		    // 새로운 URL 생성
+		    var newUrl = '/Comu_bee/messageMain.ms?userId=admin&userIdval=' + userIdval + '&couponStr=' + couponStr;
 		
+		    // 새로운 URL로 이동
+		    location.href = newUrl;
+		    redirectToSendMessagePage();
+		} */
+		$(".cpCreate").click(function () {
+			var userIdval = "${listInfo.userId}";
+		    var couponStr = "7Lg7Yw7J2AIOyXhuyKteuLiOuLpC4=";
+
+		    // 새로운 URL 생성
+		    var newUrl = '/Comu_bee/cpCreate.ad?userId=admin&userIdval=' + userIdval + '&couponStr=' + couponStr;
+		    location.href = newUrl;
+		})
+
 	</script>
 
 </body>

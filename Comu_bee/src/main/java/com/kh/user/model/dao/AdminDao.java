@@ -244,5 +244,30 @@ public class AdminDao {
 		return result;
 	}
 
+	public int MessageCouponCreate(Connection conn, String userId) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("CouponCreate");
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			
+			result = pstmt.executeUpdate();
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		
+		return result;
+	}
+
 
 }

@@ -32,10 +32,11 @@ public class MessageMainController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String userId=request.getParameter("userId");
+		String userId =request.getParameter("userId");
 		
 		ArrayList<Message> list = new MessageService().selectNewMessage(userId);
 		request.setAttribute("list", list);
+		
 		
 		request.getRequestDispatcher("views/message/messageMainView.jsp").forward(request, response);
 	}

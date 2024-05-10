@@ -1,28 +1,25 @@
-package com.kh.contents.controller;
+package com.kh.message.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.contents.model.service.ContentsService;
-import com.kh.contents.model.vo.Contents;
+import com.kh.user.model.service.AdminService;
 
 /**
- * Servlet implementation class ForSearch
+ * Servlet implementation class MessageCouponCreate
  */
-@WebServlet("/search.se")
-public class ForSearch extends HttpServlet {
+@WebServlet("/cpCreate.ad")
+public class MessageCouponCreate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ForSearch() {
+    public MessageCouponCreate() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,12 +28,21 @@ public class ForSearch extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Contents> list = new ArrayList<>();
-		list = new ContentsService().ForSearch();
+		String userId = request.getParameter("userIdval");
+		String couponStr = request.getParameter("couponStr");
+//		System.out.println(userId);
+//		System.out.println(couponStr);
 		
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("views/search/contentsSearchResults.jsp").forward(request, response);
-
+		
+		// 포인트 차감 구문 작성
+		int result = new AdminService().MessageCouponCreate(userId);
+		
+		
+		if(result>0) {
+			request.setAttribute("couponStr", couponStr);
+			request.setAttribute("userIdval", userId);
+			request.getRequestDispatcher("views/message/messageMainView.jsp").forward(request, response);
+		}
 	}
 
 	/**

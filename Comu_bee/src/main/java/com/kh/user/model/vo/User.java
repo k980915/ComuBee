@@ -19,6 +19,15 @@ public class User {
 		
 	}
 	
+	
+	
+	public User(String userPwd) {
+		super();
+		this.userPwd = userPwd;
+	}
+
+
+
 	public User(String userId, String userName, String userPwd, String userGender, String userBirth, String userEmail,
 			Date joinDate, int point) {
 		super();
@@ -60,9 +69,10 @@ public class User {
 		super();
 		this.userId = userId;
 		this.userName = userName;
-		this.userEmail = userEmail;
 		this.userGender = userGender;
+		this.userEmail = userEmail;
 	}
+	
 	
 	
 
@@ -70,6 +80,33 @@ public class User {
 		super();
 		this.userId = userId;
 		this.userPwd = userPwd;
+	}
+	
+	public User(String userId,String userName, String userEmail) {
+		super();
+		this.userId = userId;
+		this.userName =userName;
+		this.userEmail=userEmail;
+		
+	}
+	
+	
+	
+	
+	
+	
+
+	
+
+	
+
+	public User(String userId, String userName, String userPwd, String userEmail, String status) {
+		super();
+		this.userId = userId;
+		this.userName = userName;
+		this.userPwd = userPwd;
+		this.userEmail = userEmail;
+		this.status = status;
 	}
 
 	public String getUserId() {

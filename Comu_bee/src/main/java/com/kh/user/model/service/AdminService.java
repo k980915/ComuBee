@@ -113,6 +113,21 @@ public class AdminService {
 		return result;
 	}
 
+	public int MessageCouponCreate(String userId) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = new AdminDao().MessageCouponCreate(conn,userId);
+		
+		if (result > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
 	
 
 }

@@ -59,6 +59,16 @@
 	
 	
 	</entry>
+	
+	
+	
+	<entry key="CouponCreate">
+	
+	UPDATE MEMBERINFO
+	SET POINT = POINT-500
+	WHERE USERID = ?
+	
+	</entry>
 
 	
 </properties>
