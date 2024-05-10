@@ -144,8 +144,7 @@ String contextPath = request.getContextPath();
 %>
 
 <script>
-	var msg = "<%=alertMsg%>
-	";
+	var msg = "<%=alertMsg%>";
 
 	if (msg != "null") {
 		alert(msg);
