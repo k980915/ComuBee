@@ -98,8 +98,6 @@ private Properties prop = new Properties();
 
 		return c;
 	}
-	
-	
 
 	public ArrayList<Contents> DetailContentsList(Connection conn) {
 		Statement stmt = null;
@@ -136,78 +134,37 @@ private Properties prop = new Properties();
 		
 		return list;
 	}
-	
-	
 
-	public Contents selectContents(Connection conn, int cid) {
-		PreparedStatement pstmt = null;
+	public ArrayList<Board> ForReview(Connection conn) {
+		Statement stmt = null;
 		ResultSet rset = null;
-		Contents c = null;
 		
-		String sql = prop.getProperty("selectContents");
+		ArrayList<Board> list = new ArrayList<>();
+		
+		String sql = prop.getProperty("ForReview");
 		
 		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, cid);
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(sql);
 			
-			rset = pstmt.executeQuery();
-			
-			
-				c = new Contents(rset.getString("TITLE")
-							    ,rset.getString("ENGLISHTITLE")
-							    ,rset.getString("OVERVIEW")
-							    ,rset.getString("POSTERPATH")
-							    ,rset.getString("RUNTIME")
-							    ,rset.getString("RELEASEDATE")
-							    ,rset.getString("AGELIMIT")
-							    ,rset.getDouble("RATE")
-							    ,rset.getString("ACTORS")
-							    ,rset.getString("DIRECTOR"));
-	
+			while(rset.next()) {
+				list.add(new Board(rset.getString("USERID")
+									 ,rset.getInt("CONTENTSID")
+									 ,rset.getString("BOARDCONTENT")
+									 ,rset.getDate("CREATEDATE")
+									 ,rset.getString("STATUS")
+									 ,rset.getInt("BOARDLIKE")
+									 ,rset.getInt("HATE")));
+			}
 		} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}finally {
+			JDBCTemplate.close(stmt);
 			JDBCTemplate.close(rset);
-			JDBCTemplate.close(pstmt);
-		}
-		return c;	
+		}	
+		return list;
 	}
-
-//	public ArrayList<Board> ForReview(Connection conn) {
-//		PreparedStatement pstmt = null;
-//		ResultSet rset = null;
-//		
-//		ArrayList<Board> list = new ArrayList<>();
-//		
-//		String sql = prop.getProperty("ForReview");
-//		
-//		try {
-//			stmt = conn.createStatement();
-//			rset = stmt.executeQuery(sql);
-//			
-//			while(rset.next()) {
-//				list.add(new Contents(rset.getInt("CONTENTSID")
-//									 ,rset.getString("TITLE")
-//									 ,rset.getString("ENGLISHTITLE")
-//									 ,rset.getString("OVERVIEW")
-//									 ,rset.getString("POSTERPATH")
-//									 ,rset.getString("RUNTIME")
-//									 ,rset.getString("RELEASEDATE")
-//									 ,rset.getString("AGELIMIT")
-//									 ,rset.getDouble("RATE")
-//									 ,rset.getString("ACTORS")
-//									 ,rset.getString("DIRECTOR")));
-//			}
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}finally {
-//			JDBCTemplate.close(stmt);
-//			JDBCTemplate.close(rset);
-//		}	
-//		return list;
-//	}
 
 	public ArrayList<Contents> BestContentsList(Connection conn) {
 		Statement stmt = null;
@@ -244,46 +201,37 @@ private Properties prop = new Properties();
 		return list;
 	}
 
-	public ArrayList<Contents> ForSearch(Connection conn) {
-		Statement stmt = null;
-		ResultSet rset = null;
-		
-		ArrayList<Contents> list = new ArrayList<>();
-		
-		String sql = prop.getProperty("ForSearch");
-		
-		try {
-			stmt = conn.createStatement();
-			rset = stmt.executeQuery(sql);
-			
-			while(rset.next()) {
-				list.add(new Contents(rset.getInt("CONTENTSID")
-									 ,rset.getString("TITLE")
-									 ,rset.getString("ENGLISHTITLE")
-									 ,rset.getString("OVERVIEW")
-									 ,rset.getString("POSTERPATH")
-									 ,rset.getString("RUNTIME")
-									 ,rset.getString("RELEASEDATE")
-									 ,rset.getString("AGELIMIT")
-									 ,rset.getDouble("RATE")
-									 ,rset.getString("ACTORS")
-									 ,rset.getString("DIRECTOR")));
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			JDBCTemplate.close(stmt);
-			JDBCTemplate.close(rset);
-		}	
-		return list;
-	}
-
-	
-	
-	
-	
-	
+//	public ArrayList<Board> ForReview(Connection conn, int contentsId) {
+//	    PreparedStatement pstmt = null;
+//	    ResultSet rset = null;
+//	    
+//	    ArrayList<Board> list = new ArrayList<>();
+//	    
+//	    String sql = prop.getProperty("ForReview");
+//	    
+//	    try {
+//	        pstmt = conn.prepareStatement(sql);
+//	        pstmt.setInt(1, contentsId);
+//	        rset = pstmt.executeQuery();
+//	        
+//	        while(rset.next()) {
+//	            list.add(new Board(rset.getString("USERID")
+//	                                     ,rset.getInt("CONTENTSID")
+//	                                     ,rset.getString("BOARDCONTENT")
+//	                                     ,rset.getDate("CREATEDATE")
+//	                                     ,rset.getString("STATUS")
+//	                                     ,rset.getInt("BOARDLIKE")
+//	                                     ,rset.getInt("HATE")));
+//	        }
+//	    } catch (SQLException e) {
+//	        e.printStackTrace();
+//	    } finally {
+//	        JDBCTemplate.close(pstmt);
+//	        JDBCTemplate.close(rset);
+//	    }   
+//	    return list;
+//	}
+//	
 	
 	
 	

@@ -1,3 +1,4 @@
+<%@page import="com.kh.contents.model.vo.Board"%>
 <%@page import="com.kh.contents.model.vo.Contents"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.kh.common.JDBCTemplate"%>
@@ -6,6 +7,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	String posterPath = request.getParameter("posterPath");
+
+	ArrayList<Contents> conList = (ArrayList<Contents>)request.getAttribute("conList");
+	ArrayList<Contents> bestList = (ArrayList<Contents>)request.getAttribute("bestList");
+	ArrayList<Board> boardList = (ArrayList<Board>)request.getAttribute("boardList");
+
 %>
 
 
@@ -112,59 +118,61 @@
                 <div>
                     <h1>한줄 리뷰</h1>
                 </div> <br>
-                <table border="1">
+                <table border="1" id="reply">
+                <c:forEach var="board" items="${boardList}" varStatus="loop">
                     <tr>
-                        <td>작성자</td>
-                        <td>작성일</td>
+                        <td>작성자 ${c.userId }</td>
+                        <td>작성일 ${c.createDate }</td>
                         <td rowspan="2" width="70px;" align="center" height="100px">
-                            추천
+                            좋아요 ${c.boardLike }
                         </td>
                         <td rowspan="2" width="70px;" align="center">
-                            신고
+                            싫어요 ${c.hate }
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2" width="1000px;">리뷰를 적는 공간입니다.</td>
                     </tr>
                     <tr colspan="2">
-                        <td>작성자</td>
-                        <td>작성일</td>
+                        <td></td>
+                        <td></td>
                         <td rowspan="2" width="70px;" align="center" height="100px">
-                            추천
+                            
                         </td>
                         <td rowspan="2" width="70px;" align="center">
-                            신고
+                            
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2">리뷰를 적는 공간입니다.</td>
+                        <td colspan="2"></td>
                     </tr>
                     <tr colspan="2">
-                        <td>작성자</td>
-                        <td>작성일</td>
+                        <td></td>
+                        <td></td>
                         <td rowspan="2" width="70px;" align="center" height="100px">
-                            추천
+                            
                         </td>
                         <td rowspan="2" width="70px;" align="center">
-                            신고
+                            
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2">리뷰를 적는 공간입니다.</td>
+                        <td colspan="2"></td>
                     </tr>
                     <tr colspan="2">
-                        <td>작성자</td>
-                        <td>작성일</td>
+                        <td></td>
+                        <td></td>
                         <td rowspan="2" width="70px;" align="center" height="100px">
-                            추천
+                            
                         </td>
                         <td rowspan="2" width="70px;" align="center">
-                            신고
+                            
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2">리뷰를 적는 공간입니다.</td>
+                        <td colspan="2"></td>
                     </tr>
+            	</c:forEach>
                 </table>
             </div> <br><br><br><br>
 

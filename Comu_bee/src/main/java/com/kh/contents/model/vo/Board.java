@@ -7,7 +7,7 @@ public class Board {
 	private String userId;
 	private String atNo;
 	private String category;
-	private String contentsId;
+	private int contentsId;
 	private String title;
 	private String boardContent;
 	private Date createDate;
@@ -21,7 +21,7 @@ public class Board {
 	public Board() {
 		super();
 	}
-	public Board(int boardNo, String userId, String atNo, String category, String contentsId, String title,
+	public Board(int boardNo, String userId, String atNo, String category, int contentsId, String title,
 			String boardContent, Date createDate, Date updateDate, String status, int boardLike, int hate, int count) {
 		super();
 		this.boardNo = boardNo;
@@ -40,6 +40,17 @@ public class Board {
 	}
 	
 	
+	public Board(String userId, int contentsId, String boardContent, Date createDate, String status, int boardLike,
+			int hate) {
+		super();
+		this.userId = userId;
+		this.contentsId = contentsId;
+		this.boardContent = boardContent;
+		this.createDate = createDate;
+		this.status = status;
+		this.boardLike = boardLike;
+		this.hate = hate;
+	}
 	public Board(int boardNo, String userId, String category, String title, Date createDate, int boardLike, int count) {
 		super();
 		this.boardNo = boardNo;
@@ -53,7 +64,7 @@ public class Board {
 	
 	
 	
-	public Board(int boardNo, String userId, String atNo, String category, String contentsId, String title,
+	public Board(int boardNo, String userId, String atNo, String category, int contentsId, String title,
 			String boardContent, Date createDate, Date updateDate, int boardLike, int hate, int count) {
 		super();
 		this.boardNo = boardNo;
@@ -105,10 +116,10 @@ public class Board {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	public String getContentsId() {
+	public int getContentsId() {
 		return contentsId;
 	}
-	public void setContentsId(String contentsId) {
+	public void setContentsId(int contentsId) {
 		this.contentsId = contentsId;
 	}
 	public String getTitle() {

@@ -29,17 +29,6 @@ public class ContentsService {
 		return list;
 	}
 
-	public Contents selectContents(int cid) {
-		Connection conn = JDBCTemplate.getConnection();
-		
-		Contents c = new ContentsDao().selectContents(conn, cid);
-		
-		JDBCTemplate.close(conn);
-		return c;
-	}
-
-
-
 	public ArrayList<Contents> BestContentsList() {
 		Connection conn = JDBCTemplate.getConnection();
 		
@@ -49,23 +38,14 @@ public class ContentsService {
 		return list;
 	}
 
-	public ArrayList<Contents> ForSearch() {
+	public ArrayList<Board> ForReview() {
 		Connection conn = JDBCTemplate.getConnection();
 		
-		ArrayList<Contents> list = new ContentsDao().ForSearch(conn);	
+		ArrayList<Board> boardList = new ContentsDao().ForReview(conn);	
 		
 		JDBCTemplate.close(conn);	
-		return list;
+		return boardList;
 	}
-
-//	public ArrayList<Board> ForReview() {
-//		Connection conn = JDBCTemplate.getConnection();
-//		
-//		ArrayList<Board> boardList = new ContentsDao().ForReview(conn);	
-//		
-//		JDBCTemplate.close(conn);	
-//		return boardList;
-//	}
 
 	
 	

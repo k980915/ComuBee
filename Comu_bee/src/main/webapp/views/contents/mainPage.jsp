@@ -1,3 +1,4 @@
+<%@page import="com.kh.contents.model.vo.Board"%>
 <%@page import="java.util.Random"%>
 <%@page import="java.util.Collections"%>
 <%@page import="java.util.List"%>
@@ -9,8 +10,10 @@
 <%
 		ArrayList<Contents> conList = (ArrayList<Contents>)request.getAttribute("conList");
 		ArrayList<Contents> bestList = (ArrayList<Contents>)request.getAttribute("bestList");
-		
+		ArrayList<Board> boardList = (ArrayList<Board>)request.getAttribute("boardList");
+
 		Collections.shuffle(conList, new Random());
+		
 %>
 	
 	<!DOCTYPE html>
@@ -38,6 +41,10 @@
 	        .menu a{
 	        	color:black;
 	        }
+	        img:hover{
+	        	cursor: pointer;
+	        }
+	        
 	    </style>
 	</head>
 	<body>
@@ -50,43 +57,36 @@
 	                <div class="menu">
 	                    <a href="${contextPath}/list.rv?currentPage=1"><h1>최신 한줄리뷰</h1></a>
 	                </div><br>
-	
-	                <table border="1" id="reviewImg">
-					    <tr style="height: 250px;">
-					        <c:forEach var="content" items="${conList}" varStatus="loop">
-					            <c:if test="${loop.index < 3}">
-					                <td style="width: 300px; height: 250px;">
-					                    <input type="hidden" class="cid" value="${content.contentsId}">
-					                    <img src="${content.posterPath}" style="width: 100%; height: 100%;">
-					                    
-					                </td>
+	                
+					<table border="1" id="reviewImg">
+					    <tr style="height: 350px;">
+					        <c:forEach var="board" items="${boardList}" varStatus="loop">
+					            <c:if test="${loop.index < 5}">
+					                <c:set var="contentId" value="${board.contentsId}"/>
+					                <c:set var="imageDisplayed" value="false"/>
+					                <c:forEach var="content" items="${conList}" varStatus="contentLoop">
+					                    <c:if test="${content.contentsId eq contentId && imageDisplayed eq 'false'}">
+					                        <td>
+					                            <input type="hidden" class="cid" value="${content.contentsId}">
+					                            <img src="${content.posterPath}" style="width: 250px; height: 350px;">
+					                        </td>
+					                        <c:set var="imageDisplayed" value="true"/>
+					                    </c:if>
+					                </c:forEach>
 					            </c:if>
 					        </c:forEach>
 					    </tr>
 					    <tr>
-					        <td><a href="${contextPath}/list.rv?currentPage=1">리뷰</a></td>
-					        <td><a href="${contextPath}/list.rv?currentPage=1">리뷰</a></td>
-					        <td><a href="${contextPath}/list.rv?currentPage=1">리뷰</a></td>
-					    </tr>
-					    <tr style="height: 250px;">
-					        <c:forEach var="content" items="${conList}" varStatus="loop">
-					            <c:if test="${loop.index >= 3 && loop.index < 6}">
-					                <td style="width: 300px; height: 250px;">
-					                    <input type="hidden" class="cid" value="${content.contentsId}">
-					                    <img src="${content.posterPath}" style="width: 100%; height: 100%;">
-					                </td>
+					        <c:forEach var="board" items="${boardList}" varStatus="loop">
+					            <c:if test="${loop.index < 5}">
+					                <td>${board.boardContent}</td>
 					            </c:if>
 					        </c:forEach>
-					    </tr>
-					    <tr>
-					        <td><a href="${contextPath}/list.rv?currentPage=1">리뷰</a></td>
-					        <td><a href="${contextPath}/list.rv?currentPage=1">리뷰</a></td>
-					        <td><a href="${contextPath}/list.rv?currentPage=1">리뷰</a></td>
 					    </tr>
 					</table> <br><br>
-	
+
 	                <div class="menu">
-	                    <h1>추천작품</h1>
+	                    <h1>이런 작품은 어떠세요?</h1>
 	                </div>
 	                <br><br>
 	                <table id="recommend">
@@ -95,9 +95,9 @@
 					            <tr>
 					                <td>
 					                    <input type="hidden" class="cid" value="${content.contentsId}">
-					                    <img src="${content.posterPath}" style="height: 400px; width: 400px;">
+					                    <img src="${content.posterPath}" style="height: 600px; width: 500px;">
 					                </td>
-					                <td style="width: 100px;"></td>
+					                
 					                <td style="width: 300px;">
 					                    ${content.overView}
 					                </td>
