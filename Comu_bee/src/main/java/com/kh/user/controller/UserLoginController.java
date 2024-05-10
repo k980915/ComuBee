@@ -76,7 +76,7 @@ public class UserLoginController extends HttpServlet {
 			session.setAttribute("loginUser", u);
 			session.setAttribute("alertMsg", "로그인 성공!");
 			
-			response.sendRedirect(request.getContextPath());
+			response.sendRedirect(request.getHeader("referer"));
 		}
 		
 	}
