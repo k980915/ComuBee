@@ -108,7 +108,7 @@
         }
         
         </script>
-        <% }else{ %>]
+        <% }else{ %>
         <div id ="user-info">
         	<b>${loginUser.userId }님 환영합니다!</b>
         	<a href="${contextPath}/myPage.us">마이페이지</a>

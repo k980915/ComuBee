@@ -72,7 +72,7 @@ public class AdminService {
 		return result;
 	}
 
-	public static int unSuspend(String userIdval) {
+	public int unSuspend(String userIdval) {
 		Connection conn = JDBCTemplate.getConnection();
 		
 		int result = new AdminDao().unSuspend(conn, userIdval);
@@ -88,14 +88,29 @@ public class AdminService {
 		return result;
 	}
 
-	public ArrayList<User> UserInfoList() {
+	public User UserInfoList(String userId) {
 		Connection conn = JDBCTemplate.getConnection();
 
-		ArrayList<User> list = new AdminDao().UserInfoList(conn);
+		User list = new AdminDao().UserInfoList(conn,userId);
 
 		JDBCTemplate.close(conn);
 		
 		return list;
+	}
+
+	public int UseradminSuspend(String userIdval) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = new AdminDao().UseradminSuspend(conn,userIdval);
+		
+		if (result > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+
+		JDBCTemplate.close(conn);
+		return result;
 	}
 
 	

@@ -31,16 +31,24 @@ public class UserSuspendController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String susDays = request.getParameter("susDays");
 		String userIdval = request.getParameter("userIdval");
-		
+//		System.out.println(susDays);
+//		System.out.println(userIdval);
 		
 		int result = new AdminService().suspendDays(susDays,userIdval);
-		
-		
+		//System.out.println(result);
 		if(result>0) {
-			if(susDays.equals("3일")) {
+			if(susDays.equals("3day")) {
 				response.setContentType("text/html;charset=UTF-8");
 				response.getWriter().print(result);
 				TimerDays.Timer3days(userIdval);
+			}else if(susDays.equals("10day")) {
+				response.setContentType("text/html;charset=UTF-8");
+				response.getWriter().print(result);
+				TimerDays.Timer10days(userIdval);
+			}else if(susDays.equals("30day")) {
+				response.setContentType("text/html;charset=UTF-8");
+				response.getWriter().print(result);
+				TimerDays.Timer30days(userIdval);
 			}
 			
 			

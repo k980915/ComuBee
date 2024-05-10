@@ -33,7 +33,7 @@
 	
 	</entry>
 
-	<entry key="suspendDays">
+	<entry key="suspend">
 	
 	UPDATE MEMBERINFO
 	SET STATUS = 'N'
@@ -42,7 +42,7 @@
 	
 	</entry>
 	
-	<entry key="unsuspendDays">
+	<entry key="unsuspend">
 	
 	UPDATE MEMBERINFO
 	SET STATUS = 'Y'
@@ -53,7 +53,7 @@
 	
 	<entry key="UserInfoList">
 	
-	SELECT USERNAME, USEREMAIL,JOINDATE, POINT
+	SELECT USERID, USERNAME, USEREMAIL,JOINDATE, POINT
 	FROM MEMBERINFO
 	WHERE USERID = ?
 	

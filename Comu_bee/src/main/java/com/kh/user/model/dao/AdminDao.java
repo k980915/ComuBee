@@ -141,7 +141,7 @@ public class AdminDao {
 		
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("suspendDays");
+		String sql = prop.getProperty("suspend");
 		
 		
 		try {
@@ -166,7 +166,7 @@ public class AdminDao {
 	public int unSuspend(Connection conn, String userIdval) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("unsuspendDays");
+		String sql = prop.getProperty("unsuspend");
 		
 		
 		try {
@@ -188,19 +188,21 @@ public class AdminDao {
 		return result;
 	}
 
-	public ArrayList<User> UserInfoList(Connection conn) {
-		ArrayList<User> list = new ArrayList<>();
+	public User UserInfoList(Connection conn, String userId) {
+		User list = new User();
 		ResultSet rset = null;
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("UserInfoList");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
 			
 			rset = pstmt.executeQuery();
 			
-			while (rset.next()) {
-				list.add(new User(rset.getString("USERNAME")
+			if (rset.next()) {
+				list = (new User (rset.getString("USERID")
+										,rset.getString("USERNAME")
 										,rset.getString("USEREMAIL")
 										,rset.getDate("JOINDATE")
 										,rset.getInt("POINT")));
@@ -215,6 +217,31 @@ public class AdminDao {
 		}
 		
 		return list;
+	}
+
+	public int UseradminSuspend(Connection conn, String userIdval) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("suspend");
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userIdval);
+			
+			result = pstmt.executeUpdate();
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		
+		return result;
 	}
 
 

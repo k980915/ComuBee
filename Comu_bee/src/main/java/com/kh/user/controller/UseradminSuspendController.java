@@ -1,27 +1,26 @@
 package com.kh.user.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.kh.common.TimerDays;
 import com.kh.user.model.service.AdminService;
-import com.kh.user.model.vo.User;
 
 /**
- * Servlet implementation class UserInfoList
+ * Servlet implementation class UserSuspendController
  */
-@WebServlet("/userInfoList.ad")
-public class UserInfoList extends HttpServlet {
+@WebServlet("/suspend.ad")
+public class UseradminSuspendController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UserInfoList() {
+    public UseradminSuspendController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,13 +29,20 @@ public class UserInfoList extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String userId = request.getParameter("userId");
-		//System.out.println(userId);
-		User listInfo = new AdminService().UserInfoList(userId);
-		//System.out.println(listInfo);
+
+		String userIdval = request.getParameter("userIdval");
+//		System.out.println(susDays);
+//		System.out.println(userIdval);
 		
-		request.setAttribute("listInfo", listInfo);
-		request.getRequestDispatcher("views/common/adminSuspendModal.jsp").forward(request, response);
+		int result = new AdminService().UseradminSuspend(userIdval);
+		//System.out.println(result);
+
+			response.setContentType("text/html;charset=UTF-8");
+			response.getWriter().print(result);
+
+
+		
+		
 		
 	}
 

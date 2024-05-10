@@ -45,8 +45,11 @@ public class User {
 	
 	
 	
-	public User(String userName, String userEmail, Date joinDate, int point) {
+
+
+	public User(String userId, String userName, String userEmail, Date joinDate, int point) {
 		super();
+		this.userId = userId;
 		this.userName = userName;
 		this.userEmail = userEmail;
 		this.joinDate = joinDate;
