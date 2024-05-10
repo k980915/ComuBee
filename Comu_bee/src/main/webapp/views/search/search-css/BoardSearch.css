@@ -1,0 +1,70 @@
+@charset "UTF-8";
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px; /* 너비 조정 */
+    margin: auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.input-group {
+    display: flex;
+    justify-content: center;
+    width: 50%; /* 너비 50%로 설정 */
+    margin: 20px auto; /* 위 아래 여백을 20px, 중앙 정렬 */
+}
+
+.input-group input[type="text"] {
+    flex-grow: 1;
+    padding: 10px; /* 패딩을 10px로 설정 */
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px;
+    width: 100%;
+}
+
+.input-group button {
+    padding: 10px;
+    background-color: #007bff; /* 기본 배경색 */
+    color: white;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+}
+
+.input-group button:hover {
+    background-color: #0056b3; /* 호버 시 배경색 변경 */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px; /* 테이블 상단 여백 */
+}
+
+table, th, td {
+    border: 1px solid #ddd; /* 경계선 색상 */
+}
+
+th {
+    background-color: #f8f8f8; /* 헤더 배경색 */
+    color: #333; /* 헤더 글자색 */
+    padding: 12px; /* 헤더 패딩 */
+    text-align: left;
+}
+
+td {
+    padding: 10px; /* 셀 패딩 */
+    color: #666; /* 셀 글자색 */
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f1f1f1; /* 호버 시 배경색 */
+}

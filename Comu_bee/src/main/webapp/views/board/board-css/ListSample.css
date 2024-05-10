@@ -1,0 +1,90 @@
+@charset "UTF-8";
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+.table thead th {
+    background-color: #f8f8f8;
+    color: #333;
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.table tbody td {
+    padding: 10px;
+    color: #666;
+    border: 1px solid #ddd;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.pagination {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    padding: 0;
+    align-items: center; /* 세로 정렬을 위해 추가 */
+}
+
+.pagination li {
+    margin: 0 5px;
+}
+
+.pagination button {
+    border: none;
+    background-color: transparent;
+    color: #007bff;
+    cursor: p	ointer;
+    padding: 8px 12px; /* 사이즈 조절 */
+}
+
+.pagination button:hover {
+    color: #0056b3;
+    background-color: transparent;
+}
+
+.input-group {
+    width: 50%; /* 조절 가능 */
+    margin: 20px auto;
+    display: flex;
+}
+
+.input-group input[type="text"] {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px;
+}
+
+.input-group button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 0 4px 4px 0;
+}
+
+.input-group button:hover {
+    background-color: #0056b3;
+}
