@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.contents.model.service.ContentsService;
+import com.kh.contents.model.vo.Board;
 import com.kh.contents.model.vo.Contents;
 
 /**
@@ -33,22 +34,6 @@ public class mainContents extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		int contentsId = Integer.parseInt(request.getParameter("contentsId"));
-//		String title = request.getParameter("title");
-//		String englishTitle = request.getParameter("englishTitle");
-//		String overView = request.getParameter("overView");
-//		String posterPath = request.getParameter("posterPath");
-//		String runtime = request.getParameter("runtime");
-//		String releaseDate = request.getParameter("releaseDate");
-//		String ageLimit = request.getParameter("ageLimit");
-//		double rate = Double.parseDouble(request.getParameter("rate"));
-//		String actors = request.getParameter("actors");
-//		String director = request.getParameter("director");
-//		
-//		Contents con = new Contents(contentsId, title, englishTitle, overView, posterPath, runtime, releaseDate, ageLimit, rate, actors, director);
-//		Contents c = new ContentsService().DetailContents(con);
-//		request.setAttribute("c", c);
-	
 //		ArrayList<Contents> recommendReview = new ArrayList<>();
 //		recommendReview = new ContentsService().ForReview();
 
@@ -57,13 +42,17 @@ public class mainContents extends HttpServlet {
 		
 		ArrayList<Contents> bestList = new ArrayList<>();
 		bestList = new ContentsService().BestContentsList();
+		
+		ArrayList<Board> boardList = new ArrayList<>();
+		boardList = new ContentsService().ForReview();
 
+		
 		request.setAttribute("conList", conList);
 		request.setAttribute("bestList", bestList);
+		request.setAttribute("boardList", boardList);
 
-//		System.out.println(conList);
+
 		request.getRequestDispatcher("views/contents/mainPage.jsp").forward(request, response);
-//		request.getRequestDispatcher("views/search/contentsSearchResults.jsp").forward(request, response);
 
 		
 	}
