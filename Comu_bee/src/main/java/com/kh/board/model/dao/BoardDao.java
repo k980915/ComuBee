@@ -422,6 +422,7 @@ public class BoardDao {
 			pstmt.setString(2, b.getCategory());
 			pstmt.setString(3, b.getTitle());
 			pstmt.setString(4, b.getBoardContent());
+			pstmt.setString(5, b.getContentsId());
 			result=pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -493,7 +494,7 @@ public class BoardDao {
 		
 		try {
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, contTitle);
+			pstmt.setString(1, "%"+contTitle+"%");
 			rset=pstmt.executeQuery();
 			while(rset.next()) {
 				Contents c=new Contents();

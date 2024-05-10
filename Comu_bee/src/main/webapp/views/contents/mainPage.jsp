@@ -1,3 +1,4 @@
+<%@page import="com.kh.contents.model.vo.Board"%>
 <%@page import="java.util.Random"%>
 <%@page import="java.util.Collections"%>
 <%@page import="java.util.List"%>
@@ -9,11 +10,11 @@
 <%
 		ArrayList<Contents> conList = (ArrayList<Contents>)request.getAttribute("conList");
 		ArrayList<Contents> bestList = (ArrayList<Contents>)request.getAttribute("bestList");
-		
+		ArrayList<Board> boardList = (ArrayList<Board>)request.getAttribute("boardList");
+
 		Collections.shuffle(conList, new Random());
 		
-
-	%>
+%>
 	
 	<!DOCTYPE html>
 	<html>
@@ -28,38 +29,22 @@
 	    <meta charset="UTF-8">
 	    <title>Main Page</title>
 	    <style>
-	        .outer {
-	            margin: auto;
-	            margin-left: 300px;
-	            margin-right: 300px;
-	        }
-	        .menu {
-	            display: flex;
-	            align-items: center;
-	        }
-	        .menu label {
-	            margin-left: 10px;
-	        }
-	        .menu {
-	            height: 50px;
-	            width: 300px;
-	            display: flex;
-	        }
-	        .menu a {
+	        .menu{
+	        	display: flex;
 	            text-decoration: none;
-	            font-size: 20px;
-	            font-weight: bold;
 	            display: block;
 	            width: 100%;
 	            height: 100%;
 	            line-height: 50px;
+	            text-align: center;
 	        }
-	        .menu a:hover {
-	            background-color: darkgray;
+	        .menu a{
+	        	color:black;
 	        }
-	        .menu input {
-	            width: 50px;
+	        img:hover{
+	        	cursor: pointer;
 	        }
+	        
 	    </style>
 	</head>
 	<body>
@@ -68,47 +53,40 @@
 	    <div class="outer">
 	        <form action="${contextPath}/main.co">
 	        
-	            <div class="nav-area" align="center">
-	                <div class="review">
-	                    <a href="${contextPath}/list.rv?currentPage=1"><h1>한줄리뷰</h1></a>
+	            <div align="center">
+	                <div class="menu">
+	                    <a href="${contextPath}/list.rv?currentPage=1"><h1>최신 한줄리뷰</h1></a>
 	                </div><br>
-	
-	                <table border="1" id="reviewImg">
-					    <tr style="height: 250px;">
-					        <c:forEach var="content" items="${conList}" varStatus="loop">
-					            <c:if test="${loop.index < 3}">
-					                <td style="width: 300px; height: 250px;">
-					                    <input type="hidden" class="cid" value="${content.contentsId}">
-					                    <img src="${content.posterPath}" style="width: 100%; height: 100%;">
-					                    
-					                </td>
+	                
+					<table border="1" id="reviewImg">
+					    <tr style="height: 350px;">
+					        <c:forEach var="board" items="${boardList}" varStatus="loop">
+					            <c:if test="${loop.index < 5}">
+					                <c:set var="contentId" value="${board.contentsId}"/>
+					                <c:set var="imageDisplayed" value="false"/>
+					                <c:forEach var="content" items="${conList}" varStatus="contentLoop">
+					                    <c:if test="${content.contentsId eq contentId && imageDisplayed eq 'false'}">
+					                        <td>
+					                            <input type="hidden" class="cid" value="${content.contentsId}">
+					                            <img src="${content.posterPath}" style="width: 250px; height: 350px;">
+					                        </td>
+					                        <c:set var="imageDisplayed" value="true"/>
+					                    </c:if>
+					                </c:forEach>
 					            </c:if>
 					        </c:forEach>
 					    </tr>
 					    <tr>
-					        <td><a href="${contextPath}/list.rv?currentPage=1">리뷰</a></td>
-					        <td><a href="${contextPath}/list.rv?currentPage=1">리뷰</a></td>
-					        <td><a href="${contextPath}/list.rv?currentPage=1">리뷰</a></td>
-					    </tr>
-					    <tr style="height: 250px;">
-					        <c:forEach var="content" items="${conList}" varStatus="loop">
-					            <c:if test="${loop.index >= 3 && loop.index < 6}">
-					                <td style="width: 300px; height: 250px;">
-					                    <input type="hidden" class="cid" value="${content.contentsId}">
-					                    <img src="${content.posterPath}" style="width: 100%; height: 100%;">
-					                </td>
+					        <c:forEach var="board" items="${boardList}" varStatus="loop">
+					            <c:if test="${loop.index < 5}">
+					                <td>${board.boardContent}</td>
 					            </c:if>
 					        </c:forEach>
-					    </tr>
-					    <tr>
-					        <td><a href="${contextPath}/list.rv?currentPage=1">리뷰</a></td>
-					        <td><a href="${contextPath}/list.rv?currentPage=1">리뷰</a></td>
-					        <td><a href="${contextPath}/list.rv?currentPage=1">리뷰</a></td>
 					    </tr>
 					</table> <br><br>
-	
+
 	                <div class="menu">
-	                    <h1 align="center">랜덤 추천작품</h1>
+	                    <h1>이런 작품은 어떠세요?</h1>
 	                </div>
 	                <br><br>
 	                <table id="recommend">
@@ -117,9 +95,9 @@
 					            <tr>
 					                <td>
 					                    <input type="hidden" class="cid" value="${content.contentsId}">
-					                    <img src="${content.posterPath}" style="height: 400px; width: 400px;">
+					                    <img src="${content.posterPath}" style="height: 600px; width: 500px;">
 					                </td>
-					                <td style="width: 100px;"></td>
+					                
 					                <td style="width: 300px;">
 					                    ${content.overView}
 					                </td>
@@ -129,10 +107,11 @@
 					</table> <br><br>
 						
 	                <div class="menu">
-	                    <h1 align="center">평점 상위 컨텐츠</h1>
+	                    <h1>평점 상위 컨텐츠</h1>
 	                </div>
 	                <br><br>
-	                <table id="best">
+	                <div style="text-align: center;">
+	                <table id="best" style="display: inline-block;">
 	                    <tr>
 	                    <c:forEach var="content" items="${bestList}" varStatus="loop">
 				        <c:if test="${loop.index < 4}">
@@ -143,72 +122,21 @@
 	                        <td style="height: 200px; width: 200px;"></td>
 	                    </c:if>
 				   		</c:forEach>
-	<!--                         <td> -->
-	<!--                             <img src="" style="height: 200px; width: 200px;"> -->
-	<!--                         </td> -->
-	<!--                         <td></td> -->
-	<!--                         <td> -->
-	<!--                            <img src="" style="height: 200px; width: 200px;"> -->
-	<!--                         </td> -->
-	<!--                         <td></td> -->
-	<!--                         <td> -->
-	<!--                             <img src="" style="height: 200px; width: 200px;"> -->
-	<!--                         </td> -->
-	<!--                         <td></td> -->
 	                    </tr>
 	                    <tr align="center" id="bestTitle">
-	                        <c:forEach var="content" items="${bestList}" varStatus="loop">
-					        <c:if test="${loop.index < 4}">
+	                    <c:forEach var="content" items="${bestList}" varStatus="loop">
+					    <c:if test="${loop.index < 4}">
 					             <td>${content.title}</td>
 					             <td></td>
-					        </c:if>
-	       					</c:forEach>
-	<!--                         <td>화</td> -->
-	<!--                         <td></td> -->
-	<!--                         <td>제</td> -->
-	<!--                         <td></td> -->
-	<!--                         <td>목</td> -->
-	<!--                         <td></td> -->
+					    </c:if>
+	       				</c:forEach>
 	                    </tr>
 	                </table> <br><br>
-	
-<!-- 	                <div class="menu"> -->
-<!-- 	                    <h1 align="center">신작 드라마</h1> -->
-<!-- 	                </div> -->
-<!-- 	                <br><br> -->
-<!-- 	                <table> -->
-<!-- 	                    <tr> -->
-<!-- 	                        <td> -->
-<!-- 	                            <a href=""><img src="" style="height: 200px; width: 200px;"></a> -->
-<!-- 	                        </td> -->
-<!-- 	                        <td></td> -->
-<!-- 	                        <td> -->
-<!-- 	                            <a href=""><img src="" style="height: 200px; width: 200px;"></a> -->
-<!-- 	                        </td> -->
-<!-- 	                        <td></td> -->
-<!-- 	                        <td> -->
-<!-- 	                            <a href=""><img src="" style="height: 200px; width: 200px;"></a> -->
-<!-- 	                        </td> -->
-<!-- 	                        <td></td> -->
-<!-- 	                        <td> -->
-<!-- 	                            <a href=""><img src="" style="height: 200px; width: 200px;"></a> -->
-<!-- 	                        </td> -->
-<!-- 	                        <td></td> -->
-<!-- 	                    </tr> -->
-<!-- 	                    <tr align="center"> -->
-<!-- 	                        <td>신작</td> -->
-<!-- 	                        <td></td> -->
-<!-- 	                        <td>드</td> -->
-<!-- 	                        <td></td> -->
-<!-- 	                        <td>라</td> -->
-<!-- 	                        <td></td> -->
-<!-- 	                        <td>마</td> -->
-<!-- 	                        <td></td> -->
-<!-- 	                    </tr> -->
-<!-- 	                </table> -->
+					</div>
+
 	            </div>
 	        </form>    
-	    </div>
+	    </div> <br><br><br>
 		   <script>
 			    $('#reviewImg img').click(function() {
 			        var contentsId = $(this).closest('td').find('.cid').val();

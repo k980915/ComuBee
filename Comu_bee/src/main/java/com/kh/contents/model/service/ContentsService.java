@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import com.kh.common.JDBCTemplate;
 import com.kh.contents.model.dao.ContentsDao;
+import com.kh.contents.model.vo.Board;
 import com.kh.contents.model.vo.Contents;
 
 public class ContentsService {
@@ -28,24 +29,6 @@ public class ContentsService {
 		return list;
 	}
 
-	public Contents selectContents(int cid) {
-		Connection conn = JDBCTemplate.getConnection();
-		
-		Contents c = new ContentsDao().selectContents(conn, cid);
-		
-		JDBCTemplate.close(conn);
-		return c;
-	}
-
-	public ArrayList<Contents> ForReview() {
-		Connection conn = JDBCTemplate.getConnection();
-		
-		ArrayList<Contents> list = new ContentsDao().ForReview(conn);	
-		
-		JDBCTemplate.close(conn);	
-		return list;
-	}
-
 	public ArrayList<Contents> BestContentsList() {
 		Connection conn = JDBCTemplate.getConnection();
 		
@@ -54,6 +37,16 @@ public class ContentsService {
 		JDBCTemplate.close(conn);	
 		return list;
 	}
+
+	public ArrayList<Board> ForReview() {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		ArrayList<Board> boardList = new ContentsDao().ForReview(conn);	
+		
+		JDBCTemplate.close(conn);	
+		return boardList;
+	}
+
 
 	
 	
