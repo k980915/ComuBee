@@ -201,39 +201,38 @@ private Properties prop = new Properties();
 		return list;
 	}
 
-//	public ArrayList<Board> ForReview(Connection conn, int contentsId) {
-//	    PreparedStatement pstmt = null;
-//	    ResultSet rset = null;
-//	    
-//	    ArrayList<Board> list = new ArrayList<>();
-//	    
-//	    String sql = prop.getProperty("ForReview");
-//	    
-//	    try {
-//	        pstmt = conn.prepareStatement(sql);
-//	        pstmt.setInt(1, contentsId);
-//	        rset = pstmt.executeQuery();
-//	        
-//	        while(rset.next()) {
-//	            list.add(new Board(rset.getString("USERID")
-//	                                     ,rset.getInt("CONTENTSID")
-//	                                     ,rset.getString("BOARDCONTENT")
-//	                                     ,rset.getDate("CREATEDATE")
-//	                                     ,rset.getString("STATUS")
-//	                                     ,rset.getInt("BOARDLIKE")
-//	                                     ,rset.getInt("HATE")));
-//	        }
-//	    } catch (SQLException e) {
-//	        e.printStackTrace();
-//	    } finally {
-//	        JDBCTemplate.close(pstmt);
-//	        JDBCTemplate.close(rset);
-//	    }   
-//	    return list;
-//	}
-//	
-	
-	
+
+	public ArrayList<Board> ForReview(Connection conn, int contentsId) {
+	    PreparedStatement pstmt = null;
+	    ResultSet rset = null;
+	    
+	    ArrayList<Board> list = new ArrayList<>();
+	    
+	    String sql = prop.getProperty("ForReview");
+	    
+	    try {
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setInt(1, contentsId);
+	        rset = pstmt.executeQuery();
+	        
+	        while(rset.next()) {
+	            list.add(new Board(rset.getString("USERID")
+	                                     ,rset.getInt("CONTENTSID")
+	                                     ,rset.getString("BOARDCONTENT")
+	                                     ,rset.getDate("CREATEDATE")
+	                                     ,rset.getString("STATUS")
+	                                     ,rset.getInt("BOARDLIKE")
+	                                     ,rset.getInt("HATE")));
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        JDBCTemplate.close(pstmt);
+	        JDBCTemplate.close(rset);
+	    }   
+	    return list;
+	}
+
 	
 	
 	

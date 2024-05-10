@@ -308,6 +308,76 @@ public class UserDao {
 
 		return listCount;
 	}
+	//아이디 찾기
+	public User findId(String userName, String userEmail, Connection conn) {
+		ResultSet rset = null;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("findId");
+		User u = new User();
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userName);
+			pstmt.setString(2, userEmail);
+
+			rset = pstmt.executeQuery();
+			if (rset.next()) {
+				u = new User(rset.getString("USERID"),
+						rset.getString("USERNAME"), 
+						rset.getString("USEREMAIL"));
+
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+
+		return u;
+	}
+
+	public User findPwd(String userId, String userName, String userEmail, Connection conn) {
+		
+		ResultSet rset = null;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("findPwd");
+		User u = new User();
+		
+
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			pstmt.setString(2, userName);
+			pstmt.setString(3, userEmail);
+
+			rset = pstmt.executeQuery();
+			if (rset.next()) {
+				u = new User(
+						rset.getString("USERPWD"));
+						
+						
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+
+		}
+		
+		System.out.println(u);
+
+		return u;
+	}
+	
+	
+	
 
 //	public ArrayList<Reply> myReplySelectList(Connection conn, PageInfo pi, String userNo) {
 //		// 준비물

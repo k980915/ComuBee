@@ -30,6 +30,7 @@
 	ORDER BY RATE DESC
 	</entry>
 	
+
 	<entry key="ForReview">
     SELECT b.CONTENTSID, b.USERID, b.BOARDCONTENT, b.CREATEDATE, b.BOARDLIKE, b.HATE, b.STATUS
 	FROM BOARD b
@@ -50,7 +51,6 @@
 	SELECT *
 	FROM CONTENTS
 	</entry>
-	
 	
 
 
