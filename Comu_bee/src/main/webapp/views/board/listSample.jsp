@@ -22,6 +22,7 @@
 </head>
 
 <body>
+				
 
     <canvas class="my-4 w-100" id="myChart" width="10000" height="380"></canvas>
 
@@ -34,10 +35,14 @@
                     <th scope="col">번호</th>
                     <th scope="col">제목</th>
                     <th scope="col">글쓴이</th>
+                    <c:if test="${loginUser.userId eq 'admin'}">
+                    <th scope="col">관리</th>
+                    </c:if>
                     <th scope="col">작성일</th>
                     <th scope="col">조회수</th>
                     <th scope="col" class="text-center">추천</th>
                 </tr>
+                
             	<c:if test="${not category eq 'NOTICE'}">
             		<c:forEach items="${noList}" var="li">
 	            		<tr>
@@ -59,10 +64,19 @@
 					        <tr>
 			                    <td class="text-center">${li.boardNo}</td>
 			                    <td class="boardListTitle">${li.title}</td>
-			                    <td>${li.userId}</td>
+			                    <td id="adminuserId" >${li.userId}</td>
+								
+								<c:if test="${loginUser.userId eq 'admin'}">
+									<td>
+				                    <button type="button" class="adminBtn">
+									    회원 정보
+									</button>
+									</td>		                   
+								</c:if>
 			                    <td>${li.createDate}</td>
 			                    <td>${li.count }</td>
 			                    <td class="text-center">${li.boardLike}</td>
+			                  
 			                </tr>
 						</c:forEach>
 					</c:when>
@@ -103,6 +117,8 @@
         </ul>
     </nav>
     
+    
+    
     <script>
     	$(".boardListTitle").click(function(){
     		var bno = $(this).siblings().eq(0).text();
@@ -119,7 +135,19 @@
 		function next(){
 			location.href='list.${cat}?currentPage='+(currentPage+1);
 		}
+		$(".adminBtn").click(function () {
+			var adminuserId = $("#adminuserId").text();
+			console.log(adminuserId);
+			location.href='${contextPath}/userInfoList.ad?userId='+adminuserId;
+				
+		})
+
+
+		
 	</script>
+	
+
+	
 	
 <div class="container mt-4">
     <form action="${pageContext.request.contextPath}/board.se" method="get">
@@ -129,7 +157,6 @@
         </div>
     </form>
 </div>
-
 
 </body>
 </html>
