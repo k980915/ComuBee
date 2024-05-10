@@ -3,10 +3,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
-<%
-	ArrayList<Contents> list = (ArrayList<Contents>)request.getAttribute("list");
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,13 +32,13 @@
 			</tr>
 		</thead>
 		<tbody>
-    		<c:forEach items="${list}" var="contents">
+    		<c:forEach items="${contentsList}" var="contents">
         		<tr>
             		<td>${contents.title}</td>
             		<td>${contents.director}</td>
             		<td>${contents.englishTitle}</td>
             		<td>${contents.overView}</td>
-            		<td><img src="${content.posterPath}" style="width:100px;height:150px;"></td>
+            		<td><img src="${pageContext.request.contextPath}/resources/uploadFiles/${contents.posterPath}" alt="Poster" style="width:100px;height:150px;"></td>
             		<td>${contents.runtime}</td>
            		 	<td>${contents.releaseDate}</td>
         		</tr>

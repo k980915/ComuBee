@@ -55,15 +55,6 @@ public class ContentsService {
 		return list;
 	}
 
-	public ArrayList<Contents> ForSearch() {
-		Connection conn = JDBCTemplate.getConnection();
-		
-		ArrayList<Contents> list = new ContentsDao().ForSearch(conn);	
-		
-		JDBCTemplate.close(conn);	
-		return list;
-	}
-
 	
 	
 	
