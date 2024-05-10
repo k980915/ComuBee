@@ -8,14 +8,14 @@
 <title>COMU-BEE</title>
 </head>
 <body>
-	<div>
-	<%@ include file="/views/common/header.jsp" %>
-	</div>
-	<div>
+<!-- 	<div> -->
+<%-- 	<%@ include file="/views/common/header.jsp" %> --%>
+<!-- 	</div> -->
+<!-- 	<div> -->
 <%-- 		<%@ include file = "/views/contents/mainPage.jsp" %> --%>
-	</div>
+<!-- 	</div> -->
 
-	
+	<jsp:forward page="main.co"/>
 
 
 

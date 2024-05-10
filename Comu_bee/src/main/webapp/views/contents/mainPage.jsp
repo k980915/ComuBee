@@ -110,7 +110,8 @@
 	                    <h1>평점 상위 컨텐츠</h1>
 	                </div>
 	                <br><br>
-	                <table id="best">
+	                <div style="text-align: center;">
+	                <table id="best" style="display: inline-block;">
 	                    <tr>
 	                    <c:forEach var="content" items="${bestList}" varStatus="loop">
 				        <c:if test="${loop.index < 4}">
@@ -131,7 +132,7 @@
 	       				</c:forEach>
 	                    </tr>
 	                </table> <br><br>
-	
+					</div>
 
 	            </div>
 	        </form>    

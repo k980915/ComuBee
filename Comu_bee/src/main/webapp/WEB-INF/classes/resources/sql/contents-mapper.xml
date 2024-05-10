@@ -36,6 +36,11 @@
 	FROM CONTENTS
 	</entry>
 	
+	<entry key="ForReview">
+	SELECT CONTENTSID, USERID, BOARDCONTENT, CREATEDATE, BOARDLIKE, HATE, STATUS
+	FROM BOARD
+	</entry>
+	
 	
 
 
