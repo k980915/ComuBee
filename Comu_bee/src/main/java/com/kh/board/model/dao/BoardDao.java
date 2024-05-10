@@ -484,4 +484,32 @@ public class BoardDao {
 		return rList;
 	}
 
+	public ArrayList<Contents> searchContentByTitle(Connection conn, String contTitle) {
+		// TODO Auto-generated method stub
+		ArrayList<Contents> cList=new ArrayList<>();
+		PreparedStatement pstmt=null;
+		ResultSet rset=null;
+		String sql=prop.getProperty("searchContentByTitle");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, contTitle);
+			rset=pstmt.executeQuery();
+			while(rset.next()) {
+				Contents c=new Contents();
+				c.setContentsId(rset.getInt("CONTENTSID"));
+				c.setTitle(rset.getString("TITLE"));
+				cList.add(c);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(conn);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return cList;
+	}
+
 }

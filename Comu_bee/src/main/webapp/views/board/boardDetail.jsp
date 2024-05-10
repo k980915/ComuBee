@@ -73,8 +73,12 @@
 								<!-- 관리자 or 작성자라면 게시글 수정/삭제 버튼이 보이게 처리하기 -->
 								<c:if test="${loginUser.userId eq 'admin' or loginUser.userId eq b.userId}">
 									<td>
-										<button type="button" onclick="location.href='${contextPath}/update.bo?bno=${b.boardNo}'">수정</button><button type="button" onclick="deleteYN();">삭제</button>
+										<button type="button" onclick="updateBoard();">수정</button><button type="button" onclick="deleteYN();">삭제</button>
 											<script>
+												function updateBoard(){
+													var bno=${b.boardNo};
+													location.href="${contextPath}/update.bo?bno=${b.boardNo}"
+												}
 												function deleteYN(){
 													var result=window.confirm("정말 삭제하시겠습니까?");
 													if(result){
@@ -370,7 +374,7 @@
 										bno : ${b.boardNo}
 									},
 									success : function(rList){
-										if(rList==null){
+										if(${empty rList}){
 											tr="<tr>"
 												+"<td span='3'>"
 												+"현재 댓글이 없습니다."
