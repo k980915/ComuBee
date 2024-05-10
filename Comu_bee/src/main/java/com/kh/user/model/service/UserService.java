@@ -132,6 +132,23 @@ public class UserService {
 		JDBCTemplate.close(conn);
 		return listCount;
 	}
+	//아이디찾기
+	public User findId(String userName, String userEmail) {
+		Connection conn = JDBCTemplate.getConnection();
+		User u = new UserDao().findId(userName,userEmail,conn);
+		
+		JDBCTemplate.close(conn);
+		
+		return u;
+	}
+	//비밀번호 찾기
+	public User findPwd(String userId, String userName, String userEmail) {
+		Connection conn = JDBCTemplate.getConnection();
+		User u = new UserDao().findPwd(userId,userName,userEmail,conn);
+		
+		JDBCTemplate.close(conn);
+		return u;
+	}
 	
 	
 //	//내가 쓴 댓글 가져오기 
