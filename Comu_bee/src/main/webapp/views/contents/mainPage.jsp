@@ -79,7 +79,7 @@
 					            <c:if test="${loop.index < 3}">
 					                <td style="width: 300px; height: 250px;">
 					                    <input type="hidden" class="cid" value="${content.contentsId}">
-					                    <img src="${content.posterPath}" style="width: 100%; height: 100%;">
+					                    <img src="${contextPath}${content.posterPath}" style="width: 100%; height: 100%;">
 					                    
 					                </td>
 					            </c:if>
@@ -117,7 +117,7 @@
 					            <tr>
 					                <td>
 					                    <input type="hidden" class="cid" value="${content.contentsId}">
-					                    <img src="${content.posterPath}" style="height: 400px; width: 400px;">
+					                    <img src="${contextPath}${content.posterPath}" style="height: 400px; width: 400px;">
 					                </td>
 					                <td style="width: 100px;"></td>
 					                <td style="width: 300px;">
@@ -138,7 +138,7 @@
 				        <c:if test="${loop.index < 4}">
 	                        <td>
 	                        	<input type="hidden" class="cid" value="${content.contentsId}">
-	                            <img src="${content.posterPath}" style="height: 200px; width: 200px;">
+	                            <img src="${contextPath}${content.posterPath}" style="height: 200px; width: 200px;">
 	                        </td>
 	                        <td style="height: 200px; width: 200px;"></td>
 	                    </c:if>
@@ -214,6 +214,9 @@
 			        var contentsId = $(this).closest('td').find('.cid').val();
 					var posterPath = $(this).attr('src');
 					location.href = '${contextPath}/detail.co?contentsId=' + contentsId;
+					console.log(contentsId);
+					console.log(posterPath);
+					
 			    });
 			    
 			    $('#recommend img').click(function() {
