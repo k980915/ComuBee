@@ -72,12 +72,6 @@ public class Contents {
 			this.rate = rate;
 		}
 
-		public Contents(int contentsId, String title, String posterPath, double rate) {
-			this.contentsId = contentsId;
-			this.title = title;
-			this.posterPath = posterPath;
-			this.rate = rate;
-		}
 
 		public int getContentsId() {
 			return contentsId;

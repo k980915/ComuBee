@@ -158,7 +158,17 @@ public class BoardService {
 		ArrayList<Reply> rList = new ArrayList<>();
 		Connection conn = JDBCTemplate.getConnection();
 		rList=new BoardDao().replyList(conn,bno);
+		JDBCTemplate.close(conn);
 		return rList;
+	}
+
+	public ArrayList<Contents> searchContentByTitle(String contTitle) {
+		// TODO Auto-generated method stub
+		ArrayList<Contents> cList=new ArrayList<>();
+		Connection conn=JDBCTemplate.getConnection();
+		cList=new BoardDao().searchContentByTitle(conn,contTitle);
+		JDBCTemplate.close(conn);
+		return cList;
 	}
 
 }

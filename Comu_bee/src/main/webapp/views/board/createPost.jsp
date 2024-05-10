@@ -38,14 +38,17 @@
 			<c:if test="${category ne 'REVIEW'}">
 	            <div class="mb-3">
 	                <label for="title" class="form-label">제목</label>
-	                <input type="text" class="form-control" id="title" name="title" placeholder="제목을 작성해주세요" required>
+	                <input type="text" class="form-control" id="title" name="contentsId" placeholder="제목을 작성해주세요" required>
 	            </div>
 			</c:if>
             <c:if test="${category eq 'REVIEW'}">
-	            <div class="mb-3">
-	                <label for="bdCont" class="form-label">관련된 컨텐츠</label>
-	                <input type="text" class="form-control" id="bdCont" name="bdCont" placeholder="관련된 컨텐츠 제목을 적어주세요" required>
+	            <div class="mb-3 contInput">
+	                <label for="contTitle" class="form-label">관련된 컨텐츠</label>
+	                <input type="text" class="form-control" id="contTitle" name="contTitle" placeholder="관련된 컨텐츠 제목을 적어주세요" required>
+	                <button onclick="searchTitle();">검색</button>
+	                <span class="contList"></span>
 	            </div>
+
             </c:if>
             
             <div class="form-group mb-3">
@@ -68,6 +71,40 @@
 <div>
 
 </div>
+<script>
+	function searchTitle(){
+		var contTitle=$("#contTitle").val();
+		var tr="<select name='contentsId'>";
+		
+		$.ajax({
+			url : "searchContTitle.bo",
+			data : {
+				contTitle : contTitle
+			},
+			success : function(cList){
+				if(${empty cList}){
+					alert("조회결과가 없습니다.");
+					$("#contTitle").val("");
+				}else{
+					for(var i in cList){
+						tr+="<option value='"
+							+cList[i].contentsId+"'>"
+							+cList[i].title
+							+"</option>"
+					}
+					tr+="</select>";
+				
+				$(".contInput .contList").html(tr);
+				}
+			},
+			error : function(){
+				console.log("오류난듯");
+				
+			}
+		})
+	return false;
+	}
+</script>
     <br><br><br><br>
 </body>
 </html>

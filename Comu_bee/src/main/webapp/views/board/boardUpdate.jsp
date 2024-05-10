@@ -51,36 +51,38 @@
 						<table border="1px solid black">
 							<thead>
 								<tr>
-									<td class="boardCategory">"${boardCategory}"</td>
+									<td class="boardCategory">"${category}"</td>
 									<td class="boardFreeTitle" colspan="2">
-										<input type="text" name="title" required value="${b.boardTitle}">
+										<input type="text" name="title" required value="${b.title}">
 									</td>
 									
 								</tr>
 								<tr>
 									<td>작성자 : </td>
-									<td class="boardWriter" width="300">"${list.userId}"</td>
-									<td class="boardCount" width="150">조회수 : ${list.count}</td>
-									<td class="boardLike" width="100">추천수 : ${list.like}</td>
+									<td class="boardWriter" width="300">"${b.userId}"</td>
+									<td class="boardCount" width="150">조회수 : ${b.count}</td>
+									<td class="boardLike" width="100">추천수 : ${b.boardLike}</td>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
 									<td class="boardContent" height="400" colspan="4">
-										<textarea name="content" rows="10" style="resize:none" required>${b.boardcontent}</textarea>
+										<textarea name="content" rows="10" style="resize:none;" required>${b.boardContent}</textarea>
 									</td>
 								</tr>
 								<tr>
 									<th>첨부파일</th>
 									<td colspan="3">
 										<c:if test="${at!=null}">
-											${at.originName}
+											<c:forEach items="${at}" val="ats">
+											${ats.originName}
 											<!-- 게시글에 첨부 파일이 있었던 경우, 해당 첨부 파일 정보를 등록한 DB에 있는 정보에 수정이 일어나야 한다.
 												 때문에 해당 데이터 식별자 용으로 fileNo를 전달해야 하고 또한 서버에 업로드된 파일이 필요 없어졌으니
 												 삭제를 위해 해당 파일명이 필요하다(서버에 업로드된 파일명)
 											 -->
-											 <input type="hidden" name="originFileNo" value="${at.atNo}">
-											 <input type="hidden" name="originFileName" value="${at.changeName}">
+											 <input type="hidden" name="originFileNo" value="${ats.atNo}">
+											 <input type="hidden" name="originFileName" value="${ats.changeName}">
+											</c:forEach>
 										</c:if>
 											<input type="file" name="reUploadFile">					
 									</td>

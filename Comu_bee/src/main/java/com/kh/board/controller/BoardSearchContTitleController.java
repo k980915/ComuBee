@@ -9,21 +9,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.kh.board.model.service.BoardService;
-import com.kh.board.model.vo.Attachment;
-import com.kh.board.model.vo.Board;
+import com.kh.board.model.vo.Reply;
+import com.kh.contents.model.vo.Contents;
 
 /**
- * Servlet implementation class BoardUpdateController
+ * Servlet implementation class BoardContentsSearchTitleController
  */
-@WebServlet("/update.bo")
-public class BoardUpdateController extends HttpServlet {
+@WebServlet("/searchContTitle.bo")
+public class BoardSearchContTitleController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardUpdateController() {
+    public BoardSearchContTitleController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,21 +35,11 @@ public class BoardUpdateController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
-		int bno = Integer.parseInt(request.getParameter("bno"));
-		
-		System.out.println(bno);
-		
-		//수정페이지로 전달하기
-		// 게시글 정보
-		// 카테고리 목록
-		// 첨부 파일 정보
-		Board b = new BoardService().selectBoard(bno);
-		ArrayList<Attachment> at = new BoardService().selectAttachment(bno);
-		// 출력문으로 출력해서 확인
-		request.setAttribute("b", b);
-		request.setAttribute("at", at);
-		
-		request.getRequestDispatcher("views/board/boardUpdate.jsp").forward(request, response);
+		String contTitle = request.getParameter("contTitle");
+		ArrayList<Contents> cList = new BoardService().searchContentByTitle(contTitle);
+		System.out.println(cList);
+		response.setContentType("json/application; charset=UTF-8");
+		new Gson().toJson(cList,response.getWriter());
 	}
 
 	/**
