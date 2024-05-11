@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.kh.board.model.vo.Board;
+import com.kh.board.model.vo.Reply;
 import com.kh.common.JDBCTemplate;
 import com.kh.common.model.vo.PageInfo;
 import com.kh.user.model.vo.User;
@@ -260,9 +261,9 @@ public class UserDao {
 			while(rset.next()) {
 				list.add(new Board(
 						rset.getInt("BOARDNO"),
+						rset.getString("USERID"),
 						rset.getString("CATEGORYNAME"),
 						rset.getString("TITLE"),
-						rset.getString("USERID"),
 						rset.getDate("CREATEDATE"),
 						rset.getInt("BOARDLIKE"),
 						rset.getInt("COUNT")
@@ -309,41 +310,44 @@ public class UserDao {
 		return listCount;
 	}
 
-//	public ArrayList<Reply> myReplySelectList(Connection conn, PageInfo pi, String userNo) {
-//		// 준비물
-//		ArrayList<Reply> list = new ArrayList<>();
-//		ResultSet rset = null;
-//		PreparedStatement pstmt = null;
-//
-//		String sql = prop.getProperty("myReplySelectList");
-//
-//		// 1페이지 : 게시글 1~10번 보여주기
-//		// 5페이지 : 게시글 41~50번 보여주기
-//		// currentPage : 현재페이지 / boardLimit : 한 페이지에서 보여질 게시글 총 개수
-//		int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
-//		int endRow = pi.getCurrentPage() * pi.getBoardLimit();
-//
-//		try {
-//			pstmt = conn.prepareStatement(sql);
-//			pstmt.setString(1, userNo);
-//			pstmt.setInt(2, startRow); // 시작값
-//			pstmt.setInt(3, endRow); // 끝값
-//
-//			rset = pstmt.executeQuery();
-//			// 목록조회이니 더이상 조회될행이 없을때까지 추출하기
-//			while (rset.next()) {
-//				list.add(new Reply(rset.getInt("REPLY_NO"), rset.getString("REPLY_CONTENT"), rset.getString("USER_ID"),
-//						rset.getDate("CREATE_DATE"), rset.getInt("REF_BNO")));
-//
-//			}
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} finally {
-//			JDBCTemplate.close(rset);
-//			JDBCTemplate.close(pstmt);
-//		}
-//		return list;
-//	}
+	public ArrayList<Reply> myReplySelectList(Connection conn, PageInfo pi, String userId) {
+		// 준비물
+		ArrayList<Reply> list = new ArrayList<>();
+		ResultSet rset = null;
+		PreparedStatement pstmt = null;
+
+		String sql = prop.getProperty("myReplySelectList");
+
+		// 1페이지 : 게시글 1~10번 보여주기
+		// 5페이지 : 게시글 41~50번 보여주기
+		// currentPage : 현재페이지 / boardLimit : 한 페이지에서 보여질 게시글 총 개수
+		int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+		int endRow = pi.getCurrentPage() * pi.getBoardLimit();
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			pstmt.setInt(2, startRow); // 시작값
+			pstmt.setInt(3, endRow); // 끝값
+
+			rset = pstmt.executeQuery();
+			// 목록조회이니 더이상 조회될행이 없을때까지 추출하기
+			while (rset.next()) {
+				list.add(new Reply(rset.getInt("REPLYNO"), 
+						rset.getString("USERID"), 
+						rset.getString("REPLYCONTENT"),
+						rset.getDate("CREATEDATE"), 
+						rset.getInt("BOARDNO")));
+
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return list;
+	}
 
 }

@@ -81,22 +81,38 @@ INSERT INTO MEMBERINFO(USERID
 <entry key="myReplyListCount">
 		SELECT COUNT(*) COUNT
 		FROM REPLY 
-		WHERE REPLY_WRITER=?
+		WHERE USERID=?
 	</entry>
 	<entry key="myReplySelectList">
 		SELECT * 
 		FROM (
 		        SELECT ROWNUM RNUM,S.* 
-		        FROM (SELECT REPLY_NO
-		      		  ,REPLY_CONTENT
-		      		  ,USER_ID
-		      		  ,CREATE_DATE
-		      		  ,REF_BNO
+		        FROM (SELECT REPLYNO
+		      		  ,USERID
+		      		  ,REPLYCONTENT
+		      		  ,CREATEDATE
+		      		  ,BOARDNO
 				FROM REPLY R
-				JOIN MEMBER M ON (REPLY_WRITER=USER_NO)
-				WHERE R.STATUS ='Y'
-				AND REPLY_WRITER = ?) S)
+				JOIN MEMBERINFO M USING(USERID)
+				WHERE USERID = ?) S)
 		WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	<entry key="selectListById">
+		SELECT * FROM(
+			SELECT ROWNUM,S.* FROM(
+				SELECT BOARDNO,
+					CATEGORYNAME,
+					TITLE,
+					USERID,
+					CREATEDATE,
+					BOARDLIKE,
+					COUNT 
+				FROM BOARD B 
+				JOIN CATEGORY_BRD USING(CATEGORYNO) 
+				WHERE USERID=?
+				AND B.STATUS='Y') S
+			)
+			WHERE "ROWNUM" BETWEEN ? AND ?
 	</entry>
 
 
