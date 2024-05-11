@@ -40,7 +40,7 @@
 					url : "hitsViewUpdate.ad",
 					data : {hit : hit},
 					success : function(result) {
-						alert("조회수 업데이트 완료 : " + result);
+						
 					},
 					error : function() {
 						alert("요청 실패");

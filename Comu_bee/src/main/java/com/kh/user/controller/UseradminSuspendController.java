@@ -1,27 +1,26 @@
-package com.kh.contents.controller;
+package com.kh.user.controller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.contents.model.service.ContentsService;
-import com.kh.contents.model.vo.Contents;
+import com.kh.common.TimerDays;
+import com.kh.user.model.service.AdminService;
 
 /**
- * Servlet implementation class SelectContents
+ * Servlet implementation class UserSuspendController
  */
-//@WebServlet("/main.co")
-public class SelectContents extends HttpServlet {
+@WebServlet("/suspend.ad")
+public class UseradminSuspendController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SelectContents() {
+    public UseradminSuspendController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,14 +29,21 @@ public class SelectContents extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int cid = Integer.parseInt(request.getParameter("cid"));
+
+		String userIdval = request.getParameter("userIdval");
+//		System.out.println(susDays);
+//		System.out.println(userIdval);
 		
-		Contents c = new ContentsService().selectContents(cid);
-		request.setAttribute("c", c);
-//		request.getRequestDispatcher("index.jsp").forward(request, response);
-//		
-//		System.out.println(cid);
-//		System.out.println(c);
+		int result = new AdminService().UseradminSuspend(userIdval);
+		//System.out.println(result);
+
+			response.setContentType("text/html;charset=UTF-8");
+			response.getWriter().print(result);
+
+
+		
+		
+		
 	}
 
 	/**

@@ -1,4 +1,4 @@
-package com.kh.contents.controller;
+package com.kh.user.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -8,21 +8,20 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.kh.contents.model.service.ContentsService;
-import com.kh.contents.model.vo.Contents;
+import com.kh.user.model.service.AdminService;
+import com.kh.user.model.vo.User;
 
 /**
- * Servlet implementation class ForSearch
+ * Servlet implementation class UserInfoList
  */
-@WebServlet("/search.se")
-public class ForSearch extends HttpServlet {
+@WebServlet("/userInfoList.ad")
+public class UserInfoList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ForSearch() {
+    public UserInfoList() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,12 +30,14 @@ public class ForSearch extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Contents> list = new ArrayList<>();
-		list = new ContentsService().ForSearch();
+		String userId = request.getParameter("userId");
+		//System.out.println(userId);
+		User listInfo = new AdminService().UserInfoList(userId);
+		//System.out.println(listInfo);
 		
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("views/search/contentsSearchResults.jsp").forward(request, response);
-
+		request.setAttribute("listInfo", listInfo);
+		request.getRequestDispatcher("views/common/adminSuspendModal.jsp").forward(request, response);
+		
 	}
 
 	/**
