@@ -23,7 +23,7 @@
 			</div>
 			<div class="boardMain">
 				<div class="boardTitle">
-					<table border="1px solid black">
+					<table border="1px solid black">  
 						<thead>
 							<tr>
 								<c:if test="${category ne 'REVIEW'}">
@@ -66,7 +66,7 @@
 							<tr align="center">
 								<td></td>
 								<td> <button onclick="recommendBoard();">추천하기</button> </td>
-								<td></td>
+								<td> <button onclick="scrab();">찜해놓기</button></td>
 							</tr>
 							<tr>
 								<td class="boardSearchTag" colspan="4">
@@ -350,6 +350,25 @@
 										}
 									}
 										$(".writtenReply tbody").html(tr);
+										},
+									error : function(){
+										console.log("통신 오류")
+									}
+									
+								});
+								
+							}
+							
+							function scrab(){
+								var tr="";
+								$.ajax({
+									url : "insertScrab.sc",
+									data : {
+										bno : ${b.boardNo}
+										userId :"${loginUser.userId}"
+									},
+									success : function(result){
+										
 										},
 									error : function(){
 										console.log("통신 오류")

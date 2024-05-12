@@ -93,26 +93,8 @@ INSERT INTO MEMBERINFO(USERID
 		      		  ,CREATEDATE
 		      		  ,BOARDNO
 				FROM REPLY R
-				JOIN MEMBERINFO M USING(USERID)
 				WHERE USERID = ?) S)
 		WHERE RNUM BETWEEN ? AND ?
-	</entry>
-	<entry key="selectListById">
-		SELECT * FROM(
-			SELECT ROWNUM,S.* FROM(
-				SELECT BOARDNO,
-					CATEGORYNAME,
-					TITLE,
-					USERID,
-					CREATEDATE,
-					BOARDLIKE,
-					COUNT 
-				FROM BOARD B 
-				JOIN CATEGORY_BRD USING(CATEGORYNO) 
-				WHERE USERID=?
-				AND B.STATUS='Y') S
-			)
-			WHERE "ROWNUM" BETWEEN ? AND ?
 	</entry>
 
 	<entry key="findId">
@@ -129,6 +111,24 @@ INSERT INTO MEMBERINFO(USERID
 		AND USERNAME=?
 		AND USEREMAIL= ?
 
+	</entry>
+	
+	<entry key="selectListById">
+		SELECT * FROM(
+			SELECT ROWNUM,S.* FROM(
+				SELECT BOARDNO,
+					USERID,
+					CATEGORYNAME,
+					TITLE,
+					CREATEDATE,
+					BOARDLIKE,
+					COUNT 
+				FROM BOARD B 
+				JOIN CATEGORY_BRD USING(CATEGORYNO) 
+				WHERE USERID=?
+				AND B.STATUS='Y') S
+			)
+			WHERE "ROWNUM" BETWEEN ? AND ?
 	</entry>
 
 

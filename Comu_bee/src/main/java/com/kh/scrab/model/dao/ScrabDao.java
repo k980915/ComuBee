@@ -75,12 +75,13 @@ public class ScrabDao {
 			pstmt.setInt(2, startRow);
 			pstmt.setInt(3, endRow);
 			rset = pstmt.executeQuery();
+			
 			while(rset.next()) {
 				list.add(new Board(
 						rset.getInt("BOARDNO"),
+						rset.getString("USERID"),
 						rset.getString("CATEGORYNAME"),
 						rset.getString("TITLE"),
-						rset.getString("USERID"),
 						rset.getDate("CREATEDATE"),
 						rset.getInt("BOARDLIKE"),
 						rset.getInt("COUNT")
@@ -94,7 +95,7 @@ public class ScrabDao {
 			JDBCTemplate.close(rset);
 			JDBCTemplate.close(pstmt);
 		}
-		
+		System.out.println(list);
 		return list;
 	}
 	
