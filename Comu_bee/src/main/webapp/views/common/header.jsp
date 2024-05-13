@@ -24,29 +24,10 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
-<style>
-	body {
-	   background-image: url('resources/uploadFiles/bg1.jpg');
-	   background-size: 100%;
-	   background-attachment: scroll;
-	   position: relative;
-    }
-	body::before {
-		content: '';
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		background-color: rgba(255, 255, 255, 0.5);
-		z-index: -1;
-	}
+<style>	
 	.outer {
-		margin: auto;
-		margin-left: 200px;
-		margin-right: 200px;
+		margin: auto;	
 	}
-	
 	.head-area {
 		display: flex;
 		justify-content: space-between;
@@ -56,11 +37,14 @@
 		margin-left: 100px;
 		margin-right: 100px;		
 	}
-	
+	.logo-area{
+		margin-left:200px;
+	}
 	#logo-img {
 		width: 300px;
 		height: 200px;
 	}
+
 	.title {
 		margin-left: 10px;
 		font-size: 35px;
@@ -121,27 +105,44 @@
 		display: inline-block;
 		vertical-align: middle;
 	}
+	.light-mode {
+    --bg-color: #333;
+    --text-color: #fff;
+}
+
+/* 어두운 모드 스타일 */
+	body.dark-mode {
+	    --bg-color: #E5B409;
+	    --text-color: #333;
+	    /* 다른 어두운 모드 스타일 */
+	}
+	
+	/* 공통 스타일 */
+	body {
+	    background-color: var(--bg-color);
+	    color: var(--text-color);
+	    /* 기타 공통 스타일 */
+	}
 
 </style>
 </head>
 
 
-<body>
-
+<body class="light-mode">
+	
     
     <div class="outer">
         <div class="head-area">
                 <div class="logo-area">
                 	<table id="logo">
                 		<tr>
-		                    <td><img src="resources/uploadFiles/2.png" id="logo-img"></td>
+		                    <td><img src="resources/uploadFiles/Logo.png" id="logo-img"></td>
 <!-- 		                    <td><h1 class="title">COMU-BEE</h1></td> -->
 	                    </tr>
                     </table>
                 </div>
 
-		<div class="search-area">
-	
+		<div class="search-area">	
 		    <form id="searchForm" action="" method="get">
 		        <input type="text" name="title" class="search-input" placeholder="영화 또는 드라마 등 컨텐츠 검색">
 		        <button type="submit">검색</button>
@@ -151,19 +152,19 @@
             <div>
             <%@include file="/views/common/loginheader.jsp" %>
             </div>
-            
         </div>
+           <div class="dark-mode" align="right" onclick="toggleDarkMode()">다크모드</div>
+        
     </div>    <br><br>
     
     <%@ include file="/views/common/hitsHeader.jsp"%>
 
-
-
    		<script>
-		    $('.logo-area').click(function() {
-		       
+		    $('.logo-area').click(function() {		       
 				location.href = '${contextPath}/main.co';
 		    });
+		    
+
 		</script>
 		<script>
 	        var form = document.getElementById('searchForm');

@@ -44,19 +44,14 @@
     	    height: 100px;
     	    font-weight:bold;
     	}
-    	#reply{
-    		background-color: #dfdede;
-    	}
+
 		table {
             font-weight: bold;
         }		
 		#trailer:hover{
 		cursor: pointer;
 		}
-        .outer a{
-        	color:black;
-        }
-        
+		
     </style>
 </head>
 <body>
@@ -191,7 +186,9 @@
 	            scrollTop: linkOffsetTop
 	        }, 0);
 	    });
-
+		
+	    
+	    
     
 	</script>
 

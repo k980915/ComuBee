@@ -38,9 +38,7 @@
 	            line-height: 50px;
 	            text-align: center;
 	        }
-	        .menu a{
-	        	color:black;
-	        }
+	        
 	        img:hover{
 	        	cursor: pointer;
 	        }
@@ -54,13 +52,14 @@
         	#recommend {
 			    font-size: 25px;
 			}
+			
 	        
 	    </style>
 	</head>
 	<body>
 	    <%@ include file = "/views/common/header.jsp" %>
 	
-	    <div class="outer">
+	    <div>
 	        <form action="${contextPath}/main.co">
 	        
 	            <div align="center">
