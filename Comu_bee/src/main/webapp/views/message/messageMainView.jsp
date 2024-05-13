@@ -4,31 +4,37 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<style>
-.button-container {
-	text-align: center; /* Center-align the container */
-}
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/views/board/board-css/ListSample.css">
+	<title>Insert title here</title>
+	<style>
+		.button-container {
+				text-align: center; /* Center-align the container */
+			}
 
-.button-container .button {
-	margin-left: 20px;
-	/* Adjust the margin to push the buttons to the right */
-}
+		.button-container .button {
+				margin-left: 20px;
+				/* Adjust the margin to push the buttons to the right */
+			}
 
-.slide {
-	float: right;
-}
+		.slide {
+				float: right;
+			}
+		.pagination a {
+            	color: black; 
+        	}
 </style>
 </head>
 <body>
 	<%@ include file="/views/common/header.jsp"%>
 
-	<button id="sendView" onclick="sendList();">내가 보낸 쪽지</button>
-	<button id="receiveView" onclick="receiveList();">내가 받은 쪽지</button>
-	<!-- <button id="scrabView" onclick="scrabList();">보관함</button> -->
-	<div id="detail-area"></div>
-	<div id="messages-area">
-		<table border="1" align="center">
+	<button class="btn btn-outline-secondary create-post-button" id="sendView" onclick="sendList();">내가 보낸 쪽지</button>
+	<button class="btn btn-outline-secondary create-post-button" id="receiveView" onclick="receiveList();">내가 받은 쪽지</button>
+	<!-- <button id="scrabView" onclick="scrabList();">보관함</button> -->	
+	<div id="messages-area" class="table-responsive small">
+		<table border="1" align="center" class="table table-striped table-sm table-hover">
 
 			<thead>
 				<tr>
@@ -37,7 +43,7 @@
 					<td>받는이</td>
 					<td>내용</td>
 					<td>작성일</td>
-					<td>보관</td>
+					<td>확인여부</td>
 				</tr>
 			</thead>
 			<tbody>
@@ -96,7 +102,6 @@
 				},
 				success : function(list) {
 					console.log("성공");
-					$("#messages-area tbody>tr").remove();
 					//전부 추가하기
 					var tr = "";
 					var div = "";
@@ -109,7 +114,7 @@
 								+ list[i].receiveName + "</td>" + "<td>"
 								+ list[i].messageContent + "</td>" + "<td>"
 								+ list[i].sendDate + "</td>" + "<td>"
-								+ list[i].scrabCheck + "</td>" + "</tr>";
+								+ list[i].readCheck + "</td>" + "</tr>";
 					}
 					$("#messages-area tbody").html(tr);
 				},
@@ -152,7 +157,7 @@
 											+ "</td>" + "<td>" + messageContent
 											+ "</td>" + "<td>"
 											+ list[i].sendDate + "</td>"
-											+ "<td>" + list[i].scrabCheck
+											+ "<td>" + list[i].readCheck
 											+ "</td>" + "</tr>";
 								}
 

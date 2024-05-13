@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>리스트 양식</title>
@@ -16,14 +16,17 @@
             color: black; 
         }
     </style>
+
 </head>
+
 <body>
 <%@ include file="/views/board/boardMenuBar.jsp" %>
 	<div class="boardTitle">
-		<h2>찜 목록 </h2>	
+		<h2>내가 쓴 글 </h2>	
 	</div>
 	
-	<canvas class="my-4 w-100" id="myChart" width="10000" height="380"></canvas>
+	
+    <canvas class="my-4 w-100" id="myChart" width="10000" height="380"></canvas>
 
 
 
@@ -97,14 +100,14 @@
     	});
 		$(".page-link").click(function(){
 			var btnNo=Number($(this).text());
-			location.href='scrabList.sc?&userId=${loginUser.userId}&myScrabCurrentPage='+btnNo;
+			location.href='myBoardList.us?&userId=${loginUser.userId}&myBoardCurrentPage='+btnNo;
 		});
 		var currentPage=${pi.currentPage}
 		function prev(){
-			location.href='scrabList.sc?&userId=${loginUser.userId}&myScrabCurrentPage='+(currentPage-1);
+			location.href='myBoardList.us?&userId=${loginUser.userId}&myBoardCurrentPage='+(currentPage-1);
 		}
 		function next(){
-			location.href='scrabList.sc?&userId=${loginUser.userId}&myScrabCurrentPage='+(currentPage+1);
+			location.href='myBoardList.us?&userId=${loginUser.userId}&myBoardCurrentPage='+(currentPage+1);
 		}
 	</script>
 	
@@ -116,7 +119,7 @@
         </div>
     </form>
 </div>
-	
-	
+
+
 </body>
 </html>
