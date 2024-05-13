@@ -46,7 +46,7 @@ public class ScrabMainController extends HttpServlet {
 		System.out.println(userId);
 		//listCount 현재 게시글 개수 - DB에서 조회해오기
 		listCount = new ScrabService().myScrabListCount(userId);
-		
+		System.out.println("listCount 개수 : "+listCount);
 
 		//currentPage 현재 페이지정보 
 		currentPage = Integer.parseInt(request.getParameter("myScrabCurrentPage"));
@@ -102,7 +102,6 @@ public class ScrabMainController extends HttpServlet {
 		
 		//페이징바 처리에 필요한 변수들 VO 에 담아주기
 		PageInfo pi = new PageInfo(listCount,currentPage,pageLimit,boardLimit,maxPage,startPage,endPage);
-		
 		//게시글 목록 
 		ArrayList<Board> list = new ScrabService().myScrabSelectList(pi,userId);
 		
@@ -110,7 +109,6 @@ public class ScrabMainController extends HttpServlet {
 		
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
-		
 		request.getRequestDispatcher("views/scrab/scrabMainView.jsp").forward(request, response);
 		
 	}
