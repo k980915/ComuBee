@@ -33,5 +33,18 @@ public class ScrabService {
 		return list;
 	}
 	
+	public int insertScrab(int bNo, String userId) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new ScrabDao().insertScrab(conn,bNo,userId);
+		if (result > 0) { // 성공시 확정
+			JDBCTemplate.commit(conn);
+		} else {// 실패시 되돌리기
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
+	
 	
 }

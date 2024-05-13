@@ -35,5 +35,8 @@ WHERE B.BOARDNO IN (SELECT SCRAB.BOARDNO
                     FROM SCRAB 
                     WHERE SCRAB.USERID =?) -->
  </entry>
+ <entry key="insertScrab">
+ 	INSERT INTO SCRAB VALUES(?,?)
+ </entry>
 
 </properties>

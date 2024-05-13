@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.scrab.model.service.ScrabService;
+
 /**
  * Servlet implementation class InsertScrabController
  */
@@ -34,8 +36,18 @@ public class InsertScrabController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		
 		int bNo = Integer.parseInt(request.getParameter("bno"));
 		String userId = request.getParameter("userId");
+		String str="";
+		int result = new ScrabService().insertScrab(bNo,userId);
+		if(result>0) {
+			str+="찜 성공";
+		}else {
+			str+="찜 실패";
+		}
+		response.getWriter().print(str);
 		
 	}
 
