@@ -68,7 +68,7 @@
 								
 								<c:if test="${loginUser.userId eq 'admin'}">
 									<td>
-				                    <button type="button" class="adminBtn">
+				                    <button type="button" class="adminBtn" style="font-size: 16px; background-color: yellow; border: none; padding: 8px 16px; border-radius: 4px;">
 									    회원 정보
 									</button>
 									</td>		                   

@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/views/common/admin-css/AdminMyPage.css">
 </head>
 <body>
 <%@ include file="/views/common/header.jsp"%>
