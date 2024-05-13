@@ -14,23 +14,22 @@
 	margin-left: 20px;
 	/* Adjust the margin to push the buttons to the right */
 }
-.slide{
-	float:right;
+
+.slide {
+	float: right;
 }
-
-
 </style>
 </head>
 <body>
 	<%@ include file="/views/common/header.jsp"%>
-	
-	<button id="sendView" onclick="sendList();" >내가 보낸 쪽지 </button>
+
+	<button id="sendView" onclick="sendList();">내가 보낸 쪽지</button>
 	<button id="receiveView" onclick="receiveList();">내가 받은 쪽지</button>
 	<!-- <button id="scrabView" onclick="scrabList();">보관함</button> -->
 	<div id="detail-area"></div>
 	<div id="messages-area">
 		<table border="1" align="center">
-			
+
 			<thead>
 				<tr>
 					<td>쪽지 번호</td>
@@ -46,7 +45,7 @@
 					<c:when test="${empty list }">
 						<!-- 조회된 데이터가 없을때 -->
 						<tr>
-							<td colspan="5">새로운 쪽지가 없습니다 </td>
+							<td colspan="5">새로운 쪽지가 없습니다</td>
 						</tr>
 					</c:when>
 					<c:otherwise>
@@ -60,7 +59,7 @@
 								<td>${m.sendDate }</td>
 								<td>${m.readCheck }</td>
 							</tr>
-						</c:forEach> 
+						</c:forEach>
 					</c:otherwise>
 				</c:choose>
 			</tbody>
@@ -69,9 +68,9 @@
 	<div>
 		<form action="<%=contextPath%>/sendMessage.ms" method="post">
 			<div class="message-input-area">
-				<label for="name">name</label> 
-				<input type="hidden" name="senderId"value="${loginUser.userId}"> 
-				<input type="text" id="name" placeholder="받는사람 닉네임" name="receiverId">
+				<label for="name">name</label> <input type="hidden" name="senderId"
+					value="${loginUser.userId}"> <input type="text" id="name"
+					placeholder="받는사람 닉네임" name="receiverId">
 			</div>
 			<div class="message-input">
 				<label for="message">Message</label>
@@ -81,185 +80,212 @@
 				<li><input type="submit" value="sendMessage" /></li>
 				<li><input type="reset" value="clear"></li>
 			</ul>
+				<input type="button" onclick="fillFormFields();" value="adminCreateCoupon" />
 		</form>
 	</div>
 	<br>
 	<br>
-	<script>	
-		function sendList(){
-			
+	<script>
+		function sendList() {
+
 			$.ajax({
 				url : "selectList.ms",
-				type:"post",
-				data:{
+				type : "post",
+				data : {
 					decide : "sendView",
 					userId : "${loginUser.userId}"
 				},
-				success : function(list){
+				success : function(list) {
 					console.log("성공");
 					$("#messages-area tbody>tr").remove();
 					//전부 추가하기
 					var tr = "";
-					var div ="";
+					var div = "";
 					console.log(list);
 					//전부 추가하기
-					
-					for(var i in list){
-						tr +="<tr>"
-							+"<td>"+ list[i].mNo +"</td>"
-							+"<td>"+ list[i].sendName +"</td>"
-							+"<td>"+ list[i].receiveName +"</td>"
-							+"<td>"+ list[i].messageContent +"</td>"
-							+"<td>"+ list[i].sendDate +"</td>"
-							+"<td>"+ list[i].scrabCheck +"</td>"
-							+"</tr>";
+
+					for ( var i in list) {
+						tr += "<tr>" + "<td>" + list[i].mNo + "</td>" + "<td>"
+								+ list[i].sendName + "</td>" + "<td>"
+								+ list[i].receiveName + "</td>" + "<td>"
+								+ list[i].messageContent + "</td>" + "<td>"
+								+ list[i].sendDate + "</td>" + "<td>"
+								+ list[i].scrabCheck + "</td>" + "</tr>";
 					}
 					$("#messages-area tbody").html(tr);
 				},
-				error : function(){
+				error : function() {
 					console.log("통신오류");
 				}
-				
+
 			});
 		}
-		
-		function receiveList(){
-			
-			$.ajax({
-				url : "selectList.ms",
-				type:"post",
-				data:{
-					decide : "receiveView",
-					userId : "${loginUser.userId}"
-				},
-				success : function(list){
-					console.log("성공");
-					$("#messages-area tbody>tr").remove();
-					var tr = "";
-					if(list==null){
-						tr +="<tr>"
-							+"<td>"+"조회된 메시지가 없습니다"+"</td>"
-					}else{
-						console.log(list);
-						//전부 추가하기
-						for(var i in list){
-							var messageContent = list[i].messageContent.length > 10 ? list[i].messageContent.substring(0, 10) + "..." : list[i].messageContent;
-							tr +="<tr>"
-								+"<td>"+ list[i].mNo +"</td>"
-								+"<td>"+ list[i].sendName +"</td>"
-								+"<td>"+ list[i].receiveName +"</td>"
-								+"<td>"+ messageContent +"</td>"
-								+"<td>"+ list[i].sendDate +"</td>"
-								+"<td>"+ list[i].scrabCheck +"</td>"
-								+"</tr>";
+
+		function receiveList() {
+
+			$
+					.ajax({
+						url : "selectList.ms",
+						type : "post",
+						data : {
+							decide : "receiveView",
+							userId : "${loginUser.userId}"
+						},
+						success : function(list) {
+							console.log("성공");
+							$("#messages-area tbody>tr").remove();
+							var tr = "";
+							if (list == null) {
+								tr += "<tr>" + "<td>" + "조회된 메시지가 없습니다"
+										+ "</td>"
+							} else {
+								console.log(list);
+								//전부 추가하기
+								for ( var i in list) {
+									var messageContent = list[i].messageContent.length > 10 ? list[i].messageContent
+											.substring(0, 10)
+											+ "..."
+											: list[i].messageContent;
+									tr += "<tr>" + "<td>" + list[i].mNo
+											+ "</td>" + "<td>"
+											+ list[i].sendName + "</td>"
+											+ "<td>" + list[i].receiveName
+											+ "</td>" + "<td>" + messageContent
+											+ "</td>" + "<td>"
+											+ list[i].sendDate + "</td>"
+											+ "<td>" + list[i].scrabCheck
+											+ "</td>" + "</tr>";
+								}
+
+								$("#messages-area tbody").html(tr);
+							}
+
+						},
+						error : function() {
+							console.log("통신오류");
 						}
-						
-						$("#messages-area tbody").html(tr);
-					}
-					
-				},
-				error : function(){
-					console.log("통신오류");
-				}
-				
-			});
+
+					});
 		}
+
+		/* function scrabList(){
 		
-/* function scrabList(){
-			
-			$.ajax({
-				url : "selectList.ms",
-				type:"post",
-				data:{
-					decide : "scrabView",
-					userId : "${loginUser.userId}"
-				},
-				success : function(list){
-					console.log("성공");
-					$("#messages-area tbody>tr").remove();
-					//전부 추가하기
-					var tr = "";
-					console.log(list);
-					//전부 추가하기
-					for(var i in list){
-						var messageContent = list[i].messageContent.length > 10 ? list[i].messageContent.substring(0, 10) + "..." : list[i].messageContent;
-						tr +="<tr>"
-							+"<td>"+ list[i].mNo +"</td>"
-							+"<td>"+ list[i].sendName +"</td>"
-							+"<td>"+ list[i].receiveName +"</td>"
-							+"<td>"+ messageContent +"</td>"
-							+"<td>"+ list[i].sendDate +"</td>"
-							+"<td>"+ list[i].scrabCheck +"</td>"
-							+"</tr>";
+		 $.ajax({
+		 url : "selectList.ms",
+		 type:"post",
+		 data:{
+		 decide : "scrabView",
+		 userId : "${loginUser.userId}"
+		 },
+		 success : function(list){
+		 console.log("성공");
+		 $("#messages-area tbody>tr").remove();
+		 //전부 추가하기
+		 var tr = "";
+		 console.log(list);
+		 //전부 추가하기
+		 for(var i in list){
+		 var messageContent = list[i].messageContent.length > 10 ? list[i].messageContent.substring(0, 10) + "..." : list[i].messageContent;
+		 tr +="<tr>"
+		 +"<td>"+ list[i].mNo +"</td>"
+		 +"<td>"+ list[i].sendName +"</td>"
+		 +"<td>"+ list[i].receiveName +"</td>"
+		 +"<td>"+ messageContent +"</td>"
+		 +"<td>"+ list[i].sendDate +"</td>"
+		 +"<td>"+ list[i].scrabCheck +"</td>"
+		 +"</tr>";
+		 }
+		
+		 $("#messages-area tbody").html(tr);
+		 },
+		 error : function(){
+		 console.log("통신오류");
+		 }
+		 });
+		 } */
+		$("table").on(
+				"click",
+				"tbody>tr",
+				function(event) {
+					if ($(event.target).is('td')
+							&& $(event.target).index() >= 0
+							&& $(event.target).index() <= 4) {
+						var messageId = $(this).find("td:first").text();
+						var check = $(this);
+						$.ajax({
+							url : "updateReadCheck.ms",
+							type : "post",
+							data : {
+								messageId : messageId,
+								userId : "${loginUser.userId}"
+							},
+							success : function(result) {
+								// 업데이트가 성공하면 필요에 따라 여기서 추가 작업을 수행할 수 있습니다
+								if (result > 0) {
+									check.remove();
+								}
+							},
+							error : function() {
+
+							}
+						});
 					}
-					
-					$("#messages-area tbody").html(tr);
-				},
-				error : function(){
-					console.log("통신오류");
-				}
-			});
-		} */
-$("table").on("click", "tbody>tr", function(event) {
-    if ($(event.target).is('td') && $(event.target).index() >= 0 && $(event.target).index() <= 4) {
-        var messageId = $(this).find("td:first").text();
-        var check = $(this);
-        $.ajax({
-            url: "updateReadCheck.ms",
-            type: "post",
-            data: {
-                messageId: messageId,
-                userId: "${loginUser.userId}"
-            },
-            success: function(result) {
-                // 업데이트가 성공하면 필요에 따라 여기서 추가 작업을 수행할 수 있습니다
-                if (result > 0) {
-                    check.remove();
-                }
-            },
-            error: function() {
+				});
 
-            }
-        });
-    }
-});
+		$("table").on("click", "tbody>tr", function(event) {
+			if ($(event.target).is('td') && $(event.target).index() >= 5) {
+				var messageId = $(this).find("td:first").text();
+				var scrabCheck = $(this).find("td:last").text();
+				var check = $(this);
+				$.ajax({
+					url : "updateScrabCheck.ms",
+					type : "post",
+					data : {
+						messageId : messageId,
+						userId : "${loginUser.userId}",
+						scrabCheck : scrabCheck
+					},
+					success : function(result) {
+						// 업데이트가 성공하면 필요에 따라 여기서 추가 작업을 수행할 수 있습니다
+						if (result > 0) {
+							check.remove();
+						}
+					},
+					error : function() {
 
-$("table").on("click", "tbody>tr", function(event) {
-    if ($(event.target).is('td') && $(event.target).index() >=5) {
-        var messageId = $(this).find("td:first").text();
-        var scrabCheck=$(this).find("td:last").text();
-        var check = $(this);
-        $.ajax({
-            url: "updateScrabCheck.ms",
-            type: "post",
-            data: {
-                messageId: messageId,
-                userId: "${loginUser.userId}",
-                scrabCheck :scrabCheck
-            },
-            success: function(result) {
-                // 업데이트가 성공하면 필요에 따라 여기서 추가 작업을 수행할 수 있습니다
-                if (result > 0) {
-                    check.remove();
-                }
-            },
-            error: function() {
+					}
+				});
+			}
+		});
 
-            }
-        });
-    }
-});
-	
-	
-	
-	
-	
 		
-		
-		
-		
-		
+	</script>
 	
+	<script>
+	/* function fillFormFields() {
+//			console.log(userIdval);
+//			console.log(couponStr);
+		var nameField = document.getElementById("name");
+		nameField.value = ${userIdval}
+		nameField.disabled = true;
+
+		// Message 필드에 값을 채워 넣고 비활성화
+		var messageField = document.getElementById("message");
+		messageField.value = couponStr;
+		messageField.disabled = true;
+	} */
+	
+	
+	document.querySelector('input[value="adminCreateCoupon"]').addEventListener('click', function() {
+	    // 고정된 값 대신에 필요한 값을 가져오는 로직을 추가합니다.
+	    var couponStr = "7L+g7Y+w7J2AIOyXhuyKteuLiOuLpC4=";
+	    var userIdval = "${listInfo.userId}";
+
+	    // 가져온 값을 각 폼 필드에 채웁니다.
+	    document.getElementById('name').value = userIdval;
+	    document.getElementById('name').disabled = true; // 사용자 ID 입력란 비활성화
+	    document.getElementById('message').value = couponStr;
+	    document.getElementById('message').disabled = true; 
 	</script>
 </body>
 </html>

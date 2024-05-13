@@ -15,7 +15,7 @@ public class ContentsSearchDao {
         ArrayList<Contents> list = new ArrayList<>();  // 결과를 저장할 ArrayList
         PreparedStatement pstmt = null;
         ResultSet rset = null;
-        String sql = "SELECT TITLE, ENGLISHTITLE, OVERVIEW, POSTERPATH, RUNTIME, RELEASEDATE, DIRECTOR FROM CONTENTS WHERE (UPPER(TITLE) LIKE UPPER(?) OR UPPER(DIRECTOR) LIKE UPPER(?))";
+        String sql = "SELECT CONTENTSID, TITLE, ENGLISHTITLE, OVERVIEW, POSTERPATH, RUNTIME, RELEASEDATE, DIRECTOR FROM CONTENTS WHERE (UPPER(TITLE) LIKE UPPER(?) OR UPPER(DIRECTOR) LIKE UPPER(?))";
         try {
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, "%" + keyword.toUpperCase() + "%");  // 첫 번째 매개변수 (TITLE 검색)
@@ -24,7 +24,8 @@ public class ContentsSearchDao {
 
             while (rset.next()) {
                 Contents Contents = new Contents();
-        
+                
+                Contents.setContentsId(rset.getInt("CONTENTSID"));
                 Contents.setTitle(rset.getString("TITLE"));
                 Contents.setEnglishTitle(rset.getString("ENGLISHTITLE"));
                 Contents.setOverView(rset.getString("OVERVIEW"));

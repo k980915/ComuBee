@@ -6,49 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-	.boardOuter{
-		width:1200;
-		}
-	.boardOuter>div{
-		display:inline;
-		border:1px solid black;
-		float:left;
-		box-sizing:border-box;
-		margin:0px;
-		padding:0px;
-	}
 
-	.boardMain>*{
-		width:100%;
-		margin:0px;
-		padding:0px;
-	}
-	.boardBody{
-		width:70%
-	}
-	.boardSide{
-		width:30%;
-	}
-	.boardReply{
-		width:100%;
-	}
-	.boardReply table{
-		width:100%;
-		box-sizing:border-box;
-	}
-	.boardWriter{
-		width: 15%;
-	}
-	.boardContent{
-		width: 65%;
-	}
-	.boardDate{
-		width: 20%;
-	}
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/views/board/board-css/BoardDetail.css">
 
 
-</style>
 </head>
 <body>
 	<%@ include file="/views/board/boardMenuBar.jsp" %>
@@ -198,8 +159,7 @@
 							<tr>
 								<td> <input type=hidden value='${p.contentsId}'> </td>
 								<td>
-									<img src="${contextPath}${p.thumbnailImg}"width="200px" height="150px"> <br>
-									${p.title}
+
 								</td>
 							</tr>
 						</c:forEach>
