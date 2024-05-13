@@ -92,11 +92,10 @@
 			</div> 
 		</form>
 		<br>
-		<br>
 	</div>	
 	<!-- admin 제한 설정 -->
 <%if((loginUser != null) && loginUser.getUserId().equals("admin")){ %>
-<%@ include file="/views/common/myPageadmin.jsp"%><br><br>
+<%@ include file="/views/common/myPageadmin.jsp"%><br>
 <%@ include file="/views/common/hitsGraph.jsp"%>
  <%} %>
 

@@ -14,16 +14,15 @@
 	<br>
 	<br>
 	<div id="hitslog" align="center">
-    <h2 style="font-size: 24px; color: blue; font-weight: bold;">방문자수 확인</h2><br><br>
-    <h4 style="font-size: 18px; color: green;">금일 방문수 : 
-        <button style="font-size: 16px; background-color: yellow; border: none; padding: 8px 16px; border-radius: 4px;" onclick="toDayHits();">확인하기</button>
+    <h2 style="font-size: 24px; font-weight: bold;">방문자수 확인</h2><br><br>
+    <h4 class="btn btn-light">금일 방문수 : 
+        <button class="btn btn-outline-secondary" onclick="toDayHits();">확인하기</button>
     </h4> <br><br>
-    <h4 style="font-size: 18px; color: purple;">월별 방문자수 :
-        <select id="yearSelectId" style="font-size: 16px; padding: 4px;">
+    <h4 class="btn btn-light">월별 방문자수 :
+        <select id="yearSelectId" class="btn btn-outline-secondary">
             <option value="2023년">2023년</option>
-            <option value="2024년">2024년</option>
-        </select> 
-        <select id="monthHitsId" style="font-size: 16px; padding: 4px;">
+            <option value="2024년">2024년</option> </select> 
+        <select id="monthHitsId" class="btn btn-outline-secondary">
             <option value="1월" id="1Month">1월</option>
             <option value="2월" id="2Month">2월</option>
             <option value="3월" id="3Month">3월</option>
@@ -35,10 +34,9 @@
             <option value="9월" id="9Month">9월</option>
             <option value="10월" id="10Month">10월</option>
             <option value="11월" id="11Month">11월</option>
-            <option value="12월" id="12Month">12월</option>
-        </select> 
-        <input type="button" id="monthB" value="확인하기" style="font-size: 16px; background-color: orange; border: none; padding: 8px 16px; border-radius: 4px;">
-    </h4><br><br>
+            <option value="12월" id="12Month">12월</option></select> 
+        <input type="button" id="monthB" value="확인하기" class="btn btn-outline-secondary">
+    </h4>
 </div>
 
 

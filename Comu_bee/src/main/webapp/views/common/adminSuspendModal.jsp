@@ -34,7 +34,7 @@ body {
 	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
 }
 
-h4 {
+h3 {
 	margin-top: 20px;
 	margin-bottom: 20px;
 	color: #007bff;
@@ -108,12 +108,44 @@ tr:nth-child(even) {
 tr:hover {
 	background-color: #dddddd;
 }
+label {
+  font-size: 18px;
+  line-height: 2rem;
+  padding: 0.2em 0.4em;
+}
+
+[type="radio"], span {
+  vertical-align: middle;
+}
+
+[type="radio"] {
+  appearance: none;
+  border: max(2px, 0.1em) solid gray;
+  border-radius: 50%;
+  width: 1.25em;
+  height: 1.25em;
+  transition: border 0.5s ease-in-out;
+}
+
+[type="radio"]:checked {
+  border: 0.4em solid tomato;
+}
+
+[type="radio"]:focus-visible {
+  outline-offset: max(2px, 0.1em);
+  outline: max(2px, 0.1em) dotted tomato;
+}
+
+[type="radio"]:hover {
+  box-shadow: 0 0 0 max(4px, 0.2em) lightgray;
+ 
+
 </style>
 </head>
 <body>
 	<div class="container">
 		<div align="center">
-			<h4>회원 정보</h4>
+			<h3>회원 정보</h3>
 
 			<!-- list에 값 더 담아 오기 -->
 			<table>
@@ -153,17 +185,17 @@ tr:hover {
 				<button type="button" class="cpCreate">
 					쿠폰 <br>발급
 				</button>
-				<br> <br>
+		
 
-				<button type="button" class="suspendUser" onclick="suspendUser();">
+				<button style="margin-left : 50px" type="button" class="suspendUser" onclick="suspendUser();">
 					강 제 <br>탈 퇴
 				</button>
-				<br> <br>
-				<button type="button" class="suspendDays" onclick="suspendDays();">
+				
+				<button style="margin-left : 50px" type="button" class="suspendDays" onclick="suspendDays();">
 					회 원 <br>정 지
 				</button>
-				<br> <br>
-			<button type="button" class="goBack" onclick="history.back();">
+				
+			<button style="margin-left : 50px" type="button" class="goBack" onclick="history.back();">
 				뒤 로 <br>가 기
 			</button>
 			<br>
@@ -261,11 +293,12 @@ tr:hover {
 				},
 				success : function(result) {
 					if (result > 0) {
-						console.log("쿠폰 쪽지 지급 성공");
+						console.log("쿠폰 쪽지 지급 성공"+result);
 						alert(userIdval + "님에게 " + "쿠폰을 발급 성공 했습니다.")
-					} else {
-						console.log("쿠폰 쪽지 미지급");
+					} else{
 						alert(userIdval + "님의 포인트가 부족합니다.")
+						console.log(result);
+						
 					}
 				}
 			});

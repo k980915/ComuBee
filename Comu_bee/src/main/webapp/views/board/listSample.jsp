@@ -36,7 +36,7 @@
                     <th scope="col">제목</th>
                     <th scope="col">글쓴이</th>
                     <c:if test="${loginUser.userId eq 'admin'}">
-                    <th scope="col">관리</th>
+                    <th scope="col" style="width : 100px; height">관리</th>
                     </c:if>
                     <th scope="col">작성일</th>
                     <th scope="col">조회수</th>
@@ -69,7 +69,7 @@
 								
 								<c:if test="${loginUser.userId eq 'admin'}">
 									<td>
-				                    <button type="button" class="adminBtn" style="font-size: 16px; background-color: yellow; border: none; padding: 8px 16px; border-radius: 4px;">
+				                    <button type="button" class="adminBtn" style="font-size: 16px; background-color: orange; border: none; padding: 8px 16px; border-radius: 4px;">
 									    회원 정보
 									</button>
 									</td>		                   
