@@ -66,16 +66,18 @@ public class BoardDao {
 		return list;
 	}
 
-	public int listCount(Connection conn) {
+	public int listCount(Connection conn,String ca) {
 		// TODO Auto-generated method stub
 		int result=0;
-		Statement stmt=null;
+		PreparedStatement pstmt=null;
 		ResultSet rset=null;
 		String sql=prop.getProperty("listCount");
 		
 		try {
-			stmt=conn.createStatement();
-			rset=stmt.executeQuery(sql);
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, ca);
+			rset=pstmt.executeQuery();
+			
 			if(rset.next()) {
 				result=rset.getInt("COUNT");
 			}
@@ -84,7 +86,7 @@ public class BoardDao {
 			e.printStackTrace();
 		}finally{
 			JDBCTemplate.close(rset);
-			JDBCTemplate.close(stmt);
+			JDBCTemplate.close(pstmt);
 		}
 		
 		
@@ -219,9 +221,9 @@ public class BoardDao {
 			while(rset.next()) {
 				list.add(new Board(
 						rset.getInt("BOARDNO"),
+						rset.getString("USERID"),
 						rset.getString("CATEGORYNAME"),
 						rset.getString("TITLE"),
-						rset.getString("USERID"),
 						rset.getDate("CREATEDATE"),
 						rset.getInt("BOARDLIKE"),
 						rset.getInt("COUNT")
@@ -248,9 +250,9 @@ public class BoardDao {
 		String sql = prop.getProperty("selectListByCategory");
 		try {
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, endRow);
-			pstmt.setString(3, ca);
+			pstmt.setString(1, ca);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
 			rset=pstmt.executeQuery();
 			while(rset.next()) {
 				list.add(new Board(
@@ -512,5 +514,27 @@ public class BoardDao {
 		
 		return cList;
 	}
+
+	public int updateBoard(Connection conn, Board b, ArrayList<Attachment> atList) {
+		// TODO Auto-generated method stub
+		int result=0;
+		PreparedStatement pstmt=null;
+		String sql=prop.getProperty("updateBoard");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, b.getTitle());
+			pstmt.setString(2, b.getBoardContent());
+			pstmt.setInt(3, b.getBoardNo());
+			result=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
+	
 
 }

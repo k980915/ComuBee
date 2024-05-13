@@ -43,9 +43,12 @@ public class ReviewListController extends HttpServlet {
 		int maxPage; // 가장 마지막 페이징바가 몇 번인지(총 페이지 개수)
 		int startPage; // 페이지 하단에 보여질 페이징바의 시작수
 		int endPage; // 페이지 하단에 보여질 페이징바의 끝수
-		
+		HttpSession session = request.getSession();
+		session.setAttribute("category","리뷰");
+		String category = (String)session.getAttribute("category");
+		request.setAttribute("cat", "rv");
 		//listCount - 현재 게시글 개수 - DB에서 조회해 오기
-		listCount = new BoardService().listCount();
+		listCount = new BoardService().listCount(category);
 		
 		// currentPage - 현재 페이지 정보
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
@@ -91,18 +94,15 @@ public class ReviewListController extends HttpServlet {
 		}
 		
 		PageInfo pi = new PageInfo(listCount,currentPage,pageLimit,boardLimit,maxPage,startPage,endPage);
-		HttpSession session = request.getSession();
-		session.setAttribute("category","REVIEW");
-		String category = (String)session.getAttribute("category");
-		request.setAttribute("cat", "rv");
+
 		// 게시글 목록
 		ArrayList<Board> list = new BoardService().selectListByCategory(pi,category);
 		ArrayList<Board> noList = new BoardService().selectNoticeListByCategory();
 		//위임하기 위한 데이터 담아주기
 		
-		request.setAttribute("pi", pi);
-		request.setAttribute("list", list);
-		request.setAttribute("noList",noList);
+		session.setAttribute("pi", pi);
+		session.setAttribute("list", list);
+		session.setAttribute("noList",noList);
 		request.getRequestDispatcher("views/board/reviewBoard.jsp").forward(request, response);
 	}
 
