@@ -44,6 +44,16 @@
 	        img:hover{
 	        	cursor: pointer;
 	        }
+
+       		.menu h1 {
+            font-weight: bold; 
+        	}
+        	table {
+            font-weight: bold;
+        	}
+        	#recommend {
+			    font-size: 25px;
+			}
 	        
 	    </style>
 	</head>

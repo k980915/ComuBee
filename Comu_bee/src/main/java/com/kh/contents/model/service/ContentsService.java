@@ -11,14 +11,14 @@ import com.kh.contents.model.vo.Contents;
 public class ContentsService {
 
 
-	public Contents DetailContents(Contents con) {
-		Connection conn = JDBCTemplate.getConnection();
-		
-		Contents c = new ContentsDao().DetailContents(conn, con);
-		
-		JDBCTemplate.close(conn);
-		return c;	
-	}
+//	public Contents DetailContents(Contents con) {
+//		Connection conn = JDBCTemplate.getConnection();
+//		
+//		Contents c = new ContentsDao().DetailContents(conn, con);
+//		
+//		JDBCTemplate.close(conn);
+//		return c;	
+//	}
 
 	public ArrayList<Contents> DetailContentsList() {
 		Connection conn = JDBCTemplate.getConnection();

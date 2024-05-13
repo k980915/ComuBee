@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.contents.model.service.ContentsService;
+import com.kh.contents.model.vo.Board;
 import com.kh.contents.model.vo.Contents;
 
 /**
@@ -32,10 +33,12 @@ public class ContentsDetailList extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArrayList<Contents> list = new ContentsService().DetailContentsList();
+		ArrayList<Board> boardList = new ContentsService().ForReview();
 
     	request.setAttribute("list", list);
+    	request.setAttribute("boardList", boardList);
+
     	request.getRequestDispatcher("views/contents/contentsDetailView.jsp").forward(request, response);
-//    	System.out.println(list); // 출력 잘됨
 	}
 
 	/**
