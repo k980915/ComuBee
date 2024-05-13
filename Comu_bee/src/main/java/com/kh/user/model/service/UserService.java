@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.kh.board.model.vo.Board;
+import com.kh.board.model.vo.Reply;
 import com.kh.common.JDBCTemplate;
 import com.kh.common.model.vo.PageInfo;
 import com.kh.user.model.dao.UserDao;
@@ -151,17 +152,17 @@ public class UserService {
 	}
 	
 	
-//	//내가 쓴 댓글 가져오기 
-//	public ArrayList<Reply> myReplySelectList(PageInfo pi,String userNo) {
-//		Connection conn = JDBCTemplate.getConnection();
-//		
-//		ArrayList<Reply> list = new UserDao().myReplySelectList(conn,pi,userNo);
-//		
-//		//select 구문은 트랜잭션처리 필요없으니 자원반납만 하면 된다
-//		JDBCTemplate.close(conn);
-//		
-//		return list;
-//	}
+	//내가 쓴 댓글 가져오기 
+	public ArrayList<Reply> myReplySelectList(PageInfo pi,String userId) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		ArrayList<Reply> list = new UserDao().myReplySelectList(conn,pi,userId);
+		
+		//select 구문은 트랜잭션처리 필요없으니 자원반납만 하면 된다
+		JDBCTemplate.close(conn);
+		
+		return list;
+	}
 	
 	
 	

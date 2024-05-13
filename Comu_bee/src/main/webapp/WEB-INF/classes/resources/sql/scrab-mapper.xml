@@ -1,7 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
 
-
-<entry key="myScrabListCount">
+ <entry key="myScrabListCount">
 	SELECT COUNT(*) COUNT FROM SCRAB WHERE USERID=?
 </entry>
+ <entry key="myScrabSelectList">
+ 		SELECT * FROM(
+			SELECT ROWNUM,S.* FROM(
+				SELECT B.BOARDNO,
+      				   CATEGORYNAME,
+       				   B.TITLE,
+       				   B.USERID,
+       				   B.CREATEDATE,
+       				   B.BOARDLIKE,
+       				   B.COUNT
+			FROM BOARD B
+			JOIN CATEGORY_BRD USING(CATEGORYNO)
+			WHERE B.BOARDNO IN (SELECT SCRAB.BOARDNO 
+                    FROM SCRAB 
+                    WHERE SCRAB.USERID =?)) S)
+				WHERE "ROWNUM" BETWEEN ? AND ?
+				
+				
+<!-- 				SELECT B.BOARDNO,
+       B.CATEGORYNAME,
+       B.TITLE,
+       B.USERID,
+       B.CREATEDATE,
+       B.BOARDLIKE,
+       B.COUNT
+FROM BOARD B
+WHERE B.BOARDNO IN (SELECT SCRAB.BOARDNO 
+                    FROM SCRAB 
+                    WHERE SCRAB.USERID =?) -->
+ </entry>
+ <entry key="insertScrab">
+ 	INSERT INTO SCRAB VALUES(?,?)
+ </entry>
 
+</properties>
