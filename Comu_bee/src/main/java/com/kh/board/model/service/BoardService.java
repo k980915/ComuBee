@@ -14,10 +14,10 @@ import com.kh.contents.model.vo.Contents;
 
 public class BoardService {
 
-	public int listCount() {
+	public int listCount(String ca) {
 		// TODO Auto-generated method stub
 		Connection conn = JDBCTemplate.getConnection();
-		int result=new BoardDao().listCount(conn);
+		int result=new BoardDao().listCount(conn,ca);
 		JDBCTemplate.close(conn);
 		return result;
 	}
@@ -169,6 +169,20 @@ public class BoardService {
 		cList=new BoardDao().searchContentByTitle(conn,contTitle);
 		JDBCTemplate.close(conn);
 		return cList;
+	}
+
+	public int updateBoard(Board b, ArrayList<Attachment> atList) {
+		// TODO Auto-generated method stub
+		int result=0;
+		Connection conn=JDBCTemplate.getConnection();
+		result=new BoardDao().updateBoard(conn,b,atList);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
 	}
 
 }

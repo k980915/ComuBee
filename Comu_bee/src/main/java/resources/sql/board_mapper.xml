@@ -18,7 +18,11 @@
 				WHERE "ROWNUM" BETWEEN ? AND ?
 	</entry>
 	<entry key="listCount">
-		SELECT COUNT(*) COUNT FROM BOARD WHERE STATUS='Y'
+		SELECT COUNT(*) COUNT FROM(
+		SELECT * FROM BOARD
+		JOIN CATEGORY_BRD USING(CATEGORYNO) 
+		)
+		WHERE STATUS='Y' AND CATEGORYNAME=?
 	</entry>
 	<entry key="increaseCount">
 		UPDATE BOARD SET COUNT=COUNT+1 WHERE BOARDNO=? AND STATUS='Y'
@@ -45,7 +49,9 @@
 				FROM BOARD B 
 				JOIN CATEGORY_BRD USING(CATEGORYNO) 
 				WHERE USERID=?
-				AND B.STATUS='Y') S
+				AND B.STATUS='Y'
+				ORDER BY CREATEDATE DESC
+				) S
 			)
 			WHERE "ROWNUM" BETWEEN ? AND ?
 	</entry>
@@ -61,10 +67,12 @@
 					COUNT 
 				FROM BOARD B 
 				JOIN CATEGORY_BRD USING(CATEGORYNO) 
-				WHERE B.STATUS='Y') S
+				WHERE B.STATUS='Y'
+				AND CATEGORYNAME=?
+				ORDER BY CREATEDATE DESC
+				) S
 			)
 			WHERE "ROWNUM" BETWEEN ? AND ?
-			AND CATEGORYNAME=?
 	</entry>
 	<entry key="newPopList">
 		SELECT * FROM(
@@ -146,5 +154,13 @@
 	</entry>
 	<entry key="searchContentByTitle">
 		SELECT CONTENTSID, TITLE FROM CONTENTS WHERE TITLE LIKE ?
+	</entry>
+	<entry key="updateBoard">
+		UPDATE BOARD SET
+					TITLE=?
+					, BOARDCONTENT=?
+					, UPDATEDATE=SYSDATE
+					WHERE BOARDNO=?
+					AND STATUS='Y'
 	</entry>
 </properties>

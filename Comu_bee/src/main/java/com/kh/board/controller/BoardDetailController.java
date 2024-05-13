@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.board.model.service.BoardService;
 import com.kh.board.model.vo.Attachment;
@@ -39,7 +40,7 @@ public class BoardDetailController extends HttpServlet {
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 		int bno = Integer.parseInt(request.getParameter("bno"));
 		BoardService bs = new BoardService();
-		
+		HttpSession session = request.getSession();
 		int result=new BoardService().increaseCount(bno);
 		if(result>0) {
 			ArrayList<Category> cList = bs.selectCategoryList();
@@ -52,7 +53,7 @@ public class BoardDetailController extends HttpServlet {
 			ArrayList<Board> newPopList=bs.newPopList(b);
 			ArrayList<Board> bestPopList=bs.bestPopList(b);
 			ArrayList<Reply> rList = bs.replyList(bno);
-			ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
+			ArrayList<Board> list = (ArrayList<Board>)session.getAttribute("list");
 			request.setAttribute("b",b);
 			request.setAttribute("atList",atList);
 			request.setAttribute("cList", cList);
