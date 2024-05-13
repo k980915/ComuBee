@@ -18,11 +18,11 @@
 
 /* 테이블 헤더 셀 스타일 */
 .table thead th {
-    background-color: #f8f8f8; /* 배경색 회색조 */
+    background-color: #F1C41E; /* 배경색 회색조 */
     color: #333; /* 텍스트 색상 어두운 회색 */
     padding: 12px; /* 패딩 설정 */
     text-align: left; /* 텍스트 왼쪽 정렬 */
-    border: 1px solid #ddd; /* 테두리 설정 */
+    border: 1px solid #400040; /* 테두리 설정 */
 }
 
 /* 테이블 본문 셀 스타일 */
@@ -30,6 +30,7 @@
     padding: 10px; /* 패딩 설정 */
     color: #666; /* 텍스트 색상 중간 회색 */
     border: 1px solid #ddd; /* 테두리 설정 */
+    background-color: #FCDE71;
 }
 
 /* 테이블 행 호버 스타일 */
@@ -85,4 +86,10 @@
 .input-group button {
     padding: 10px; /* 패딩 설정 */
     background-color: #007bff;
+}
+
+/* 제목에 마우스 오버 시 밑줄 표시 */
+.boardListTitle:hover {
+    text-decoration: underline; /* 밑줄 표시 */
+    cursor: pointer; /* 마우스 커서를 포인터(손 모양)로 변경 */
 }

@@ -14,7 +14,7 @@ public class BoardSearchService {
         Connection conn = JDBCTemplate.getConnection();
         
         ArrayList<Board> result= new BoardSearchDao().search(conn,keyword);
-        System.out.println(result);
+        System.out.println(result);	
         JDBCTemplate.close(conn);
         return result;
     }

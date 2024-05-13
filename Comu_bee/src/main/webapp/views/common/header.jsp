@@ -26,6 +26,7 @@
 
 <style>
 	body {
+	
     	background-size: 100%;
     	background-attachment: scroll;
     	position: relative;

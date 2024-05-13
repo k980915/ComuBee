@@ -41,7 +41,7 @@
                     <th scope="col">작성일</th>
                     <th scope="col">조회수</th>
                     <th scope="col" class="text-center">추천</th>
-                </tr>
+                </tr>	
                 
             	<c:if test="${not category eq '공지'}">
             		<c:forEach items="${noList}" var="li">
