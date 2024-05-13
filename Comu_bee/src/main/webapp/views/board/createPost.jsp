@@ -82,7 +82,7 @@
 				contTitle : contTitle
 			},
 			success : function(cList){
-				if(${empty cList}){
+				if(cList.length==0){
 					alert("조회결과가 없습니다.");
 					$("#contTitle").val("");
 				}else{
@@ -94,7 +94,7 @@
 					}
 					tr+="</select>";
 				
-				$(".contInput .contList").html(tr);
+				$(".contList").html(tr);
 				}
 			},
 			error : function(){

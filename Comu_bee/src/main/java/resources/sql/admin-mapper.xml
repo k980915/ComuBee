@@ -33,5 +33,42 @@
 	
 	</entry>
 
+	<entry key="suspend">
+	
+	UPDATE MEMBERINFO
+	SET STATUS = 'N'
+	WHERE USERID = ?
+	
+	
+	</entry>
+	
+	<entry key="unsuspend">
+	
+	UPDATE MEMBERINFO
+	SET STATUS = 'Y'
+	WHERE USERID = ?
+	
+	
+	</entry>
+	
+	<entry key="UserInfoList">
+	
+	SELECT USERID, USERNAME, USEREMAIL,JOINDATE, POINT
+	FROM MEMBERINFO
+	WHERE USERID = ?
+	
+	
+	</entry>
+	
+	
+	
+	<entry key="CouponCreate">
+	
+	UPDATE MEMBERINFO
+	SET POINT = POINT-500
+	WHERE USERID = ?
+	
+	</entry>
+
 	
 </properties>

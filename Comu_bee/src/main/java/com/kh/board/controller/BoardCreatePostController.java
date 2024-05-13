@@ -121,6 +121,7 @@ public class BoardCreatePostController extends HttpServlet {
 			System.out.println(title);
 			System.out.println(content);
 			System.out.println(boardWriter);
+			System.out.println(contentsId);
 			Board b = new Board();
 			
 			b.setCategory(categoryNo);

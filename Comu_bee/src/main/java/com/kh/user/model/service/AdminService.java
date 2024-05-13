@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import com.kh.common.JDBCTemplate;
 import com.kh.user.model.dao.AdminDao;
 import com.kh.user.model.vo.AdminHits;
+import com.kh.user.model.vo.User;
 
 public class AdminService {
 	public int AdminHitsView() {
@@ -54,5 +55,79 @@ public class AdminService {
 		return list;
 
 	}
+
+	public int suspendDays(String susDays, String userIdval) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = new AdminDao().suspendDays(conn, susDays,userIdval);
+		
+		if (result > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
+
+	public int unSuspend(String userIdval) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = new AdminDao().unSuspend(conn, userIdval);
+		
+		if (result > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
+
+	public User UserInfoList(String userId) {
+		Connection conn = JDBCTemplate.getConnection();
+
+		User list = new AdminDao().UserInfoList(conn,userId);
+
+		JDBCTemplate.close(conn);
+		
+		return list;
+	}
+
+	public int UseradminSuspend(String userIdval) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = new AdminDao().UseradminSuspend(conn,userIdval);
+		
+		if (result > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+	public int MessageCouponCreate(String userId) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = new AdminDao().MessageCouponCreate(conn,userId);
+		
+		if (result > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+	
 
 }

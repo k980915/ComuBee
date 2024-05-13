@@ -1,0 +1,88 @@
+@charset "UTF-8";
+
+/* 전체 컨테이너 설정 */
+.container {
+    max-width: 1200px; /* 최대 너비 설정 */
+    margin: auto; /* 자동으로 좌우 중앙 정렬 */
+    padding: 20px; /* 내부 여백 설정 */
+    background-color: #fff; /* 배경색 흰색 설정 */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* 박스 그림자 효과 */
+}
+
+/* 테이블 기본 스타일 */
+.table {
+    width: 100%; /* 너비 100%로 설정 */
+    margin-top: 20px; /* 상단 여백 */
+    border-collapse: collapse; /* 테두리 붕괴 옵션 활성화 */
+}
+
+/* 테이블 헤더 셀 스타일 */
+.table thead th {
+    background-color: #f8f8f8; /* 배경색 회색조 */
+    color: #333; /* 텍스트 색상 어두운 회색 */
+    padding: 12px; /* 패딩 설정 */
+    text-align: left; /* 텍스트 왼쪽 정렬 */
+    border: 1px solid #ddd; /* 테두리 설정 */
+}
+
+/* 테이블 본문 셀 스타일 */
+.table tbody td {
+    padding: 10px; /* 패딩 설정 */
+    color: #666; /* 텍스트 색상 중간 회색 */
+    border: 1px solid #ddd; /* 테두리 설정 */
+}
+
+/* 테이블 행 호버 스타일 */
+.table-hover tbody tr:hover {
+    background-color: #f1f1f1; /* 배경색 연한 회색으로 변경 */
+}
+
+/* 페이지네이션 컨테이너 스타일 */
+.pagination {
+    display: flex; /* Flexbox 레이아웃 적용 */
+    list-style: none; /* 리스트 스타일 없음 */
+    justify-content: center; /* 가운데 정렬 */
+    padding: 0; /* 패딩 없음 */
+    align-items: center; /* 아이템들을 세로로 중앙 정렬 */
+}
+
+/* 페이지네이션 아이템 스타일 */
+.pagination li {
+    margin: 0 5px; /* 좌우 마진 설정 */
+}
+
+/* 페이지네이션 버튼 스타일 */
+.pagination button {
+    border: none; /* 테두리 없음 */
+    background-color: transparent; /* 배경색 투명 */
+    color: #007bff; /* 색상 파란색 */
+    cursor: pointer; /* 커서 포인터 모양 */
+    padding: 8px 12px; /* 패딩 설정 */
+}
+
+/* 페이지네이션 버튼 호버 스타일 */
+.pagination button:hover {
+    color: #0056b3; /* 색상 진한 파란색으로 변경 */
+    background-color: transparent; /* 배경색 투명 유지 */
+}
+
+/* 입력 그룹 스타일 */
+.input-group {
+    width: 50%; /* 너비 50% */
+    margin: 20px auto; /* 위아래 마진 20px, 좌우 자동 */
+    display: flex; /* Flexbox 레이아웃 적용 */
+}
+
+/* 입력 필드 스타일 */
+.input-group input[type="text"] {
+    flex-grow: 1; /* Flex 아이템 내에서 가능한 모든 공간 차지 */
+    padding: 10px; /* 패딩 설정 */
+    border: 1px solid #ccc; /* 테두리 설정 */
+    border-radius: 4px 0 0 4px; /* 왼쪽 끝 모서리만 둥글게 */
+}
+
+/* 입력 그룹 버튼 스타일 */
+.input-group button {
+    padding: 10px; /* 패딩 설정 */
+    background-color: #007bff;
+}

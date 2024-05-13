@@ -8,31 +8,19 @@
 <head>
 <meta charset="UTF-8">
 <title>검색 결과 페이지</title>
-<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/views/search/search-css/BoardSearch.css">
 </head>
 <body>
 
 <%@ include file="/views/board/boardMenuBar.jsp" %>
 <h2>검색 결과</h2>
 
-<!-- 검색 폼 추가 -->
-<div class="container mt-4">
-    <form action="${pageContext.request.contextPath}/board.se" method="get">
-        <div class="input-group mb-3">
-            <input type="text" name="title" class="form-control" placeholder="게시글 검색" aria-label="게시글 검색" aria-describedby="button-addon2">
-            <button class="btn btn-outline-secondary" type="submit" id="button-addon2">검색</button>
-        </div>
-    </form>
-</div>
-
-<br><br>
-
 <h4>게시글</h4>
 <!-- 게시글 목록 표시 -->
 <table border="1">
     <thead>
         <tr>
-            <th>게시글 제목</th>
+            <th>제목</th>
             <th>컨텐츠</th>
             <th>작성자</th>
             <th>작성일</th>
@@ -54,6 +42,16 @@
         </c:if>
     </tbody>
 </table>
+
+<!-- 검색 폼 추가 -->
+<div class="container mt-4">
+    <form action="${pageContext.request.contextPath}/board.se" method="get">
+        <div class="input-group mb-3">
+            <input type="text" name="title" class="form-control" placeholder="게시글 검색" aria-label="게시글 검색" aria-describedby="button-addon2">
+            <button class="btn btn-outline-secondary" type="submit" id="button-addon2">검색</button>
+        </div>
+    </form>
+</div>
 
 </body>
 </html>

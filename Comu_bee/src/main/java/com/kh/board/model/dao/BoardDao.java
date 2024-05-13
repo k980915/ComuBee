@@ -422,6 +422,7 @@ public class BoardDao {
 			pstmt.setString(2, b.getCategory());
 			pstmt.setString(3, b.getTitle());
 			pstmt.setString(4, b.getBoardContent());
+			pstmt.setString(5, b.getContentsId());
 			result=pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

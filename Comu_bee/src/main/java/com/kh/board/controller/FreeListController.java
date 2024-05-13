@@ -107,6 +107,7 @@ public class FreeListController extends HttpServlet {
 		session.setAttribute("list", list);
 		session.setAttribute("noList",noList);
 
+
 		request.getRequestDispatcher("views/board/FreeBoard.jsp").forward(request, response);
 	}
 

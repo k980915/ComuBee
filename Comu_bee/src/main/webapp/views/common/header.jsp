@@ -25,108 +25,85 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <style>
-.outer {
-	margin: auto;
-	margin-left: 300px;
-	margin-right: 300px;
-}
+	.outer {
+		margin: auto;
+		margin-left: 200px;
+		margin-right: 200px;
+	}
+	
+	.head-area {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		overflow: hidden;
+		text-align: center;
+		margin-left: 100px;
+		margin-right: 100px;		
+	}
+	
+	#logo-img {
+		width: 300px;
+		height: 200px;
+	}
+	
+	.title {
+		margin-left: 10px;
+		font-size: 35px;
+		font-weight: 900;
+		border: none;
+	}
+	
+	.search-area {
+		flex: 1;
+		text-align: center;
+		margin-top: 20px;
+	}
+	
+	.search-area form {
+	    text-align: center;
+	}
+	
+	.search-input {
+	    width: 400px;
+	    height: 40px;
+	    display: inline-block;
+	    margin: 0 auto;
+	}
+	
+	.login-area {
+		margin-top: 20px;
+		float: right;
+	}
+	
+	/* 	    <!-- 게시판 용 메뉴바 시작  --!> */
+	.board-menuBar {
+		display: inline-block;
+		height: 50px;
+		width: 150px;
+	}
+	
+	.board-menuBar a {
+		text-decoration: none;
+		color: white;
+		font-size: 20px;
+		font-weight: bold;
+		display: block;
+		width: 100%;
+		height: 100%;
+		line-height: 50px;
+	}
+	
+	.board-menuBar a:hover {
+		background-color: rgb(144, 142, 142);
+	}
+	/* 	    <!-- 게시판 용 메뉴바 끝 --!> */
+	
+	
+	.logo-area, .search-area, .login-area {
+		display: inline-block;
+		vertical-align: middle;
+	}
 
-.head-area {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	text-align: center;
-}
-
-.logo-area {
-	display: flex;
-	align-items: center;
-}
-
-.logo-img {
-	width: 50px;
-	height: 50px;
-}
-
-.title {
-	margin-left: 10px;
-	font-size: 35px;
-	font-weight: 900;
-}
-
-.search-area {
-	flex: 1;
-	text-align: center;
-	margin-top: 10px;
-}
-
-.search-input {
-	width: 400px;
-	height: 40px;
-}
-
-.login-area {
-	margin-top: 20px;
-	float: right;
-}
-
-/* 	    <!-- 게시판 용 메뉴바 시작  --!> */
-.board-menuBar {
-	display: inline-block;
-	height: 50px;
-	width: 150px;
-}
-
-.board-menuBar a {
-	text-decoration: none;
-	color: white;
-	font-size: 20px;
-	font-weight: bold;
-	display: block;
-	width: 100%;
-	height: 100%;
-	line-height: 50px;
-}
-
-.board-menuBar a:hover {
-	background-color: rgb(144, 142, 142);
-}
-/* 	    <!-- 게시판 용 메뉴바 끝 --!> */
-.head-area {
-	overflow: hidden;
-	text-align: center;
-}
-
-.logo-area, .search-area, .login-area {
-	display: inline-block;
-	vertical-align: middle;
-}
-
-.logo-img {
-	width: 50px;
-	height: 50px;
-}
-
-.title {
-	border: none;
-	font-size: 35px;
-	font-weight: 900;
-}
-
-.search-area {
-	text-align: left;
-	margin-top: 10px;
-}
-
-.search-input {
-	width: 400px;
-	height: 40px;
-}
-
-.login-area {
-	margin-top: 20px;
-	float: right;
-}
 </style>
 </head>
 
@@ -137,8 +114,12 @@
     <div class="outer">
         <div class="head-area">
                 <div class="logo-area">
-                    <img src="resources/uploadFiles/2.png" class="logo-img">
-                    <h1 class="title">COMU-BEE</h1>
+                	<table id="logo">
+                		<tr>
+		                    <td><img src="resources/uploadFiles/2.png" id="logo-img"></td>
+<!-- 		                    <td><h1 class="title">COMU-BEE</h1></td> -->
+	                    </tr>
+                    </table>
                 </div>
 
 		<div class="search-area">
