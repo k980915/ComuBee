@@ -65,17 +65,12 @@
 							</tr>
 							<tr align="center">
 								<td></td>
-<<<<<<< HEAD
 								<td> 
 									<button onclick="recommendBoard();"> 
 										<span>추천 수 : ${b.boardLike}</span>
 										<span>추천하기</span> 
 									</button> </td>
-								<td></td>
-=======
-								<td> <button onclick="recommendBoard();">추천하기</button> </td>
 								<td> <button onclick="scrab();">찜해놓기</button></td>
->>>>>>> refs/remotes/origin/main
 							</tr>
 							<tr>
 								<c:if test="${b.category eq 'RECOMMEND'}">
