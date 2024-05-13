@@ -98,6 +98,15 @@ input[type="text"], select {
     background-color: #fafafa;
     border: 1px solid #eee;
 }
+.replyContent{
+	width:75%;
+}
+.replyWriter{
+	width:15%;
+}
+.replyDate{
+	width:10%;
+}
 
 /*
 boardDetail.jsp 에 있던 css

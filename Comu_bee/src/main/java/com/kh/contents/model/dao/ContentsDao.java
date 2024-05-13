@@ -28,76 +28,6 @@ private Properties prop = new Properties();
 		}
 	}
 
-//	public Contents DetailContents(Connection conn, Contents con) {
-//		ResultSet rset = null;
-//		Statement stmt = null;
-//		Contents c = null;
-//		
-//		String sql = prop.getProperty("DetailContents");
-//		
-//		try {
-//			stmt = conn.createStatement();
-//			rset = stmt.executeQuery(sql);
-//			
-//			while(rset.next()) {
-//				c = new Contents(rset.getInt("CONTENTSID")
-//							    ,rset.getString("TITLE")
-//							    ,rset.getString("ENGLISHTITLE")
-//							    ,rset.getString("OVERVIEW")
-//							    ,rset.getString("POSTERPATH")
-//							    ,rset.getString("RUNTIME")
-//							    ,rset.getString("RELEASEDATE")
-//							    ,rset.getString("AGELIMIT")
-//							    ,rset.getDouble("RATE")
-//							    ,rset.getString("ACTORS")
-//							    ,rset.getString("DIRECTOR"));
-//			}
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}finally {
-//			JDBCTemplate.close(stmt);
-//			JDBCTemplate.close(rset);
-//		}
-//		return c;
-//	}
-	// 확인용
-	public Contents DetailContents(Connection conn, Contents con) {
-		ResultSet rset = null;
-		PreparedStatement pstmt = null;
-		Contents c = null;
-		
-		String sql = prop.getProperty("DetailContents");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-	        pstmt.setInt(1, con.getContentsId()); 
-	        rset = pstmt.executeQuery();
-			
-	        if(rset.next()) {
-	            c = new Contents(rset.getInt("CONTENTSID"),
-	                             rset.getString("TITLE"),
-	                             rset.getString("ENGLISHTITLE"),
-	                             rset.getString("OVERVIEW"),
-	                             rset.getString("POSTERPATH"),
-	                             rset.getString("RUNTIME"),
-	                             rset.getString("RELEASEDATE"),
-	                             rset.getString("AGELIMIT"),
-	                             rset.getDouble("RATE"),
-	                             rset.getString("ACTORS"),
-	                             rset.getString("DIRECTOR"));
-	        }
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			JDBCTemplate.close(pstmt);
-			JDBCTemplate.close(rset);
-		}
-		System.out.println(c);
-
-		return c;
-	}
 
 	public ArrayList<Contents> DetailContentsList(Connection conn) {
 		Statement stmt = null;
@@ -122,7 +52,8 @@ private Properties prop = new Properties();
 									 ,rset.getString("AGELIMIT")
 									 ,rset.getDouble("RATE")
 									 ,rset.getString("ACTORS")
-									 ,rset.getString("DIRECTOR")));
+									 ,rset.getString("DIRECTOR")
+									 ,rset.getString("LINK")));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -189,7 +120,8 @@ private Properties prop = new Properties();
 									 ,rset.getString("AGELIMIT")
 									 ,rset.getDouble("RATE")
 									 ,rset.getString("ACTORS")
-									 ,rset.getString("DIRECTOR")));
+									 ,rset.getString("DIRECTOR")
+									 ,rset.getString("LINK")));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -233,30 +165,5 @@ private Properties prop = new Properties();
 	    return list;
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 }
