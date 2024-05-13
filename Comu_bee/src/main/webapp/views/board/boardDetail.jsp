@@ -7,8 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/views/board/board-css/BoardDetail.css">
-
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/views/board/board-css/BoardDetail.css?v=1.1">
 
 </head>
 <body>
@@ -107,6 +106,7 @@
 							</c:otherwise>
 						</c:choose>
 					</table>
+					<br>
 					<table border="1" class="writtenReply" >
 						<thead>
 							<tr>
