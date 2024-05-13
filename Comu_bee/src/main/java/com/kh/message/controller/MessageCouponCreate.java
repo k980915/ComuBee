@@ -29,7 +29,6 @@ public class MessageCouponCreate extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userId = request.getParameter("userIdval");
-		String couponStr = request.getParameter("couponStr");
 //		System.out.println(userId);
 //		System.out.println(couponStr);
 		
@@ -39,9 +38,8 @@ public class MessageCouponCreate extends HttpServlet {
 		
 		
 		if(result>0) {
-			request.setAttribute("couponStr", couponStr);
+
 			request.setAttribute("userIdval", userId);
-			request.getRequestDispatcher("views/message/messageMainView.jsp").forward(request, response);
 		}
 	}
 

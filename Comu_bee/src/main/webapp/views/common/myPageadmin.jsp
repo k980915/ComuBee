@@ -37,11 +37,6 @@
 				<option value="12월" id="12Month">12월</option>
 			</select> <input type="button" id="monthB" value="확인하기"></h4><br><br>
 
-			<h4>
-				콘텐츠별 방문자수 Top5 :
-				<button onclick="();">확인하기</button>
-			</h4><br><br>
-
 
 			<!-- 금일 조회수 값을 저장하려면 해당날짜 id나 기타등등으로 값을 저장(update)후 출력
 	                     타이머기능????으로 해야하나? 그럼 시간지정부분을 제거 table을 만들고 불러오게끔 금일부분만 hits추가구문입력

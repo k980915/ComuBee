@@ -97,7 +97,6 @@
 <%if((loginUser != null) && loginUser.getUserId().equals("admin")){ %>
 <%@ include file="/views/common/myPageadmin.jsp"%><br><br>
 <%@ include file="/views/common/hitsGraph.jsp"%>
-<%@ include file="/views/common/adminSuspendModal.jsp"%>
  <%} %>
 
 	<!-- 

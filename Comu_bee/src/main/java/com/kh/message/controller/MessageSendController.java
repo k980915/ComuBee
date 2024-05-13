@@ -43,7 +43,9 @@ public class MessageSendController extends HttpServlet {
 		String senderId=request.getParameter("senderId");
 		String receiverId=request.getParameter("receiverId");
 		String message = request.getParameter("message");
-		
+		System.out.println(senderId);
+		System.out.println(receiverId);
+		System.out.println(message);
 		Message m = new Message(senderId, receiverId,message);
 		int result=new MessageService().sendMessage(m);
 		if(result>0) {
