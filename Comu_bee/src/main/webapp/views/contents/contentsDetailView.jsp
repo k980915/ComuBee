@@ -52,7 +52,7 @@
     <%@include file="/views/common/header.jsp" %>
     <div class="outer">
         <form action="${contextPath}/detail.co">
-            <table style="width: 100%;">
+            <table style="width: 100%;" id="inform">
                 <c:forEach var="c" items="${list}">
                 <c:if test="${c.contentsId eq param.contentsId}">
                     <tr>
@@ -118,62 +118,26 @@
                 <div>
                     <h1>한줄 리뷰</h1>
                 </div> <br>
-                <table border="1" id="reply">
-                <c:forEach var="board" items="${boardList}" varStatus="loop">
-                    <tr>
-                        <td>작성자 ${c.userId }</td>
-                        <td>작성일 ${c.createDate }</td>
-                        <td rowspan="2" width="70px;" align="center" height="100px">
-                            좋아요 ${c.boardLike }
-                        </td>
-                        <td rowspan="2" width="70px;" align="center">
-                            싫어요 ${c.hate }
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" width="1000px;">리뷰를 적는 공간입니다.</td>
-                    </tr>
-                    <tr colspan="2">
-                        <td></td>
-                        <td></td>
-                        <td rowspan="2" width="70px;" align="center" height="100px">
-                            
-                        </td>
-                        <td rowspan="2" width="70px;" align="center">
-                            
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"></td>
-                    </tr>
-                    <tr colspan="2">
-                        <td></td>
-                        <td></td>
-                        <td rowspan="2" width="70px;" align="center" height="100px">
-                            
-                        </td>
-                        <td rowspan="2" width="70px;" align="center">
-                            
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"></td>
-                    </tr>
-                    <tr colspan="2">
-                        <td></td>
-                        <td></td>
-                        <td rowspan="2" width="70px;" align="center" height="100px">
-                            
-                        </td>
-                        <td rowspan="2" width="70px;" align="center">
-                            
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"></td>
-                    </tr>
-            	</c:forEach>
-                </table>
+                 <table border="1" id="reply">
+        <c:forEach var="c" items="${boardList}">
+            <c:if test="${c.contentsId eq param.contentsId}">
+                <tr>
+                    <td>작성자 ${c.userId }</td>
+                    <td>작성일 ${c.createDate }</td>
+                    <td rowspan="2" width="70px;" align="center" height="100px">
+                        좋아요 ${c.boardLike }
+                    </td>
+                    <td rowspan="2" width="70px;" align="center">
+                        싫어요 ${c.hate }
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" width="1000px;">${c.boardContent }</td>
+                </tr>
+                
+            </c:if>
+        </c:forEach>
+    </table>
             </div> <br><br><br><br>
 
             <h1>보러가기</h1> <br>
