@@ -44,7 +44,18 @@
     	    height: 100px;
     	    font-weight:bold;
     	}
-
+    	#reply{
+    		background-color: #dfdede;
+    	}
+		table {
+            font-weight: bold;
+        }		
+		#trailer:hover{
+		cursor: pointer;
+		}
+        .outer a{
+        	color:black;
+        }
         
     </style>
 </head>
@@ -75,7 +86,7 @@
                                 <tr>
                                     <th>작품정보</th>
                                     <th><a href="${contextPath}/list.rv?currentPage=1">커뮤니티</a></th>
-                                    <th><a href="">트레일러</a></th>
+                                    <th id="trailer">트레일러</th>
                                 </tr>
                                 <tr>
                                     <td colspan="3">
@@ -116,29 +127,38 @@
             
             <div class="review">
                 <div>
-                    <h1>한줄 리뷰</h1>
+                    <a href="${contextPath}/list.rv?currentPage=1"><h1>한줄 리뷰</h1></a> 
                 </div> <br>
-                 <table border="1" id="reply">
-        <c:forEach var="c" items="${boardList}">
+	               <table border="1" id="reply">
+        <c:forEach var="c" items="${boardList}" varStatus="loop">
             <c:if test="${c.contentsId eq param.contentsId}">
-                <tr>
-                    <td>작성자 ${c.userId }</td>
-                    <td>작성일 ${c.createDate }</td>
-                    <td rowspan="2" width="70px;" align="center" height="100px">
-                        좋아요 ${c.boardLike }
-                    </td>
-                    <td rowspan="2" width="70px;" align="center">
-                        싫어요 ${c.hate }
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2" width="1000px;">${c.boardContent }</td>
-                </tr>
-                
+                <c:if test="${loop.index <= 4}">
+                    <tr>
+                        <td width="800px;">작성자 : ${c.userId }</td>
+                        <td>작성일 : ${c.createDate }</td>
+                        <td rowspan="2" width="90px;" align="center" height="100px"">
+                            좋아요 ${c.boardLike }
+                        </td>
+                       
+                    </tr>
+                    <tr>
+                        <td id="move" colspan="2" width="1000px;">${c.boardContent }</td>
+                    </tr>
+                </c:if>
             </c:if>
         </c:forEach>
     </table>
             </div> <br><br><br><br>
+			<div class="link">
+	            <c:forEach var="c" items="${list}">
+                	<c:if test="${c.contentsId eq param.contentsId}">
+	           			<h1>트레일러 영상</h1> <br>
+	            			${c.link }
+					</c:if>
+			    </c:forEach>	
+			</div><br><br><br>
+            
+            
 
             <h1>보러가기</h1> <br>
             <table>
@@ -160,9 +180,20 @@
                     </td>
                 </tr>  
             </table> <br><br><br><br>
-
- 
         </form>
+        
     </div>
+    <script>
+	    $("#trailer").click(function(){
+	        var linkOffsetTop = $(".link").offset().top;
+	
+	        $('html, body').animate({
+	            scrollTop: linkOffsetTop
+	        }, 0);
+	    });
+
+    
+	</script>
+
 </body>
 </html>

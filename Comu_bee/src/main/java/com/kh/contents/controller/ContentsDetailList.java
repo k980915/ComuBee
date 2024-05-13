@@ -33,9 +33,7 @@ public class ContentsDetailList extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArrayList<Contents> list = new ContentsService().DetailContentsList();
-
-		ArrayList<Board> boardList = new ArrayList<>();
-		boardList = new ContentsService().ForReview();
+		ArrayList<Board> boardList = new ContentsService().ForReview();
 
     	request.setAttribute("list", list);
     	request.setAttribute("boardList", boardList);

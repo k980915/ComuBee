@@ -25,6 +25,22 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <style>
+	body {
+	   background-image: url('resources/uploadFiles/bg1.jpg');
+	   background-size: 100%;
+	   background-attachment: scroll;
+	   position: relative;
+    }
+	body::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(255, 255, 255, 0.5);
+		z-index: -1;
+	}
 	.outer {
 		margin: auto;
 		margin-left: 200px;
@@ -45,7 +61,6 @@
 		width: 300px;
 		height: 200px;
 	}
-	
 	.title {
 		margin-left: 10px;
 		font-size: 35px;
@@ -73,6 +88,9 @@
 	.login-area {
 		margin-top: 20px;
 		float: right;
+	}
+	#logo:hover{
+		cursor:pointer;
 	}
 	
 	/* 	    <!-- 게시판 용 메뉴바 시작  --!> */

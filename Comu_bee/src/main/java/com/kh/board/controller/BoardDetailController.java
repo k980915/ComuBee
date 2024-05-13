@@ -64,7 +64,7 @@ public class BoardDetailController extends HttpServlet {
 			System.out.println(list);
 			System.out.println(bno);
 			request.getRequestDispatcher("views/board/boardDetail.jsp").forward(request, response);
-
+			
 		}else {
 			request.getSession().setAttribute("alertMsg", "조회실패");
 			response.sendRedirect(request.getHeader("referer"));// 이전 주소 반환
