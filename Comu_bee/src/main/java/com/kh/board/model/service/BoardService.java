@@ -14,10 +14,10 @@ import com.kh.contents.model.vo.Contents;
 
 public class BoardService {
 
-	public int listCount() {
+	public int listCount(String ca) {
 		// TODO Auto-generated method stub
 		Connection conn = JDBCTemplate.getConnection();
-		int result=new BoardDao().listCount(conn);
+		int result=new BoardDao().listCount(conn,ca);
 		JDBCTemplate.close(conn);
 		return result;
 	}

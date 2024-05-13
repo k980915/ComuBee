@@ -44,8 +44,12 @@ public class RecommendListController extends HttpServlet {
 		int startPage; // 페이지 하단에 보여질 페이징바의 시작수
 		int endPage; // 페이지 하단에 보여질 페이징바의 끝수
 //		
+		HttpSession session = request.getSession();
+		session.setAttribute("category", "추천");	
+		String ca = (String)session.getAttribute("category");
+		request.setAttribute("cat", "rc");
 		//listCount - 현재 게시글 개수 - DB에서 조회해 오기
-		listCount = new BoardService().listCount();
+		listCount = new BoardService().listCount(ca);
 		
 		// currentPage - 현재 페이지 정보
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
@@ -91,11 +95,7 @@ public class RecommendListController extends HttpServlet {
 		}
 //		
 		PageInfo pi = new PageInfo(listCount,currentPage,pageLimit,boardLimit,maxPage,startPage,endPage);
-		HttpSession session = request.getSession();
-		session.setAttribute("category", "RECOMMEND");
-//		
-		String ca = request.getParameter("category");
-		request.setAttribute("cat", "rc");
+
 		
 //		// 게시글 목록
 		ArrayList<Board> list = new BoardService().selectListByCategory(pi,ca);

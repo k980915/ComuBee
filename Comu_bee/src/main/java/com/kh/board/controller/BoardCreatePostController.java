@@ -57,15 +57,15 @@ public class BoardCreatePostController extends HttpServlet {
 		String ca = "";
 		String categoryNo="";
 		switch(category){
-		case "DEBATE": ca+="db";categoryNo="11";
+		case "토론": ca+="db";categoryNo="11";
 		break;
-		case "FREE": ca+="fr";categoryNo="22";
+		case "자유": ca+="fr";categoryNo="22";
 		break;
-		case "NOTICE": ca+="no";categoryNo="33";
+		case "공지": ca+="no";categoryNo="33";
 		break;
-		case "RECOMMEND": ca+="rc";categoryNo="44";
+		case "추천": ca+="rc";categoryNo="44";
 		break;
-		case "REVIEW": ca+="rv";categoryNo="55";
+		case "리뷰": ca+="rv";categoryNo="55";
 		break;
 		}
 		// 카테고리 번호지만 vo에서 String으로 정의했기 때문에 문자열로 받아 주기

@@ -65,13 +65,14 @@
 							</tr>
 							<tr align="center">
 								<td></td>
-								<td> <button onclick="recommendBoard();">추천하기</button> </td>
+								<td> 
+									<button onclick="recommendBoard();"> 
+										<span>추천 수 : ${b.boardLike}</span>
+										<span>추천하기</span> 
+									</button> </td>
 								<td></td>
 							</tr>
 							<tr>
-								<td class="boardSearchTag" colspan="4">
-									태그 : 관련검색어 본인이 입력할 수 있게?
-								</td>
 								<c:if test="${b.category eq 'RECOMMEND'}">
 									<td class="boardToContent" onclick="${contextPath}/">
 										${b.contentsId} 보러가기
@@ -106,12 +107,12 @@
 							</c:otherwise>
 						</c:choose>
 					</table>
-					<table border="1" align="center" class="writtenReply">
+					<table border="1" class="writtenReply" >
 						<thead>
 							<tr>
-								<td class="replyWriter">작성자</td>
-								<td class="replyContent">내용</td>
-								<td class="replyDate">작성일</td>
+								<th class="replyWriter">작성자</th>
+								<th class="replyContent">내용</th>
+								<th class="replyDate">작성일</th>
 							</tr>
 						</thead>
 						<tbody>

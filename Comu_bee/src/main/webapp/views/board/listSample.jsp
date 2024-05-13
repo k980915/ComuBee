@@ -43,7 +43,7 @@
                     <th scope="col" class="text-center">추천</th>
                 </tr>
                 
-            	<c:if test="${not category eq 'NOTICE'}">
+            	<c:if test="${not category eq '공지'}">
             		<c:forEach items="${noList}" var="li">
 	            		<tr>
 				             <td class="text-center">${li.boardNo }</td>
@@ -83,7 +83,7 @@
 					</c:when>
 					<c:otherwise>
 						<tr>
-							<td>조회된 데이터가 없습니다.</td>
+							<td colspan="6">조회된 데이터가 없습니다.</td>
 						</tr>
 					</c:otherwise>
 				</c:choose>	
@@ -95,9 +95,9 @@
     <ul class="pagination justify-content-center">
         	<c:if test="${pi.currentPage gt 1}">
 	            <li class="page-item">
-	                <button class="page-link" aria-label="Previous">
+	                <button aria-label="Previous" onclick="prev();">
 	                    <span aria-hidden="true">&laquo;</span>
-	                    <span class="sr-only" onclick="prev();">Previous</span>
+	                    <span class="sr-only">Previous</span>
 	                </button>
 	            </li>
         	</c:if>
@@ -108,9 +108,9 @@
             </c:forEach>
 	           <c:if test="${pi.currentPage lt pi.maxPage}">
            		<li class="page-item">
-	                <button class="page-link" aria-label="Next">
+	                <button aria-label="Next" onclick="next();">
 	                    <span aria-hidden="true">&raquo;</span>
-	                    <span class="sr-only" onclick="next();">Next</span>
+	                    <span class="sr-only">Next</span>
 	                </button>
 	            </li>
             </c:if>
@@ -129,7 +129,7 @@
 			var btnNo=Number($(this).text());
 			location.href='list.${cat}?currentPage='+btnNo;
 		});
-		var currentPage=${pi.currentPage}
+		var currentPage=${pi.currentPage};
 		function prev(){
 			location.href='list.${cat}?currentPage='+(currentPage-1);
 		}
