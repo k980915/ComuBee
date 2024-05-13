@@ -10,7 +10,6 @@ import com.kh.common.JDBCTemplate;
 public class BoardSearchService {
 
     public ArrayList<Board> search(String keyword) {
-        //BoardSearchDao dao = new BoardSearchDao();
        
         Connection conn = JDBCTemplate.getConnection();
         

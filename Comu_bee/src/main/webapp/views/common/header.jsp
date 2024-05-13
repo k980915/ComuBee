@@ -26,19 +26,16 @@
 
 <style>
 	body {
-	   background-image: url('resources/uploadFiles/bg1.jpg');
-	   background-size: 100%;
-	   background-attachment: scroll;
-	   position: relative;
+    	background-size: 100%;
+    	background-attachment: scroll;
+    	position: relative;
     }
 	body::before {
 		content: '';
 		position: absolute;
-		top: 0;
-		left: 0;
 		width: 100%;
 		height: 100%;
-		background-color: rgba(255, 255, 255, 0.5);
+		background-color: #E5B409;
 		z-index: -1;
 	}
 	.outer {
