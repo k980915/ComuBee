@@ -23,7 +23,7 @@
 			</div>
 			<div class="boardMain">
 				<div class="boardTitle">
-					<table border="1px solid black">
+					<table border="1px solid black">  
 						<thead>
 							<tr>
 								<c:if test="${category ne 'REVIEW'}">
@@ -65,12 +65,17 @@
 							</tr>
 							<tr align="center">
 								<td></td>
+<<<<<<< HEAD
 								<td> 
 									<button onclick="recommendBoard();"> 
 										<span>추천 수 : ${b.boardLike}</span>
 										<span>추천하기</span> 
 									</button> </td>
 								<td></td>
+=======
+								<td> <button onclick="recommendBoard();">추천하기</button> </td>
+								<td> <button onclick="scrab();">찜해놓기</button></td>
+>>>>>>> refs/remotes/origin/main
 							</tr>
 							<tr>
 								<c:if test="${b.category eq 'RECOMMEND'}">
@@ -342,6 +347,25 @@
 										}
 									}
 										$(".writtenReply tbody").html(tr);
+										},
+									error : function(){
+										console.log("통신 오류")
+									}
+									
+								});
+								
+							}
+							
+							function scrab(){
+								$.ajax({
+									url : "insertScrab.sc",
+									type:"post",
+									data : {
+										bno : ${b.boardNo}, 
+										userId :"${loginUser.userId}"
+									},
+									success : function(str){
+										console.log(str)
 										},
 									error : function(){
 										console.log("통신 오류")

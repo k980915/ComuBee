@@ -9,13 +9,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.board.model.vo.Reply;
 import com.kh.common.model.vo.PageInfo;
 import com.kh.user.model.service.UserService;
 
 /**
  * Servlet implementation class MyReplyListController
  */
-@WebServlet("/MyReplyListController")
+@WebServlet("/myReplylist.us")
 public class MyReplyListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -40,10 +41,10 @@ public class MyReplyListController extends HttpServlet {
 		int startPage; //페이지 하단에 보여질 페이징바의 시작수
 		int endPage; //페이지 하단에 보여질 페이징바의 끝수
 		
-		String userNo=request.getParameter("userNo");
-		System.out.println(userNo);
+		String userId=request.getParameter("userId");
+		
 		//listCount 현재 게시글 개수 - DB에서 조회해오기
-		listCount = new UserService().myReplyListCount(userNo);
+		listCount = new UserService().myReplyListCount(userId);
 		
 
 		//currentPage 현재 페이지정보 
@@ -102,14 +103,15 @@ public class MyReplyListController extends HttpServlet {
 		PageInfo pi = new PageInfo(listCount,currentPage,pageLimit,boardLimit,maxPage,startPage,endPage);
 		
 		//게시글 목록 
-		ArrayList<Reply> list = new UserService().myReplySelectList(pi,userNo);
+		ArrayList<Reply> list = new UserService().myReplySelectList(pi,userId);
+		
+		
 		
 		//위임하기 위해 데이터 담아주기
 		
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
-		
-		request.getRequestDispatcher("views/member/myReplyView.jsp").forward(request, response);
+		request.getRequestDispatcher("views/user/myReplyList.jsp").forward(request, response);
 	}
 
 	/**
