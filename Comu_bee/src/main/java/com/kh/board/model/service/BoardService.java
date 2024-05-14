@@ -150,6 +150,7 @@ public class BoardService {
 		}else {
 			JDBCTemplate.rollback(conn);
 		}
+		JDBCTemplate.close(conn);
 		return result;
 	}
 
@@ -184,5 +185,66 @@ public class BoardService {
 		JDBCTemplate.close(conn);
 		return result;
 	}
+
+	public int likeCheck(int bno, String userId) {
+		// TODO Auto-generated method stub
+		int result=0;
+		Connection conn = JDBCTemplate.getConnection();
+		result=new BoardDao().likeCheck(conn,bno,userId);
+		return result;
+	}
+
+	public int deleteLike(int bno, String userId) {
+		// TODO Auto-generated method stub
+		int result=0;
+		Connection conn = JDBCTemplate.getConnection();
+		result=new BoardDao().deleteLike(conn,bno,userId);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+	public int insertLike(int bno, String userId) {
+		// TODO Auto-generated method stub
+		int result=0;
+		Connection conn = JDBCTemplate.getConnection();
+		result=new BoardDao().insertLike(conn,bno,userId);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+			System.out.println("커밋완");
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+	public int countLike(int bno) {
+		int like=0;
+		Connection conn=JDBCTemplate.getConnection();
+		like=new BoardDao().countLike(conn,bno);
+		System.out.println("추천수: "+like);
+		JDBCTemplate.close(conn);
+		return like;
+	}
+
+	public int updateBoardLike(int bno,int like) {
+		// TODO Auto-generated method stub
+		int result=0;
+		Connection conn = JDBCTemplate.getConnection();
+		result=new BoardDao().updateBoardLike(conn,bno,like);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+
 
 }
