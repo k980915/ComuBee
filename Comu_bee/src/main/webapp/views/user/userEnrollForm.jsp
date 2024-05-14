@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+
 </head>
 
 <style>
@@ -185,9 +187,10 @@ table {
 							style="width: 20px; height: 20px; border: 1px; accent-color: black;"
 							id="F" value="F"> <label for="F">여자</label></td>
 
+	
 
 
-					</tr>
+</tr>
 					<tr>
 						<td colspan="3"><hr></td>
 					</tr>
@@ -207,10 +210,7 @@ table {
 		</div>
 
 
-
-
-
-		<script>
+	<script>
 			function idCheck() {
 				var inputId = $("#userId").val();
 				$.ajax({

@@ -86,7 +86,6 @@
 				<li><input type="submit" value="sendMessage" /></li>
 				<li><input type="reset" value="clear"></li>
 			</ul>
-				<input type="button" onclick="fillFormFields();" value="adminCreateCoupon" />
 		</form>
 	</div>
 	<br>
@@ -264,33 +263,6 @@
 		});
 
 		
-	</script>
-	
-	<script>
-	/* function fillFormFields() {
-//			console.log(userIdval);
-//			console.log(couponStr);
-		var nameField = document.getElementById("name");
-		nameField.value = ${userIdval}
-		nameField.disabled = true;
-
-		// Message 필드에 값을 채워 넣고 비활성화
-		var messageField = document.getElementById("message");
-		messageField.value = couponStr;
-		messageField.disabled = true;
-	} */
-	
-	
-	document.querySelector('input[value="adminCreateCoupon"]').addEventListener('click', function() {
-	    // 고정된 값 대신에 필요한 값을 가져오는 로직을 추가합니다.
-	    var couponStr = "7L+g7Y+w7J2AIOyXhuyKteuLiOuLpC4=";
-	    var userIdval = "${listInfo.userId}";
-
-	    // 가져온 값을 각 폼 필드에 채웁니다.
-	    document.getElementById('name').value = userIdval;
-	    document.getElementById('name').disabled = true; // 사용자 ID 입력란 비활성화
-	    document.getElementById('message').value = couponStr;
-	    document.getElementById('message').disabled = true; 
 	</script>
 </body>
 </html>
