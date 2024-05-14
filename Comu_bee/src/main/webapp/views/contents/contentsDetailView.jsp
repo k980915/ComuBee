@@ -51,6 +51,11 @@
 		#trailer:hover{
 		cursor: pointer;
 		}
+		#titleImg:hover {
+    cursor: default;
+    transform: none;
+    transition: none;
+}
 		
     </style>
 </head>
@@ -144,7 +149,7 @@
         </c:forEach>
     </table>
             </div> <br><br><br><br>
-			<div class="link">
+			<div class="link" width="1200px;" height="700px;">
 	            <c:forEach var="c" items="${list}">
                 	<c:if test="${c.contentsId eq param.contentsId}">
 	           			<h1>트레일러 영상</h1> <br>
@@ -187,22 +192,6 @@
 	        }, 0);
 	    });
 		
-	    
-	 // 저장된 다크 모드 상태 불러오기
-	    function loadDarkModeState() {
-	        return localStorage.getItem('darkMode') === 'true';
-	    }
-
-	    // 페이지 로드 시 저장된 다크 모드 설정을 확인하여 적용
-	    window.onload = function() {
-	        var isDarkMode = loadDarkModeState();
-	        if (isDarkMode) {
-	            document.body.classList.add('dark-mode');
-	        } else {
-	            document.body.classList.remove('dark-mode');
-	        }
-	    };
-
     
 	</script>
 

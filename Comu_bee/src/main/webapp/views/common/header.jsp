@@ -41,6 +41,9 @@ body::before {
 	margin-left: 200px;
 	margin-right: 200px;
 }
+.outer a{
+	color:black;	
+}
 
 .head-area {
 	display: flex;
@@ -117,31 +120,11 @@ body::before {
 	display: inline-block;
 	vertical-align: middle;
 }
-
-
- 	body.dark-mode::before {
-        background-color: #121212; /* 다크 모드 배경색을 설정합니다. */
-        color: white !important;
- 	}
-
-    /* 다크 모드 토글 버튼 스타일 */
-    .dark-mode-toggle {
-        margin-top: 20px;
-        float: right;
-    }
-
-    .dark-mode-toggle button {
-    	position: absolute;
-        background-color: #340;
-        color: white;
-        border: none;
-        top: 10px;
-	    right: 10px;
-	    z-index: 1;
-    }
-	body,h1,h2,h3,h4,h5,h6,p,a,span,div,textarea {
-	    color: #ffffff;
-	}
+img:hover {
+            cursor: pointer;
+            transform: translateY(-5px);
+            transition: transform 0.5s ease;
+        }
 
 
 </style>
@@ -158,9 +141,6 @@ body::before {
 					</tr>
 				</table>
 			</div>
-			<div class="dark-mode-toggle">
-                <button id="darkModeToggleBtn">꿀벌 모드</button>
-            </div>
 			<div class="search-area">
 				<form id="searchForm" action="" method="get">
 					<input type="text" name="title" class="search-input"
@@ -176,56 +156,15 @@ body::before {
 	</div>
 	<br>
 	<br>
-	<%@ include file="/views/common/hitsHeader.jsp"%>
+		<div>
+			<%@ include file="/views/common/hitsHeader.jsp"%>
+		</div>
 	<script>
 		$('.logo-area').click(function() {
 			location.href = '${contextPath}/main.co';
 		});
-		  document.getElementById("darkModeToggleBtn").addEventListener("click", function() {
-		        // body 요소에 dark-mode 클래스가 있는지 확인하여 다크 모드가 활성화되었는지 확인
-		        var body = document.body;
-		        var isDarkMode = body.classList.contains("dark-mode");
-
-		        // 다크 모드가 활성화되어 있다면 비활성화하고, 아니라면 활성화합니다.
-		        if (isDarkMode) {
-		            body.classList.remove("dark-mode");
-		        } else {
-		            body.classList.add("dark-mode");
-		        }
-		        function saveDarkModeState(isDarkMode) {
-		            localStorage.setItem('darkMode', isDarkMode ? 'true' : 'false');
-		        }
-				
-		     // 저장된 다크 모드 상태 불러오기
-		        function loadDarkModeState() {
-		            return localStorage.getItem('darkMode') === 'true';
-		        }
-
-		        // 페이지 로드 시 저장된 다크 모드 설정을 확인하여 적용
-		        window.onload = function() {
-		            var isDarkMode = loadDarkModeState();
-		            if (isDarkMode) {
-		                document.body.classList.add('dark-mode');
-		            } else {
-		                document.body.classList.remove('dark-mode');
-		            }
-		        };
-
-		        document.getElementById("darkModeToggleBtn").addEventListener("click", function() {
-		            var body = document.body;
-		            var isDarkMode = body.classList.contains("dark-mode");
-
-		            if (isDarkMode) {
-		                body.classList.remove("dark-mode");
-		            } else {
-		                body.classList.add("dark-mode");
-		            }
-
-		            saveDarkModeState(!isDarkMode); // 다크 모드 상태 반전하여 저장
-		        });
-
-		        
-		    });
+	
+	
 	</script>
 	<script>
 		var form = document.getElementById('searchForm');

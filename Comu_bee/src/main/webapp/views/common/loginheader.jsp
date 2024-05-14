@@ -68,6 +68,8 @@ String contextPath = request.getContextPath();
 	
 }
 
+
+
 </style>
 </head>
 
@@ -135,9 +137,9 @@ String contextPath = request.getContextPath();
 		} else {
 		%>
 		<div id="user-info">
-			<b>${loginUser.userId }님 환영합니다!</b> <a
-				href="${contextPath}/myPage.us">마이페이지</a> <a
-				href="<%=contextPath%>/logout.us">로그아웃</a>
+			<b>${loginUser.userId }님 환영합니다!</b>  <br>
+			<a href="${contextPath}/myPage.us" style="color: black;" >마이페이지</a> |
+			<a href="<%=contextPath%>/logout.us" style="color: black;">로그아웃</a>
 		</div>
 	</div>
 
