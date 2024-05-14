@@ -259,23 +259,6 @@
                 }
             });
         }
-        
-        function scrab(){
-            $.ajax({
-                url : "insertScrab.sc",
-                type:"post",
-                data : {
-                    bno : ${b.boardNo}, 
-                    userId :"${loginUser.userId}"
-                },
-                success : function(str){
-                    console.log(str);
-                },
-                error : function(){
-                    console.log("통신 오류");
-                }
-            });
-        }
 
         function recommendBoard(){
             if('${loginUser.userId}'==''){
