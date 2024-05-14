@@ -30,7 +30,7 @@
                 <tr>
                     <th scope="col">번호</th>
                     <th scope="col">제목</th>
-                    <th scope="col">글쓴이</th>
+                    <th scope="col">작성자</th>
                     <c:if test="${loginUser.userId eq 'admin'}">
                     <th scope="col" style="width : 100px; height">관리</th>
                     </c:if>

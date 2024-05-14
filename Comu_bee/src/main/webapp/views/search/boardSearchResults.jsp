@@ -15,52 +15,58 @@
 <%@ include file="/views/board/boardMenuBar.jsp" %>
 <h2>검색 결과</h2>
 
-<h4>게시글</h4>
-<!-- 게시글 목록 표시 -->
-<table border="1" class="boardSearchResult">
-    <thead>
-        <tr>
-        	<th>글번호</th>
-            <th>제목</th>
-            <th>컨텐츠</th>
-            <th>작성자</th>
-            <th>작성일</th>
-        </tr>
-    </thead>
-    <tbody>
-        <c:forEach items="${boardList}" var="board">
+<div class="table-responsive small">
+    <table class="table table-striped table-sm table-hover boardSearchResult">
+        <thead>
             <tr>
-                <td>${board.boardNo}</td>
-                <td>${board.category }</td>
-                <td>${board.title}</td>
-                <td>${board.boardContent}</td>
-                <td>${board.userId}</td>
-                <td>${board.createDate}</td>
+                <th>번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>작성일</th>
+                <th>조회수</th>
+                <th>추천</th>
             </tr>
-        </c:forEach>
-        <c:if test="${empty boardList}">
-            <tr>
-                <td colspan="4">검색 결과가 없습니다.</td>
-            </tr>
-        </c:if>
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            <c:forEach items="${boardList}" var="board">
+                <tr>
+                    <td>${board.boardNo}</td>
+                    <td class="boardTitle">${board.title }</td>
+                    <td>${board.userId}</td>
+                    <td>${board.createDate}</td>
+                    <td>${board.count}</td>
+                    <td>${board.boardLike}</td>
+                </tr>
+            </c:forEach>
+            <c:if test="${empty boardList}">
+                <tr>
+                    <td colspan="6">검색 결과가 없습니다.</td>
+                </tr>
+            </c:if>
+        </tbody>
+    </table>
+</div>
 
 <!-- 검색 폼 추가 -->
 <div class="container mt-4">
     <form action="${pageContext.request.contextPath}/board.se" method="get">
         <div class="input-group mb-3">
-            <input type="text" name="title" class="form-control" placeholder="게시글 검색" aria-label="게시글 검색" aria-describedby="button-addon2">
-            <button class="btn btn-outline-secondary" type="submit" id="button-addon2">검색</button>
+            <input type="text" name="title" class="form-control search-input" placeholder="게시글 검색" aria-label="게시글 검색" aria-describedby="button-addon2">
+            <button class="btn search-btn" type="submit" id="button-addon2">검색</button>
         </div>
     </form>
 </div>
-<script>
-	$(".boardSearchResult tbody tr").click(function(){
-		var bno = $(this).children().eq(0).text();
-		location.href='${contextPath}/detail.bo?bno='+bno;
-	})
 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll(".boardSearchResult tbody tr").forEach(function(row) {
+            row.addEventListener("click", function() {
+                var bno = this.children[0].innerText;
+                var contextPath = '<%= request.getContextPath() %>';
+                location.href = contextPath + '/detail.bo?bno=' + bno;
+            });
+        });
+    });
 </script>
 
 </body>
