@@ -38,8 +38,9 @@ public class MessageCouponCreate extends HttpServlet {
 		
 		
 		if(result>0) {
-
-			request.setAttribute("userIdval", userId);
+			response.setContentType("text/html;charset=UTF-8");
+			response.getWriter().print(result);
+			
 		}
 	}
 

@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8" import="com.kh.user.model.vo.User"%>
 
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,8 +22,8 @@
 
 <style>
 body {
+	background-color: #E5B409;
 	font-family: Arial, sans-serif;
-	background-color: #f8f9fa;
 }
 
 .container {
@@ -108,38 +109,38 @@ tr:nth-child(even) {
 tr:hover {
 	background-color: #dddddd;
 }
+
 label {
-  font-size: 18px;
-  line-height: 2rem;
-  padding: 0.2em 0.4em;
+	font-size: 18px;
+	line-height: 2rem;
+	padding: 0.2em 0.4em;
 }
 
 [type="radio"], span {
-  vertical-align: middle;
+	vertical-align: middle;
 }
 
 [type="radio"] {
-  appearance: none;
-  border: max(2px, 0.1em) solid gray;
-  border-radius: 50%;
-  width: 1.25em;
-  height: 1.25em;
-  transition: border 0.5s ease-in-out;
+	appearance: none;
+	border: max(2px, 0.1em) solid gray;
+	border-radius: 50%;
+	width: 1.25em;
+	height: 1.25em;
+	transition: border 0.5s ease-in-out;
 }
 
 [type="radio"]:checked {
-  border: 0.4em solid tomato;
+	border: 0.4em solid tomato;
 }
 
 [type="radio"]:focus-visible {
-  outline-offset: max(2px, 0.1em);
-  outline: max(2px, 0.1em) dotted tomato;
+	outline-offset: max(2px, 0.1em);
+	outline: max(2px, 0.1em) dotted tomato;
 }
 
 [type="radio"]:hover {
-  box-shadow: 0 0 0 max(4px, 0.2em) lightgray;
- 
-
+	box-shadow: 0 0 0 max(4px, 0.2em) lightgray;
+}
 </style>
 </head>
 <body>
@@ -150,23 +151,23 @@ label {
 			<!-- list에 값 더 담아 오기 -->
 			<table>
 				<tr>
-					<td align="center">아 이 디 :</td>
+					<td align="center">아 이 디</td>
 					<td>${listInfo.userId}</td>
 				</tr>
 				<tr>
-					<td align="center">이 름 :</td>
+					<td align="center">이 름</td>
 					<td>${listInfo.userName}</td>
 				</tr>
 				<tr>
-					<td align="center">가 입 일 :</td>
+					<td align="center">가 입 일</td>
 					<td>${listInfo.joinDate}</td>
 				</tr>
 				<tr>
-					<td align="center">이 메 일 :</td>
+					<td align="center">이 메 일</td>
 					<td>${listInfo.userEmail}</td>
 				</tr>
 				<tr>
-					<td align="center">포 인 트 :</td>
+					<td align="center">포 인 트</td>
 					<td>${listInfo.point}</td>
 				</tr>
 			</table>
@@ -182,20 +183,23 @@ label {
 			</form>
 			<br> <br>
 
-				<button type="button" class="cpCreate">
-					쿠폰 <br>발급
-				</button>
-		
+			<button type="button" class="cpCreate">
+				쿠폰 <br>발급
+			</button>
 
-				<button style="margin-left : 50px" type="button" class="suspendUser" onclick="suspendUser();">
-					강 제 <br>탈 퇴
-				</button>
-				
-				<button style="margin-left : 50px" type="button" class="suspendDays" onclick="suspendDays();">
-					회 원 <br>정 지
-				</button>
-				
-			<button style="margin-left : 50px" type="button" class="goBack" onclick="history.back();">
+
+			<button style="margin-left: 50px" type="button" class="suspendUser"
+				onclick="suspendUser();">
+				강 제 <br>탈 퇴
+			</button>
+
+			<button style="margin-left: 50px" type="button" class="suspendDays"
+				onclick="suspendDays();">
+				회 원 <br>정 지
+			</button>
+
+			<button style="margin-left: 50px" type="button" class="goBack"
+				onclick="history.back();">
 				뒤 로 <br>가 기
 			</button>
 			<br>
@@ -270,15 +274,24 @@ label {
 									//console.log("포인트 차감 에러");
 
 								},
-								success : function() {
+								success : function(result) {
 									//console.log("포인트 차감 성공");
+									if (result > 0) {
+										console.log("result:" + result)
+										cpCreatea(userIdval, str);
 
-									cpCreatea(userIdval, str);
+									} else {
+										alert(userIdval + "님의 포인트가 부족합니다.")
+										console.log(result);
+
+									}
 								}
+
 							});
 						});
 
 		function cpCreatea(userIdval, str) {
+			var result = 1;
 			$.ajax({
 				url : "sendMessage.ms",
 				type : "post",
@@ -291,14 +304,10 @@ label {
 					console.log("쿠폰 쪽지 발급 에러");
 					alert(userIdval + "님에게 " + "쿠폰을 발급 에러")
 				},
-				success : function(result) {
+				success : function() {
 					if (result > 0) {
-						console.log("쿠폰 쪽지 지급 성공"+result);
+						console.log("쿠폰 쪽지 지급 성공" + result);
 						alert(userIdval + "님에게 " + "쿠폰을 발급 성공 했습니다.")
-					} else{
-						alert(userIdval + "님의 포인트가 부족합니다.")
-						console.log(result);
-						
 					}
 				}
 			});

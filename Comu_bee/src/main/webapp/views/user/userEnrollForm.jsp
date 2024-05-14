@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+
 </head>
 <body>
 	<%@ include file="/views/common/header.jsp"%>
@@ -68,7 +70,7 @@
 		<br> <br>
 
 		<div align="center">
-			<button type="submit" disabled>회원가입</button>
+			<button id="sign" type="submit" disabled>회원가입</button>
 			<button type="reset">초기화</button>
 		</div>
 
@@ -94,8 +96,8 @@
 						alert("이미 존재하는 아이디입니다.")
 					} else {
 						if (confirm("정말 사용하시겠습니까?")) {
-
-							$("#enroll-form :submit").removeAttr("disabled"); //비활성화
+							
+							$("#sign").removeAttr("disabled"); //비활성화
 							$("#userId").attr("readonly", true); //아이디 수집 못하도록 변경
 						} else {
 							$("#userId").focus();
