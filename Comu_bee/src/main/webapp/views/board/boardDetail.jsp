@@ -27,10 +27,8 @@
 							<tr>
 								<c:if test="${category ne '리뷰'}">
 									<td>제목</td>
-									<td class="boardFreeTitle" colspan="2">${b.title }</td>
+									<td class="boardFreeTitle">${b.title}</td>
 								</c:if>
-								<td class="boardCreateDate">작성일 : ${b.createDate}</td>
-								<!-- 관리자 or 작성자라면 게시글 수정/삭제 버튼이 보이게 처리하기 -->
 								<c:if test="${loginUser.userId eq 'admin' or loginUser.userId eq b.userId}">
 									<td>
 										<button type="button" onclick="updateBoard();">수정</button><button type="button" onclick="deleteYN();">삭제</button>
@@ -48,10 +46,11 @@
 											</script>
 									</td>
 								</c:if>
+								<td class="boardCreateDate">${b.createDate}</td>
 							</tr>
 							<tr>
 								<td>작성자 : </td>
-								<td class="boardWriter" width="300">${b.userId}</td>
+								<td class="boardWriter" width="300" colspan="${loginUser.userId eq 'admin' or loginUser.userId eq b.userId}">${b.userId}</td>
 								<td class="boardCount" width="150">조회수 : ${b.count}</td>
 								<td class="boardLike" width="100">추천수 : ${b.boardLike}</td>
 							</tr>
@@ -66,7 +65,7 @@
 								<td></td>
 								<td> 
 									<button class="recommendButton" onclick="recommendBoard();"> 
-										<span class="recommendText">추천 수 : ${b.boardLike}</span>
+										<span class="recommendText boardLikeTotal">추천 수 : ${b.boardLike}</span>
 										<span class="recommendText">추천하기</span> 
 									</button> </td>
 								<td> <button onclick="scrab();">찜해놓기</button></td>
@@ -327,7 +326,7 @@
 					bno : ${b.boardNo}
 				},
 				success : function(like){
-					$(".boardLikeTotal").text(like);
+					$(".boardLikeTotal").text("추천 수 : "+like);
 				},
 				error : function(){
 					console.log("통신 오류")
