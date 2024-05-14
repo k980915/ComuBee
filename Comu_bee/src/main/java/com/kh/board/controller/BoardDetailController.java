@@ -44,7 +44,6 @@ public class BoardDetailController extends HttpServlet {
 		int result=new BoardService().increaseCount(bno);
 		if(result>0) {
 			ArrayList<Category> cList = bs.selectCategoryList();
-			System.out.println(cList);
 			Board b = new BoardService().selectBoard(bno);
 //			System.out.println(b);
 			// 첨부파일 정보도 조회하기

@@ -34,7 +34,9 @@ public class BoardDeleteController extends HttpServlet {
 		int bno = Integer.parseInt(request.getParameter("bno"));
 		
 		int result=new BoardService().deleteBoard(bno);
-		String category = request.getParameter("category");
+		HttpSession session = request.getSession();
+
+		String category = (String)session.getAttribute("category");
 		String ca="";
 		switch(category) {
 		case "토론": ca="db";
@@ -49,7 +51,6 @@ public class BoardDeleteController extends HttpServlet {
 			break;
 		}
 		
-		HttpSession session = request.getSession();
 		if(result>0) {
 			session.setAttribute("alertMsg", "게시글 삭제 성공");
 			
