@@ -163,4 +163,22 @@
 					WHERE BOARDNO=?
 					AND STATUS='Y'
 	</entry>
+	<entry key="likeCheck">
+		SELECT COUNT(*) COUNT FROM BOARDLIKE WHERE BOARDNO=? AND USERID=?
+	</entry>
+	<entry key="deleteLike">
+		DELETE BOARDLIKE WHERE BOARDNO=? AND USERID=?
+	</entry>
+	<entry key="insertLike">
+		INSERT INTO BOARDLIKE VALUES(?,?,SYSDATE)
+	</entry>
+	<entry key="countLike">
+		SELECT COUNT(*) COUNT FROM BOARDLIKE WHERE BOARDNO=?
+	</entry>
+	<entry key="updateBoardLike">
+		UPDATE BOARD SET
+					BOARDLIKE=?
+					WHERE BOARDNO=?
+	</entry>
+
 </properties>
