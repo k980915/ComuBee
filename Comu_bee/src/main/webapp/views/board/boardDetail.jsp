@@ -202,7 +202,7 @@
 						
 					</tbody>
 				</table>
-<%--				<script>
+				<script>
 				function searchBestCont(){
 					$.ajax({
 						url : "bestPopUp.co",
@@ -275,14 +275,16 @@
 						
 					});
 				}
-					
+					$(".popUp>thead>tr").click(function(){
+						
+					});
 					$(".popUp>tbody>tr").click(function(){
 						var bno = $(this).children.eq(0).text();
 						location.href='<%=contextPath%>/detail.bo?bno='+bno;
-						})
+						});
 
 				</script>
---%>
+
 			</div>
 		</div>
 		<!-- footer 있으면 그대로 다시 따오기 -->
