@@ -38,10 +38,13 @@ public class BoardDetailController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.setCharacterEncoding("UTF-8");
 		int bno = Integer.parseInt(request.getParameter("bno"));
+		String userId = request.getParameter("userId");
 		BoardService bs = new BoardService();
 		HttpSession session = request.getSession();
 		int result=new BoardService().increaseCount(bno);
+		int scrabChecked = bs.scrabCheck(bno,userId);
 		if(result>0) {
 			ArrayList<Category> cList = bs.selectCategoryList();
 			Board b = new BoardService().selectBoard(bno);
@@ -62,6 +65,8 @@ public class BoardDetailController extends HttpServlet {
 			request.setAttribute("bestPopList", bestPopList);
 			request.setAttribute("bestContList", bestContList);
 			request.setAttribute("list",list);
+			request.setAttribute("scrabChecked", scrabChecked);
+			System.out.println("scrabChecked : "+scrabChecked);
 			request.getRequestDispatcher("views/board/boardDetail.jsp").forward(request, response);
 			
 		}else {
