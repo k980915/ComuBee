@@ -62,7 +62,10 @@ String contextPath = request.getContextPath();
 .login-area {
 	margin-top: 20px;
 	float: right;
+	text-align: "center"
 }
+
+
 </style>
 </head>
 
@@ -77,39 +80,36 @@ String contextPath = request.getContextPath();
 		<%
 		if (loginUser == null) {
 		%>
-		<form id="login-form" action="<%=contextPath%>/login.us" method="post">
-			<table>
-				<tr>
-					<th>아이디</th>
-					<td><input type="text" name="userId" required
-						placeholder="아이디"></td>
-				</tr>
-				<tr>
-					<th>비밀번호</th>
-					<td><input type="password" name="userPwd" required
-						placeholder="비밀번호"></td>
-				</tr>
-				<tr>
-					<td colspan="2"><label for="saveId"> 아이디 저장: </label> <input
-						id="saveId" type="checkbox" name="saveId"></td>
-				</tr>
-				<tr>
-					<th colspan="2" align="center">
-						<button type="submit">로그인</button>
-						<button type="button" onclick="enrollForm();">회원가입</button>
-					</th>
-				<tr>
-					<th> <input type="button" onclick="findId();" value="아이디 찾기"></th>
-                
-                	<th> <input type="button" onclick="findPwd();"
-						value="비밀번호 찾기"></th>
-                </tr>
-                
-				
-            </table>
-        </form>
-        
-        <script>
+		
+			<form id="login-form" action="<%=contextPath%>/login.us"
+				method="post">
+				<table>
+					<tr>
+						<th></th>
+						<td><input type="text" name="userId" required
+							placeholder="아이디"></td>
+						<td><button type="submit" class="btn btn-secondary">로그인</button></td>
+					</tr>
+					<tr>
+						<th></th>
+						<td><input type="password" name="userPwd" required
+							placeholder="비밀번호"></td>
+				<th><input type="button" class="btn btn-secondary"
+					onclick="enrollForm();" value="회원가입"></th>
+					</tr>
+					<tr>
+						<td colspan="2"><label for="saveId"> 아이디 저장: </label> <input
+							id="saveId" type="checkbox" name="saveId"></td>
+					</tr>
+				</table>
+			<div class="find-area">
+				<th><input type="button" class="btn btn-link"
+					onclick="findId();" value="아이디 찾기"></th>|
+				<th><input type="button" class="btn btn-link"
+					onclick="findPwd();" value="비밀번호 찾기"></th>
+		</div>
+	</form>
+		<script>
         
         $(function(){
         	
@@ -128,22 +128,22 @@ String contextPath = request.getContextPath();
         }
         
         </script>
-          <%
-        } else {
-        %>
-        <div id="user-info">
-        	<b>${loginUser.userId }님 환영합니다!</b>
-        	<a href="${contextPath}/myPage.us">마이페이지</a>
-        	<a href="<%=contextPath%>/logout.us">로그아웃</a>
-        </div>
-     </div>
+		<%
+		} else {
+		%>
+		<div id="user-info">
+			<b>${loginUser.userId }님 환영합니다!</b> <a
+				href="${contextPath}/myPage.us">마이페이지</a> <a
+				href="<%=contextPath%>/logout.us">로그아웃</a>
+		</div>
+	</div>
 
 
-<%
-}
-%>
+	<%
+	}
+	%>
 
-<script>
+	<script>
 	var msg = "<%=alertMsg%>";
 
 	if (msg != "null") {
@@ -151,17 +151,9 @@ String contextPath = request.getContextPath();
 <%session.removeAttribute("alertMsg");%>
 	}
 </script>
-<script>
-	var msg = "<%=alertMsg%>";
-	
-	if(msg!="null"){
-		alert(msg);
-		<%session.removeAttribute("alertMsg");%>
-	}
 
-</script>
 
-<script>
+	<script>
 	function findId(){
 		location.href ="<%=contextPath%>/views/user/findUserId.jsp";
 		 
@@ -171,6 +163,7 @@ String contextPath = request.getContextPath();
 		location.href="<%=contextPath%>/views/user/findUserPwd.jsp";
 	}
 </script>
+
 </body>
 </html>
 
