@@ -18,7 +18,6 @@
 		<div class="boardBody">
 			<div class="boardMenuBar">
 				<h3>${category}게시판</h3>
-				<!-- 게시판 용 메뉴바가 필요하지 않을까 싶은? -->
 			</div>
 			<div class="boardMain">
 				<div class="boardTitle">
@@ -272,24 +271,47 @@
 			
 		}
 		
-		function scrab(){
-			$.ajax({
-				url : "insertScrab.sc",
-				type:"post",
-				data : {
-					bno : ${b.boardNo}, 
-					userId :"${loginUser.userId}"
-				},
-				success : function(str){
-					console.log(str)
-					},
-				error : function(){
-					console.log("통신 오류")
-				}
-				
-			});
-			
-		}
+ 		function scrab(){
+            if('${loginUser.userId}'==''){
+                alert("찜하기는 로그인 후 이용 가능합니다.");
+                return false;
+            }
+            var msg="";
+            $.ajax({
+                url : "insertScrab.bo",
+                type : "post",
+                data : {
+                    bno : ${b.boardNo},
+                    userId : "${loginUser.userId}"
+                },
+                success : function(result){
+                    if(result>0){
+                        msg="찜목록에서 삭제되었습니다.";
+                    }else{
+                        msg="찜목록에 추가되었습니다.";
+                    }
+                    alert(msg);
+                },
+                error : function(){
+                    console.log("틀림");
+                }
+            });
+        }
+        function scrabUpdate(){
+            var tr="";
+            $.ajax({
+                url : "scrabUpdate.sc",
+                data : {
+                    bno : ${b.boardNo}
+                },
+                success : function(like){
+                    $(".boardLikeTotal").text(like);
+                },
+                error : function(){
+                    console.log("통신 오류");
+                }
+            });
+        }
 		function recommendBoard(){
 			if('${loginUser.userId}'==''){
 				alert("추천은 로그인 후 이용 가능합니다.");
@@ -317,6 +339,7 @@
 				}
 			});
 		}
+		
 		function likeUpdate(){
 			var tr="";
 			$.ajax({

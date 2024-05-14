@@ -1,4 +1,4 @@
-package com.kh.scrab.controller;
+package com.kh.board.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,19 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.scrab.model.service.ScrabService;
+import com.kh.board.model.service.BoardService;
 
 /**
- * Servlet implementation class InsertScrabController
+ * Servlet implementation class BoardScrabController
  */
-@WebServlet("/insertScrab.sc")
-public class InsertScrabController extends HttpServlet {
+@WebServlet("/insertScrab.bo")
+public class BoardScrabController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InsertScrabController() {
+    public BoardScrabController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,18 +37,19 @@ public class InsertScrabController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		
-		int bNo = Integer.parseInt(request.getParameter("bno"));
-		String userId = request.getParameter("userId");
-		String str="";
-		int result = new ScrabService().insertScrab(bNo,userId);
+		String userId=request.getParameter("userId");
+		int bno = Integer.parseInt(request.getParameter("bno"));
+		BoardService bs = new BoardService();
+		int result = bs.scrabCheck(bno,userId);
+		System.out.println("result"+result);
+		int result2=0;
+		String msg="";
 		if(result>0) {
-			str+="찜 성공";
+			result2=bs.deleteScrab(bno,userId);
 		}else {
-			str+="찜 실패";
+			result2=bs.insertScrab(bno,userId);
 		}
-		response.getWriter().print(str);
-		
+		response.getWriter().print(result);
 	}
 
 }
