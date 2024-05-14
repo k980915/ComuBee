@@ -1,4 +1,4 @@
-package com.kh.message.controller;
+package com.kh.board.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,19 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.user.model.service.AdminService;
+import com.kh.board.model.service.BoardService;
 
 /**
- * Servlet implementation class MessageCouponCreate
+ * Servlet implementation class BoardLikeController
  */
-@WebServlet("/cpCreate.ad")
-public class MessageCouponCreate extends HttpServlet {
+@WebServlet("/likeBoard.rb")
+public class BoardLikeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MessageCouponCreate() {
+    public BoardLikeController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,20 +28,8 @@ public class MessageCouponCreate extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String userId = request.getParameter("userIdval");
-//		System.out.println(userId);
-//		System.out.println(couponStr);
-		
-		
-		// 포인트 차감 구문 작성
-		int result = new AdminService().MessageCouponCreate(userId);
-		
-		
-		if(result>0) {
-			response.setContentType("text/html;charset=UTF-8");
-			response.getWriter().print(result);
-			
-		}
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -49,7 +37,21 @@ public class MessageCouponCreate extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+//		doGet(request, response);
+		request.setCharacterEncoding("UTF-8");
+		String userId=request.getParameter("userId");
+		int bno = Integer.parseInt(request.getParameter("bno"));
+		BoardService bs = new BoardService();
+		int result = bs.likeCheck(bno,userId);
+		int result2=0;
+		String msg="";
+		if(result>0) {
+			result2=bs.deleteLike(bno,userId);
+		}else {
+			result2=bs.insertLike(bno,userId);
+		}
+		response.getWriter().print(result);
+
 	}
 
 }

@@ -9,6 +9,7 @@
 <style>
 	.boardOuter{
 		width:100%;
+		height:100%;
 		}
 	.boardOuter>div{
 		display:inline;
@@ -46,35 +47,38 @@
 			</div>
 			<div class="boardMain">
 				<div class="boardContent">
-					<form action="${contextPath}/update.bo">
+					<form action="${contextPath}/update.bo" method="post" enctype="multipart/form-data">
 						<input type="hidden" name="boardNo" value="${b.boardNo}">
+						<input type="hidden" name="boardCategory" value="${category}">
 						<table border="1px solid black">
 							<thead>
+								<c:if test="${category ne 'RECOMMEND'}">
+									<tr>
+										<th>제목</th>
+										<td class="boardFreeTitle" colspan="4">
+											<input type="text" name="title" required value="${b.title}">
+										</td>
+										
+									</tr>
+								</c:if>
 								<tr>
-									<td class="boardCategory">"${category}"</td>
-									<td class="boardFreeTitle" colspan="2">
-										<input type="text" name="title" required value="${b.title}">
-									</td>
-									
-								</tr>
-								<tr>
-									<td>작성자 : </td>
-									<td class="boardWriter" width="300">"${b.userId}"</td>
-									<td class="boardCount" width="150">조회수 : ${b.count}</td>
-									<td class="boardLike" width="100">추천수 : ${b.boardLike}</td>
+									<th>작성자 : </th>
+									<td class="boardWriter" width="300">${b.userId} </td>
+									<td class="boardCount" width="150">조회수 : ${b.count} </td>
+									<td class="boardLike" width="100">추천수 : ${b.boardLike} </td>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
 									<td class="boardContent" height="400" colspan="4">
-										<textarea name="content" rows="10" style="resize:none;" required>${b.boardContent}</textarea>
+									<textarea name="content" rows="10" style="resize:none;" required>${b.boardContent}</textarea>
 									</td>
 								</tr>
 								<tr>
 									<th>첨부파일</th>
 									<td colspan="3">
 										<c:if test="${at!=null}">
-											<c:forEach items="${at}" val="ats">
+											<c:forEach var="ats" items="${at}" >
 											${ats.originName}
 											<!-- 게시글에 첨부 파일이 있었던 경우, 해당 첨부 파일 정보를 등록한 DB에 있는 정보에 수정이 일어나야 한다.
 												 때문에 해당 데이터 식별자 용으로 fileNo를 전달해야 하고 또한 서버에 업로드된 파일이 필요 없어졌으니
@@ -91,12 +95,16 @@
 									<td class="boardSearchTag" colspan="4">
 										태그 : 관련검색어 본인이 입력할 수 있게?
 									</td>
-									<c:if test="${b.category eq 'RECOMMEND'}">
+									<c:if test="${category eq 'RECOMMEND'}">
 										관련 컨텐츠 제목 선택할 수 있는 영역 만들기
 									</c:if>
 								</tr>
 							</tbody>
 						</table>
+						<div class="submitBtnArea" align="center">
+							<button type="submit">수정하기</button>
+							<button type="reset" onclick="location.href=''">취소하기</button>
+						</div>
 					</form>
 				</div>
 				<div class="boardReply">
@@ -137,7 +145,7 @@
 									data : {
 										content : $("#replyContent").val(),
 										bno : ${b.boardNo},
-										userNo : "${loginUser.userNo}"
+										userId : "${loginUser.userId}"
 									},
 									success : function(result){
 										if(result>0){
@@ -166,7 +174,7 @@
 									},
 									success : function(){
 											var tr="";
-										if(rList.isEmpty()){
+										if(rList.length==0){
 											tr="<tr>"
 												+"<td span='3'>
 												+"현재 댓글이 없습니다."
@@ -195,15 +203,6 @@
 			
 			
 				<div class="boardList">
-					<form class="boardListToolBar" action="">
-						<!--  검색 기능, 카테고리 별 조회, 추천수 많은 글 조회 등 조회내용 전송용 공간 -->
-						<!-- 카테고리 항목 선택 시 해당 카테고리 조회 결과 리스트 조회(비동기통신 이용할 듯) -->
-						<select name="categoryList">
-							<c:forEach var="c" items="${category}">
-								<option value="${c.categoryNo}">"${c.categoryName}"</option>
-							</c:forEach>
-						</select>
-					</form>
 					<%@ include file="/views/board/listSample.jsp" %>
 				</div>
 			</div>
@@ -238,7 +237,7 @@
 				<table class="popUp">
 					<thead>
 						<tr>
-							<c:forEach var="c" items="${category}">
+							<c:forEach var="c" items="${cList}">
 								<th onclick="searchBestCat();">${c.categoryName}<th>
 							</c:forEach>
 						</tr>
@@ -260,7 +259,7 @@
 				<table class="popUp">
 					<thead>
 						<tr>
-							<c:forEach var="c" items="${category}">
+							<c:forEach var="c" items="${cList}">
 								<th onclick="searchNewCat();">${c.categoryName}<th>
 							</c:forEach>
 						</tr>

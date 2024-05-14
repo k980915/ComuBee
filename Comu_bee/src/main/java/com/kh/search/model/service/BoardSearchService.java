@@ -10,12 +10,11 @@ import com.kh.common.JDBCTemplate;
 public class BoardSearchService {
 
     public ArrayList<Board> search(String keyword) {
-        //BoardSearchDao dao = new BoardSearchDao();
        
         Connection conn = JDBCTemplate.getConnection();
         
         ArrayList<Board> result= new BoardSearchDao().search(conn,keyword);
-        System.out.println(result);
+        System.out.println(result);	
         JDBCTemplate.close(conn);
         return result;
     }

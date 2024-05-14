@@ -37,15 +37,15 @@ public class BoardDeleteController extends HttpServlet {
 		String category = request.getParameter("category");
 		String ca="";
 		switch(category) {
-		case "DEBATE": ca="db";
+		case "토론": ca="db";
 			break;
-		case "FREE": ca="fr";
+		case "자유": ca="fr";
 			break;
-		case "NOTICE": ca="no";
+		case "공지": ca="no";
 			break;
-		case "RECOMMEND": ca="rc";
+		case "추천": ca="rc";
 			break;
-		case "REVIEW": ca="rv";
+		case "리뷰": ca="rv";
 			break;
 		}
 		

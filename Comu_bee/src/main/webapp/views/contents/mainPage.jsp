@@ -38,19 +38,28 @@
 	            line-height: 50px;
 	            text-align: center;
 	        }
-	        .menu a{
-	        	color:black;
-	        }
+	        
 	        img:hover{
 	        	cursor: pointer;
 	        }
+
+       		.menu h1 {
+            font-weight: bold; 
+        	}
+        	table {
+            font-weight: bold;
+        	}
+        	#recommend {
+			    font-size: 25px;
+			}
+			
 	        
 	    </style>
 	</head>
 	<body>
 	    <%@ include file = "/views/common/header.jsp" %>
 	
-	    <div class="outer">
+	    <div>
 	        <form action="${contextPath}/main.co">
 	        
 	            <div align="center">
@@ -98,7 +107,7 @@
 					                    <img src="${content.posterPath}" style="height: 600px; width: 500px;">
 					                </td>
 					                
-					                <td style="width: 300px;">
+					                <td style="width: 500px;">
 					                    ${content.overView}
 					                </td>
 					            </tr>
@@ -155,6 +164,22 @@
 		            var posterPath = $(this).attr('src');
 		            location.href = '${contextPath}/detail.co?contentsId=' + contentsId;
 		        });
+			    
+			 // 저장된 다크 모드 상태 불러오기
+			    function loadDarkModeState() {
+			        return localStorage.getItem('darkMode') === 'true';
+			    }
+
+			    // 페이지 로드 시 저장된 다크 모드 설정을 확인하여 적용
+			    window.onload = function() {
+			        var isDarkMode = loadDarkModeState();
+			        if (isDarkMode) {
+			            document.body.classList.add('dark-mode');
+			        } else {
+			            document.body.classList.remove('dark-mode');
+			        }
+			    };
+
 			    
 			</script>
 	

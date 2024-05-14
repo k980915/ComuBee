@@ -32,7 +32,6 @@
 
 	<button class="btn btn-outline-secondary create-post-button" id="sendView" onclick="sendList();">내가 보낸 쪽지</button>
 	<button class="btn btn-outline-secondary create-post-button" id="receiveView" onclick="receiveList();">내가 받은 쪽지</button>
-	<button class="btn btn-outline-secondary create-post-button" id="writeMessage" onclick="writeMessage();">쪽지 쓰기</button>
 	<!-- <button id="scrabView" onclick="scrabList();">보관함</button> -->	
 	<div id="messages-area" class="table-responsive small">
 		<table border="1" align="center" class="table table-striped table-sm table-hover">
@@ -49,93 +48,49 @@
 			</thead>
 			<tbody>
 				<c:choose>
-					<c:when test="${not empty list }">
+					<c:when test="${empty list }">
+						<!-- 조회된 데이터가 없을때 -->
+						<tr>
+							<td colspan="5">새로운 쪽지가 없습니다</td>
+						</tr>
+					</c:when>
+					<c:otherwise>
+						<!-- 조회된 데이터가 있을때 -->
 						<c:forEach var="m" items="${list}">
 							<tr>
-								<td class="text-center">${m.mNo}</td>
-								<td class="boardListTitle">${m.sendName }</td>
+								<td>${m.mNo}</td>
+								<td>${m.sendName }</td>
 								<td>${m.receiveName}</td>
 								<td>${m.messageContent }</td>
 								<td>${m.sendDate }</td>
 								<td>${m.readCheck }</td>
 							</tr>
 						</c:forEach>
-					</c:when>
-					<c:otherwise>
-						<tr>
-							<td colspan="5">새로운 쪽지가 없습니다</td>
-						</tr>
 					</c:otherwise>
 				</c:choose>
 			</tbody>
 		</table>
 	</div>
-	
-	<nav aria-label="Page navigation example" style="text-align: center;">
-        <ul class="pagination justify-content-center">
-        	<c:if test="${pi.currentPage gt 1}">
-	            <li class="page-item">
-	                <button aria-label="Previous" onclick="prev();">
-	                    <span aria-hidden="true">&laquo;</span>
-	                    <span class="sr-only" >Previous</span>
-	                </button>
-	            </li>
-        	</c:if>
-            <c:forEach var="i" begin="${pi.startPage}" end="${pi.endPage}">
-           		<li class="page-item">
-           			<button class="page-link">${i}</button>
-           		</li>
-            </c:forEach>
-	           <c:if test="${pi.currentPage lt pi.maxPage}">
-           		<li class="page-item">
-	                <button aria-label="Next"  onclick="next();">
-	                    <span aria-hidden="true">&raquo;</span>
-	                    <span class="sr-only">Next</span>
-	                </button>
-	            </li>
-            </c:if>
-        </ul>
-    </nav>
 	<div>
-		
+		<form action="<%=contextPath%>/sendMessage.ms" method="post">
+			<div class="message-input-area">
+				<label for="name">name</label> <input type="hidden" name="senderId"
+					value="${loginUser.userId}"> <input type="text" id="name"
+					placeholder="받는사람 닉네임" name="receiverId">
+			</div>
+			<div class="message-input">
+				<label for="message">Message</label>
+				<textarea id="message" rows="6" name="message"></textarea>
+			</div>
+			<ul class="action">
+				<li><input type="submit" value="sendMessage" /></li>
+				<li><input type="reset" value="clear"></li>
+			</ul>
+		</form>
 	</div>
 	<br>
 	<br>
-	
-	
 	<script>
-	$(".boardListTitle").click(function(){
-		var mNo = $(this).siblings().eq(0).text();
-		location.href='${contextPath}/detail.ms?mNo='+mNo;
-	});
-	 $(".page-link").click(function(){
-		var btnNo=Number($(this).text());
-		location.href='messageMain.ms?userId=${loginUser.userId}&messageNewCurrentPage='+btnNo;
-	});
-	var currentPage=${pi.currentPage}
-	function prev(){
-		location.href='messageMain.ms?userId=${loginUser.userId}&messageNewCurrentPage='+(currentPage-1);
-	}
-	function next(){
-		location.href='messageMain.ms?userId=${loginUser.userId}&messageNewCurrentPage='+(currentPage+1);
-	}
-	
-	function sendList(){
-		location.href='sendList.ms?userId=${loginUser.userId}&sendListCurrentPage=1';
-	}
-	function receiveList(){
-		location.href='receiveList.ms?userId=${loginUser.userId}&receiveListCurrentPage=1';
-	}
-	function writeMessage(){
-		location.href='goSendMessageForm.ms?userId=${loginUser.userId}';
-	}
-	
-	
-	
-	
-	
-	/*
-	
 		function sendList() {
 
 			$.ajax({
@@ -182,7 +137,7 @@
 						},
 						success : function(list) {
 							console.log("성공");
-							 $("#messages-area tbody>tr").remove(); 
+							$("#messages-area tbody>tr").remove();
 							var tr = "";
 							if (list == null) {
 								tr += "<tr>" + "<td>" + "조회된 메시지가 없습니다"
@@ -217,6 +172,41 @@
 					});
 		}
 
+		/* function scrabList(){
+		
+		 $.ajax({
+		 url : "selectList.ms",
+		 type:"post",
+		 data:{
+		 decide : "scrabView",
+		 userId : "${loginUser.userId}"
+		 },
+		 success : function(list){
+		 console.log("성공");
+		 $("#messages-area tbody>tr").remove();
+		 //전부 추가하기
+		 var tr = "";
+		 console.log(list);
+		 //전부 추가하기
+		 for(var i in list){
+		 var messageContent = list[i].messageContent.length > 10 ? list[i].messageContent.substring(0, 10) + "..." : list[i].messageContent;
+		 tr +="<tr>"
+		 +"<td>"+ list[i].mNo +"</td>"
+		 +"<td>"+ list[i].sendName +"</td>"
+		 +"<td>"+ list[i].receiveName +"</td>"
+		 +"<td>"+ messageContent +"</td>"
+		 +"<td>"+ list[i].sendDate +"</td>"
+		 +"<td>"+ list[i].scrabCheck +"</td>"
+		 +"</tr>";
+		 }
+		
+		 $("#messages-area tbody").html(tr);
+		 },
+		 error : function(){
+		 console.log("통신오류");
+		 }
+		 });
+		 } */
 		$("table").on(
 				"click",
 				"tbody>tr",
@@ -246,7 +236,32 @@
 					}
 				});
 
- */ 
+		$("table").on("click", "tbody>tr", function(event) {
+			if ($(event.target).is('td') && $(event.target).index() >= 5) {
+				var messageId = $(this).find("td:first").text();
+				var scrabCheck = $(this).find("td:last").text();
+				var check = $(this);
+				$.ajax({
+					url : "updateScrabCheck.ms",
+					type : "post",
+					data : {
+						messageId : messageId,
+						userId : "${loginUser.userId}",
+						scrabCheck : scrabCheck
+					},
+					success : function(result) {
+						// 업데이트가 성공하면 필요에 따라 여기서 추가 작업을 수행할 수 있습니다
+						if (result > 0) {
+							check.remove();
+						}
+					},
+					error : function() {
+
+					}
+				});
+			}
+		});
+
 		
 	</script>
 </body>

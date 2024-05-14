@@ -7,8 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/views/board/board-css/BoardDetail.css">
-
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/views/board/board-css/BoardDetail.css?v=1.1">
 
 </head>
 <body>
@@ -26,9 +25,9 @@
 					<table border="1px solid black">  
 						<thead>
 							<tr>
-								<c:if test="${category ne 'REVIEW'}">
-									<td class="boardCategory">[카테고리]</td>
-									<td class="boardFreeTitle" colspan="2">제목</td>
+								<c:if test="${category ne '리뷰'}">
+									<td>제목</td>
+									<td class="boardFreeTitle" colspan="2">${b.title }</td>
 								</c:if>
 								<td class="boardCreateDate">작성일 : ${b.createDate}</td>
 								<!-- 관리자 or 작성자라면 게시글 수정/삭제 버튼이 보이게 처리하기 -->
@@ -52,7 +51,7 @@
 							</tr>
 							<tr>
 								<td>작성자 : </td>
-								<td class="boardWriter" width="300">"${b.userId}"</td>
+								<td class="boardWriter" width="300">${b.userId}</td>
 								<td class="boardCount" width="150">조회수 : ${b.count}</td>
 								<td class="boardLike" width="100">추천수 : ${b.boardLike}</td>
 							</tr>
@@ -60,19 +59,20 @@
 						<tbody>
 							<tr>
 								<td class="boardContent" height="400" colspan="4">
-									<span>${b.boardContent }</span>
+									<span>${b.boardContent}</span>
 								</td>
 							</tr>
 							<tr align="center">
 								<td></td>
-								<td> <button onclick="recommendBoard();">추천하기</button> </td>
+								<td> 
+									<button class="recommendButton" onclick="recommendBoard();"> 
+										<span class="recommendText">추천 수 : ${b.boardLike}</span>
+										<span class="recommendText">추천하기</span> 
+									</button> </td>
 								<td> <button onclick="scrab();">찜해놓기</button></td>
 							</tr>
 							<tr>
-								<td class="boardSearchTag" colspan="4">
-									태그 : 관련검색어 본인이 입력할 수 있게?
-								</td>
-								<c:if test="${b.category eq 'RECOMMEND'}">
+								<c:if test="${b.category eq '추천'}">
 									<td class="boardToContent" onclick="${contextPath}/">
 										${b.contentsId} 보러가기
 									</td> 
@@ -86,7 +86,7 @@
 						<c:choose>
 							<c:when test="${not empty loginUser}">
 								<tr>
-									<th>댓글작성</th>
+									<th style="color:black;">댓글작성</th>
 									<td>
 										<textarea id="replyContent" rows="3" cols="50" style="resize:none;"></textarea>
 									</td>
@@ -97,7 +97,7 @@
 							</c:when>
 							<c:otherwise>
 								<tr>
-									<th>댓글작성</th>
+									<th style="color:black;">댓글작성</th>
 									<td>
 										<textarea readonly rows="3" cols="50" style="resize:none;">로그인 후 이용 가능한 서비스입니다.</textarea>
 									</td>
@@ -106,22 +106,23 @@
 							</c:otherwise>
 						</c:choose>
 					</table>
-					<table border="1" align="center" class="writtenReply">
+					<br>
+					<table border="1" class="writtenReply" >
 						<thead>
 							<tr>
-								<td class="replyWriter">작성자</td>
-								<td class="replyContent">내용</td>
-								<td class="replyDate">작성일</td>
+								<th class="replyWriter">작성자</th>
+								<th class="replyContent">내용</th>
+								<th class="replyDate">작성일</th>
 							</tr>
 						</thead>
 						<tbody>
-						<c:forEach items="${rList}" var="r">
-							<tr>
-								<td>${r.userId}</td>
-								<td>${r.replyContent}</td>
-								<td>${r.createDate}</td>
-							</tr>
-						</c:forEach>
+							<c:forEach items="${rList}" var="r">
+								<tr>
+									<td>${r.userId}</td>
+									<td>${r.replyContent}</td>
+									<td>${r.createDate}</td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 					
@@ -130,15 +131,6 @@
 			
 			
 				<div class="boardList">
-					<form class="boardListToolBar" action="">
-						<!--  검색 기능, 카테고리 별 조회, 추천수 많은 글 조회 등 조회내용 전송용 공간 -->
-						<!-- 카테고리 항목 선택 시 해당 카테고리 조회 결과 리스트 조회(비동기통신 이용할 듯) -->
-						<select name="categoryList">
-							<c:forEach var="c" items="${cList}">
-								<option value="${c.categoryNo}">"${c.categoryName}"</option>
-							</c:forEach>
-						</select>
-					</form>
 					<%@ include file="/views/board/listSample.jsp" %>
 				</div>
 			</div>
@@ -209,7 +201,7 @@
 						
 					</tbody>
 				</table>
-<%--				<script>
+				<script>
 				function searchBestCont(){
 					$.ajax({
 						url : "bestPopUp.co",
@@ -282,14 +274,16 @@
 						
 					});
 				}
-					
+					$(".popUp>thead>tr").click(function(){
+						
+					});
 					$(".popUp>tbody>tr").click(function(){
 						var bno = $(this).children.eq(0).text();
 						location.href='<%=contextPath%>/detail.bo?bno='+bno;
-						})
+						});
 
 				</script>
---%>
+
 			</div>
 		</div>
 		<!-- footer 있으면 그대로 다시 따오기 -->
@@ -334,7 +328,7 @@
 										bno : ${b.boardNo}
 									},
 									success : function(rList){
-										if(${empty rList}){
+										if(rList.length==0){
 											tr="<tr>"
 												+"<td span='3'>"
 												+"현재 댓글이 없습니다."
@@ -377,7 +371,49 @@
 								});
 								
 							}
-
+							function recommendBoard(){
+								if('${loginUser.userId}'==''){
+									alert("추천은 로그인 후 이용 가능합니다.");
+									return false;
+								}
+								var msg="";
+								$.ajax({
+									url : "likeBoard.rb",
+									type : "post",
+									data : {
+										bno : ${b.boardNo},
+										userId : "${loginUser.userId}"
+									},
+									success : function(result){
+										if(result>0){
+											msg="추천을 취소하였습니다.";
+										}else{
+											msg="추천을 완료하였습니다.";
+										}
+										alert(msg);
+										likeUpdate();
+									},
+									error : function(){
+										console.log("틀림");
+									}
+								});
+							}
+							function likeUpdate(){
+								var tr="";
+								$.ajax({
+									url : "likeUpdate.rb",
+									data : {
+										bno : ${b.boardNo}
+									},
+									success : function(like){
+										$(".boardLikeTotal").text(like);
+									},
+								error : function(){
+									console.log("통신 오류")
+									}
+								})
+							}
+		
 						</script>
 </body>
 </html>

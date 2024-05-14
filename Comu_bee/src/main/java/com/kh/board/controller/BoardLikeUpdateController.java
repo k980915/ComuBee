@@ -1,4 +1,4 @@
-package com.kh.message.controller;
+package com.kh.board.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,19 +7,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.user.model.service.AdminService;
+import com.google.gson.Gson;
+import com.kh.board.model.service.BoardService;
 
 /**
- * Servlet implementation class MessageCouponCreate
+ * Servlet implementation class BoardLikeUpdateController
  */
-@WebServlet("/cpCreate.ad")
-public class MessageCouponCreate extends HttpServlet {
+@WebServlet("/likeUpdate.rb")
+public class BoardLikeUpdateController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MessageCouponCreate() {
+    public BoardLikeUpdateController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,20 +29,19 @@ public class MessageCouponCreate extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String userId = request.getParameter("userIdval");
-//		System.out.println(userId);
-//		System.out.println(couponStr);
-		
-		
-		// 포인트 차감 구문 작성
-		int result = new AdminService().MessageCouponCreate(userId);
-		
-		
+		// TODO Auto-generated method stub
+//		response.getWriter().append("Served at: ").append(request.getContextPath());
+		int bno = Integer.parseInt(request.getParameter("bno"));
+		BoardService bs = new BoardService();
+		int result=0;
+		int like=bs.countLike(bno);
+		System.out.println("추천갯수 : "+like);
+		result=bs.updateBoardLike(bno,like);
 		if(result>0) {
-			response.setContentType("text/html;charset=UTF-8");
-			response.getWriter().print(result);
-			
+			response.setContentType("json/application; charset=UTF-8");
+			new Gson().toJson(like,response.getWriter());
 		}
+
 	}
 
 	/**
