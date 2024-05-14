@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import com.kh.board.model.service.BoardService;
 import com.kh.board.model.vo.Board;
 import com.kh.common.model.vo.PageInfo;
+import com.kh.contents.model.vo.Contents;
 
 /**
  * Servlet implementation class RecommendListController
@@ -94,15 +95,23 @@ public class ReviewListController extends HttpServlet {
 		}
 		
 		PageInfo pi = new PageInfo(listCount,currentPage,pageLimit,boardLimit,maxPage,startPage,endPage);
-
+		Board b=new Board();
+		b.setCategory(category);
+		
 		// 게시글 목록
 		ArrayList<Board> list = new BoardService().selectListByCategory(pi,category);
 		ArrayList<Board> noList = new BoardService().selectNoticeListByCategory();
+		ArrayList<Contents> pcList = new BoardService().bestContList();
+		ArrayList<Board> npbList = new BoardService().newPopList(b);
+		ArrayList<Board> bpbList=new BoardService().bestPopList(b);
 		//위임하기 위한 데이터 담아주기
 		
 		session.setAttribute("pi", pi);
 		session.setAttribute("list", list);
 		session.setAttribute("noList",noList);
+		session.setAttribute("pcList", pcList);
+		session.setAttribute("npbList", npbList);
+		session.setAttribute("bpbList",bpbList);
 		request.getRequestDispatcher("views/board/reviewBoard.jsp").forward(request, response);
 	}
 

@@ -148,7 +148,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="p" items="${bestContList}">
+						<c:forEach var="p" items="${pcList}">
 							<tr>
 								<td> <input type=hidden value='${p.contentsId}'> </td>
 								<td>
@@ -166,16 +166,16 @@
 					<thead>
 						<tr>
 							<c:forEach var="c" items="${cList}">
-								<th onclick="searchBestCat();">${c.categoryName}<th>
+								<th onclick="searchBestCat();">${c.categoryName}</th>
 							</c:forEach>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="p" items="${bestPopList}">
+						<c:forEach var="bpb" items="${bpbList}">
 							<tr>
-								<td> <input type=hidden value='${p.boardNo}'> </td>
-								<td>${p.title}</td>
-								<td>(${p.like})</td><!-- 추천수 표시 -->
+								<td colspan="5">${bpb.title}(${bpb.boardLike})
+									<input type=hidden value='${bpb.boardNo}'>
+								</td><!-- 추천수 표시 -->
 							</tr>
 						</c:forEach>
 						
@@ -188,32 +188,37 @@
 					<thead>
 						<tr>
 							<c:forEach var="c" items="${cList}">
-								<th onclick="searchNewCat();">${c.categoryName}<th>
+								<th onclick="searchNewCat();">${c.categoryName}</th>
 							</c:forEach>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="p" items="${newPopList}">
+						<c:forEach var="npb" items="${npbList}">
 							<tr>
-								<td> <input type=hidden value='${p.boardNo}'> </td>
-								<td>${p.title}</td>
+								<td colspan="5">${npb.title}
+									<input type=hidden value='${npb.boardNo}'>
+								</td>
 							</tr>
 						</c:forEach>
 						
 					</tbody>
 				</table>
 				<script>
+				
 				function searchBestCont(){
 					$.ajax({
-						url : "bestPopUp.co",
-						success : function(list){
+						url : "PopUp.co",
+						data : {
+							search : best;
+						},
+						success : function(pcList){
 							var str = "";
-							for var(i=0;i<list.length;i++){
+							for(var i=0;i<pcList.length;i++){
 								str+="<tr>"
-								+"<td>"+list[i].title+"</td>"
+								+"<td>"+pcList[i].title+"</td>"
 								+"</tr>"
-							}
-							${".contentPopUp thead"}.html(str);
+							};
+							$(".contentPopUp thead").html(str);
 						},
 						error : function(){
 							console.log("통신오류")
@@ -223,15 +228,18 @@
 				}
 				function searchNewCont(){
 					$.ajax({
-						url : "newPopUp.co",
-						success : function(list){
+						url : "PopUp.co",
+						data : {
+							
+						}
+						success : function(pcList){
 							var str = "";
-							for var(i=0;i<list.length;i++){
+							for(var i=0;i<pcList.length;i++){
 								str+="<tr>"
-								+"<td>"+list[i].title+"</td>"
+								+"<td>"+pcList[i].title+"</td>"
 								+"</tr>"
-							}
-							${".contentPopUp thead"}.html(str);
+							};
+							$(".contentPopUp thead").html(str);
 						},
 						error : function(){
 							console.log("통신오류")
@@ -242,14 +250,14 @@
 				function searchNewCat(){
 					$.ajax({
 						url : "newPopUp.bo",
-						success : function(list){
+						success : function(npList){
 							var str = "";
-							for var(i=0;i<list.length;i++){
+							for(var i=0;i<npList.length;i++){
 								str+="<tr>"
-								+"<td>"+list[i].title+"</td>"
+								+"<td>"+npList[i].title+"</td>"
 								+"</tr>"
-							}
-							${".newPopUp thead"}.html(str);
+							};
+							$(".newPopUp thead").html(str);
 						},
 						error : function(){
 							console.log("통신오류")
@@ -260,14 +268,15 @@
 				function searchBestCat(){
 					$.ajax({
 						url : "bestPopUp.bo",
-						success : function(list){
+						success : function(bpList){
 							var str = "";
-							for var(i=0;i<list.length;i++){
+							for(var i=0;i<bpList.length;i++){
 								str+="<tr>"
-								+"<td>"+list[i].title+"</td>"
+								+"<td>"+bpList[i].title+"</td>"
+								"<td>("+bpList[i].boardLike+")</td>"
 								+"</tr>"
-							}
-							${".bestPopUp thead"}.html(str);
+							};
+							$(".bestPopUp thead").html(str);
 						},
 						error : function(){
 							console.log("통신오류")
@@ -279,7 +288,7 @@
 						
 					});
 					$(".popUp>tbody>tr").click(function(){
-						var bno = $(this).children.eq(0).text();
+						var bno = $(this).children().children().val();
 						location.href='<%=contextPath%>/detail.bo?bno='+bno;
 						});
 
