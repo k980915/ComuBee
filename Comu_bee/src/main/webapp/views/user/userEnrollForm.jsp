@@ -209,6 +209,7 @@ table {
 
 		</div>
 
+		
 
 	<script>
 			function idCheck() {
@@ -236,6 +237,7 @@ table {
 					}
 				});
 			}
+			
 		</script>
 </body>
 </html>
