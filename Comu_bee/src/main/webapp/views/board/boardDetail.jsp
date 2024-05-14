@@ -55,7 +55,8 @@
                                 <td></td>
                                 <td> 
                                     <button class="recommendButton" onclick="recommendBoard();"> 
-                                        <span class="recommendText">추천 수 : ${b.boardLike}</span>
+                                        <span class="recommendText">추천 수 : </span>
+                                        <span class="boardLikeTotal">${b.boardLike}</span>
                                         <span class="recommendText">추천하기</span> 
                                     </button> 
                                 </td>
@@ -190,6 +191,14 @@
     </div>    
     
     <script>
+    $(document).ready(function() {
+        var scrabChecked = ${scrabChecked};
+        if (scrabChecked >0) {
+            $(".scrapButton").css("background-color", "gray");
+        } else {
+        	$(".scrapButton").css("background-color", "yellow");
+        }
+    });
         function updateBoard(){
             var bno=${b.boardNo};
             location.href="${contextPath}/update.bo?bno="+bno;
@@ -292,6 +301,49 @@
             var tr="";
             $.ajax({
                 url : "likeUpdate.rb",
+                data : {
+                    bno : ${b.boardNo}
+                },
+                success : function(like){
+                    $(".boardLikeTotal").text(like);
+                },
+                error : function(){
+                    console.log("통신 오류");
+                }
+            });
+        }
+        
+        function scrab(){
+            if('${loginUser.userId}'==''){
+                alert("찜하기는 로그인 후 이용 가능합니다.");
+                return false;
+            }
+            var msg="";
+            $.ajax({
+                url : "insertScrab.bo",
+                type : "post",
+                data : {
+                    bno : ${b.boardNo},
+                    userId : "${loginUser.userId}"
+                },
+                success : function(result){
+                    if(result>0){
+                        msg="찜목록에서 삭제되었습니다.";
+                    }else{
+                        msg="찜목록에 추가되었습니다.";
+                    }
+                    alert(msg);
+                },
+                error : function(){
+                    console.log("틀림");
+                }
+            });
+        }
+
+        function scrabUpdate(){
+            var tr="";
+            $.ajax({
+                url : "scrabUpdate.sc",
                 data : {
                     bno : ${b.boardNo}
                 },
