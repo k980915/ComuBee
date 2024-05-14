@@ -45,8 +45,6 @@ public class mainContents extends HttpServlet {
 		
 		ArrayList<Board> boardList = new ArrayList<>();
 		boardList = new ContentsService().ForReview();
-
-		System.out.println(conList);
 		
 		request.setAttribute("conList", conList);
 		request.setAttribute("bestList", bestList);

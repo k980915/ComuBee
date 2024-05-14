@@ -164,21 +164,8 @@
 		            var posterPath = $(this).attr('src');
 		            location.href = '${contextPath}/detail.co?contentsId=' + contentsId;
 		        });
-			    
-			 // 저장된 다크 모드 상태 불러오기
-			    function loadDarkModeState() {
-			        return localStorage.getItem('darkMode') === 'true';
-			    }
 
-			    // 페이지 로드 시 저장된 다크 모드 설정을 확인하여 적용
-			    window.onload = function() {
-			        var isDarkMode = loadDarkModeState();
-			        if (isDarkMode) {
-			            document.body.classList.add('dark-mode');
-			        } else {
-			            document.body.classList.remove('dark-mode');
-			        }
-			    };
+			    
 
 			    
 			</script>

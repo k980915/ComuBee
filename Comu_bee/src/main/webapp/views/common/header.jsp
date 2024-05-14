@@ -119,30 +119,6 @@ body::before {
 }
 
 
- 	body.dark-mode::before {
-        background-color: #121212; /* 다크 모드 배경색을 설정합니다. */
-        color: white !important;
- 	}
-
-    /* 다크 모드 토글 버튼 스타일 */
-    .dark-mode-toggle {
-        margin-top: 20px;
-        float: right;
-    }
-
-    .dark-mode-toggle button {
-    	position: absolute;
-        background-color: #340;
-        color: white;
-        border: none;
-        top: 10px;
-	    right: 10px;
-	    z-index: 1;
-    }
-	body,h1,h2,h3,h4,h5,h6,p,a,span,div,textarea {
-	    color: #ffffff;
-	}
-
 
 </style>
 </head>
@@ -158,9 +134,6 @@ body::before {
 					</tr>
 				</table>
 			</div>
-			<div class="dark-mode-toggle">
-                <button id="darkModeToggleBtn">꿀벌 모드</button>
-            </div>
 			<div class="search-area">
 				<form id="searchForm" action="" method="get">
 					<input type="text" name="title" class="search-input"
@@ -176,52 +149,15 @@ body::before {
 	</div>
 	<br>
 	<br>
-	<%@ include file="/views/common/hitsHeader.jsp"%>
+		<div>
+			<%@ include file="/views/common/hitsHeader.jsp"%>
+		</div>
 	<script>
 		$('.logo-area').click(function() {
 			location.href = '${contextPath}/main.co';
 		});
-		  document.getElementById("darkModeToggleBtn").addEventListener("click", function() {
-		        var body = document.body;
-		        var isDarkMode = body.classList.contains("dark-mode");
-
-		        if (isDarkMode) {
-		            body.classList.remove("dark-mode");
-		        } else {
-		            body.classList.add("dark-mode");
-		        }
-		        function saveDarkModeState(isDarkMode) {
-		            localStorage.setItem('darkMode', isDarkMode ? 'true' : 'false');
-		        }
-				
-		        function loadDarkModeState() {
-		            return localStorage.getItem('darkMode') === 'true';
-		        }
-
-		        window.onload = function() {
-		            var isDarkMode = loadDarkModeState();
-		            if (isDarkMode) {
-		                document.body.classList.add('dark-mode');
-		            } else {
-		                document.body.classList.remove('dark-mode');
-		            }
-		        };
-
-		        document.getElementById("darkModeToggleBtn").addEventListener("click", function() {
-		            var body = document.body;
-		            var isDarkMode = body.classList.contains("dark-mode");
-
-		            if (isDarkMode) {
-		                body.classList.remove("dark-mode");
-		            } else {
-		                body.classList.add("dark-mode");
-		            }
-
-		            saveDarkModeState(!isDarkMode);
-		        });
-
-		        
-		    });
+	
+	
 	</script>
 	<script>
 		var form = document.getElementById('searchForm');
