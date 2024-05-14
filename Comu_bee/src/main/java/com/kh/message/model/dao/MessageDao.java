@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.kh.common.JDBCTemplate;
+import com.kh.common.model.vo.PageInfo;
 import com.kh.message.model.dao.MessageDao;
 import com.kh.message.model.vo.Message;
 
@@ -55,15 +56,19 @@ import com.kh.message.model.vo.Message;
 		return result;
 	}
 	
-	public ArrayList<Message> selectSendMessage(Connection conn, String userId){
+	public ArrayList<Message> selectSendMessage(Connection conn,PageInfo pi,String userId){
 		ArrayList<Message> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
+		int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+		int endRow = pi.getCurrentPage() * pi.getBoardLimit();
 		String sql = prop.getProperty("selectSendMessage");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, userId);
+			pstmt.setInt(2, startRow); // 시작값
+			pstmt.setInt(3, endRow); 
 			rset=pstmt.executeQuery();
 			
 			while(rset.next()) {
@@ -72,7 +77,6 @@ import com.kh.message.model.vo.Message;
 										rset.getString("RECEIVENAME"),
 										rset.getString("MESSAGE_CONTENT"),
 										rset.getDate("M_DATE"),
-										rset.getString("SCRAB_CHECK"),
 										rset.getString("READ_CHECK"));
 				list.add(m);
 			}
@@ -86,15 +90,19 @@ import com.kh.message.model.vo.Message;
 		return list;
 	}
 	
-	public ArrayList<Message> selectReceiveMessage(Connection conn, String userId){
+	public ArrayList<Message> selectReceiveMessage(Connection conn,PageInfo pi, String userId){
 		ArrayList<Message> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
+		int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+		int endRow = pi.getCurrentPage() * pi.getBoardLimit();
 		String sql = prop.getProperty("selectReceiveMessage");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, userId);
+			pstmt.setInt(2, startRow); // 시작값
+			pstmt.setInt(3, endRow); 
 			rset=pstmt.executeQuery();
 			
 			while(rset.next()) {
@@ -103,7 +111,6 @@ import com.kh.message.model.vo.Message;
 						rset.getString("RECEIVENAME"),
 						rset.getString("MESSAGE_CONTENT"),
 						rset.getDate("M_DATE"),
-						rset.getString("SCRAB_CHECK"),
 						rset.getString("READ_CHECK"));
 				list.add(m);
 			}
@@ -117,48 +124,20 @@ import com.kh.message.model.vo.Message;
 		return list;
 	}
 	
-	public ArrayList<Message> selectScrabMessage(Connection conn, String userId){
+	
+	public ArrayList<Message> selectNewMessage(Connection conn,PageInfo pi, String userId){
 		ArrayList<Message> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("selectScrabMessage");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, userId);
-			pstmt.setString(2, userId);
-			rset=pstmt.executeQuery();
-			
-			while(rset.next()) {
-				Message m = new Message(rset.getInt("MNO"),
-						rset.getString("SENDNAME"),
-						rset.getString("RECEIVENAME"),
-						rset.getString("MESSAGE_CONTENT"),
-						rset.getDate("M_DATE"),
-						rset.getString("SCRAB_CHECK"),
-						rset.getString("READ_CHECK"));
-				list.add(m);
-				System.out.println(m);
-			}
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			JDBCTemplate.close(rset);
-			JDBCTemplate.close(pstmt);
-		}
-		return list;
-	}
-	public ArrayList<Message> selectNewMessage(Connection conn, String userId){
-		ArrayList<Message> list = new ArrayList<>();
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
+		int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+		int endRow = pi.getCurrentPage() * pi.getBoardLimit();
 		String sql = prop.getProperty("selectNewMessage");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, userId);
+			pstmt.setInt(2, startRow); // 시작값
+			pstmt.setInt(3, endRow); // 끝값
 			rset=pstmt.executeQuery();
 			
 			while(rset.next()) {
@@ -167,7 +146,6 @@ import com.kh.message.model.vo.Message;
 						rset.getString("RECEIVENAME"),
 						rset.getString("MESSAGE_CONTENT"),
 						rset.getDate("M_DATE"),
-						rset.getString("SCRAB_CHECK"),
 						rset.getString("READ_CHECK"));
 				list.add(m);
 			}
@@ -199,6 +177,113 @@ import com.kh.message.model.vo.Message;
 			JDBCTemplate.close(pstmt);
 		}
 		return result;
+	}
+	
+	public int newMessageCount(Connection conn, String userId) {
+
+		// select
+		ResultSet rset = null;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("newMessageCount");
+
+		int listCount = 0; // 게시글 개수 담을 변수
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) {
+				// 조회된 게시글 개수
+				listCount = rset.getInt("COUNT");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+
+		return listCount;
+	}
+	
+	public Message selectMessageByMNo(Connection conn, int mNo) {
+		ResultSet rset= null;
+		PreparedStatement pstmt = null;
+		Message ms = null;
+		String sql = prop.getProperty("selectMessageByMNo");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mNo);
+			rset=pstmt.executeQuery();
+			if(rset.next()) {
+				ms = new Message(rset.getInt("MNO"),
+								 rset.getString("SENDNAME"),
+								 rset.getString("RECEIVENAME"),
+								 rset.getString("MESSAGE_CONTENT"),
+								 rset.getDate("M_DATE"),
+								 rset.getString("READ_CHECK"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return ms;
+	}
+	
+	
+	public int sendMessageCount(Connection conn, String userId) {
+		ResultSet rset = null;
+		PreparedStatement pstmt = null;
+		int listCount=0;
+		String sql = prop.getProperty("sendMessageCount");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			rset=pstmt.executeQuery();
+			if (rset.next()) {
+				// 조회된 게시글 개수
+				listCount = rset.getInt("COUNT");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+
+		return listCount;
+		
+	}
+	public int receiveMessageCount(Connection conn, String userId) {
+		ResultSet rset = null;
+		PreparedStatement pstmt = null;
+		int listCount=0;
+		String sql = prop.getProperty("receiveMessageCount");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			rset=pstmt.executeQuery();
+			if (rset.next()) {
+				// 조회된 게시글 개수
+				listCount = rset.getInt("COUNT");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+
+		return listCount;
+		
 	}
 	
 

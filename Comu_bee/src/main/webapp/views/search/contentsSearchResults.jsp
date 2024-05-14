@@ -26,14 +26,10 @@
             <p class="overview">${movie.overView}</p>
             <p class="runtime">상영시간: ${movie.runtime}</p>
             <p class="director">감독: ${movie.director}</p>
-            
         </div>
     </div>
 </c:forEach>
 </div>
-
-
-
 
 </body>
 </html>

@@ -193,6 +193,13 @@ public class BoardService {
 		result=new BoardDao().likeCheck(conn,bno,userId);
 		return result;
 	}
+	
+	public int scrabCheck(int bno, String userId) {
+		int result=0;
+		Connection conn = JDBCTemplate.getConnection();
+		result=new BoardDao().scrabCheck(conn,bno,userId);
+		return result;
+	}
 
 	public int deleteLike(int bno, String userId) {
 		// TODO Auto-generated method stub
@@ -207,12 +214,41 @@ public class BoardService {
 		JDBCTemplate.close(conn);
 		return result;
 	}
+	
+	public int deleteScrab(int bno, String userId) {
+		// TODO Auto-generated method stub
+		int result=0;
+		Connection conn = JDBCTemplate.getConnection();
+		result=new BoardDao().deleteScrab(conn,bno,userId);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
 
 	public int insertLike(int bno, String userId) {
 		// TODO Auto-generated method stub
 		int result=0;
 		Connection conn = JDBCTemplate.getConnection();
 		result=new BoardDao().insertLike(conn,bno,userId);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+			System.out.println("커밋완");
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+	
+	public int insertScrab(int bno, String userId) {
+		// TODO Auto-generated method stub
+		int result=0;
+		Connection conn = JDBCTemplate.getConnection();
+		result=new BoardDao().insertScrab(conn,bno,userId);
 		if(result>0) {
 			JDBCTemplate.commit(conn);
 			System.out.println("커밋완");
@@ -243,6 +279,15 @@ public class BoardService {
 		}
 		JDBCTemplate.close(conn);
 		return result;
+	}
+
+	public ArrayList<Board> selectListByLike(PageInfo pi) {
+		// TODO Auto-generated method stub
+		ArrayList<Board> list = new ArrayList<>();
+		Connection conn = JDBCTemplate.getConnection();
+		list=new BoardDao().selectListByLike(conn,pi);
+		JDBCTemplate.close(conn);
+		return list;
 	}
 
 

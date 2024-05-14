@@ -559,6 +559,29 @@ public class BoardDao {
 		}
 		return result;
 	}
+	public int scrabCheck(Connection conn, int bno, String userId) {
+		// TODO Auto-generated method stub
+		int result=0;
+		PreparedStatement pstmt=null;
+		ResultSet rset=null;
+		String sql=prop.getProperty("scrabCheck");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, bno);
+			pstmt.setString(2, userId);
+			rset=pstmt.executeQuery();
+			if(rset.next()) {
+				result=rset.getInt("COUNT");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
 
 	public int deleteLike(Connection conn, int bno, String userId) {
 		// TODO Auto-generated method stub
@@ -579,12 +602,50 @@ public class BoardDao {
 		
 		return result;
 	}
+	
+	public int deleteScrab(Connection conn, int bno, String userId) {
+		// TODO Auto-generated method stub
+		int result=0;
+		PreparedStatement pstmt=null;
+		String sql=prop.getProperty("deleteScrab");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, bno);
+			pstmt.setString(2, userId);
+			result=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
 
 	public int insertLike(Connection conn, int bno, String userId) {
 		// TODO Auto-generated method stub
 		int result=0;
 		PreparedStatement pstmt=null;
 		String sql=prop.getProperty("insertLike");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, bno);
+			pstmt.setString(2, userId);
+			result=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+	public int insertScrab(Connection conn, int bno, String userId) {
+		// TODO Auto-generated method stub
+		int result=0;
+		PreparedStatement pstmt=null;
+		String sql=prop.getProperty("insertScrab");
 		try {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, bno);
@@ -640,6 +701,27 @@ public class BoardDao {
 			JDBCTemplate.close(pstmt);
 		}
 		return result;
+	}
+
+	public ArrayList<Board> selectListByLike(Connection conn,PageInfo pi) {
+		// TODO Auto-generated method stub
+		ArrayList<Board> list = new ArrayList<>();
+		int startRow=(pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
+		int endRow=pi.getCurrentPage()*pi.getBoardLimit();
+		PreparedStatement pstmt=null;
+		ResultSet rset=null;
+		String sql=prop.getProperty("selectListByLike");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			rset=pstmt.executeQuery();
+			while(rset.next());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 }

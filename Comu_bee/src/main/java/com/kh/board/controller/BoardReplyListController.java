@@ -36,7 +36,6 @@ public class BoardReplyListController extends HttpServlet {
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 		int bno = Integer.parseInt(request.getParameter("bno"));
 		ArrayList<Reply> rList = new BoardService().replyList(bno);
-		System.out.println(rList);
 		response.setContentType("json/application; charset=UTF-8");
 		new Gson().toJson(rList,response.getWriter());
 
