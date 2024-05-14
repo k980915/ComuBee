@@ -236,7 +236,6 @@ public class BoardService {
 		result=new BoardDao().insertLike(conn,bno,userId);
 		if(result>0) {
 			JDBCTemplate.commit(conn);
-			System.out.println("커밋완");
 		}else {
 			JDBCTemplate.rollback(conn);
 		}
@@ -262,7 +261,6 @@ public class BoardService {
 		int like=0;
 		Connection conn=JDBCTemplate.getConnection();
 		like=new BoardDao().countLike(conn,bno);
-		System.out.println("추천수: "+like);
 		JDBCTemplate.close(conn);
 		return like;
 	}
