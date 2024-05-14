@@ -29,22 +29,11 @@
 									<td>제목</td>
 									<td class="boardFreeTitle">${b.title}</td>
 								</c:if>
-								<c:if test="${loginUser.userId eq 'admin' or loginUser.userId eq b.userId}">
-									<td>
-										<button type="button" onclick="updateBoard();">수정</button><button type="button" onclick="deleteYN();">삭제</button>
-											<script>
-												function updateBoard(){
-													var bno=${b.boardNo};
-													location.href="${contextPath}/update.bo?bno=${b.boardNo}"
-												}
-												function deleteYN(){
-													var result=window.confirm("정말 삭제하시겠습니까?");
-													if(result){
-														location.href='${contextPath}/delete.bo?bno=${b.boardNo}';
-													}
-												}
-											</script>
-									</td>
+								<c:if test="${loginUser.userId eq 'admin' or loginUser.userId eq b.userId ? '2' : '1'}">
+									 <td class="edit-buttons">
+                                        <button type="button" onclick="updateBoard();">수정</button>
+                                        <button type="button" onclick="deleteYN();">삭제</button>
+                                    </td>
 								</c:if>
 								<td class="boardCreateDate">${b.createDate}</td>
 							</tr>
@@ -211,6 +200,17 @@
 	</div>	
 	
 	<script>
+		function updateBoard(){
+			var bno=${b.boardNo};
+			location.href="${contextPath}/update.bo?bno=${b.boardNo}"
+		}
+		function deleteYN(){
+			var result=window.confirm("정말 삭제하시겠습니까?");
+			if(result){
+				location.href='${contextPath}/delete.bo?bno=${b.boardNo}';
+			}
+		}
+
 		function insertReply(){
 			
 			$.ajax({
