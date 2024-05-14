@@ -46,24 +46,24 @@ public class UserLoginController extends HttpServlet {
 		String userId = request.getParameter("userId");
 		String userPwd = request.getParameter("userPwd");
 		
-		//Cookie cookie = null;
+		Cookie cookie = null;
 		
 		String saveId = request.getParameter("saveId");
 		
 		User u = new UserService().loginUser(userId, userPwd);
-		System.out.println(u);
-//		if(saveId!=null) {
-//			cookie= new Cookie("userId",userId);
-//			
-//			cookie.setMaxAge(60*60*24);
-//			
-//			response.addCookie(cookie);
-//		}else {
-//			cookie = new Cookie("userId",null);
-//			cookie.setMaxAge(0);
-//			
-//			response.addCookie(cookie);
-//		}
+		
+		if(saveId!=null) {
+			cookie= new Cookie("userId",userId);
+			
+			cookie.setMaxAge(60*60*24);
+			
+			response.addCookie(cookie);
+		}else {
+			cookie = new Cookie("userId",null);
+			cookie.setMaxAge(0);
+		
+			response.addCookie(cookie);
+	}
 		HttpSession session = request.getSession();
 		
 		if(u.getUserId()==null) {

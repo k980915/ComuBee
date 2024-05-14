@@ -57,9 +57,9 @@ public class FindIdController extends HttpServlet {
 
 			if (u.getUserName().equals(userName) && u.getUserEmail().equals(userEmail)) {
 
-				request.setAttribute("findUserId", userId);
-				System.out.println(userId);
-				request.getRequestDispatcher("/views/user/findUserId.jsp").forward(request, response);
+				response.setContentType("text/html;charset=UTF-8");
+		
+				response.getWriter().print(userId);
 
 			}
 		} else {

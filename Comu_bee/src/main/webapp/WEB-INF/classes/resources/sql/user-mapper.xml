@@ -2,104 +2,107 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 
-<entry key="insertUser">
+	<entry key="insertUser">
 
-INSERT INTO MEMBERINFO(USERID
-,USERPWD
-,USERNAME
-,USEREMAIL
-,USERBIRTH
-,USERGENDER)VALUES(?
-,?
-,?
-,?
-,?
-,?)
+		INSERT INTO MEMBERINFO(USERID
+		,USERPWD
+		,USERNAME
+		,USEREMAIL
+		,USERBIRTH
+		,USERGENDER)VALUES(?
+		,?
+		,?
+		,?
+		,?
+		,?)
 
 
-</entry>
+	</entry>
 
-<entry key="loginUser">
-	SELECT *
-	FROM MEMBERINFO
-	WHERE USERID =?
-	AND USERPWD =?
-</entry>
+	<entry key="loginUser">
 
-<entry key="checkId">
-	SELECT *
-	FROM MEMBERINFO
-	WHERE USERID=?
-</entry>
-<entry key="updateUser">
-	UPDATE MEMBERINFO 
-	SET USERNAME=?
+		SELECT USERID,USERNAME,USERPWD,USERGENDER,USERBIRTH,USEREMAIL,JOINDATE,POINT
+		FROM MEMBERINFO
+		WHERE USERID =?
+		AND USERPWD =?
+	</entry>
+
+	<entry key="checkId">
+		SELECT *
+		FROM MEMBERINFO
+		WHERE USERID=?
+	</entry>
+	<entry key="updateUser">
+		UPDATE MEMBERINFO
+		SET USERNAME=?
 		,USERGENDER=?
 		,USEREMAIL=?
-	WHERE USERID=? 
-</entry>
-<entry key="selectUser">
-	SELECT *FROM MEMBERINFO
-	WHERE USERID=?
-</entry>
+		WHERE USERID=?
+	</entry>
+	<entry key="selectUser">
+		SELECT *FROM MEMBERINFO
+		WHERE USERID=?
+	</entry>
 
-<entry key="updatePwd">
+	<entry key="updatePwd">
 		UPDATE MEMBERINFO
 		SET USERPWD = ?
 		WHERE USERID = ?
-		AND USERPWD = ?		
-</entry>
+		AND
+		USERPWD = ?
+	</entry>
 
-<entry key="deleteUser">
-	DELETE FROM MEMBERINFO 
-	WHERE USERID=?
-</entry>
-
-<entry key="myBoardListCount">
-		SELECT COUNT(*) COUNT
-		FROM BOARD 
+	<entry key="deleteUser">
+		DELETE FROM MEMBERINFO
 		WHERE USERID=?
-</entry>
+	</entry>
 
-<entry key="myBoardSelectList">
-	SELECT * FROM(
-			SELECT ROWNUM,S.* FROM(
-				SELECT BOARDNO,
-					CATEGORYNAME,
-					TITLE,
-					USERID,
-					CREATEDATE,
-					BOARDLIKE,
-					COUNT 
-				FROM BOARD B 
-				JOIN CATEGORY_BRD USING(CATEGORYNO) 
-				WHERE USERID=?
-				AND B.STATUS='Y') S
-			)
-			WHERE "ROWNUM" BETWEEN ? AND ?
-</entry>
-<entry key="myReplyListCount">
+	<entry key="myBoardListCount">
 		SELECT COUNT(*) COUNT
-		FROM REPLY 
+		FROM BOARD
+		WHERE USERID=?
+	</entry>
+
+	<entry key="myBoardSelectList">
+		SELECT * FROM(
+		SELECT ROWNUM,S.* FROM(
+		SELECT BOARDNO,
+		CATEGORYNAME,
+		TITLE,
+		USERID,
+		CREATEDATE,
+		BOARDLIKE,
+		COUNT
+		FROM BOARD B
+		JOIN CATEGORY_BRD USING(CATEGORYNO)
+		WHERE USERID=?
+		AND B.STATUS='Y') S
+		)
+		WHERE "ROWNUM" BETWEEN ? AND ?
+	</entry>
+	<entry key="myReplyListCount">
+		SELECT COUNT(*) COUNT
+		FROM REPLY
 		WHERE USERID=?
 	</entry>
 	<entry key="myReplySelectList">
-		SELECT * 
+		SELECT *
 		FROM (
-		        SELECT ROWNUM RNUM,S.* 
-		        FROM (SELECT REPLYNO
-		      		  ,USERID
-		      		  ,REPLYCONTENT
-		      		  ,CREATEDATE
-		      		  ,BOARDNO
-				FROM REPLY R
-				WHERE USERID = ?) S)
+		SELECT ROWNUM RNUM,S.*
+		FROM (SELECT REPLYNO
+		,USERID
+		,REPLYCONTENT
+		,CREATEDATE
+		,BOARDNO
+		FROM REPLY R
+		WHERE USERID = ?) S)
 		WHERE RNUM BETWEEN ? AND ?
 	</entry>
 
 	<entry key="findId">
 		SELECT USERID,USERNAME,USEREMAIL FROM MEMBERINFO
-		WHERE USERNAME =?
+		WHERE
+		USERNAME =?
 		AND USEREMAIL=?
 
 
@@ -108,27 +111,28 @@ INSERT INTO MEMBERINFO(USERID
 	<entry key="findPwd">
 		SELECT USERPWD FROM MEMBERINFO
 		WHERE USERID= ?
-		AND USERNAME=?
+		AND
+		USERNAME=?
 		AND USEREMAIL= ?
 
 	</entry>
-	
+
 	<entry key="selectListById">
 		SELECT * FROM(
-			SELECT ROWNUM,S.* FROM(
-				SELECT BOARDNO,
-					USERID,
-					CATEGORYNAME,
-					TITLE,
-					CREATEDATE,
-					BOARDLIKE,
-					COUNT 
-				FROM BOARD B 
-				JOIN CATEGORY_BRD USING(CATEGORYNO) 
-				WHERE USERID=?
-				AND B.STATUS='Y') S
-			)
-			WHERE "ROWNUM" BETWEEN ? AND ?
+		SELECT ROWNUM,S.* FROM(
+		SELECT BOARDNO,
+		USERID,
+		CATEGORYNAME,
+		TITLE,
+		CREATEDATE,
+		BOARDLIKE,
+		COUNT
+		FROM BOARD B
+		JOIN CATEGORY_BRD USING(CATEGORYNO)
+		WHERE USERID=?
+		AND B.STATUS='Y') S
+		)
+		WHERE "ROWNUM" BETWEEN ? AND ?
 	</entry>
 
 

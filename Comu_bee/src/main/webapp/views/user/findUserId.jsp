@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="com.kh.user.model.dao.UserDao"%>
-<%
-String findUserId = request.getParameter("findUserId");
-%>
 
 <!DOCTYPE html>
 <html>
@@ -10,11 +7,19 @@ String findUserId = request.getParameter("findUserId");
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+
+
+<Style>
+
+	
+</Style>
+	
+
 <body>
 	<%@ include file="/views/common/header.jsp"%>
-	<table border="1">
+	<table align="center">
 		<tbody>
-			<h4>아이디 찾기</h4>
+			<h4 align="center">아이디 찾기</h4>
 			<tr>
 				<th>이름</th>
 				<td><input type="text" id="fuserName" required></td>
@@ -27,7 +32,7 @@ String findUserId = request.getParameter("findUserId");
 			<tr>
 				<td align="center" colspan="2">
 
-					<button type="button" id="findUserId" onclick="findUserId();">
+					<button border="none;" type="button" id="findUserId" onclick="findUserId();">
 						<span>아이디 찾기</span>
 					</button>
 				</td>
@@ -61,6 +66,7 @@ String findUserId = request.getParameter("findUserId");
 					var alertMessage = "사용자 아이디는 " + userId + "입니다";
 
 					alert(alertMessage);
+					
 
 				},
 				error : function() {

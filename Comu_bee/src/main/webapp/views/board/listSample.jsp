@@ -22,11 +22,7 @@
 </head>
 
 <body>
-				
-
     <canvas class="my-4 w-100" id="myChart" width="10000" height="380"></canvas>
-
-
 
     <div class="table-responsive small">
         <table class="table table-striped table-sm table-hover">
@@ -36,7 +32,7 @@
                     <th scope="col">제목</th>
                     <th scope="col">글쓴이</th>
                     <c:if test="${loginUser.userId eq 'admin'}">
-                    <th scope="col">관리</th>
+                    <th scope="col" style="width : 100px; height">관리</th>
                     </c:if>
                     <th scope="col">작성일</th>
                     <th scope="col">조회수</th>
@@ -69,7 +65,7 @@
 								
 								<c:if test="${loginUser.userId eq 'admin'}">
 									<td>
-				                    <button type="button" class="adminBtn">
+				                    <button type="button" class="adminBtn" style="font-size: 16px; background-color: orange; border: none; padding: 8px 16px; border-radius: 4px;">
 									    회원 정보
 									</button>
 									</td>		                   
@@ -93,63 +89,55 @@
     </div>
 <nav aria-label="Page navigation example" style="text-align: center;">
     <ul class="pagination justify-content-center">
-        	<c:if test="${pi.currentPage gt 1}">
-	            <li class="page-item">
-	                <button aria-label="Previous" onclick="prev();">
-	                    <span aria-hidden="true">&laquo;</span>
-	                    <span class="sr-only">Previous</span>
-	                </button>
-	            </li>
-        	</c:if>
+            <c:if test="${pi.currentPage gt 1}">
+                <li class="page-item">
+                    <button aria-label="Previous" onclick="prev();">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </button>
+                </li>
+            </c:if>
             <c:forEach var="i" begin="${pi.startPage}" end="${pi.endPage}">
-           		<li class="page-item">
-           			<button class="page-link">${i}</button>
-           		</li>
+                <li class="page-item">
+                    <button class="page-link">${i}</button>
+                </li>
             </c:forEach>
-	           <c:if test="${pi.currentPage lt pi.maxPage}">
-           		<li class="page-item">
-	                <button aria-label="Next" onclick="next();">
-	                    <span aria-hidden="true">&raquo;</span>
-	                    <span class="sr-only">Next</span>
-	                </button>
-	            </li>
+               <c:if test="${pi.currentPage lt pi.maxPage}">
+                <li class="page-item">
+                    <button aria-label="Next" onclick="next();">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </button>
+                </li>
             </c:if>
             
         </ul>
     </nav>
     
-    
-    
     <script>
-    	$(".boardListTitle").click(function(){
-    		var bno = $(this).siblings().eq(0).text();
-    		location.href='${contextPath}/detail.bo?bno='+bno;
-    	});
-		$(".page-link").click(function(){
-			var btnNo=Number($(this).text());
-			location.href='list.${cat}?currentPage='+btnNo;
-		});
-		var currentPage=${pi.currentPage};
-		function prev(){
-			location.href='list.${cat}?currentPage='+(currentPage-1);
-		}
-		function next(){
-			location.href='list.${cat}?currentPage='+(currentPage+1);
-		}
-		$(".adminBtn").click(function () {
-			var adminuserId = $("#adminuserId").text();
-			console.log(adminuserId);
-			location.href='${contextPath}/userInfoList.ad?userId='+adminuserId;
-				
-		})
+        $(".boardListTitle").click(function(){
+            var bno = $(this).siblings().eq(0).text();
+            location.href='${contextPath}/detail.bo?bno='+bno;
+        });
+        $(".page-link").click(function(){
+            var btnNo=Number($(this).text());
+            location.href='list.${cat}?currentPage='+btnNo;
+        });
+        var currentPage=${pi.currentPage};
+        function prev(){
+            location.href='list.${cat}?currentPage='+(currentPage-1);
+        }
+        function next(){
+            location.href='list.${cat}?currentPage='+(currentPage+1);
+        }
+        $(".adminBtn").click(function () {
+            var adminuserId = $("#adminuserId").text();
+            console.log(adminuserId);
+            location.href='${contextPath}/userInfoList.ad?userId='+adminuserId;
+                
+        })
+    </script>
 
-
-		
-	</script>
-	
-
-	
-	
 <div class="container mt-4">
     <form action="${pageContext.request.contextPath}/board.se" method="get">
         <div class="input-group mb-3">
