@@ -144,7 +144,7 @@
         </c:forEach>
     </table>
             </div> <br><br><br><br>
-			<div class="link">
+			<div class="link" width="1200px;" height="700px;">
 	            <c:forEach var="c" items="${list}">
                 	<c:if test="${c.contentsId eq param.contentsId}">
 	           			<h1>트레일러 영상</h1> <br>
