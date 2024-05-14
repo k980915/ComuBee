@@ -53,7 +53,6 @@
                 
             </thead>
             <tbody>
-<<<<<<< HEAD
             	<c:choose>
             		<c:when test="${not empty list}">
             			<tr> <td><input type="hidden" name="list" value="${list}"></td></tr>

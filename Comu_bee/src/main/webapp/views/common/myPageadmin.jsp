@@ -14,7 +14,7 @@
 	<br>
 	<br>
 	<div id="hitslog" align="center">
-    <h2 style="font-size: 24px; font-weight: bold; color : white;">방문자수 확인</h2><br>
+    <h2 style="font-size: 24px; font-weight: bold; ">방문자수 확인</h2><br>
     <h4 style="color : white;">금일 방문수 : 
         <button class="btn btn-light" onclick="toDayHits();">확인하기</button>
     </h4> <br>

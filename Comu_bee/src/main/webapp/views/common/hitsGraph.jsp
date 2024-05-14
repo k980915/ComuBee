@@ -21,9 +21,9 @@
 		<option value="2024년">2024년</option>
 	</select>
 	<input type="button" id="btnG" value="확인하기" class="btn btn-light"></h4> <br>
-<div id="chartContainer" style="background-color: white; width:650px; heigth:1300px; ">
+
 	<canvas id="myChart" style="max-width: 500px; max-height: 500px;"></canvas>
-	</div>
+
 </div>
 	<script>
 		//연도 조회 그래프 
