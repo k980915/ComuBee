@@ -25,7 +25,7 @@
 					<table border="1px solid black">  
 						<thead>
 							<tr>
-								<c:if test="${category ne 'REVIEW'}">
+								<c:if test="${category ne '리뷰'}">
 									<td>제목</td>
 									<td class="boardFreeTitle" colspan="2">${b.title }</td>
 								</c:if>
@@ -59,20 +59,21 @@
 						<tbody>
 							<tr>
 								<td class="boardContent" height="400" colspan="4">
-									<span>${b.boardContent }</span>
+									<span>${b.boardContent}</span>
 								</td>
 							</tr>
 							<tr align="center">
 								<td></td>
 								<td> 
 									<button onclick="recommendBoard();"> 
-										<span>추천 수 : ${b.boardLike}</span>
+										<span> 추천 수 : </span>
+										<span class="boardLikeTotal">${b.boardLike}</span>
 										<span>추천하기</span> 
 									</button> </td>
 								<td> <button onclick="scrab();">찜해놓기</button></td>
 							</tr>
 							<tr>
-								<c:if test="${b.category eq 'RECOMMEND'}">
+								<c:if test="${b.category eq '추천'}">
 									<td class="boardToContent" onclick="${contextPath}/">
 										${b.contentsId} 보러가기
 									</td> 
@@ -201,7 +202,7 @@
 						
 					</tbody>
 				</table>
-<%--				<script>
+				<script>
 				function searchBestCont(){
 					$.ajax({
 						url : "bestPopUp.co",
@@ -274,14 +275,16 @@
 						
 					});
 				}
-					
+					$(".popUp>thead>tr").click(function(){
+						
+					});
 					$(".popUp>tbody>tr").click(function(){
 						var bno = $(this).children.eq(0).text();
 						location.href='<%=contextPath%>/detail.bo?bno='+bno;
-						})
+						});
 
 				</script>
---%>
+
 			</div>
 		</div>
 		<!-- footer 있으면 그대로 다시 따오기 -->
@@ -369,7 +372,49 @@
 								});
 								
 							}
-
+							function recommendBoard(){
+								if('${loginUser.userId}'==''){
+									alert("추천은 로그인 후 이용 가능합니다.");
+									return false;
+								}
+								var msg="";
+								$.ajax({
+									url : "likeBoard.rb",
+									type : "post",
+									data : {
+										bno : ${b.boardNo},
+										userId : "${loginUser.userId}"
+									},
+									success : function(result){
+										if(result>0){
+											msg="추천을 취소하였습니다.";
+										}else{
+											msg="추천을 완료하였습니다.";
+										}
+										alert(msg);
+										likeUpdate();
+									},
+									error : function(){
+										console.log("틀림");
+									}
+								});
+							}
+							function likeUpdate(){
+								var tr="";
+								$.ajax({
+									url : "likeUpdate.rb",
+									data : {
+										bno : ${b.boardNo}
+									},
+									success : function(like){
+										$(".boardLikeTotal").text(like);
+									},
+								error : function(){
+									console.log("통신 오류")
+									}
+								})
+							}
+		
 						</script>
 </body>
 </html>

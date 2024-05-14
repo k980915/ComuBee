@@ -535,6 +535,111 @@ public class BoardDao {
 		
 		return result;
 	}
+
+	public int likeCheck(Connection conn, int bno, String userId) {
+		// TODO Auto-generated method stub
+		int result=0;
+		PreparedStatement pstmt=null;
+		ResultSet rset=null;
+		String sql=prop.getProperty("likeCheck");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, bno);
+			pstmt.setString(2, userId);
+			rset=pstmt.executeQuery();
+			if(rset.next()) {
+				result=rset.getInt("COUNT");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public int deleteLike(Connection conn, int bno, String userId) {
+		// TODO Auto-generated method stub
+		int result=0;
+		PreparedStatement pstmt=null;
+		String sql=prop.getProperty("deleteLike");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, bno);
+			pstmt.setString(2, userId);
+			result=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int insertLike(Connection conn, int bno, String userId) {
+		// TODO Auto-generated method stub
+		int result=0;
+		PreparedStatement pstmt=null;
+		String sql=prop.getProperty("insertLike");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, bno);
+			pstmt.setString(2, userId);
+			result=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
 	
+	public int countLike(Connection conn, int bno) {
+		// TODO Auto-generated method stub
+		int like=0;
+		PreparedStatement pstmt=null;
+		ResultSet rset=null;
+		String sql=prop.getProperty("countLike");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, bno);
+			rset=pstmt.executeQuery();
+			if(rset.next()) {
+				like=rset.getInt("COUNT");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return like;
+	}
+	
+	public int updateBoardLike(Connection conn, int bno,int like) {
+		// TODO Auto-generated method stub
+		int result=0;
+		PreparedStatement pstmt=null;
+		String sql = prop.getProperty("updateBoardLike");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, like);
+			pstmt.setInt(2, bno);
+			result=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
 
 }

@@ -17,9 +17,10 @@
 
 <h4>게시글</h4>
 <!-- 게시글 목록 표시 -->
-<table border="1">
+<table border="1" class="boardSearchResult">
     <thead>
         <tr>
+        	<th>글번호</th>
             <th>제목</th>
             <th>컨텐츠</th>
             <th>작성자</th>
@@ -29,6 +30,8 @@
     <tbody>
         <c:forEach items="${boardList}" var="board">
             <tr>
+                <td>${board.boardNo}</td>
+                <td>${board.category }</td>
                 <td>${board.title}</td>
                 <td>${board.boardContent}</td>
                 <td>${board.userId}</td>
@@ -52,6 +55,13 @@
         </div>
     </form>
 </div>
+<script>
+	$(".boardSearchResult tbody tr").click(function(){
+		var bno = $(this).children().eq(0).text();
+		location.href='${contextPath}/detail.bo?bno='+bno;
+	})
+
+</script>
 
 </body>
 </html>
