@@ -51,6 +51,11 @@
 		#trailer:hover{
 		cursor: pointer;
 		}
+		#titleImg:hover {
+    cursor: default;
+    transform: none;
+    transition: none;
+}
 		
     </style>
 </head>

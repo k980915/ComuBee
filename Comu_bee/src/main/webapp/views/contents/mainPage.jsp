@@ -59,7 +59,7 @@
 	<body>
 	    <%@ include file = "/views/common/header.jsp" %>
 	
-	    <div>
+	    <div class="outer">
 	        <form action="${contextPath}/main.co">
 	        
 	            <div align="center">

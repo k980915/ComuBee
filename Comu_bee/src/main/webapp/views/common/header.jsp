@@ -41,6 +41,9 @@ body::before {
 	margin-left: 200px;
 	margin-right: 200px;
 }
+.outer a{
+	color:black;	
+}
 
 .head-area {
 	display: flex;
@@ -117,7 +120,11 @@ body::before {
 	display: inline-block;
 	vertical-align: middle;
 }
-
+img:hover {
+            cursor: pointer;
+            transform: translateY(-5px);
+            transition: transform 0.5s ease;
+        }
 
 
 </style>
