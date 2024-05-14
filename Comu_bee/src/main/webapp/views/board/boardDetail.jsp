@@ -29,19 +29,18 @@
 									<td>제목</td>
 									<td class="boardFreeTitle">${b.title}</td>
 								</c:if>
-								<c:if test="${loginUser.userId eq 'admin' or loginUser.userId eq b.userId ? '2' : '1'}">
-									 <td class="edit-buttons">
-                                        <button type="button" onclick="updateBoard();">수정</button>
-                                        <button type="button" onclick="deleteYN();">삭제</button>
+								<c:if test="${loginUser.userId eq 'admin' or loginUser.userId eq b.userId}">
+									<td class="edit-buttons">
+										<button type="button" onclick="updateBoard();">수정</button>
+										<button type="button" onclick="deleteYN();">삭제</button>
                                     </td>
 								</c:if>
 								<td class="boardCreateDate">${b.createDate}</td>
 							</tr>
 							<tr>
 								<td>작성자 : </td>
-								<td class="boardWriter" width="300" colspan="${loginUser.userId eq 'admin' or loginUser.userId eq b.userId}">${b.userId}</td>
+								<td class="boardWriter" width="300" colspan="${loginUser.userId eq 'admin' or loginUser.userId eq b.userId ? '2' : '1'}">${b.userId}</td>
 								<td class="boardCount" width="150">조회수 : ${b.count}</td>
-								<td class="boardLike" width="100">추천수 : ${b.boardLike}</td>
 							</tr>
 						</thead>
 						<tbody>
