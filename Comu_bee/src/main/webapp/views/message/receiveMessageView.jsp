@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/views/board/board-css/ListSample.css">
 	<title>Insert title here</title>
 	<style>
@@ -55,7 +55,16 @@
 								<td class="text-center">${m.mNo}</td>
 								<td class="boardListTitle">${m.sendName }</td>
 								<td>${m.receiveName}</td>
-								<td>${m.messageContent }</td>
+									<c:choose>
+										<c:when test="${fn:length(m.messageContent) > 10}">
+											<c:set var="shortenedContent"
+												value="${fn:substring(m.messageContent, 0, 10)}..." />
+											<td>${shortenedContent }</td>
+										</c:when>
+										<c:otherwise>
+											<td>${m.messageContent }</td>
+										</c:otherwise>
+									</c:choose>
 								<td>${m.sendDate }</td>
 								<td>${m.readCheck }</td>
 							</tr>

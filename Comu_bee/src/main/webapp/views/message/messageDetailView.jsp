@@ -74,27 +74,28 @@
 		</table>
 	</div>
 	<script>
-			$(".readCheck").click(function() {
-				var messageId = $(this).find("td:first").text();
-				var check = $(this);
-				$.ajax({
-					url : "updateReadCheck.ms",
-					type : "post",
-					data : {
-						messageId : messageId,
-						userId : "${loginUser.userId}"
-					},
-					success : function(result) {
-						// 업데이트가 성공하면 필요에 따라 여기서 추가 작업을 수행할 수 있습니다
-						if (result > 0) {
-							
-						}
-					},
-					error : function() {
-
+		$(".readCheck").click(function() {
+			var messageId = ${ms.mNo};
+			var check = $(this);
+			$.ajax({
+				url : "updateReadCheck.ms",
+				type : "post",
+				data : {
+					messageId : messageId,
+					userId : "${loginUser.userId}"
+				},
+				success : function(result) {
+					// 업데이트가 성공하면 필요에 따라 여기서 추가 작업을 수행할 수 있습니다
+					if (result > 0) {
+						// 'Y'로 값을 변경합니다.
+						check.text('Y');
 					}
-				});
+				},
+				error : function() {
+					// 에러 처리
+				}
 			});
+		});
 	</script>
 </body>
 </html>
