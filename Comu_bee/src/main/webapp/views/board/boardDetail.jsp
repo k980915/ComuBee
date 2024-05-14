@@ -1,35 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <% %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-
+<title>게시글 상세보기</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/views/board/board-css/BoardDetail.css?v=1.1">
-
 </head>
 <body>
     <%@ include file="/views/board/boardMenuBar.jsp" %>
-    
     <div class="boardOuter">
-        
         <div class="boardBody">
             <div class="boardMenuBar">
-                <h3>${category}게시판</h3>
+                <h3>${category} 게시판</h3>
             </div>
             <div class="boardMain">
                 <div class="boardTitle">
-                    <table border="1px solid black">  
+                    <table>
                         <thead>
                             <tr>
                                 <c:if test="${category ne '리뷰'}">
                                     <td>제목</td>
-                                    <td class="boardFreeTitle" colspan="3">${b.title }</td>
+                                    <td class="boardFreeTitle" colspan="2">${b.title}</td>
                                 </c:if>
                                 <td class="boardCreateDate" colspan="${loginUser.userId eq 'admin' or loginUser.userId eq b.userId ? '2' : '1'}">
-                                    작성일 : ${b.createDate}
+                                    작성일: ${b.createDate}
                                 </td>
                                 <c:if test="${loginUser.userId eq 'admin' or loginUser.userId eq b.userId}">
                                     <td class="edit-buttons">
@@ -39,10 +34,10 @@
                                 </c:if>
                             </tr>
                             <tr>
-                                <td>작성자 : </td>
+                                <td>작성자: </td>
                                 <td class="boardWriter" width="300">${b.userId}</td>
-                                <td class="boardCount" width="150">조회수 : ${b.count}</td>
-                                <td class="boardLike" width="100">추천수 : ${b.boardLike}</td>
+                                <td class="boardCount" width="150">조회수: ${b.count}</td>
+                                <td class="boardLike" width="100">추천수: ${b.boardLike}</td>
                             </tr>
                         </thead>
                         <tbody>
@@ -53,13 +48,13 @@
                             </tr>
                             <tr align="center">
                                 <td></td>
-                                <td> 
-                                    <button class="recommendButton" onclick="recommendBoard();"> 
-                                        <span class="recommendText">추천 수 : ${b.boardLike}</span>
-                                        <span class="recommendText">추천하기</span> 
-                                    </button> 
+                                <td>
+                                    <button class="recommendButton" onclick="recommendBoard();">
+                                        <span class="recommendText">추천 수: ${b.boardLike}</span>
+                                        <span class="recommendText">추천하기</span>
+                                    </button>
                                 </td>
-                                <td> 
+                                <td>
                                     <button class="scrapButton" onclick="scrab();">찜해놓기</button>
                                 </td>
                             </tr>
@@ -67,18 +62,18 @@
                                 <c:if test="${b.category eq '추천'}">
                                     <td class="boardToContent" colspan="4" onclick="location.href='${contextPath}/'">
                                         ${b.contentsId} 보러가기
-                                    </td> 
+                                    </td>
                                 </c:if>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                <div class="boardReply">                            
-                    <table border="1" align="center">
+                <div class="boardReply">
+                    <table align="center">
                         <c:choose>
                             <c:when test="${not empty loginUser}">
                                 <tr>
-                                    <th style="color:black;">댓글작성</th>
+                                    <th>댓글작성</th>
                                     <td>
                                         <textarea id="replyContent" rows="3" cols="50" style="resize:none;"></textarea>
                                     </td>
@@ -89,7 +84,7 @@
                             </c:when>
                             <c:otherwise>
                                 <tr>
-                                    <th style="color:black;">댓글작성</th>
+                                    <th>댓글작성</th>
                                     <td>
                                         <textarea readonly rows="3" cols="50" style="resize:none;">로그인 후 이용 가능한 서비스입니다.</textarea>
                                     </td>
@@ -99,7 +94,7 @@
                         </c:choose>
                     </table>
                     <br>
-                    <table border="1" class="writtenReply" >
+                    <table class="writtenReply">
                         <thead>
                             <tr>
                                 <th class="replyWriter">작성자</th>
@@ -118,13 +113,11 @@
                         </tbody>
                     </table>
                 </div>
-            
                 <div class="boardList">
                     <%@ include file="/views/board/listSample.jsp" %>
                 </div>
             </div>
         </div>
-        
         <div class="boardSide">
             <div class="contentPopUp">
                 <h3>컨텐츠</h3>
@@ -138,12 +131,12 @@
                     <tbody>
                         <c:forEach var="p" items="${bestContList}">
                             <tr>
-                                <td> <input type=hidden value='${p.contentsId}'> </td>
+                                <td><input type="hidden" value="${p.contentsId}"></td>
                                 <td></td>
                             </tr>
                         </c:forEach>
                     </tbody>
-                </table>        
+                </table>
             </div>
             <div class="bestPopUp">
                 <h3>인기 게시글</h3>
@@ -158,9 +151,9 @@
                     <tbody>
                         <c:forEach var="p" items="${bestPopList}">
                             <tr>
-                                <td> <input type=hidden value='${p.boardNo}'> </td>
+                                <td><input type="hidden" value="${p.boardNo}"></td>
                                 <td>${p.title}</td>
-                                <td>(${p.like})</td><!-- 추천수 표시 -->
+                                <td>(${p.like})</td>
                             </tr>
                         </c:forEach>
                     </tbody>
@@ -179,7 +172,7 @@
                     <tbody>
                         <c:forEach var="p" items="${newPopList}">
                             <tr>
-                                <td> <input type=hidden value='${p.boardNo}'> </td>
+                                <td><input type="hidden" value="${p.boardNo}"></td>
                                 <td>${p.title}</td>
                             </tr>
                         </c:forEach>
@@ -187,8 +180,7 @@
                 </table>
             </div>
         </div>
-    </div>    
-    
+    </div>
     <script>
         function updateBoard(){
             var bno=${b.boardNo};
