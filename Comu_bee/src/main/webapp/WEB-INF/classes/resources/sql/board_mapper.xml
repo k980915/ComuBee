@@ -180,5 +180,22 @@
 					BOARDLIKE=?
 					WHERE BOARDNO=?
 	</entry>
-
+	<entry key="selectListByLike">
+		SELECT * FROM(
+			SELECT ROWNUM,S.* FROM(
+				SELECT BOARDNO,
+					CATEGORYNAME,
+					TITLE,
+					USERID,
+					CREATEDATE,
+					BOARDLIKE,
+					COUNT 
+				FROM BOARD B 
+				JOIN CATEGORY_BRD USING(CATEGORYNO) 
+				WHERE B.STATUS='Y'
+				ORDER BY BOARDLIKE
+				) S
+			)
+			WHERE "ROWNUM" BETWEEN ? AND ?
+	</entry>
 </properties>

@@ -100,7 +100,7 @@ public class RecommendListController extends HttpServlet {
 		b.setCategory(ca);
 		
 //		// 게시글 목록
-		ArrayList<Board> list = new BoardService().selectListByCategory(pi,ca);
+		ArrayList<Board> list = new BoardService().selectListByLike(pi);
 		ArrayList<Board> noList = new BoardService().selectNoticeListByCategory();
 		ArrayList<Contents> pcList = new BoardService().bestContList();
 		ArrayList<Board> npbList = new BoardService().newPopList(b);

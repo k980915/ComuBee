@@ -245,6 +245,15 @@ public class BoardService {
 		return result;
 	}
 
+	public ArrayList<Board> selectListByLike(PageInfo pi) {
+		// TODO Auto-generated method stub
+		ArrayList<Board> list = new ArrayList<>();
+		Connection conn = JDBCTemplate.getConnection();
+		list=new BoardDao().selectListByLike(conn,pi);
+		JDBCTemplate.close(conn);
+		return list;
+	}
+
 
 
 }
