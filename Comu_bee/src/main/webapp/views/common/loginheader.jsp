@@ -64,13 +64,16 @@ String contextPath = request.getContextPath();
 	float: right;
 	text-align: "center"
 }
-
+.btn btn-outline-light{
+	
+}
 
 </style>
 </head>
 
 <body>
 	<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+	
 
 
 
@@ -88,13 +91,13 @@ String contextPath = request.getContextPath();
 						<th></th>
 						<td><input type="text" name="userId" required
 							placeholder="아이디"></td>
-						<td><button type="submit" class="btn btn-secondary">로그인</button></td>
+						<td><button type="submit" class="btn btn-outline-dark">로그인</button></td>
 					</tr>
 					<tr>
 						<th></th>
 						<td><input type="password" name="userPwd" required
 							placeholder="비밀번호"></td>
-				<th><input type="button" class="btn btn-secondary"
+				<th><input type="button" class="btn btn-outline-dark"
 					onclick="enrollForm();" value="회원가입"></th>
 					</tr>
 					<tr>

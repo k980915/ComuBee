@@ -8,6 +8,10 @@
 <title>Insert title here</title>
 </head>
 
+
+
+	
+
 <body>
 	<%@ include file="/views/common/header.jsp"%>
 	<table align="center">
@@ -53,11 +57,12 @@
 					findUserEmail : findUserEmail
 				},
 				success : function(userId) {
+
 					console.log("통신 성공");
 
 					var alertMessage = "사용자 아이디는 " + userId + "입니다";
+
 					alert(alertMessage);
-					location.href = "${contextPath}/main.co";
 
 				},
 				error : function() {
