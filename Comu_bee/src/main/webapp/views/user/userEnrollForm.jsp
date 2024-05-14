@@ -12,6 +12,7 @@
 <style>
 * {
 	margin: 6px;
+	color: black;
 }
 
 table {
@@ -120,7 +121,7 @@ table {
 	<div>
 		
 			<div class="center"></div>
-			<h2 align="center">회원가입</h2>
+			<h2 align="center" style="color:black;">회원가입</h2>
 			<form id="enroll-form" action="<%=contextPath%>/insert.us "
 				method="post">
 				<table>
@@ -202,7 +203,7 @@ table {
 				</table>
 				<br> <br>
 				<div align="center">
-					<button id="sign" type="submit" disabled>회원가입</button>
+					<button id="sign" type="submit"  disabled>회원가입</button>
 					<button type="reset">초기화</button>
 				
 			</form>
