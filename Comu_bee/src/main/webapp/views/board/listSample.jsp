@@ -29,8 +29,8 @@
             <thead>
                 <tr>
                     <th scope="col">번호</th>
-                    <th scope="col">제목</th> <!-- 제목과 글쓴이 병합 -->
-                    <th scope="col">글쓴이</th>
+                    <th scope="col">제목</th>
+                    <th scope="col">작성자</th>
                     <c:if test="${loginUser.userId eq 'admin'}">
                     <th scope="col" style="width : 100px; height">관리</th>
                     </c:if>
@@ -43,7 +43,7 @@
                     <c:forEach items="${noList}" var="li">
                         <tr>
                              <td class="text-center">${li.boardNo }</td>
-                             <td colspan="2">${li.title}</td> <!-- 제목과 글쓴이 병합 -->
+                             <td colspan="2">${li.title}</td>
                              <td>${li.createDate}</td>
                              <td>${li.count }</td>
                              <td class="text-center">${li.boardLike}</td>
