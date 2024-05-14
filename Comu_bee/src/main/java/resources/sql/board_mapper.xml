@@ -166,11 +166,20 @@
 	<entry key="likeCheck">
 		SELECT COUNT(*) COUNT FROM BOARDLIKE WHERE BOARDNO=? AND USERID=?
 	</entry>
+	<entry key="scrabCheck">
+		SELECT COUNT(*) COUNT FROM scrab WHERE BOARDNO=? AND USERID=? and status='Y'
+	</entry>
 	<entry key="deleteLike">
 		DELETE BOARDLIKE WHERE BOARDNO=? AND USERID=?
 	</entry>
+	<entry key="deleteScrab">
+		DELETE SCRAB WHERE BOARDNO=? AND USERID=?
+	</entry>
 	<entry key="insertLike">
 		INSERT INTO BOARDLIKE VALUES(?,?,SYSDATE)
+	</entry>
+	<entry key="insertScrab">
+		INSERT INTO SCRAB VALUES(?,?,'Y')
 	</entry>
 	<entry key="countLike">
 		SELECT COUNT(*) COUNT FROM BOARDLIKE WHERE BOARDNO=?
