@@ -104,9 +104,7 @@ public class MyReplyListController extends HttpServlet {
 		
 		//게시글 목록 
 		ArrayList<Reply> list = new UserService().myReplySelectList(pi,userId);
-		
-		
-		
+
 		//위임하기 위해 데이터 담아주기
 		
 		request.setAttribute("pi", pi);

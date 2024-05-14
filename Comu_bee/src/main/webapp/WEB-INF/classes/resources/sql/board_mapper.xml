@@ -81,23 +81,23 @@
 				FROM BOARD B
 				JOIN CATEGORY_BRD USING (CATEGORYNO)
 				WHERE B.STATUS='Y'
+				AND CATEGORYNAME=?
 				ORDER BY CREATEDATE DESC)
 				)
 				WHERE "ROWNUM" BETWEEN 1 AND 5
-				AND CATEGORYNAME=?
 		
 	</entry>
 	<entry key="bestPopList">
 		SELECT * FROM(
-			SELECT ROWNUM,BOARDNO,TITLE,CATEGORYNAME FROM(
+			SELECT ROWNUM,BOARDNO,TITLE,CATEGORYNAME,BOARDLIKE FROM(
 				SELECT *
 				FROM BOARD B
 				JOIN CATEGORY_BRD USING (CATEGORYNO)
 				WHERE B.STATUS='Y'
+				AND CATEGORYNAME=?
 				ORDER BY BOARDLIKE DESC)
 				)
 				WHERE "ROWNUM" BETWEEN 1 AND 5
-				AND CATEGORYNAME=?
 		
 	</entry>
 	<entry key="bestContList">
@@ -131,7 +131,7 @@
 			FROM BOARD B 
 			JOIN CATEGORY_BRD USING(CATEGORYNO) 
 			WHERE B.STATUS='Y'
-			AND USERID='admin'
+			AND CATEGORYNAME='공지'
 			ORDER BY CREATEDATE
 			)
 		WHERE ROWNUM BETWEEN 1 AND 5
@@ -166,11 +166,20 @@
 	<entry key="likeCheck">
 		SELECT COUNT(*) COUNT FROM BOARDLIKE WHERE BOARDNO=? AND USERID=?
 	</entry>
+	<entry key="scrabCheck">
+		SELECT COUNT(*) COUNT FROM scrab WHERE BOARDNO=? AND USERID=? and status='Y'
+	</entry>
 	<entry key="deleteLike">
 		DELETE BOARDLIKE WHERE BOARDNO=? AND USERID=?
 	</entry>
+	<entry key="deleteScrab">
+		DELETE SCRAB WHERE BOARDNO=? AND USERID=?
+	</entry>
 	<entry key="insertLike">
 		INSERT INTO BOARDLIKE VALUES(?,?,SYSDATE)
+	</entry>
+	<entry key="insertScrab">
+		INSERT INTO SCRAB VALUES(?,?,'Y')
 	</entry>
 	<entry key="countLike">
 		SELECT COUNT(*) COUNT FROM BOARDLIKE WHERE BOARDNO=?
@@ -180,5 +189,22 @@
 					BOARDLIKE=?
 					WHERE BOARDNO=?
 	</entry>
-
+	<entry key="selectListByLike">
+		SELECT * FROM(
+			SELECT ROWNUM,S.* FROM(
+				SELECT BOARDNO,
+					CATEGORYNAME,
+					TITLE,
+					USERID,
+					CREATEDATE,
+					BOARDLIKE,
+					COUNT 
+				FROM BOARD B 
+				JOIN CATEGORY_BRD USING(CATEGORYNO) 
+				WHERE B.STATUS='Y'
+				ORDER BY BOARDLIKE
+				) S
+			)
+			WHERE "ROWNUM" BETWEEN ? AND ?
+	</entry>
 </properties>
