@@ -1,13 +1,4 @@
-
-.boardOuter {
-    width: 1200px;
-    margin: 20px auto;
-    padding: 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
-}
-
-
+/* 기존 스타일 */
 .boardBody, .boardSide {
     display: inline-block;
     vertical-align: top;
@@ -24,16 +15,15 @@
 
 .boardSide {
     width: 28%;
-    border-left: 2px solid #ddd;
+    border-left: 2px solid #8F684F;
     padding-left: 10px;
     padding-right: 10px;
 }
 
-
 .boardMenuBar, .contentPopUp, .bestPopUp, .newPopUp {
     margin-bottom: 20px;
     padding: 10px;
-    background-color: #e8e8e8;
+    background-color: #8F684F;
     border-radius: 6px;
 }
 
@@ -41,7 +31,6 @@ h3 {
     color: #333;
     margin-bottom: 10px;
 }
-
 
 .table, .boardMain table, .popUp {
     width: 100%;
@@ -58,7 +47,7 @@ h3 {
     background-color: #f8f8f8;
 }
 
-
+/* 기존 버튼 스타일 */
 .button {
     padding: 6px 12px;
     color: white;
@@ -72,7 +61,7 @@ h3 {
     background-color: #0056b3;
 }
 
-
+/* 텍스트 영역, 입력 필드, 셀렉트 박스 */
 textarea, input[type="text"], select {
     width: 100%;
     padding: 8px;
@@ -81,11 +70,11 @@ textarea, input[type="text"], select {
     resize: none;
 }
 
-
+/* 댓글 스타일 */
 .replyWriter {
     width: 10%;
     padding: 10px;
-    background-color: #fafafa;
+    background-color: #8F684F;
     border: 1px solid #eee;
     white-space: nowrap;
 }
@@ -102,7 +91,7 @@ textarea, input[type="text"], select {
     padding: 10px;
     background-color: #fafafa;
     border: 1px solid #eee;
-    white-space: nowrap; 
+    white-space: nowrap;
 }
 
 .writtenReply {
@@ -116,7 +105,7 @@ textarea, input[type="text"], select {
     border-top: 2px solid #ccc;
     padding: 10px;
     text-align: left;
-    background-color: #fafafa;
+    background-color: #E6D5B5;
 }
 
 .writtenReply tr:last-child th, .writtenReply tr:last-child td {
@@ -126,6 +115,7 @@ textarea, input[type="text"], select {
 .writtenReply th:first-child, .writtenReply td:first-child {
     border-left: none;
 }
+
 .writtenReply th:last-child, .writtenReply td:last-child {
     border-right: none;
 }
@@ -133,3 +123,56 @@ textarea, input[type="text"], select {
 .writtenReply tr:first-child th, .writtenReply tr:first-child td {
     border-top: none;
 }
+
+/* 새로운 스타일 */
+.boardTitle td, .boardCreateDate, .boardCount, .boardLike, .boardContent span, .boardReply textarea, .boardReply button, .writtenReply th, .writtenReply td {
+    color: black; /* 글자 색상을 검정색으로 변경 */
+}
+
+/* 버튼 스타일 업데이트 */
+.boardMain button, .boardReply button {
+    padding: 8px 16px;
+    color: BLACK;
+    background-color: #E0DFE6;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.boardMain button:hover, .boardReply button:hover {
+    background-color: #e0d0c0;
+}
+
+/* 테두리 스타일 추가 */
+.table th, .table td, .boardMain table th, .boardMain table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+/* 댓글 작성 버튼 스타일 */
+.replyButton {
+    background-color: #E0DFE6;
+}
+
+.replyButton:hover {
+    background-color: #e0d0c0;
+}
+
+/* 추천하기, 찜해놓기 버튼 스타일 */
+.boardMain .recommendButton, .boardMain .scrapButton {
+    float: right;
+    margin-left: 5px;
+    background-color: #E0DFE6;
+}
+
+.boardMain .recommendButton:hover, .boardMain .scrapButton:hover {
+    background-color: #e0d0c0;
+}
+
+/* 추천 버튼 텍스트 스타일 */
+.recommendButton .recommendText {
+    color: black;
+}
+

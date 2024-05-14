@@ -65,9 +65,9 @@
 							<tr align="center">
 								<td></td>
 								<td> 
-									<button onclick="recommendBoard();"> 
-										<span>추천 수 : ${b.boardLike}</span>
-										<span>추천하기</span> 
+									<button class="recommendButton" onclick="recommendBoard();"> 
+										<span class="recommendText">추천 수 : ${b.boardLike}</span>
+										<span class="recommendText">추천하기</span> 
 									</button> </td>
 								<td> <button onclick="scrab();">찜해놓기</button></td>
 							</tr>
@@ -86,7 +86,7 @@
 						<c:choose>
 							<c:when test="${not empty loginUser}">
 								<tr>
-									<th>댓글작성</th>
+									<th style="color:black;">댓글작성</th>
 									<td>
 										<textarea id="replyContent" rows="3" cols="50" style="resize:none;"></textarea>
 									</td>
@@ -97,7 +97,7 @@
 							</c:when>
 							<c:otherwise>
 								<tr>
-									<th>댓글작성</th>
+									<th style="color:black;">댓글작성</th>
 									<td>
 										<textarea readonly rows="3" cols="50" style="resize:none;">로그인 후 이용 가능한 서비스입니다.</textarea>
 									</td>
