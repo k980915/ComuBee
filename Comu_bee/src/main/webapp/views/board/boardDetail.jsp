@@ -329,8 +329,8 @@
 				success : function(like){
 					$(".boardLikeTotal").text(like);
 				},
-			error : function(){
-				console.log("통신 오류")
+				error : function(){
+					console.log("통신 오류")
 				}
 			})
 		}
@@ -383,10 +383,9 @@
 			});
 		})
 		
-		$(".popUp tbody tr").click(function(){
+		$(".popUp tbody").on("click","tr",function(){
 			var bno = $(this).children().children().val();
-			console.log(bno);
-// 			location.href='detail.bo?bno='+bno;
+			location.href='detail.bo?bno='+bno;
 		})
 								
 // 			function searchBestCont(){
