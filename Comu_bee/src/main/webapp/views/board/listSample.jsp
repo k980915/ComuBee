@@ -37,25 +37,26 @@
                     <th scope="col">작성일</th>
                     <th scope="col">조회수</th>
                     <th scope="col" class="text-center">추천</th>
-                </tr>    
+                </tr>
                 
-                <c:if test="${not category eq '공지'}">
-                    <c:forEach items="${noList}" var="li">
-                        <tr>
-                             <td class="text-center">${li.boardNo }</td>
-                             <td colspan="2">${li.title}</td>
-                             <td>${li.createDate}</td>
-                             <td>${li.count }</td>
-                             <td class="text-center">${li.boardLike}</td>
-                        </tr>
-                    </c:forEach>
-                </c:if>
-                
+            	<c:if test="${not category eq '공지'}">
+            		<c:forEach items="${noList}" var="li">
+	            		<tr>
+				             <td class="text-center">${li.boardNo }</td>
+				             <td colspan="2">${li.title}</td>
+				             <td>${li.userId}</td>
+				             <td>${li.createDate}</td>
+				             <td>${li.count }</td>
+				             <td class="text-center">${li.boardLike}</td>
+				        </tr>
+            		</c:forEach>
+            	</c:if>
+            	
             </thead>
             <tbody>
             	<c:choose>
             		<c:when test="${not empty list}">
-            			<tr> <td><input type="hidden" name="list" value="${list}"></td></tr>
+<%--             			<tr> <td><input type="hidden" name="list" value="${list}"></td></tr> --%>
 		            	<c:forEach items="${list}" var="li">
 					        <tr>
 			                    <td class="text-center">${li.boardNo}</td>

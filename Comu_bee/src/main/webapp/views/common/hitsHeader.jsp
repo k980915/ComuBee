@@ -43,7 +43,11 @@
 						//alert("호버 성공");
 					},
 					error : function() {
+<<<<<<< HEAD
 					
+=======
+						
+>>>>>>> refs/remotes/origin/main
 					}
 				});
 			}

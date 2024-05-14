@@ -30,7 +30,7 @@
 				<tr>
 					<td align="center" colspan="2">
 						<button type="button" id="findUserPwd" onclick="findUserPwd();">
-							<span>비밀번호 찾기</span>
+							<span style="color:black">비밀번호 찾기</span>
 						</button>
 					</td>
 				</tr>

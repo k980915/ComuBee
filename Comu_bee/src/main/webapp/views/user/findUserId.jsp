@@ -9,7 +9,10 @@
 </head>
 
 
+<Style>
 
+	
+</Style>
 	
 
 <body>
@@ -29,7 +32,7 @@
 			<tr>
 				<td align="center" colspan="2">
 
-					<button type="button" id="findUserId" onclick="findUserId();">
+					<button border="none;" type="button" id="findUserId" onclick="findUserId();">
 						<span>아이디 찾기</span>
 					</button>
 				</td>
@@ -63,6 +66,7 @@
 					var alertMessage = "사용자 아이디는 " + userId + "입니다";
 
 					alert(alertMessage);
+					
 
 				},
 				error : function() {

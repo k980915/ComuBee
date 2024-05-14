@@ -62,8 +62,6 @@ public class BoardDetailController extends HttpServlet {
 			request.setAttribute("bestPopList", bestPopList);
 			request.setAttribute("bestContList", bestContList);
 			request.setAttribute("list",list);
-			System.out.println(list);
-			System.out.println(bno);
 			request.getRequestDispatcher("views/board/boardDetail.jsp").forward(request, response);
 			
 		}else {
