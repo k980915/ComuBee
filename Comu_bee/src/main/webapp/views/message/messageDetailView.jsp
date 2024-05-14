@@ -1,0 +1,100 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/views/board/board-css/ListSample.css">
+<title>Insert title here</title>
+<style>
+.button-container {
+	text-align: center; /* Center-align the container */
+}
+
+.button-container .button {
+	margin-left: 20px;
+	/* Adjust the margin to push the buttons to the right */
+}
+
+.slide {
+	float: right;
+}
+
+.pagination a {
+	color: black;
+}
+
+/* 추가된 스타일 */
+#messages-area-1, #messages-area-2 {
+	margin-bottom: 0; /* 두 번째 테이블과의 하단 간격 제거 */
+}
+</style>
+</head>
+<body>
+	<%@ include file="/views/common/header.jsp"%>
+
+	<div id="messages-area-1" class="table-responsive small">
+		<table border="1" align="center"
+			class="table table-striped table-sm table-hover">
+
+			<thead>
+				<tr>
+					<td>쪽지 번호</td>
+					<td>작성자</td>
+					<td>받는이</td>
+					<td>작성일</td>
+					<td>확인여부</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td class="text-center">${ms.mNo}</td>
+					<td class="boardListTitle">${ms.sendName }</td>
+					<td>${ms.receiveName}</td>
+					<td>${ms.sendDate }</td>
+					<td class="readCheck">${ms.readCheck }</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div id="messages-area-2" class="table-responsive small">
+		<table border="1" width=""
+			class="table table-striped table-sm table-hover">
+			<tr height="150">
+				<td class="text-center" width="150">쪽지 내용</td>
+				<td class="text-center">${ms.messageContent}</td>
+			</tr>
+		</table>
+	</div>
+	<script>
+			$(".readCheck").click(function() {
+				var messageId = $(this).find("td:first").text();
+				var check = $(this);
+				$.ajax({
+					url : "updateReadCheck.ms",
+					type : "post",
+					data : {
+						messageId : messageId,
+						userId : "${loginUser.userId}"
+					},
+					success : function(result) {
+						// 업데이트가 성공하면 필요에 따라 여기서 추가 작업을 수행할 수 있습니다
+						if (result > 0) {
+							
+						}
+					},
+					error : function() {
+
+					}
+				});
+			});
+	</script>
+</body>
+</html>

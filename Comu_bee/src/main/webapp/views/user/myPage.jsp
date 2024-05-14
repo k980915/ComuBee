@@ -83,7 +83,7 @@
            			 <a href="${contextPath}/myReplylist.us?myReplyCurrentPage=1&userId=${loginUser.userId}">내가 쓴 댓글 </a>
         		</div>
         		<div class="menu">
-           			 <a href="${contextPath}/messageMain.ms?userId=${loginUser.userId}">쪽지</a>
+           			 <a href="${contextPath}/messageMain.ms?messageNewCurrentPage=1&userId=${loginUser.userId}">쪽지</a>
         		</div>
         		<div class="menu">
            			 <a href="${contextPath}/scrabList.sc?myScrabCurrentPage=1&userId=${loginUser.userId}">찜 목록</a>

@@ -281,7 +281,7 @@ public class UserDao {
 		return list;
 	}
 	
-	public int myReplyListCount(Connection conn, String userNo) {
+	public int myReplyListCount(Connection conn, String userId) {
 
 		// select
 		ResultSet rset = null;
@@ -292,7 +292,7 @@ public class UserDao {
 
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, userNo);
+			pstmt.setString(1, userId);
 			rset = pstmt.executeQuery();
 
 			if (rset.next()) {

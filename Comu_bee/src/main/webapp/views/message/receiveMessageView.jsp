@@ -110,14 +110,14 @@
 	});
 	 $(".page-link").click(function(){
 		var btnNo=Number($(this).text());
-		location.href='messageMain.ms?userId=${loginUser.userId}&messageNewCurrentPage='+btnNo;
+		location.href='receiveList.ms?userId=${loginUser.userId}&receiveListCurrentPage='+btnNo;
 	});
-	var currentPage=${pi.currentPage}
+	var receiveListCurrentPage=${pi.currentPage}
 	function prev(){
-		location.href='messageMain.ms?userId=${loginUser.userId}&messageNewCurrentPage='+(currentPage-1);
+		location.href='receiveList.ms?userId=${loginUser.userId}&receiveListCurrentPage='+(receiveListCurrentPage-1);
 	}
 	function next(){
-		location.href='messageMain.ms?userId=${loginUser.userId}&messageNewCurrentPage='+(currentPage+1);
+		location.href='receiveList.ms?userId=${loginUser.userId}&receiveListCurrentPage='+(receiveListCurrentPage+1);
 	}
 	
 	function sendList(){
@@ -129,125 +129,6 @@
 	function writeMessage(){
 		location.href='goSendMessageForm.ms?userId=${loginUser.userId}';
 	}
-	
-	
-	
-	
-	
-	/*
-	
-		function sendList() {
-
-			$.ajax({
-				url : "selectList.ms",
-				type : "post",
-				data : {
-					decide : "sendView",
-					userId : "${loginUser.userId}"
-				},
-				success : function(list) {
-					console.log("성공");
-					//전부 추가하기
-					var tr = "";
-					var div = "";
-					console.log(list);
-					//전부 추가하기
-
-					for ( var i in list) {
-						tr += "<tr>" + "<td>" + list[i].mNo + "</td>" + "<td>"
-								+ list[i].sendName + "</td>" + "<td>"
-								+ list[i].receiveName + "</td>" + "<td>"
-								+ list[i].messageContent + "</td>" + "<td>"
-								+ list[i].sendDate + "</td>" + "<td>"
-								+ list[i].readCheck + "</td>" + "</tr>";
-					}
-					$("#messages-area tbody").html(tr);
-				},
-				error : function() {
-					console.log("통신오류");
-				}
-
-			});
-		}
-
-		function receiveList() {
-
-			$
-					.ajax({
-						url : "selectList.ms",
-						type : "post",
-						data : {
-							decide : "receiveView",
-							userId : "${loginUser.userId}"
-						},
-						success : function(list) {
-							console.log("성공");
-							 $("#messages-area tbody>tr").remove(); 
-							var tr = "";
-							if (list == null) {
-								tr += "<tr>" + "<td>" + "조회된 메시지가 없습니다"
-										+ "</td>"
-							} else {
-								console.log(list);
-								//전부 추가하기
-								for ( var i in list) {
-									var messageContent = list[i].messageContent.length > 10 ? list[i].messageContent
-											.substring(0, 10)
-											+ "..."
-											: list[i].messageContent;
-									tr += "<tr>" + "<td>" + list[i].mNo
-											+ "</td>" + "<td>"
-											+ list[i].sendName + "</td>"
-											+ "<td>" + list[i].receiveName
-											+ "</td>" + "<td>" + messageContent
-											+ "</td>" + "<td>"
-											+ list[i].sendDate + "</td>"
-											+ "<td>" + list[i].readCheck
-											+ "</td>" + "</tr>";
-								}
-
-								$("#messages-area tbody").html(tr);
-							}
-
-						},
-						error : function() {
-							console.log("통신오류");
-						}
-
-					});
-		}
-
-		$("table").on(
-				"click",
-				"tbody>tr",
-				function(event) {
-					if ($(event.target).is('td')
-							&& $(event.target).index() >= 0
-							&& $(event.target).index() <= 4) {
-						var messageId = $(this).find("td:first").text();
-						var check = $(this);
-						$.ajax({
-							url : "updateReadCheck.ms",
-							type : "post",
-							data : {
-								messageId : messageId,
-								userId : "${loginUser.userId}"
-							},
-							success : function(result) {
-								// 업데이트가 성공하면 필요에 따라 여기서 추가 작업을 수행할 수 있습니다
-								if (result > 0) {
-									check.remove();
-								}
-							},
-							error : function() {
-
-							}
-						});
-					}
-				});
-
- */ 
-		
 	</script>
 </body>
 </html>

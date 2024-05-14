@@ -127,9 +127,9 @@ public class UserService {
 	}
 	
 	//내가 쓴 댓글 개수  가져오기 
-	public int myReplyListCount( String userNo){
+	public int myReplyListCount( String userId){
 		Connection conn = JDBCTemplate.getConnection();
-		int listCount = new UserDao().myReplyListCount(conn,userNo);
+		int listCount = new UserDao().myReplyListCount(conn,userId);
 		JDBCTemplate.close(conn);
 		return listCount;
 	}

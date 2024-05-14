@@ -3,13 +3,23 @@
 <properties>
 
 <entry key="sendMessage">
-	INSERT INTO MESSAGE VALUES(SEQ_MMNO.NEXTVAL,?,?,?,SYSDATE,'N','N')
+	INSERT INTO MESSAGE VALUES(SEQ_MMNO.NEXTVAL,?,?,?,SYSDATE,'N')
 </entry>
 <entry key="selectSendMessage">
-	SELECT*FROM MESSAGE WHERE SENDNAME=?
+SELECT * 
+FROM (
+	SELECT ROWNUM RNUM,S.* 
+	FROM (SELECT*FROM MESSAGE WHERE SENDNAME=?) S)
+	WHERE RNUM BETWEEN ? AND ?
+	
+	
 </entry>
 <entry key="selectReceiveMessage">
-	SELECT*FROM MESSAGE WHERE RECEIVENAME=?
+	SELECT * 
+FROM (
+	SELECT ROWNUM RNUM,S.* 
+	FROM (SELECT*FROM MESSAGE WHERE RECEIVENAME=?) S)
+	WHERE RNUM BETWEEN ? AND ?
 </entry>
 <entry key="updateReadCheck">
 	UPDATE MESSAGE SET READ_CHECK = 'Y' 
@@ -18,10 +28,33 @@
 	AND READ_CHECK='N'
 </entry>
 <entry key="selectNewMessage">
-	SELECT*FROM MESSAGE WHERE RECEIVENAME=?
-	AND READ_CHECK='N'
+SELECT * 
+FROM (
+	SELECT ROWNUM RNUM,S.* 
+	FROM (SELECT*
+		  FROM MESSAGE 
+		  WHERE RECEIVENAME=?
+		  AND READ_CHECK='N') S)
+	WHERE RNUM BETWEEN ? AND ?			
 </entry>
-
+<entry key="newMessageCount">
+	SELECT COUNT(*) COUNT
+	FROM MESSAGE 
+	WHERE RECEIVENAME=? AND READ_CHECK='N'
+</entry>
+<entry key="selectMessageByMNo">
+	SELECT * FROM MESSAGE WHERE MNO=?
+</entry>
+<entry key="sendMessageCount">
+	SELECT COUNT(*) COUNT
+	FROM MESSAGE 
+	WHERE SENDNAME=?
+</entry>
+<entry key="receiveMessageCount">
+	SELECT COUNT(*) COUNT
+	FROM MESSAGE 
+	WHERE RECEIVENAME=?
+</entry>
 
 
 </properties>

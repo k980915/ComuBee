@@ -71,9 +71,9 @@
         <ul class="pagination justify-content-center">
         	<c:if test="${pi.currentPage gt 1}">
 	            <li class="page-item">
-	                <button class="page-link" aria-label="Previous">
+	                <button aria-label="Previous" onclick="prev();">
 	                    <span aria-hidden="true">&laquo;</span>
-	                    <span class="sr-only" onclick="prev();">Previous</span>
+	                    <span class="sr-only" >Previous</span>
 	                </button>
 	            </li>
         	</c:if>
@@ -84,9 +84,9 @@
             </c:forEach>
 	           <c:if test="${pi.currentPage lt pi.maxPage}">
            		<li class="page-item">
-	                <button class="page-link" aria-label="Next">
+	                <button aria-label="Next"  onclick="next();">
 	                    <span aria-hidden="true">&raquo;</span>
-	                    <span class="sr-only" onclick="next();">Next</span>
+	                    <span class="sr-only">Next</span>
 	                </button>
 	            </li>
             </c:if>
