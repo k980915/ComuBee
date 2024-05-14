@@ -68,9 +68,8 @@ public class UserLoginController extends HttpServlet {
 		
 		if(u.getUserId()==null) {
 			
-			request.setAttribute("errorMsg", "로그인 실패!");
-			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
-			view.forward(request, response);
+			session.setAttribute("alertMsg", "로그인 실패!");
+			response.sendRedirect(request.getHeader("referer"));
 			
 		}else {
 			session.setAttribute("loginUser", u);
