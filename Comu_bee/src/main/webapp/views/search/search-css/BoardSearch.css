@@ -3,79 +3,79 @@
 /* 전체 컨테이너 설정 */
 .container {
     max-width: 1200px; /* 최대 너비 제한 */
-    margin: auto; /* 자동으로 가운데 정렬 */
-    padding: 20px; /* 내부 패딩 */
+    margin: auto;
+    padding: 20px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* 박스 그림자 효과 */
 }
 
 /* 입력 그룹 설정 */
 .input-group {
     display: flex; /* Flexbox 레이아웃 적용 */
-    justify-content: center; /* 내용 중앙 정렬 */
-    align-items: center; /* 세로 가운데 정렬 */
-    width: 100%; /* 너비 100% */
-    max-width: 600px; /* 최대 너비 설정 */
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
     margin: 20px auto; /* 위아래 여백 20px, 자동 가운데 정렬 */
 }
 
 /* 입력 필드 스타일 */
 .input-group input[type="text"], .input-group .search-input {
     flex-grow: 1; /* Flex 아이템 내에서 가능한 모든 공간 차지 */
-    padding: 10px; /* 패딩 10px */
-    border: 1px solid #ccc; /* 테두리 색상 */
+    padding: 10px;
+    border: 1px solid #ccc;
     border-radius: 4px 0 0 4px; /* 왼쪽 끝 모서리만 둥글게 */
 }
 
 /* 검색 버튼 스타일 */
 .input-group button, .input-group .search-btn {
-    padding: 10px; /* 패딩 설정 */
-    background-color: #E0DFE6; /* 배경색 설정 */
-    color: black; /* 글자 색상 검정색으로 설정 */
-    border: 1px solid #ccc; /* 테두리 설정 */
+    padding: 10px;
+    background-color: #E0DFE6;
+    color: black;
+    border: 1px solid #ccc;
     border-radius: 0 4px 4px 0; /* 오른쪽 끝 모서리만 둥글게 */
-    cursor: pointer; /* 커서 포인터 모양 */
+    cursor: pointer;
 }
 
 /* 검색 버튼 호버 스타일 */
 .input-group button:hover, .input-group .search-btn:hover {
-    background-color: #d4d3d6; /* 배경색 설정 */
+    background-color: #d4d3d6;
 }
 
 /* 테이블 스타일 */
 .table {
-    width: 100%; /* 너비 100% */
-    margin-top: 20px; /* 상단 여백 */
-    border-collapse: collapse; /* 경계선 붕괴 옵션 활성화 */
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
 }
 
 /* 테이블 셀 스타일 */
 .table, th, td {
-    border: 1px solid #ddd; /* 경계선 설정 */
+    border: 1px solid #ddd;
 }
 
 /* 테이블 헤더 셀 스타일 */
 .table thead th {
     background-color: #8F684F; 
-    color: #333; /* 글자색 어두운 회색 */
-    padding: 12px; /* 패딩 설정 */
-    text-align: left; /* 텍스트 왼쪽 정렬 */
-    border: 1px solid #400040; /* 테두리 설정 */
+    color: #333;
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #400040;
 }
 
 /* 테이블 데이터 셀 스타일 */
 .table tbody td {
-    padding: 10px; /* 패딩 설정 */
-    color: #666; /* 글자색 중간 회색 */
+    padding: 10px;
+    color: #666;
     background-color: #FAF0E0;
 }
 
 /* 테이블 행 호버 스타일 */
 .table-hover tbody tr:hover {
-    background-color: #f1f1f1; /* 배경색 연한 회색으로 변경 */
+    background-color: #f1f1f1;
 }
 
 /* 제목에 마우스 오버 시 밑줄 표시 */
 .boardTitle:hover {
-    text-decoration: underline; /* 밑줄 표시 */
-    cursor: pointer; /* 마우스 커서를 포인터(손 모양)로 변경 */
+    text-decoration: underline;
+    cursor: pointer;
 }
