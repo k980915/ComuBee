@@ -32,7 +32,7 @@ body::before {
 	position: absolute;
 	width: 100%;
 	height: 100%;
-	background-color: #E5B409;
+	background-color: #E6D5B5;
 	z-index: -1;
 }
 
