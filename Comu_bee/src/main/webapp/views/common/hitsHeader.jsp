@@ -28,7 +28,7 @@
 		$(function() {
 			var clicked = false;
 			var hit = 0;
-			$(".logo-img, .title").hover(function() {
+			$(".head-area").hover(function() {
 				if (!clicked) {
 					hit++;
 					updateHit(hit);
@@ -40,7 +40,7 @@
 					url : "hitsViewUpdate.ad",
 					data : {hit : hit},
 					success : function(result) {
-						
+						//alert("호버 성공");
 					},
 					error : function() {
 						

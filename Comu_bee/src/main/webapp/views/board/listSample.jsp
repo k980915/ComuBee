@@ -32,7 +32,7 @@
                     <th scope="col">제목</th> <!-- 제목과 글쓴이 병합 -->
                     <th scope="col">글쓴이</th>
                     <c:if test="${loginUser.userId eq 'admin'}">
-                    <th scope="col">관리</th>
+                    <th scope="col" style="width : 100px; height">관리</th>
                     </c:if>
                     <th scope="col">작성일</th>
                     <th scope="col">조회수</th>
@@ -53,34 +53,35 @@
                 
             </thead>
             <tbody>
-                <c:choose>
-                    <c:when test="${not empty list}">
-                        <tr> <td><input type="hidden" name="list" value="${list}"></td></tr>
-                        <c:forEach items="${list}" var="li">
-                            <tr>
-                                <td class="text-center">${li.boardNo}</td>
-                                <td class="boardListTitle">${li.title}</td>
-                                <td id="adminuserId">${li.userId }</td>
-                                <c:if test="${loginUser.userId eq 'admin'}">
-                                    <td>
-                                    <button type="button" class="adminBtn">
-                                        회원 정보
-                                    </button>
-                                    </td>                            
-                                </c:if>
-                                <td>${li.createDate}</td>
-                                <td>${li.count }</td>
-                                <td class="text-center">${li.boardLike}</td>
-                              
-                            </tr>
-                        </c:forEach>
-                    </c:when>
-                    <c:otherwise>
-                        <tr>
-                            <td colspan="6">조회된 데이터가 없습니다.</td>
-                        </tr>
-                    </c:otherwise>
-                </c:choose>    
+            	<c:choose>
+            		<c:when test="${not empty list}">
+            			<tr> <td><input type="hidden" name="list" value="${list}"></td></tr>
+		            	<c:forEach items="${list}" var="li">
+					        <tr>
+			                    <td class="text-center">${li.boardNo}</td>
+			                    <td class="boardListTitle">${li.title}</td>
+			                    <td id="adminuserId" >${li.userId}</td>
+								
+								<c:if test="${loginUser.userId eq 'admin'}">
+									<td>
+				                    <button type="button" class="adminBtn" style="font-size: 16px; background-color: orange; border: none; padding: 8px 16px; border-radius: 4px;">
+									    회원 정보
+									</button>
+									</td>		                   
+								</c:if>
+			                    <td>${li.createDate}</td>
+			                    <td>${li.count }</td>
+			                    <td class="text-center">${li.boardLike}</td>
+			                  
+			                </tr>
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<tr>
+							<td colspan="6">조회된 데이터가 없습니다.</td>
+						</tr>
+					</c:otherwise>
+				</c:choose>	
 
             </tbody>
         </table>
