@@ -147,7 +147,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="p" items="${bestContList}">
+						<c:forEach var="p" items="${pcList}">
 							<tr>
 								<td> <input type=hidden value='${p.contentsId}'> </td>
 								<td>
@@ -162,19 +162,19 @@
 			<div class="bestPopUp">
 				<h3>인기 게시글</h3>
 				<table class="popUp">
-					<thead>
+					<thead class="bpbCa">
 						<tr>
 							<c:forEach var="c" items="${cList}">
-								<th onclick="searchBestCat();">${c.categoryName}<th>
+								<th>${c.categoryName}</th>
 							</c:forEach>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="p" items="${bestPopList}">
+						<c:forEach var="bpb" items="${bpbList}">
 							<tr>
-								<td> <input type=hidden value='${p.boardNo}'> </td>
-								<td>${p.title}</td>
-								<td>(${p.like})</td><!-- 추천수 표시 -->
+								<td colspan="5">${bpb.title}(${bpb.boardLike})
+									<input type=hidden value='${bpb.boardNo}'>
+								</td><!-- 추천수 표시 -->
 							</tr>
 						</c:forEach>
 						
@@ -184,105 +184,26 @@
 			<div class="newPopUp">
 				<h3>신규 게시글</h3>
 				<table class="popUp">
-					<thead>
+					<thead class="npbCa">
 						<tr>
 							<c:forEach var="c" items="${cList}">
-								<th onclick="searchNewCat();">${c.categoryName}<th>
+								<th>${c.categoryName}</th>
 							</c:forEach>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="p" items="${newPopList}">
+						<c:forEach var="npb" items="${npbList}">
 							<tr>
-								<td> <input type=hidden value='${p.boardNo}'> </td>
-								<td>${p.title}</td>
+								<td colspan="5">${npb.title}
+									<input type=hidden value='${npb.boardNo}'>
+								</td>
 							</tr>
 						</c:forEach>
 						
 					</tbody>
 				</table>
-				<script>
-				function searchBestCont(){
-					$.ajax({
-						url : "bestPopUp.co",
-						success : function(list){
-							var str = "";
-							for var(i=0;i<list.length;i++){
-								str+="<tr>"
-								+"<td>"+list[i].title+"</td>"
-								+"</tr>"
-							}
-							${".contentPopUp thead"}.html(str);
-						},
-						error : function(){
-							console.log("통신오류")
-						}
-						
-					});
-				}
-				function searchNewCont(){
-					$.ajax({
-						url : "newPopUp.co",
-						success : function(list){
-							var str = "";
-							for var(i=0;i<list.length;i++){
-								str+="<tr>"
-								+"<td>"+list[i].title+"</td>"
-								+"</tr>"
-							}
-							${".contentPopUp thead"}.html(str);
-						},
-						error : function(){
-							console.log("통신오류")
-						}
-						
-					});
-				}
-				function searchNewCat(){
-					$.ajax({
-						url : "newPopUp.bo",
-						success : function(list){
-							var str = "";
-							for var(i=0;i<list.length;i++){
-								str+="<tr>"
-								+"<td>"+list[i].title+"</td>"
-								+"</tr>"
-							}
-							${".newPopUp thead"}.html(str);
-						},
-						error : function(){
-							console.log("통신오류")
-						}
-						
-					});
-				}
-				function searchBestCat(){
-					$.ajax({
-						url : "bestPopUp.bo",
-						success : function(list){
-							var str = "";
-							for var(i=0;i<list.length;i++){
-								str+="<tr>"
-								+"<td>"+list[i].title+"</td>"
-								+"</tr>"
-							}
-							${".bestPopUp thead"}.html(str);
-						},
-						error : function(){
-							console.log("통신오류")
-						}
-						
-					});
-				}
-					$(".popUp>thead>tr").click(function(){
-						
-					});
-					$(".popUp>tbody>tr").click(function(){
-						var bno = $(this).children.eq(0).text();
-						location.href='<%=contextPath%>/detail.bo?bno='+bno;
-						});
+				
 
-				</script>
 
 			</div>
 		</div>
@@ -291,129 +212,229 @@
 	</div>	
 	
 	<script>
-							function insertReply(){
-								
-								$.ajax({
-									url : "insertReply.bo",
-									type : "post",
-									data : {
-										content : $("#replyContent").val(),
-										bno : ${b.boardNo},
-										userId : "${loginUser.userId}"
-									},
-									success : function(result){
-										if(result>0){
-											alert("댓글 작성 성공");	
-											replyList();
-										}else{
-											alert("작성실패");
-										}
-										$("#replyContent").val("");
-									},
-									error : function(){
-										console.log("통신 오류")
-									}
-								
-								});
-								$(function(){
-									replyList();
-								});
-									
-							}
-							function replyList(){
-								var tr="";
-								$.ajax({
-									url : "replyList.bo",
-									data : {
-										bno : ${b.boardNo}
-									},
-									success : function(rList){
-										if(rList.length==0){
-											tr="<tr>"
-												+"<td span='3'>"
-												+"현재 댓글이 없습니다."
-												+"</td>"
-												+"</tr>";
-										}else{
-											for(var i in rList){
-												tr+="<tr>"
-													+"<td>"+rList[i].userId+"</td>"
-													+"<td>"+rList[i].replyContent+"</td>"
-													+"<td>"+rList[i].createDate+"</td>"
-													+"</tr>";
-										}
-									}
-										$(".writtenReply tbody").html(tr);
-										},
-									error : function(){
-										console.log("통신 오류")
-									}
-									
-								});
-								
-							}
-							
-							function scrab(){
-								$.ajax({
-									url : "insertScrab.sc",
-									type:"post",
-									data : {
-										bno : ${b.boardNo}, 
-										userId :"${loginUser.userId}"
-									},
-									success : function(str){
-										console.log(str)
-										},
-									error : function(){
-										console.log("통신 오류")
-									}
-									
-								});
-								
-							}
-							function recommendBoard(){
-								if('${loginUser.userId}'==''){
-									alert("추천은 로그인 후 이용 가능합니다.");
-									return false;
-								}
-								var msg="";
-								$.ajax({
-									url : "likeBoard.rb",
-									type : "post",
-									data : {
-										bno : ${b.boardNo},
-										userId : "${loginUser.userId}"
-									},
-									success : function(result){
-										if(result>0){
-											msg="추천을 취소하였습니다.";
-										}else{
-											msg="추천을 완료하였습니다.";
-										}
-										alert(msg);
-										likeUpdate();
-									},
-									error : function(){
-										console.log("틀림");
-									}
-								});
-							}
-							function likeUpdate(){
-								var tr="";
-								$.ajax({
-									url : "likeUpdate.rb",
-									data : {
-										bno : ${b.boardNo}
-									},
-									success : function(like){
-										$(".boardLikeTotal").text(like);
-									},
-								error : function(){
-									console.log("통신 오류")
-									}
-								})
-							}
+		function insertReply(){
+			
+			$.ajax({
+				url : "insertReply.bo",
+				type : "post",
+				data : {
+					content : $("#replyContent").val(),
+					bno : ${b.boardNo},
+					userId : "${loginUser.userId}"
+				},
+				success : function(result){
+					if(result>0){
+						alert("댓글 작성 성공");	
+						replyList();
+					}else{
+						alert("작성실패");
+					}
+					$("#replyContent").val("");
+				},
+				error : function(){
+					console.log("통신 오류")
+				}
+			
+			});
+			$(function(){
+				replyList();
+			});
+				
+		}
+		function replyList(){
+			var tr="";
+			$.ajax({
+				url : "replyList.bo",
+				data : {
+					bno : ${b.boardNo}
+				},
+				success : function(rList){
+					if(rList.length==0){
+						tr="<tr>"
+							+"<td span='3'>"
+							+"현재 댓글이 없습니다."
+							+"</td>"
+							+"</tr>";
+					}else{
+						for(var i in rList){
+							tr+="<tr>"
+								+"<td>"+rList[i].userId+"</td>"
+								+"<td>"+rList[i].replyContent+"</td>"
+								+"<td>"+rList[i].createDate+"</td>"
+								+"</tr>";
+					}
+				}
+					$(".writtenReply tbody").html(tr);
+					},
+				error : function(){
+					console.log("통신 오류")
+				}
+				
+			});
+			
+		}
 		
-						</script>
+		function scrab(){
+			$.ajax({
+				url : "insertScrab.sc",
+				type:"post",
+				data : {
+					bno : ${b.boardNo}, 
+					userId :"${loginUser.userId}"
+				},
+				success : function(str){
+					console.log(str)
+					},
+				error : function(){
+					console.log("통신 오류")
+				}
+				
+			});
+			
+		}
+		function recommendBoard(){
+			if('${loginUser.userId}'==''){
+				alert("추천은 로그인 후 이용 가능합니다.");
+				return false;
+			}
+			var msg="";
+			$.ajax({
+				url : "likeBoard.rb",
+				type : "post",
+				data : {
+					bno : ${b.boardNo},
+					userId : "${loginUser.userId}"
+				},
+				success : function(result){
+					if(result>0){
+						msg="추천을 취소하였습니다.";
+					}else{
+						msg="추천을 완료하였습니다.";
+					}
+					alert(msg);
+					likeUpdate();
+				},
+				error : function(){
+					console.log("틀림");
+				}
+			});
+		}
+		function likeUpdate(){
+			var tr="";
+			$.ajax({
+				url : "likeUpdate.rb",
+				data : {
+					bno : ${b.boardNo}
+				},
+				success : function(like){
+					$(".boardLikeTotal").text(like);
+				},
+			error : function(){
+				console.log("통신 오류")
+				}
+			})
+		}
+		$(".bpbCa>tr>th").click(function(){
+			var sCategory=$(this).text();
+			$.ajax({
+				url : "bestPopUp.bo",
+				data : {
+					sCategory : sCategory
+				},
+				success : function(bpbList){
+					var str = "";
+					for(var i in bpbList){
+						str+="<tr>"
+						+"<td colspan='5'>"+bpbList[i].title+
+						"("+bpbList[i].boardLike+")<input type=hidden value='"
+						+bpbList[i].boardNo+"'></td>"
+						+"</tr>"
+					};
+					$(".bestPopUp tbody").html(str);
+				},
+				error : function(){
+					console.log("통신오류")
+				}					
+			});
+		})
+		
+		$(".npbCa>tr>th").click(function(){
+			var sCategory=$(this).text();
+			$.ajax({
+				url : "newPopUp.bo",
+				data :{
+					sCat : sCategory
+				},
+				success : function(npbList){
+					var str = "";
+					for(var i in npbList){
+						str+="<tr>"
+						+"<td colspan='5'>"+npbList[i].title+
+						"<input type=hidden value='"
+						+npbList[i].boardNo+"'></td>"
+						+"</tr>"
+					};
+					$(".newPopUp tbody").html(str);
+				},
+				error : function(){
+					console.log("통신오류")
+				}
+				
+			});
+		})
+		
+		$(".popUp tbody tr").click(function(){
+			var bno = $(this).children().children().val();
+			console.log(bno);
+// 			location.href='detail.bo?bno='+bno;
+		})
+								
+// 			function searchBestCont(){
+// 				$.ajax({
+// 					url : "PopUp.co",
+// 					data : {
+// 						search : "best"
+// 					},
+// 					success : function(pcList){
+// 						var str = "";
+// 						for(var i in pcList){
+// 							str+="<tr>"
+// 							+"<td>"+pcList[i].title+
+// 							"<input type=hidden value='"
+// 							+pcList[i].boardNo+"'></td>"
+// 							+"</tr>"
+// 						};
+// 						$(".contentPopUp thead").html(str);
+// 					},
+// 					error : function(){
+// 						console.log("통신오류")
+// 					}
+					
+// 				});
+// 			}
+// 			function searchNewCont(){
+// 				$.ajax({
+// 					url : "PopUp.co",
+// 					data : {
+// 						search : "new"
+// 					},
+// 					success : function(pcList){
+// 						var str = "";
+// 						for(var i in pcList){
+// 							str+="<tr>"
+// 							+"<td>"+pcList[i].title+
+// 							"<input type=hidden value='"
+// 							+pcList[i].boardNo+"'></td>"
+// 							+"</tr>"
+// 						};
+// 						$(".contentPopUp thead").html(str);
+// 					},
+// 					error : function(){
+// 						console.log("통신오류")
+// 					}
+					
+// 				});
+// 			}
+			</script>
 </body>
 </html>

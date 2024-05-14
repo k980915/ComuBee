@@ -11,19 +11,19 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.kh.board.model.service.BoardService;
-import com.kh.board.model.vo.Reply;
+import com.kh.board.model.vo.Board;
 
 /**
- * Servlet implementation class BoardReplyListController
+ * Servlet implementation class BoardPopupBestList
  */
-@WebServlet("/replyList.bo")
-public class BoardReplyListController extends HttpServlet {
+@WebServlet("/bestPopUp.bo")
+public class BoardPopupBestList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardReplyListController() {
+    public BoardPopupBestList() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,11 +34,13 @@ public class BoardReplyListController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
-		int bno = Integer.parseInt(request.getParameter("bno"));
-		ArrayList<Reply> rList = new BoardService().replyList(bno);
+		String category = request.getParameter("sCategory");
+		Board b = new Board();
+		b.setCategory(category);
+		ArrayList<Board> bpbList = new BoardService().bestPopList(b);
 		response.setContentType("json/application; charset=UTF-8");
-		new Gson().toJson(rList,response.getWriter());
-
+		new Gson().toJson(bpbList,response.getWriter());
+		
 	}
 
 	/**
