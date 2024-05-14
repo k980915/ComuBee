@@ -42,23 +42,27 @@
 	<button class="btn btn-outline-secondary create-post-button"
 		id="writeMessage" onclick="writeMessage();">쪽지 쓰기</button>
 
-	<div>
-		<form action="<%=contextPath%>/sendMessage.ms" method="post">
-			<div class="message-input-area">
-				<label for="name">name</label> <input type="hidden" name="senderId"
-					value="${loginUser.userId}"> <input type="text" id="name"
-					placeholder="받는사람 닉네임" name="receiverId">
-			</div>
-			<div class="message-input">
-				<label for="message">Message</label>
-				<textarea id="message" rows="6" name="message"></textarea>
-			</div>
-			<ul class="action">
-				<li><input type="submit" value="sendMessage" /></li>
-				<li><input type="reset" value="clear"></li>
-			</ul>
-		</form>
-	</div>
+	<div align="center">
+            <form action="<%=contextPath%>/sendMessage.ms" method="post">
+                <table>
+                    <tr>
+                        <td><label for="name">이름</label></td>
+                        <td><input type="hidden" name="senderId" value="${loginUser.userId}">
+                            <input type="text" id="name" placeholder="받는사람 닉네임" name="receiverId"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="message">메시지</label></td>
+                        <td><textarea id="message" rows="6" name="message"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="submit" value="메시지 보내기">
+                            <input type="reset" value="지우기">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
 	<script>
 	function sendList(){
 		location.href='sendList.ms?userId=${loginUser.userId}&sendListCurrentPage=1';
