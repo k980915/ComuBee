@@ -47,11 +47,11 @@ public class mainContents extends HttpServlet {
 		boardList = new ContentsService().ForReview();
 
 		System.out.println(conList);
-		System.out.println(bestList);
+		
 		request.setAttribute("conList", conList);
 		request.setAttribute("bestList", bestList);
 		request.setAttribute("boardList", boardList);
-
+		
 
 		request.getRequestDispatcher("views/contents/mainPage.jsp").forward(request, response);
 

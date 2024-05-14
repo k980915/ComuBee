@@ -182,11 +182,9 @@ body::before {
 			location.href = '${contextPath}/main.co';
 		});
 		  document.getElementById("darkModeToggleBtn").addEventListener("click", function() {
-		        // body 요소에 dark-mode 클래스가 있는지 확인하여 다크 모드가 활성화되었는지 확인
 		        var body = document.body;
 		        var isDarkMode = body.classList.contains("dark-mode");
 
-		        // 다크 모드가 활성화되어 있다면 비활성화하고, 아니라면 활성화합니다.
 		        if (isDarkMode) {
 		            body.classList.remove("dark-mode");
 		        } else {
@@ -196,12 +194,10 @@ body::before {
 		            localStorage.setItem('darkMode', isDarkMode ? 'true' : 'false');
 		        }
 				
-		     // 저장된 다크 모드 상태 불러오기
 		        function loadDarkModeState() {
 		            return localStorage.getItem('darkMode') === 'true';
 		        }
 
-		        // 페이지 로드 시 저장된 다크 모드 설정을 확인하여 적용
 		        window.onload = function() {
 		            var isDarkMode = loadDarkModeState();
 		            if (isDarkMode) {
@@ -221,7 +217,7 @@ body::before {
 		                body.classList.add("dark-mode");
 		            }
 
-		            saveDarkModeState(!isDarkMode); // 다크 모드 상태 반전하여 저장
+		            saveDarkModeState(!isDarkMode);
 		        });
 
 		        

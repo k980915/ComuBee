@@ -107,7 +107,7 @@
 					                    <img src="${content.posterPath}" style="height: 600px; width: 500px;">
 					                </td>
 					                
-					                <td style="width: 300px;">
+					                <td style="width: 500px;">
 					                    ${content.overView}
 					                </td>
 					            </tr>
