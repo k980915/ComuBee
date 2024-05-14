@@ -30,6 +30,20 @@
 .pagination a {
 	color: black;
 }
+#name, #message {
+	   background-color: #FAF0E0;
+	   border: 1px solid black;
+	   padding: 5px;
+	   margin: 0;
+	   box-sizing: border-box;
+	   
+}
+#message{
+   	width:100%;
+   	height:100%;
+   	box-sizing: border-box;
+}
+
 </style>
 </head>
 <body>
@@ -43,26 +57,22 @@
 		id="writeMessage" onclick="writeMessage();">쪽지 쓰기</button>
 
 	<div align="center">
-            <form action="<%=contextPath%>/sendMessage.ms" method="post">
-                <table>
-                    <tr>
-                        <td><label for="name">이름</label></td>
-                        <td><input type="hidden" name="senderId" value="${loginUser.userId}">
-                            <input type="text" id="name" placeholder="받는사람 닉네임" name="receiverId"></td>
-                    </tr>
-                    <tr>
-                        <td><label for="message">메시지</label></td>
-                        <td><textarea id="message" rows="6" name="message"></textarea></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="submit" value="메시지 보내기">
-                            <input type="reset" value="지우기">
-                        </td>
-                    </tr>
-                </table>
-            </form>
-        </div>
+	    <form action="<%=contextPath%>/sendMessage.ms" method="post">
+	        <table border="1">
+	            <tr>
+	                <td style="background-color: #8F684F; border: 1px solid black;" >이름</td>
+	                <td><input type="hidden" name="senderId" value="${loginUser.userId}">
+	                    <input type="text" id="name" placeholder="받는사람 닉네임" name="receiverId" ></td>
+	            </tr>
+	            <tr>
+	                <td style="background-color: #8F684F; border: 1px solid black;">메시지</td>
+	                <td><textarea id="message" rows="8" name="message"></textarea></td>
+	            </tr>
+	        </table>
+	        <input type="submit" value="메시지 보내기">
+	        <input type="reset" value="지우기">
+	    </form>
+	</div>
 	<script>
 	function sendList(){
 		location.href='sendList.ms?userId=${loginUser.userId}&sendListCurrentPage=1';
