@@ -34,7 +34,7 @@ public class UserLoginController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		doPost(request, response);
 	}
 
 	/**
@@ -45,6 +45,7 @@ public class UserLoginController extends HttpServlet {
 		
 		String userId = request.getParameter("userId");
 		String userPwd = request.getParameter("userPwd");
+		
 		
 		Cookie cookie = null;
 		
@@ -68,14 +69,14 @@ public class UserLoginController extends HttpServlet {
 		
 		if(u.getUserId()==null) {
 			
-			request.setAttribute("errorMsg", "로그인 실패!");
-			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
-			view.forward(request, response);
+			session.setAttribute("alertMsg", "로그인 실패!");
+			response.sendRedirect(request.getHeader("referer"));
 			
 		}else {
 			session.setAttribute("loginUser", u);
 			session.setAttribute("alertMsg", "로그인 성공!");
-			
+		
+		
 			response.sendRedirect(request.getHeader("referer"));
 		}
 		
