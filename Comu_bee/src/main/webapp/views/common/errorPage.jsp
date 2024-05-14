@@ -15,6 +15,8 @@
 
 	<h1 align="center" style="color:red"><%=errorMsg %></h1>
 	
-	<h3><a href="<%=request.getContextPath()%>"></a>메인으로</h3>
+	<h3 align="center"><a href="${contextPath }/main.co">메인으로</a></h3>
 </body>
+
+
 </html>

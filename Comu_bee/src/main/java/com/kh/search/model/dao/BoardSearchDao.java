@@ -15,7 +15,7 @@ public class BoardSearchDao {
         ArrayList<Board> list = new ArrayList<>();  // 결과를 저장할 ArrayList
         PreparedStatement pstmt = null;
         ResultSet rset = null;
-        String sql = "SELECT TITLE, BOARDCONTENT, USERID, CREATEDATE FROM BOARD WHERE (TITLE LIKE ? OR BOARDCONTENT LIKE ?)";
+        String sql = "SELECT BOARDNO, CATEGORYNAME, TITLE, BOARDCONTENT, USERID, CREATEDATE FROM BOARD JOIN CATEGORY_BRD USING(CATEGORYNO) WHERE (TITLE LIKE ? OR BOARDCONTENT LIKE ?)";
         
         try {
             pstmt = conn.prepareStatement(sql);
@@ -25,7 +25,8 @@ public class BoardSearchDao {
 
             while (rset.next()) {
                 Board board = new Board();
-                
+                board.setBoardNo(rset.getInt("BOARDNO"));
+                board.setCategory(rset.getString("CATEGORYNAME"));
                 board.setTitle(rset.getString("TITLE"));
                 board.setBoardContent(rset.getString("BOARDCONTENT"));
                 board.setUserId(rset.getString("USERID"));
