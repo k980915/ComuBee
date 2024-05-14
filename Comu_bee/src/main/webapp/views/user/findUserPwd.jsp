@@ -11,9 +11,9 @@
 
 	
 
-		<table border="1">
+		<table align="center">
 			<tbody>
-				<h4>비밀번호 찾기</h4>
+				<h4 align="center">비밀번호 찾기</h4>
 				<tr>
 					<th>아이디</th>
 					<td> <input type="text" id="userIdf" required></td>
