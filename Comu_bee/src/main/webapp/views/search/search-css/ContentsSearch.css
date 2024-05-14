@@ -1,10 +1,21 @@
 @charset "UTF-8";
 
+/* 전체 컨테이너 설정 */
+.container {
+    max-width: 1200px; /* 최대 너비 제한 */
+    margin: auto; /* 자동으로 가운데 정렬 */
+    padding: 20px; /* 내부 패딩 */
+    background-color: #fff; /* 배경색은 흰색 */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* 박스 그림자 효과 */
+}
+
 /* 영화 상세 정보 컨테이너 */
 .movie-details-container {
     display: flex; /* Flexbox 레이아웃 적용 */
     flex-wrap: wrap; /* 내용이 넘칠 경우 다음 줄로 넘김 */
     justify-content: space-around; /* 주변 여백을 균등하게 분포 */
+    margin-bottom: 0; /* 하단 여백 제거 */
+    padding: 0; /* 내부 여백 제거 */
 }
 
 /* 영화 항목 스타일 */
@@ -81,4 +92,6 @@
 .table {
     width: 100%; /* 테이블 너비 100% */
     margin-top: 20px; /* 상단 여백 */
-    border-collapse: collapse
+    border-collapse: collapse;
+    margin-bottom: 0; /* 하단 여백 제거 */
+}

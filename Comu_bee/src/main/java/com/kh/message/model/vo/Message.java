@@ -8,7 +8,6 @@ public class Message {
 	private String receiveName;
 	private String messageContent;
 	private Date sendDate;
-	private String scrabCheck;
 	private String readCheck;
 	public int getmNo() {
 		return mNo;
@@ -40,12 +39,6 @@ public class Message {
 	public void setSendDate(Date sendDate) {
 		this.sendDate = sendDate;
 	}
-	public String getScrabCheck() {
-		return scrabCheck;
-	}
-	public void setScrabCheck(String scrabCheck) {
-		this.scrabCheck = scrabCheck;
-	}
 	public String getReadCheck() {
 		return readCheck;
 	}
@@ -53,14 +46,13 @@ public class Message {
 		this.readCheck = readCheck;
 	}
 	public Message(int mNo, String sendName, String receiveName, String messageContent, Date sendDate,
-			String scrabCheck, String readCheck) {
+			 String readCheck) {
 		super();
 		this.mNo = mNo;
 		this.sendName = sendName;
 		this.receiveName = receiveName;
 		this.messageContent = messageContent;
 		this.sendDate = sendDate;
-		this.scrabCheck = scrabCheck;
 		this.readCheck = readCheck;
 	}
 	public Message( String sendName, String receiveName, String messageContent) {
@@ -72,7 +64,7 @@ public class Message {
 	@Override
 	public String toString() {
 		return "Message [mNo=" + mNo + ", sendName=" + sendName + ", receiveName=" + receiveName + ", messageContent="
-				+ messageContent + ", sendDate=" + sendDate + ", scrabCheck=" + scrabCheck + ", readCheck=" + readCheck
+				+ messageContent + ", sendDate=" + sendDate + ", readCheck=" + readCheck
 				+ "]";
 	}
 	

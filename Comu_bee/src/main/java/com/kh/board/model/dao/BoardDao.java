@@ -642,4 +642,25 @@ public class BoardDao {
 		return result;
 	}
 
+	public ArrayList<Board> selectListByLike(Connection conn,PageInfo pi) {
+		// TODO Auto-generated method stub
+		ArrayList<Board> list = new ArrayList<>();
+		int startRow=(pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
+		int endRow=pi.getCurrentPage()*pi.getBoardLimit();
+		PreparedStatement pstmt=null;
+		ResultSet rset=null;
+		String sql=prop.getProperty("selectListByLike");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			rset=pstmt.executeQuery();
+			while(rset.next());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
+
 }

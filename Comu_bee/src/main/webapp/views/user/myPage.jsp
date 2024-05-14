@@ -85,8 +85,8 @@ table.type03 td {
 			<table class="type03" align="center">
 				<tr>
 					<th scope="row">아 이 디</th>
-					<td><input id="input1" type="text" name="userName"
-						value="${loginUser.userName}"></td>
+					<td><input id="input1" type="text" name="userId"
+						value="${loginUser.userId}"></td>
 				</tr>
 				<tr>
 					<th scope="row">이 름</th>
@@ -110,7 +110,7 @@ table.type03 td {
 				</tr>
 				<tr>
 					<th scope="row">가 입 일</th>
-					<td><input id="input1" type="text" name="email"
+					<td><input id="input1" type="text" name="joinDate"
 						value="${loginUser.joinDate}" readonly></td>
 				</tr>
 				<tr>
@@ -131,7 +131,7 @@ table.type03 td {
 					<br><br>
 					<a href="${contextPath}/myBoardList.us?myBoardCurrentPage=1&userId=${loginUser.userId}" style="color:white;"> 내가 쓴 글 &nbsp;</a><label style="color:white;">&nbsp; | &nbsp;</label> 
 					<a href="${contextPath}/myReplylist.us?myReplyCurrentPage=1&userId=${loginUser.userId}" style="color:white;"> 내가 쓴 댓글 &nbsp;</a><label style="color:white;">&nbsp; | &nbsp;</label>
-					<a href="${contextPath}/messageMain.ms?userId=${loginUser.userId}" style="color:white;"> 쪽 지 &nbsp;</a><label style="color:white;">&nbsp; | &nbsp;</label>
+					<a href="${contextPath}/messageMain.ms?messageNewCurrentPage=1&userId=${loginUser.userId}" style="color:white;"> 쪽 지 &nbsp;</a><label style="color:white;">&nbsp; | &nbsp;</label>
 					<a href="${contextPath}/scrabList.sc?myScrabCurrentPage=1&userId=${loginUser.userId}" style="color:white;"> 찜	목 록 &nbsp;</a><label style="color:white;">&nbsp; | &nbsp;</label>
 		
 			</div>
@@ -152,25 +152,6 @@ table.type03 td {
 	}
 	%>
 
-	<!-- 
-		회원탈퇴용 모달영역 만들어서 연결하고 
-		모달영역에서는 
-		비밀번호 입력 : 인풋상자 를 이용하여 현재 비밀번호를 입력받고 
-		입력한 비밀번호가 현재 로그인된 회원 비밀번호와 같다면 
-		정말 탈퇴하시겠습니까? 라는 confirm 창을 띄워 확인을 누른다면 
-		서버에 전송하여 해당 회원의 status를 N으로 변경하고 
-		성공시 : 로그인 해제 후 메인페이지로 돌아오기
-		실패시 : 에러메세지(회원탈퇴 실패)와함께 마이페이지로 돌아오기 
-		
-		매핑주소 delete.me
-		메소드명 deleteMember
-		컨트롤러명 MemberDeleteController 
-		
-	
-	 -->
-
-
-	<!-- 비밀번호 변경 모달영역 -->
 	<div class="modal" id="updatePwdForm">
 		<div class="modal-dialog">
 			<div class="modal-content">

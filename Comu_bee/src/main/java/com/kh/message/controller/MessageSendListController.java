@@ -12,20 +12,18 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.common.model.vo.PageInfo;
 import com.kh.message.model.service.MessageService;
 import com.kh.message.model.vo.Message;
-import com.kh.scrab.model.service.ScrabService;
-import com.kh.user.model.service.UserService;
 
 /**
- * Servlet implementation class MessageBoxController
+ * Servlet implementation class MessageSendListController
  */
-@WebServlet("/messageMain.ms")
-public class MessageMainController extends HttpServlet {
+@WebServlet("/sendList.ms")
+public class MessageSendListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MessageMainController() {
+    public MessageSendListController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -44,10 +42,9 @@ public class MessageMainController extends HttpServlet {
 		int endPage; //페이지 하단에 보여질 페이징바의 끝수
 		
 		String userId=request.getParameter("userId");
-		
-		listCount = new MessageService().newMessageCount(userId);
+		listCount = new MessageService().sendMessageCount(userId);
 		//currentPage 현재 페이지정보 
-		currentPage = Integer.parseInt(request.getParameter("messageNewCurrentPage"));
+		currentPage = Integer.parseInt(request.getParameter("sendListCurrentPage"));
 		
 		//페이지 하단에 보여질 페이징바 최대 개수
 		pageLimit = 10;
@@ -65,11 +62,12 @@ public class MessageMainController extends HttpServlet {
 		}
 		PageInfo pi = new PageInfo(listCount,currentPage,pageLimit,boardLimit,maxPage,startPage,endPage);
 		
-		ArrayList<Message> list = new MessageService().selectNewMessage(pi,userId);
+		ArrayList<Message> list = new MessageService().selectSendMessage(pi,userId);
 		request.setAttribute("list", list);
 		request.setAttribute("pi", pi);
 		
-		request.getRequestDispatcher("views/message/messageMainView.jsp").forward(request, response);
+		request.getRequestDispatcher("views/message/sendMessageView.jsp").forward(request, response);
+		
 	}
 
 	/**

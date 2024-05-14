@@ -5,7 +5,6 @@
     max-width: 1200px; /* 최대 너비 제한 */
     margin: auto; /* 자동으로 가운데 정렬 */
     padding: 20px; /* 내부 패딩 */
-    background-color: #fff; /* 배경색 흰색 */
     box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* 박스 그림자 효과 */
 }
 
@@ -13,61 +12,70 @@
 .input-group {
     display: flex; /* Flexbox 레이아웃 적용 */
     justify-content: center; /* 내용 중앙 정렬 */
-    width: 50%; /* 너비 50% */
+    align-items: center; /* 세로 가운데 정렬 */
+    width: 100%; /* 너비 100% */
+    max-width: 600px; /* 최대 너비 설정 */
     margin: 20px auto; /* 위아래 여백 20px, 자동 가운데 정렬 */
 }
 
 /* 입력 필드 스타일 */
-.input-group input[type="text"] {
+.input-group input[type="text"], .input-group .search-input {
     flex-grow: 1; /* Flex 아이템 내에서 가능한 모든 공간 차지 */
     padding: 10px; /* 패딩 10px */
     border: 1px solid #ccc; /* 테두리 색상 */
     border-radius: 4px 0 0 4px; /* 왼쪽 끝 모서리만 둥글게 */
-    width: 100%; /* 너비 100% */
 }
 
-/* 입력 그룹 버튼 스타일 */
-.input-group button {
-    padding: 10px; /* 패딩 10px */
-    background-color: #007bff; /* 기본 배경색 파란색 */
-    color: white; /* 글자색 흰색 */
-    border: none; /* 테두리 없음 */
-    border-radius: 0 4px 4px 0; /* 오른쪽 끝 모서리 둥글게 */
-    cursor: pointer; /* 커서 포인터로 변경 */
+/* 검색 버튼 스타일 */
+.input-group button, .input-group .search-btn {
+    padding: 10px; /* 패딩 설정 */
+    background-color: #E0DFE6; /* 배경색 설정 */
+    color: black; /* 글자 색상 검정색으로 설정 */
+    border: 1px solid #ccc; /* 테두리 설정 */
+    border-radius: 0 4px 4px 0; /* 오른쪽 끝 모서리만 둥글게 */
+    cursor: pointer; /* 커서 포인터 모양 */
 }
 
-/* 버튼 호버 효과 */
-.input-group button:hover {
-    background-color: #0056b3; /* 배경색 어두운 파란색으로 변경 */
+/* 검색 버튼 호버 스타일 */
+.input-group button:hover, .input-group .search-btn:hover {
+    background-color: #d4d3d6; /* 배경색 설정 */
 }
 
 /* 테이블 스타일 */
-table {
+.table {
     width: 100%; /* 너비 100% */
-    border-collapse: collapse; /* 경계선 붕괴 옵션 활성화 */
     margin-top: 20px; /* 상단 여백 */
+    border-collapse: collapse; /* 경계선 붕괴 옵션 활성화 */
 }
 
 /* 테이블 셀 스타일 */
-table, th, td {
+.table, th, td {
     border: 1px solid #ddd; /* 경계선 설정 */
 }
 
 /* 테이블 헤더 셀 스타일 */
-th {
-    background-color: #f8f8f8; /* 배경색 회색조 */
+.table thead th {
+    background-color: #8F684F; 
     color: #333; /* 글자색 어두운 회색 */
     padding: 12px; /* 패딩 설정 */
     text-align: left; /* 텍스트 왼쪽 정렬 */
+    border: 1px solid #400040; /* 테두리 설정 */
 }
 
 /* 테이블 데이터 셀 스타일 */
-td {
+.table tbody td {
     padding: 10px; /* 패딩 설정 */
     color: #666; /* 글자색 중간 회색 */
+    background-color: #FAF0E0;
 }
 
 /* 테이블 행 호버 스타일 */
 .table-hover tbody tr:hover {
     background-color: #f1f1f1; /* 배경색 연한 회색으로 변경 */
+}
+
+/* 제목에 마우스 오버 시 밑줄 표시 */
+.boardTitle:hover {
+    text-decoration: underline; /* 밑줄 표시 */
+    cursor: pointer; /* 마우스 커서를 포인터(손 모양)로 변경 */
 }
