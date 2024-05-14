@@ -8,18 +8,22 @@
 <title>hitsGraph 그래프</title>
 <script
 	src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+	
+	
+	
 </head>
 <body>
 
 <div align="center">
-	<h4>연도별 전체 방문자수 조회 :
-	<select id="yearSelectId2">
+	<h4 style ="color : white;">연도별 전체 방문자수 조회 : 
+	<select id="yearSelectId2" class="btn btn-light" >
 		<option value="2023년">2023년</option>
 		<option value="2024년">2024년</option>
 	</select>
-	<input type="button" id="btnG" value="확인하기"></h4> <br>
+	<input type="button" id="btnG" value="확인하기" class="btn btn-light"></h4> <br>
 
 	<canvas id="myChart" style="max-width: 500px; max-height: 500px;"></canvas>
+
 </div>
 	<script>
 		//연도 조회 그래프 
@@ -72,7 +76,7 @@
 									'rgba(153, 102, 255, 0.2)',
 									'rgba(255, 159, 64, 0.2)',
 									'rgb(146, 67, 116,0.2)',
-									' rgb(127, 255, 212,0.2)',
+									'rgb(127, 255, 212,0.2)',
 									'rgb(138, 43, 226,0.2)',
 									'rgb(0, 0, 0,0.2)',
 									'rgb(255, 235, 205,0.2)',
@@ -84,7 +88,7 @@
 									'rgba(153, 102, 255, 1)',
 									'rgba(255, 159, 64, 1)',
 									'rgb(146, 67, 116,1))',
-									' rgb(127, 255, 212,1)',
+									'rgb(127, 255, 212,1)',
 									'rgb(138, 43, 226,1)', 'rgb(0, 0, 0,1)',
 									'rgb(255, 235, 205,1)',
 									'rgb(165, 42, 42,1)' ],
@@ -92,6 +96,7 @@
 						} ]
 					},
 					options : {
+						
 						scales : {
 							yAxes : [ {
 								ticks : {

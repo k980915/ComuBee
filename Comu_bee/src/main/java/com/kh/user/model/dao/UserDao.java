@@ -249,38 +249,32 @@ public class UserDao {
 		ArrayList<Board> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		int startRow=(pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
-		int endRow=pi.getCurrentPage()*pi.getBoardLimit();
+		int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+		int endRow = pi.getCurrentPage() * pi.getBoardLimit();
 		String sql = prop.getProperty("selectListById");
 		try {
-			pstmt=conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, userId);
 			pstmt.setInt(2, startRow);
 			pstmt.setInt(3, endRow);
 			rset = pstmt.executeQuery();
-			while(rset.next()) {
-				list.add(new Board(
-						rset.getInt("BOARDNO"),
-						rset.getString("USERID"),
-						rset.getString("CATEGORYNAME"),
-						rset.getString("TITLE"),
-						rset.getDate("CREATEDATE"),
-						rset.getInt("BOARDLIKE"),
-						rset.getInt("COUNT")
-						));
+			while (rset.next()) {
+				list.add(new Board(rset.getInt("BOARDNO"), rset.getString("USERID"), rset.getString("CATEGORYNAME"),
+						rset.getString("TITLE"), rset.getDate("CREATEDATE"), rset.getInt("BOARDLIKE"),
+						rset.getInt("COUNT")));
 			}
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
+		} finally {
 			JDBCTemplate.close(rset);
 			JDBCTemplate.close(pstmt);
 		}
-		
+
 		return list;
 	}
-	
+
 	public int myReplyListCount(Connection conn, String userNo) {
 
 		// select
@@ -309,7 +303,8 @@ public class UserDao {
 
 		return listCount;
 	}
-	//아이디 찾기
+
+	// 아이디 찾기
 	public User findId(String userName, String userEmail, Connection conn) {
 		ResultSet rset = null;
 		PreparedStatement pstmt = null;
@@ -323,9 +318,7 @@ public class UserDao {
 
 			rset = pstmt.executeQuery();
 			if (rset.next()) {
-				u = new User(rset.getString("USERID"),
-						rset.getString("USERNAME"), 
-						rset.getString("USEREMAIL"));
+				u = new User(rset.getString("USERID"), rset.getString("USERNAME"), rset.getString("USEREMAIL"));
 
 			}
 
@@ -341,13 +334,11 @@ public class UserDao {
 	}
 
 	public User findPwd(String userId, String userName, String userEmail, Connection conn) {
-		
+
 		ResultSet rset = null;
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("findPwd");
 		User u = new User();
-		
-
 
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -357,10 +348,8 @@ public class UserDao {
 
 			rset = pstmt.executeQuery();
 			if (rset.next()) {
-				u = new User(
-						rset.getString("USERPWD"));
-						
-						
+				u = new User(rset.getString("USERPWD"));
+
 			}
 
 		} catch (SQLException e) {
@@ -371,14 +360,11 @@ public class UserDao {
 			JDBCTemplate.close(pstmt);
 
 		}
-		
+
 		System.out.println(u);
 
 		return u;
 	}
-	
-	
-	
 
 	public ArrayList<Reply> myReplySelectList(Connection conn, PageInfo pi, String userId) {
 		// 준비물
@@ -403,11 +389,8 @@ public class UserDao {
 			rset = pstmt.executeQuery();
 			// 목록조회이니 더이상 조회될행이 없을때까지 추출하기
 			while (rset.next()) {
-				list.add(new Reply(rset.getInt("REPLYNO"), 
-						rset.getString("USERID"), 
-						rset.getString("REPLYCONTENT"),
-						rset.getDate("CREATEDATE"), 
-						rset.getInt("BOARDNO")));
+				list.add(new Reply(rset.getInt("REPLYNO"), rset.getString("USERID"), rset.getString("REPLYCONTENT"),
+						rset.getDate("CREATEDATE"), rset.getInt("BOARDNO")));
 
 			}
 		} catch (SQLException e) {
