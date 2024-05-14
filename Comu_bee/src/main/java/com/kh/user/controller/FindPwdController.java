@@ -50,7 +50,7 @@ public class FindPwdController extends HttpServlet {
 
 		User u = new UserService().findPwd(userId, userName, userEmail);
 		String userPwd = u.getUserPwd();
-		
+
 
 			if (u!=null) {
 				response.setContentType("text/html;charset=UTF-8");

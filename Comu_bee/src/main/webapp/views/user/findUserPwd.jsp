@@ -56,12 +56,16 @@
 						findUserName: findUserName,
 						findUserEmail: findUserEmail
 					},
-					success: function(u){
+					success: function(userPwd){
 						
 						console.log("통신 성공");
 						
-						
-						alert("사용자의 비밀번호는 "+u+"입니다");
+						if(userPwd != null){
+						alert("사용자의 비밀번호는 "+userPwd+"입니다");
+							
+						}else{
+						alert("사용자의 정보를 다시 입력하세요");
+						}
 						
 					},
 					error: function(){
