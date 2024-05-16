@@ -422,7 +422,8 @@ public class UserDao {
 		}
 		return list;
 	}
-
+	
+	//추천인작성시 포인트 추가구문
 	public int recomCheck(String recommender, Connection conn) {
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("recomCheck");
@@ -444,4 +445,69 @@ public class UserDao {
 		return result;
 	}
 
+	public int boardPointCheck(String boardWriter, Connection conn) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("PointCheck");
+		int result = 0;
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, boardWriter);
+
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch blosck
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+
+		return result;
+	}
+
+	public int replyPoint(String userId, Connection conn) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("replyPoint");
+		int result = 0;
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch blosck
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+
+		System.out.println(result+"Dao");
+		return result;
+	}
+
+	public int getUserPoint(Connection conn, String userId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int userPoint = 0;
+		String sql = prop.getProperty("getUserPoint");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			
+			rset=pstmt.executeQuery();
+			if(rset.next()) {
+				userPoint = rset.getInt("POINT");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}System.out.println("userPoint : "+userPoint);
+		return userPoint;
+	}
 }

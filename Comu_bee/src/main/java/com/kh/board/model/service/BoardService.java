@@ -59,12 +59,12 @@ public class BoardService {
 		return b;
 	}
 
-	public ArrayList<Attachment> selectAttachment(int bno) {
+	public Attachment selectAttachment(int bno) {
 		// TODO Auto-generated method stub
 		Connection conn = JDBCTemplate.getConnection();
-		ArrayList<Attachment> atList = new BoardDao().selectAttachment(conn,bno);
+		Attachment at = new BoardDao().selectAttachment(conn,bno);
 		JDBCTemplate.close(conn);
-		return atList;
+		return at;
 	}
 
 	public ArrayList<Board> selectListById(PageInfo pi, String userId) {
@@ -127,17 +127,24 @@ public class BoardService {
 		return noList;
 	}
 	
-	public int insertBoard(Board b,ArrayList<Attachment> atList) {
+	public int insertBoard(Board b,Attachment at) {
 		int result=0;
+		int result2=1;
 		Connection conn= JDBCTemplate.getConnection();
-		result=new BoardDao().insertBoard(conn,b,atList);
-		if(result>0) {
+		int bno=new BoardDao().selectBoardNo(conn);
+		b.setBoardNo(bno);
+		result=new BoardDao().insertBoard(conn,b);
+		if(result>0&&at!=null) {
+			at.setBoardNo(b.getBoardNo());
+			result2=new BoardDao().insertAttachment(conn,at,b);
+		}
+		if(result*result2>0) {
 			JDBCTemplate.commit(conn);
 		}else {
 			JDBCTemplate.rollback(conn);
 		}
 		JDBCTemplate.close(conn);
-		return result;
+		return result*result2;
 	}
 
 	public int insertReply(Reply r) {
@@ -172,11 +179,11 @@ public class BoardService {
 		return cList;
 	}
 
-	public int updateBoard(Board b, ArrayList<Attachment> atList) {
+	public int updateBoard(Board b, Attachment at) {
 		// TODO Auto-generated method stub
 		int result=0;
 		Connection conn=JDBCTemplate.getConnection();
-		result=new BoardDao().updateBoard(conn,b,atList);
+		result=new BoardDao().updateBoard(conn,b,at);
 		if(result>0) {
 			JDBCTemplate.commit(conn);
 		}else {

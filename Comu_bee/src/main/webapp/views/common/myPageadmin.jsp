@@ -15,10 +15,10 @@
 	<br>
 	<div id="hitslog" align="center">
     <h2 style="font-size: 24px; font-weight: bold; ">방문자수 확인</h2><br>
-    <h4 style="color : white;">금일 방문수 : 
+    <h4 style="color : black;">금일 방문수 : 
         <button class="btn btn-light" onclick="toDayHits();">확인하기</button>
     </h4> <br>
-    <h4 style="color : white;">월별 방문자수 :
+    <h4 style="color : black;">월별 방문자수 :
         <select id="yearSelectId" class="btn btn-light">
             <option value="2023년">2023년</option>
             <option value="2024년">2024년</option> </select> 
