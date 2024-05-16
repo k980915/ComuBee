@@ -85,6 +85,18 @@ body::before {
 	margin: 0 auto;
 }
 
+.search-button {
+	background-color: #8F684F;
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	margin-left: 10px;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+
 .login-area {
 	margin-top: 20px;
 	float: right;
@@ -94,7 +106,7 @@ body::before {
 	cursor: pointer;
 }
 
-/* <!-- 게시판 용 메뉴바 시작 --!> */
+/* 게시판 용 메뉴바 시작 */
 .board-menuBar {
 	display: inline-block;
 	height: 50px;
@@ -115,17 +127,16 @@ body::before {
 .board-menuBar a:hover {
 	background-color: rgb(144, 142, 142);
 }
-/* <!-- 게시판 용 메뉴바 끝 --!> */
+/* 게시판 용 메뉴바 끝 */
 .logo-area, .search-area, .login-area {
 	display: inline-block;
 	vertical-align: middle;
 }
 img:hover {
-            cursor: pointer;
-            transform: translateY(-5px);
-            transition: transform 0.5s ease;
-        }
-
+	cursor: pointer;
+	transform: translateY(-5px);
+	transition: transform 0.5s ease;
+}
 
 </style>
 </head>
@@ -145,7 +156,7 @@ img:hover {
 				<form id="searchForm" action="" method="get">
 					<input type="text" name="title" class="search-input"
 						placeholder="영화 또는 드라마 등 컨텐츠 검색">
-					<button type="submit">검색</button>
+					<button type="submit" class="search-button">검색</button>
 				</form>
 			</div>
 			
@@ -156,15 +167,13 @@ img:hover {
 	</div>
 	<br>
 	<br>
-		<div>
-			<%@ include file="/views/common/hitsHeader.jsp"%>
-		</div>
+	<div>
+		<%@ include file="/views/common/hitsHeader.jsp"%>
+	</div>
 	<script>
 		$('.logo-area').click(function() {
 			location.href = '${contextPath}/main.co';
 		});
-	
-	
 	</script>
 	<script>
 		var form = document.getElementById('searchForm');
