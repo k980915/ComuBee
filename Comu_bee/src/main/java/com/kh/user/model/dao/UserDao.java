@@ -420,4 +420,25 @@ public class UserDao {
 		return list;
 	}
 
+	public int recomCheck(String recommender, Connection conn) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("recomCheck");
+		int result = 0;
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, recommender);
+
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch blosck
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+
+		return result;
+	}
+
 }

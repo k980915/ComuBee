@@ -137,7 +137,11 @@
 	</entry>
 
 
-
+	<entry key="recomCheck">
+	UPDATE MEMBERINFO
+	SET POINT = POINT+100
+	WHERE USERID = ?
+	</entry>
 
 
 

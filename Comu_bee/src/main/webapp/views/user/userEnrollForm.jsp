@@ -187,17 +187,15 @@ table {
 							<input type="radio" name="gender"
 							style="width: 20px; height: 20px; border: 1px; accent-color: black;"
 							id="F" value="F"> <label for="F">여자</label></td>
-
-	
-
-
-</tr>
+					</tr>
 					<tr>
 						<td colspan="3"><hr></td>
 					</tr>
 					<tr>
 						<td>추천인</td>
 						<td><input type="text" id="recommender" name="recommender">
+						<button type="button" onclick="recomCheck();"
+								class="btn btn-outline-dark">확 인</button>
 						</td>
 					</tr>
 				</table>
@@ -205,7 +203,7 @@ table {
 				<div align="center">
 					<button id="sign" type="submit"  disabled>회원가입</button>
 					<button type="reset">초기화</button>
-				
+				</div>
 			</form>
 
 		</div>
@@ -238,8 +236,37 @@ table {
 					}
 				});
 			}
-			
 		</script>
+		
+		<script>
+		function recomCheck() {
+			var recommender = $("#recommender").val();
+			$.ajax({
+				url : "${contextPath}/recomCheck.us",
+				data : {
+					recommender : recommender
+				},
+				success : function(result) {
+					console.log("결과:" + result);
+					if (result == "NNNNN") {
+						alert("추천인이 존재합니다.")
+							$("#recommender").attr("readonly", true); //변경 못하도록
+					} else {
+						if (confirm("해당 아이디를 가진 추천인이 없습니다.")) {
+						} else {
+							$("#recommender").focus();
+						}
+					}
+				},
+				error : function() {
+
+				}
+			});
+		}
+		
+		</script>
+		
+		
 </body>
 </html>
 
