@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="com.kh.user.model.vo.User"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,8 +39,9 @@ body::before {
 	margin-left: 200px;
 	margin-right: 200px;
 }
-.outer a{
-	color:black;	
+
+.outer a {
+	color: black;
 }
 
 .head-area {
@@ -55,7 +54,6 @@ body::before {
 	margin-right: 100px;
 }
 
-
 #logo-img {
 	width: 250px;
 	height: 200px;
@@ -63,7 +61,7 @@ body::before {
 
 .title {
 	margin-left: 10px;
-	font-size: 35px;
+	font-size: 50px;
 	font-weight: 900;
 	border: none;
 }
@@ -132,12 +130,12 @@ body::before {
 	display: inline-block;
 	vertical-align: middle;
 }
+
 img:hover {
 	cursor: pointer;
 	transform: translateY(-5px);
 	transition: transform 0.5s ease;
 }
-
 </style>
 </head>
 <body>
@@ -147,7 +145,9 @@ img:hover {
 				<table id="logo">
 					<tr>
 						<td><img src="resources/uploadFiles/logo.png" id="logo-img"></td>
-						<td><h1 class="title">COMU-BEE <br> </h1></td>
+						<td><h1 class="title">
+								COMU-BEE <br>
+							</h1></td>
 						<td></td>
 					</tr>
 				</table>
