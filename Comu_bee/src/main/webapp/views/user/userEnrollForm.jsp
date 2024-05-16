@@ -142,7 +142,22 @@ table {
 <body>
 	<%@ include file="/views/common/header.jsp"%>
 
-	<div>
+	
+	
+	<div class="center">
+		<h2 align="center" style="color: black;">회원가입</h2>
+		<br><br>
+		<form id="enroll-form" action="<%=contextPath%>/insert.us "
+			method="post">
+			<table>
+				
+				<tr>
+					<td>* 아이디</td>
+					<td><input type="text" name="userId" id="userId" required
+						placeholder="아이디를 입력해주세요."></td>
+					<td>  &nbsp; &nbsp;</td>
+					<td><button type="button" onclick="idCheck();"
+							class="btn btn-outline-dark">중복확인</button></td>
 
 					</tr>
 					<tr>
