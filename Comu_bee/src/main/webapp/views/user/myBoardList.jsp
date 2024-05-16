@@ -108,24 +108,16 @@
 				var bno = $(this).siblings().eq(0).text();
 				location.href = '${contextPath}/detail.bo?bno=' + bno;
 			});
-			$(".page-link")
-					.click(
-							function() {
-								var btnNo = Number($(this).text());
-								location.href = 'myBoardList.us?&userId=${loginUser.userId}&myBoardCurrentPage='
-										+ btnNo;
-							});
-			var currentPage = $
-			{
-				pi.currentPage
-			}
+			$(".page-link").click(function() {
+				var btnNo = Number($(this).text());
+				location.href = 'myBoardList.us?&userId=${loginUser.userId}&myBoardCurrentPage='+ btnNo;	
+			});		
+			var currentPage = ${pi.currentPage};
 			function prev() {
-				location.href = 'myBoardList.us?&userId=${loginUser.userId}&myBoardCurrentPage='
-						+ (currentPage - 1);
+				location.href = 'myBoardList.us?&userId=${loginUser.userId}&myBoardCurrentPage='+ (currentPage - 1);		
 			}
 			function next() {
-				location.href = 'myBoardList.us?&userId=${loginUser.userId}&myBoardCurrentPage='
-						+ (currentPage + 1);
+				location.href = 'myBoardList.us?&userId=${loginUser.userId}&myBoardCurrentPage='+ (currentPage + 1);
 			}
 		</script>
 

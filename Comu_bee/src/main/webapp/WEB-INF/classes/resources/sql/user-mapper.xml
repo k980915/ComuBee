@@ -131,7 +131,8 @@
 		FROM BOARD B
 		JOIN CATEGORY_BRD USING(CATEGORYNO)
 		WHERE USERID=?
-		AND B.STATUS='Y') S
+		AND B.STATUS='Y'
+		order by boardno desc) S
 		)
 		WHERE "ROWNUM" BETWEEN ? AND ?
 	</entry>
