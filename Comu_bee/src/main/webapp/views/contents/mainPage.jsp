@@ -98,7 +98,7 @@
                     </c:forEach>
                 </tr>
             </table>
-            <br><br>
+            <br><br><br><br><br>
             <div class="menu">
                 <h1>이런 작품은 어떠세요?</h1>
             </div>
@@ -119,7 +119,7 @@
                     </c:if>
                 </c:forEach>
             </table>
-            <br><br>
+            <br><br><br><br><br>
             <div class="menu">
                 <h1>평점 상위 컨텐츠</h1>
             </div>

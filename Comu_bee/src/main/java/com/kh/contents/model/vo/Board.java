@@ -40,6 +40,18 @@ public class Board {
 	}
 	
 	
+	public Board(int boardNo, String userId, int contentsId, String boardContent, Date createDate, String status,
+			int boardLike, int hate) {
+		super();
+		this.boardNo = boardNo;
+		this.userId = userId;
+		this.contentsId = contentsId;
+		this.boardContent = boardContent;
+		this.createDate = createDate;
+		this.status = status;
+		this.boardLike = boardLike;
+		this.hate = hate;
+	}
 	public Board(String userId, int contentsId, String boardContent, Date createDate, String status, int boardLike,
 			int hate) {
 		super();
