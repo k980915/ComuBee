@@ -43,12 +43,18 @@
    	height:100%;
    	box-sizing: border-box;
 }
+.boardHeader {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 20px;
+}
 
 </style>
 </head>
 <body>
 	<%@ include file="/views/common/header.jsp"%>
-
+<div class="container mt-4">
 	<button class="btn btn-outline-secondary create-post-button"
 		id="sendView" onclick="sendList();">내가 보낸 쪽지</button>
 	<button class="btn btn-outline-secondary create-post-button"
@@ -97,5 +103,6 @@
 	
 
 	</script>
+	</div>
 </body>
 </html>

@@ -62,7 +62,6 @@ private Properties prop = new Properties();
 			JDBCTemplate.close(stmt);
 			JDBCTemplate.close(rset);
 		}
-		
 		return list;
 	}
 

@@ -42,12 +42,9 @@
 					success : function(result) {
 						//alert("호버 성공");
 					},
-<<<<<<< HEAD
-					error : function() {
-=======
+
 					error : function() {
 
->>>>>>> refs/remotes/origin/main
 					}
 				});
 			}
