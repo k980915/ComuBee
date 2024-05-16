@@ -1,3 +1,76 @@
+@charset "UTF-8";
+
+/* 페이지네이션 링크 색상 */
+.pagination a {
+    color: black;
+}
+
+/* Flex 레이아웃을 위한 폼 그룹 컨테이너 */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* 사용 가능한 공간을 채우도록 성장하는 폼 그룹 내의 텍스트 영역 */
+.form-group textarea {
+    flex-grow: 1;
+}
+
+/* 폼 제출 버튼의 스타일, 끝에 정렬 */
+.form-submit-button {
+    align-self: flex-end;
+    margin-top: 10px;
+}
+
+/* 폼 버튼을 위한 컨테이너, 끝에 버튼을 정렬하고 간격을 줌 */
+.form-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+/* 검색 버튼의 상단 여백 */
+.search-btn {
+    margin-top: 10px;
+}
+
+/* 스타일링된 페이지 콘텐츠를 위한 주요 컨테이너 */
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);  /* 음영 더 진하게 수정 */
+    border-radius: 8px;
+}
+
+/* 헤더와 게시물 제목의 스타일 */
+h2, .post-title {
+    margin-bottom: 20px;
+    color: black !important;
+}
+
+/* 일반 버튼 스타일 */
+button {
+    cursor: pointer;
+}
+
+/* 버튼의 호버 효과 */
+button:hover {
+    opacity: 0.9;
+}
+
+/* 버튼의 기본 포커스 제거 */
+button:focus {
+    outline: none;
+}
+
+/* 폼 레이블 텍스트 색상 */
+.form-label {
+    color: black !important;
+}
+
 .boardBody, .boardSide {
     display: inline-block;
     vertical-align: top;
@@ -8,10 +81,17 @@
     width: 70%;
     background-color: #f4f4f4;
     padding: 20px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);  /* 음영 더 진하게 수정 */
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
+    margin: 0 auto; /* 중앙 정렬 */
 }
 
+.boardSide {
+    width: 28%;
+    border-left: 2px solid #8F684F;
+    padding-left: 10px;
+    padding-right: 10px;
+}
 
 .boardMenuBar, .contentPopUp, .bestPopUp, .newPopUp {
     margin-bottom: 20px;
@@ -116,6 +196,7 @@ textarea, input[type="text"], select {
 
 .boardTitle td, .boardCreateDate, .boardCount, .boardLike, .boardContent span, .boardReply textarea, .boardReply button, .writtenReply th, .writtenReply td {
     color: black;
+    background-color: transparent;
 }
 
 .boardMain button, .boardReply button {
@@ -136,6 +217,11 @@ textarea, input[type="text"], select {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
+}
+
+.center-table {
+    margin: 0 auto;
+    max-width: 90%;
 }
 
 .replyButton {
@@ -162,4 +248,21 @@ textarea, input[type="text"], select {
 
 .edit-buttons {
     white-space: nowrap;
+}
+
+/* 제목 입력 칸을 더 길게 조정 */
+.boardFreeTitle input[type="text"] {
+    width: 100%;
+}
+
+/* 가로 정렬을 위한 Flexbox 설정 */
+.table-row {
+    display: flex;
+    align-items: center;
+}
+
+.table-row th,
+.table-row td {
+    flex: 1;
+    padding: 8px;
 }
