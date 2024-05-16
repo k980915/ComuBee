@@ -293,7 +293,8 @@ public class BoardDao {
 			while(rset.next()) {
 				list.add(new Board(
 						rset.getInt("BOARDNO"),
-						rset.getString("TITLE")
+						rset.getString("TITLE"),
+						rset.getString("BOARDCONTENT")
 						));
 			}
 		} catch (SQLException e) {
@@ -321,6 +322,7 @@ public class BoardDao {
 				list.add(new Board(
 						rset.getInt("BOARDNO"),
 						rset.getString("TITLE"),
+						rset.getString("BOARDCONTENT"),
 						rset.getInt("BOARDLIKE")
 						));
 			}
@@ -563,7 +565,7 @@ public class BoardDao {
 		return cList;
 	}
 
-	public int updateBoard(Connection conn, Board b, Attachment at) {
+	public int updateBoard(Connection conn, Board b) {
 		// TODO Auto-generated method stub
 		int result=0;
 		PreparedStatement pstmt=null;
@@ -785,6 +787,30 @@ public class BoardDao {
 		}
 		return list;
 	}
+
+	public int updateAttachment(Connection conn, Attachment at) {
+		// TODO Auto-generated method stub
+		int result=0;
+		PreparedStatement pstmt=null;
+		String sql=prop.getProperty("updateAttachment");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, at.getOriginName());
+			pstmt.setString(2, at.getChangeName());
+			pstmt.setString(3, at.getAtFilePath());
+			pstmt.setInt(4, at.getAtNo());
+			result=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		System.out.println("결과는" +result);
+		return result;
+
+	}
+
 
 
 }

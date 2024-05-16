@@ -28,7 +28,7 @@
 									<tr>
 										<td>작성자 : </td>
 										<td class="boardWriter" width="300">${b.userId}</td>
-																				<c:if test="${loginUser.userId eq 'admin' or loginUser.userId eq b.userId}">
+										<c:if test="${loginUser.userId eq 'admin' or loginUser.userId eq b.userId}">
 											<td class="edit-buttons">
 												<button type="button" onclick="updateBoard();">수정</button>
 												<button type="button" onclick="deleteYN();">삭제</button>
@@ -73,9 +73,9 @@
 								<td> <button class="scrabButton" onclick="scrab();">찜해놓기</button></td>
 							</tr>
 							<tr>
-								<c:if test="${b.category eq '추천'}">
-									<td class="boardToContent" onclick="${contextPath}/">
-										${b.contentsId} 보러가기
+								<c:if test="${b.category eq '리뷰'}">
+									<td class="boardToContent" onclick="location.href='detail.co?contentsId=${contentsId}'">
+										<span>${b.contentsId} 보러가기</span>
 									</td> 
 								</c:if>
 							</tr>
@@ -160,17 +160,18 @@
 							<th onclick="searchNewCont();">최신</th>
 						</tr>
 					</thead>
-<!-- 					<tbody> -->
-<%-- 						<c:forEach var="p" items="${pcList}"> --%>
-<!-- 							<tr> -->
-<%-- 								<td> <input type=hidden value='${p.contentsId}'> </td> --%>
-<!-- 								<td> -->
-
-<!-- 								</td> -->
-<!-- 							</tr> -->
-<%-- 						</c:forEach> --%>
+					<tbody>
+						<c:forEach var="p" items="${pcList}">
+							<tr>
+								<td> 
+									<img src="${content.posterPath}" style="width: 100px; height: 140px;">								
+									<input type=hidden value='${p.contentsId}'> <br>
+									${p.title}
+								</td>
+							</tr>
+						</c:forEach>
 						
-<!-- 					</tbody> -->
+					</tbody>
 				</table>		
 			</div>
 			<div class="bestPopUp">
@@ -228,7 +229,7 @@
 	var userId11 = "${loginUser.userId}";
 		function updateBoard(){
 			var bno=${b.boardNo};
-			location.href="${contextPath}/update.bo?bno=${b.boardNo}"
+			location.href="${contextPath}/update.bo?bno=${b.boardNo}";
 		}
 		function deleteYN(){
 			var result=window.confirm("정말 삭제하시겠습니까?");

@@ -88,7 +88,7 @@
 				AND CATEGORYNAME=?
 				ORDER BY CREATEDATE DESC)
 				)
-				WHERE "ROWNUM" BETWEEN 1 AND 5
+				WHERE "ROWNUM" BETWEEN 1 AND 3
 		
 	</entry>
 	<entry key="bestPopList">
@@ -101,7 +101,7 @@
 				AND CATEGORYNAME=?
 				ORDER BY BOARDLIKE DESC)
 				)
-				WHERE "ROWNUM" BETWEEN 1 AND 5
+				WHERE "ROWNUM" BETWEEN 1 AND 3
 		
 	</entry>
 	<entry key="bestContList">
@@ -220,5 +220,8 @@
 	<entry key="insertAttachment">
 		INSERT INTO ATTACHMENT(ATNO,BOARDNO,ORIGINNAME,CHANGENAME,ATFILEPATH,CATEGORYNO,STATUS)
 						VALUES(SEQ_ATTACHMENT.NEXTVAL,?,?,?,?,?,'Y')
+	</entry>
+	<entry key="updateAttachment">
+			UPDATE ATTACHMENT SET ORIGINNAME=?, CHANGENAME=?,ATFILEPATH=?,ATUPLOADDATE=SYSDATE WHERE ATNO=? AND STATUS='Y'
 	</entry>
 </properties>

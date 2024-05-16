@@ -183,14 +183,22 @@ public class BoardService {
 		// TODO Auto-generated method stub
 		int result=0;
 		Connection conn=JDBCTemplate.getConnection();
-		result=new BoardDao().updateBoard(conn,b,at);
-		if(result>0) {
+		int result2=1;
+		result=new BoardDao().updateBoard(conn, b);
+		if(at!=null) {
+			if(at.getAtNo()!=0) {
+				result2=new BoardDao().updateAttachment(conn,at);	
+			}else {
+				result2=new BoardDao().insertAttachment(conn, at, b);
+			}
+		}
+		if(result*result2>0) {
 			JDBCTemplate.commit(conn);
 		}else {
 			JDBCTemplate.rollback(conn);
 		}
 		JDBCTemplate.close(conn);
-		return result;
+		return result*result2;
 	}
 
 	public int likeCheck(int bno, String userId) {

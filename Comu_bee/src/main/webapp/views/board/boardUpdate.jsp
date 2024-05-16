@@ -49,17 +49,14 @@
                                     <th class="small-header">첨부파일</th>
                                     <td colspan="5">
                                         <c:if test="${at!=null}">
+                                        	${at.originName}
                                             <input type="hidden" name="originFileNo" value="${at.atNo}">
                                             <input type="hidden" name="originFileName" value="${at.changeName}">
                                         </c:if>
                                         <input type="file" name="reUploadFile">
                                     </td>
                                 </tr>
-                                <tr class="table-row">
-                                    <c:if test="${category eq 'RECOMMEND'}">
-                                        관련 컨텐츠 제목 선택할 수 있는 영역 만들기
-                                    </c:if>
-                                </tr>
+
                             </tbody>
                         </table>
                         <div class="submitBtnArea" align="center">
@@ -73,5 +70,6 @@
         </div>
         <br><br><br>
     </div>
+    
 </body>
 </html>
