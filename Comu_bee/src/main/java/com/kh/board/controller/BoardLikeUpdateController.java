@@ -35,7 +35,6 @@ public class BoardLikeUpdateController extends HttpServlet {
 		BoardService bs = new BoardService();
 		int result=0;
 		int like=bs.countLike(bno);
-		System.out.println("추천갯수 : "+like);
 		result=bs.updateBoardLike(bno,like);
 		if(result>0) {
 			response.setContentType("json/application; charset=UTF-8");
