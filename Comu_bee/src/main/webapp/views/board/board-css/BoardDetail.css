@@ -1,5 +1,3 @@
-@charset "UTF-8";
-
 .boardBody, .boardSide {
     display: inline-block;
     vertical-align: top;
@@ -10,16 +8,11 @@
     width: 70%;
     background-color: #f4f4f4;
     padding: 20px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);  /* 음영 더 진하게 수정 */
     border-radius: 8px;
+    margin: 0 auto; /* 중앙 정렬 */
 }
 
-.boardSide {
-    width: 28%;
-    border-left: 2px solid #8F684F;
-    padding-left: 10px;
-    padding-right: 10px;
-}
 
 .boardMenuBar, .contentPopUp, .bestPopUp, .newPopUp {
     margin-bottom: 20px;
@@ -61,7 +54,7 @@ h3 {
     background-color: #0056b3;
 }
 
-textarea, input[type="text"], select {
+textarea,  select {
     width: 100%;
     padding: 8px;
     border: 1px solid #ccc;
@@ -170,4 +163,9 @@ textarea, input[type="text"], select {
 
 .edit-buttons {
     white-space: nowrap;
+}
+.boardOuter{
+	margin-left:300px;
+	margin-right:200px;
+	
 }

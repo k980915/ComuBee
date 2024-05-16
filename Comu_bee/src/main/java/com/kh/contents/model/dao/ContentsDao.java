@@ -62,7 +62,6 @@ private Properties prop = new Properties();
 			JDBCTemplate.close(stmt);
 			JDBCTemplate.close(rset);
 		}
-		
 		return list;
 	}
 
@@ -148,7 +147,8 @@ private Properties prop = new Properties();
 	        rset = pstmt.executeQuery();
 	        
 	        while(rset.next()) {
-	            list.add(new Board(rset.getString("USERID")
+	            list.add(new Board(rset.getInt("BOARDNO")
+	            				,rset.getString("USERID")
 	                                     ,rset.getInt("CONTENTSID")
 	                                     ,rset.getString("BOARDCONTENT")
 	                                     ,rset.getDate("CREATEDATE")

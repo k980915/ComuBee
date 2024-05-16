@@ -35,9 +35,9 @@ public class ContentsDetailList extends HttpServlet {
 		ArrayList<Contents> list = new ContentsService().DetailContentsList();
 		ArrayList<Board> boardList = new ContentsService().ForReview();
 
-    	request.setAttribute("list", list);
-    	request.setAttribute("boardList", boardList);
-
+		
+		request.setAttribute("list", list);
+		request.setAttribute("boardList", boardList);
     	request.getRequestDispatcher("views/contents/contentsDetailView.jsp").forward(request, response);
 	}
 
