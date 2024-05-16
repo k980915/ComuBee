@@ -34,7 +34,6 @@ body::before {
 	z-index: -1;
 }
 
-
 .outer a {
 	color: black;
 }
@@ -56,8 +55,8 @@ body::before {
 
 .title {
 	margin-left: 10px;
-	font-size: 50px;
-	font-weight: 900;
+	font-size: 55px;
+	font-weight: 700;
 	border: none;
 }
 

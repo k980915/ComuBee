@@ -11,12 +11,8 @@
 	href="${pageContext.request.contextPath}/views/common/admin-css/AdminMyPage.css">
 
 <style>
-table.type03 {
-	border-collapse: collapse;
+table.type03 {	
 	text-align: left;
-	line-height: 1.5;
-	border-top: 1px solid #ccc;
-	border-left: 3px solid white;
 	margin: 0px auto;
 	color: black;
 }
@@ -25,40 +21,41 @@ table.type03 th {
 	width: 147px;
 	padding: 10px;
 	font-weight: bold;
-	vertical-align: top;
+	
 	color: black;
-	border-right: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
 }
 
 table.type03 td {
 	width: 220px;
 	padding: 10px;
 	vertical-align: top;
-	border-right: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
 }
 
 #input1 {
-	width: 500px;
-	height: 32px;
+	width: 200px;
+	height: 50px;
 	font-size: 15px;
-	border: 0;
+	border: none;
 	border-radius: 15px;
 	outline: none;
 	padding-left: 10px;
 	background-color: rgb(233, 233, 233);
 }
-
-#input1 {
-	width: 150px;
-	height: 50px;
-	border-top: none;
-	border-left: none;
-	border-right: none;
-	border-bottom: 3px soild;
+#fst {
+    background-color: #8F684F;
+    color: black;
+    width: 367px;
+    text-align: center;
+    margin: 0 auto;
+    border :1px solid black;
 }
-
+.type03, .type03 td, .type03 tr{
+	background-color: #FAF0E0;
+	border:1.5px solid brown;
+}
+.type03 th{
+	text-align:center;
+}
 
 </style>
 
@@ -76,9 +73,10 @@ table.type03 td {
 
 	<div class="outer">
 		<br>
-
-		<h2 align="center" style="color: black;">마이페이지</h2>
-		<br>
+		<div id="fst">
+			<h2>마이페이지</h2>
+		</div>
+		
 
 		<form id="myPage-form" action="${contextPath}/update.us" method="post">
 			<!-- 아이디,비밀번호,이름,전화번호,주소,취미,이메일 -->

@@ -47,6 +47,7 @@
         table {
             font-weight: bold;
         }       
+        
         #trailer:hover {
             cursor: pointer;
         }
@@ -58,13 +59,16 @@
         #snd #trd {
 		    border: none;
 		}
-		
+		#snd tr:nth-child(2){
+			background-color:#FAF0E0;
+		}
 		#snd #trd td {
-		    border: 2px solid white;
+		    border: 0.5px solid brown;
 		}
         #snd th{
         	font-size : 25px;
         	border : 2px solid white;
+        	background-color: #8F684F;
         }
         #reply, #reply td{
         	border : 3px solid white;
@@ -77,6 +81,16 @@
 			margin-left: 400px;
 			margin-right: 400px;
 		}
+		.detail-outer a{
+			color:black;
+		}
+		.detail-outer h1{
+			font-weight:900;
+		}
+		#move{
+			background-color:#FAF0E0;
+		}
+
     </style>
 </head>
 <body>
@@ -147,22 +161,18 @@
             
             <div class="review">
                 <div>
-                    <a href="${contextPath}/list.rv?currentPage=1"><h1>한줄 리뷰</h1></a> 
+                    <a href="${contextPath}/list.rv?currentPage=1"><h1>최근 한줄 리뷰</h1></a> 
                 </div> <br>
                 <table id="reply">
                     <c:forEach var="c" items="${boardList}" varStatus="loop">
                         <c:if test="${c.contentsId eq param.contentsId}">
                             <c:if test="${loop.index <= 4}">
                                 <tr>
-                                    <td width="800px;">작성자 : ${c.userId }</td>
-                                    <td>작성일 : ${c.createDate }</td>
-                                    <td rowspan="2" width="90px;" align="center" height="100px">
-                                        좋아요 ${c.boardLike }
-                                    </td>
-                                   
+                                    <td width="800px;" height="50px" style="color:white; background-color:#8F684F;">작성자 : ${c.userId }</td>
+                                    <td style="color:white; background-color:#8F684F;">작성일 : ${c.createDate }</td>
                                 </tr>
                                 <tr>
-                                    <td id="move" colspan="2" width="1000px;">${c.boardContent }</td>
+                                    <td height="50px" id="move" colspan="2" width="1000px;">${c.boardContent }</td>
                                 </tr>
                             </c:if>
                         </c:if>
