@@ -54,7 +54,7 @@ h3 {
     background-color: #0056b3;
 }
 
-textarea, input[type="text"], select {
+textarea,  select {
     width: 100%;
     padding: 8px;
     border: 1px solid #ccc;
@@ -165,7 +165,7 @@ textarea, input[type="text"], select {
     white-space: nowrap;
 }
 .boardOuter{
-	margin-left:200px;
+	margin-left:300px;
 	margin-right:200px;
 	
 }

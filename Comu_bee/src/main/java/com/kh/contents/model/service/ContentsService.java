@@ -42,7 +42,6 @@ public class ContentsService {
 		Connection conn = JDBCTemplate.getConnection();
 		
 		ArrayList<Board> boardList = new ContentsDao().ForReview(conn);	
-		
 		JDBCTemplate.close(conn);	
 		return boardList;
 	}
