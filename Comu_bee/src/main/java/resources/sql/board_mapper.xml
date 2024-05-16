@@ -88,7 +88,7 @@
 				AND CATEGORYNAME=?
 				ORDER BY CREATEDATE DESC)
 				)
-				WHERE "ROWNUM" BETWEEN 1 AND 5
+				WHERE "ROWNUM" BETWEEN 1 AND 3
 		
 	</entry>
 	<entry key="bestPopList">
@@ -101,7 +101,7 @@
 				AND CATEGORYNAME=?
 				ORDER BY BOARDLIKE DESC)
 				)
-				WHERE "ROWNUM" BETWEEN 1 AND 5
+				WHERE "ROWNUM" BETWEEN 1 AND 3
 		
 	</entry>
 	<entry key="bestContList">

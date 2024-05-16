@@ -73,9 +73,9 @@
 								<td> <button class="scrabButton" onclick="scrab();">찜해놓기</button></td>
 							</tr>
 							<tr>
-								<c:if test="${b.category eq '추천'}">
-									<td class="boardToContent" onclick="${contextPath}/">
-										${b.contentsId} 보러가기
+								<c:if test="${b.category eq '리뷰'}">
+									<td class="boardToContent" onclick="location.href='detail.co?contentsId=${contentsId}'">
+										<span>${b.contentsId} 보러가기</span>
 									</td> 
 								</c:if>
 							</tr>
@@ -160,17 +160,18 @@
 							<th onclick="searchNewCont();">최신</th>
 						</tr>
 					</thead>
-<!-- 					<tbody> -->
-<%-- 						<c:forEach var="p" items="${pcList}"> --%>
-<!-- 							<tr> -->
-<%-- 								<td> <img src="${contextPath}${p.posterPath}"><input type=hidden value='${p.contentsId}'> </td> --%>
-<!-- 								<td> -->
-
-<!-- 								</td> -->
-<!-- 							</tr> -->
-<%-- 						</c:forEach> --%>
+					<tbody>
+						<c:forEach var="p" items="${pcList}">
+							<tr>
+								<td> 
+									<img src="${content.posterPath}" style="width: 100px; height: 140px;">								
+									<input type=hidden value='${p.contentsId}'> <br>
+									${p.title}
+								</td>
+							</tr>
+						</c:forEach>
 						
-<!-- 					</tbody> -->
+					</tbody>
 				</table>		
 			</div>
 			<div class="bestPopUp">
