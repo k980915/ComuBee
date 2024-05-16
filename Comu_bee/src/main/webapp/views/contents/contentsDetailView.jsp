@@ -34,7 +34,7 @@
             font-size: 50px;
             font-weight:bold;
         }
-        #subTitle {
+        span {
             font-size: 40px;
         }
         
@@ -97,12 +97,12 @@
                         </tr>
                         <tr>
                             <td colspan="3" style="height: 10px;" align="center">
-                                <p id="subTitle">${c.englishTitle}</p>
+                                <span>${c.englishTitle}</span>
                             </td>
                         </tr>
                         <tr>
                             <td colspan="3" rowspan="2">
-                                <table style="height: 600px;" id="snd"> 
+                                <table style="height: 600px;" id="snd">
                                     <tr>
                                         <th>작품정보</th>
                                         <th><a href="${contextPath}/list.rv?currentPage=1">커뮤니티</a></th>
@@ -156,7 +156,7 @@
                                 <tr>
                                     <td width="800px;">작성자 : ${c.userId }</td>
                                     <td>작성일 : ${c.createDate }</td>
-                                    <td rowspan="2" width="90px;" align="center" height="100px"">
+                                    <td rowspan="2" width="90px;" align="center" height="100px">
                                         좋아요 ${c.boardLike }
                                     </td>
                                    
