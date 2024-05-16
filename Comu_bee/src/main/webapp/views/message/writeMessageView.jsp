@@ -57,22 +57,27 @@
 		id="writeMessage" onclick="writeMessage();">쪽지 쓰기</button>
 
 	<div align="center">
-	    <form action="<%=contextPath%>/sendMessage.ms" method="post">
+	    <form action="<%=contextPath%>/sendMessage.ms" method="post" onsubmit="return showAlert();">
 	        <table border="1">
 	            <tr>
 	                <td style="background-color: #8F684F; border: 1px solid black;" >이름</td>
 	                <td><input type="hidden" name="senderId" value="${loginUser.userId}">
-	                    <input type="text" id="name" placeholder="받는사람 닉네임" name="receiverId" ></td>
+	                    <input type="text" id="name" placeholder="받는사람 닉네임" name="receiverId" required></td>
 	            </tr>
 	            <tr>
 	                <td style="background-color: #8F684F; border: 1px solid black;">메시지</td>
-	                <td><textarea id="message" rows="8" name="message"></textarea></td>
+	                <td><textarea id="message" rows="8" name="message" required></textarea></td>
 	            </tr>
 	        </table>
-	        <input type="submit" value="메시지 보내기">
+	        <input type="submit" value="메시지 보내기" >
 	        <input type="reset" value="지우기">
 	    </form>
 	</div>
+	<c:if test="${not empty sendAlert}">
+    <script>
+        alert("${sendAlert}");
+    </script>
+</c:if>
 	<script>
 	function sendList(){
 		location.href='sendList.ms?userId=${loginUser.userId}&sendListCurrentPage=1';
@@ -83,6 +88,14 @@
 	function writeMessage(){
 		location.href='goSendMessageForm.ms?userId=${loginUser.userId}';
 	}
+	var msg = "${sendAlert}";
+	
+	function showAlert() {
+	    // 메시지가 설정되어 있으면 true 반환하여 폼 제출
+	    return "${not empty sendAlert}";
+	}
+	
+
 	</script>
 </body>
 </html>

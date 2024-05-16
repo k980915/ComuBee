@@ -260,8 +260,8 @@ table.type03 td {
 	      			//현재 입력한 비밀번호와 세션에 담겨있던 비밀번호가 일치한다면 
 	      			//정말 탈퇴할것인지 물어보고 그에 따른 처리하기 
 	      			var inputPwd = $("#deletePwd").val();
-	      			var userPwd = "<%=loginUser.getUserPwd()%>
-					"; // 안녕하세요
+	      			var userPwd = "<%=loginUser.getUserPwd()%>";
+					
 
 						//사용자가 입력한 비밀번호랑 세션 로그인정보에 있는 비밀번호와 일치한다면 
 						if (inputPwd == userPwd) {
