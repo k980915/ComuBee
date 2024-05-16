@@ -17,6 +17,7 @@
         .pagination a {
             color: black; 
         }
+        
     </style>
 
 </head>

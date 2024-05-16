@@ -18,7 +18,7 @@ table.type03 {
 	border-top: 1px solid #ccc;
 	border-left: 3px solid white;
 	margin: 0px auto;
-	color: white;
+	color: black;
 }
 
 table.type03 th {
@@ -26,7 +26,7 @@ table.type03 th {
 	padding: 10px;
 	font-weight: bold;
 	vertical-align: top;
-	color: white;
+	color: black;
 	border-right: 1px solid #ccc;
 	border-bottom: 1px solid #ccc;
 }
@@ -77,7 +77,7 @@ table.type03 td {
 	<div class="outer">
 		<br>
 
-		<h2 align="center" style="color: white;">마이페이지</h2>
+		<h2 align="center" style="color: black;">마이페이지</h2>
 		<br>
 
 		<form id="myPage-form" action="${contextPath}/update.us" method="post">
@@ -114,9 +114,9 @@ table.type03 td {
 						value="${loginUser.joinDate}" readonly></td>
 				</tr>
 				<tr>
-					<th scope="row">포 인 트</th>
+				<th scope="row">포 인 트</th>
 					<td>
-						<h4>${loginUser.point}</h4>
+						<h4>${userPoint}</h4>
 					</td>
 				</tr>
 			</table>
@@ -129,10 +129,10 @@ table.type03 td {
 				<button type="button" class="btn btn-light" data-toggle="modal"
 					data-target="#deleteForm">회원탈퇴</button>
 					<br><br>
-					<a href="${contextPath}/myBoardList.us?myBoardCurrentPage=1&userId=${loginUser.userId}" style="color:white;"> 내가 쓴 글 &nbsp;</a><label style="color:white;">&nbsp; | &nbsp;</label> 
-					<a href="${contextPath}/myReplylist.us?myReplyCurrentPage=1&userId=${loginUser.userId}" style="color:white;"> 내가 쓴 댓글 &nbsp;</a><label style="color:white;">&nbsp; | &nbsp;</label>
-					<a href="${contextPath}/messageMain.ms?messageNewCurrentPage=1&userId=${loginUser.userId}" style="color:white;"> 쪽 지 &nbsp;</a><label style="color:white;">&nbsp; | &nbsp;</label>
-					<a href="${contextPath}/scrabList.sc?myScrabCurrentPage=1&userId=${loginUser.userId}" style="color:white;"> 찜	목 록 &nbsp;</a><label style="color:white;">&nbsp; | &nbsp;</label>
+					<a href="${contextPath}/myBoardList.us?myBoardCurrentPage=1&userId=${loginUser.userId}" style="color:black;"> 내가 쓴 글 &nbsp;</a><label style="color:black;">&nbsp; | &nbsp;</label> 
+					<a href="${contextPath}/myReplylist.us?myReplyCurrentPage=1&userId=${loginUser.userId}" style="color:black;"> 내가 쓴 댓글 &nbsp;</a><label style="color:black;">&nbsp; | &nbsp;</label>
+					<a href="${contextPath}/messageMain.ms?messageNewCurrentPage=1&userId=${loginUser.userId}" style="color:black;"> 쪽 지 &nbsp;</a><label style="color:black;">&nbsp; | &nbsp;</label>
+					<a href="${contextPath}/scrabList.sc?myScrabCurrentPage=1&userId=${loginUser.userId}" style="color:black;"> 찜	목 록 &nbsp;</a><label style="color:black;">&nbsp; | &nbsp;</label>
 		
 			</div>
 		</form>

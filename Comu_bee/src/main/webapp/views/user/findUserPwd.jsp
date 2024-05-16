@@ -40,6 +40,28 @@
 	padding-left: 10px;
 	background-color: rgb(233, 233, 233);
 }
+
+.gradient-btn {
+	display: inline-block;
+	padding: 1em 2em;
+	border-radius: 20px;
+	color: #b2876f;
+	margin-top: 2rem;
+	font-weight: bold;
+	font-size: 15px;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	text-decoration: none;
+	background: linear-gradient(to right, rgba(#b2876f, 0) 25%,
+		rgba(#b2876f, .8) 75%);
+	background-position: 1% 50%;
+	background-size: 400% 300%;
+	border: 1px solid #b2876f; @ include transition; &: hover { color :
+	white;
+	color: #fff;
+	background-position: 99% 50%;
+	width: 100px;
+}
 </style>
 <body>
 	<%@ include file="/views/common/header.jsp"%>
@@ -73,7 +95,7 @@
 			</tr>
 			<tr>
 				<td align="center" colspan="2">
-					<button type="button" id="findUserPwd" onclick="findUserPwd();">
+					<button type="button" id="findUserPwd" onclick="findUserPwd();" style="border:none;" class="gradient-btn">
 						<span>비밀번호 찾기</span>
 					</button>
 				</td>

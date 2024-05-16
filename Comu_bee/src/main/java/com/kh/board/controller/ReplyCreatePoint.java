@@ -1,4 +1,4 @@
-package com.kh.user.controller;
+package com.kh.board.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.user.model.service.UserService;
 
 /**
- * Servlet implementation class MyPageController
+ * Servlet implementation class ReplyCreatePoint
  */
-@WebServlet("/myPage.us")
-public class MyPageController extends HttpServlet {
+@WebServlet("/replyPoint.bo")
+public class ReplyCreatePoint extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyPageController() {
+    public ReplyCreatePoint() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,20 +28,20 @@ public class MyPageController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String userId = request.getParameter("userId");
-		System.out.println("마이페이지컨트롤러에서 유저아이디 : "+userId);
-		int userPoint = new UserService().getUserPoint(userId);
-		request.setAttribute("userPoint", userPoint);
-		request.getRequestDispatcher("views/user/myPage.jsp").forward(request, response);
+		// TODO Auto-generated method stub
+		String userId = request.getParameter("userId11");
 		
+		int result = new UserService().replyPoint(userId);
+		
+		response.getWriter().print(result);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
+		
 	}
 
 }
