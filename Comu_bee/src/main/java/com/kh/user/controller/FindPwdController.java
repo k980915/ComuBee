@@ -49,20 +49,20 @@ public class FindPwdController extends HttpServlet {
 		String userEmail = request.getParameter("findUserEmail");
 
 		User u = new UserService().findPwd(userId, userName, userEmail);
-		String userPwd = u.getUserPwd();
+		String userPwd = u.getUserEmail();
+		String userEmail2 = u.getUserPwd();
 		
+		System.out.println(userPwd);
 
-			if (u!=null) {
+			if (u!=null &&u.getUserId().equals(userId)&& u.getUserName().equals(userName) && u.getUserPwd().equals(userEmail2)) {
+				
 				response.setContentType("text/html;charset=UTF-8");
 				response.getWriter().print(userPwd);
 
 				System.out.println(userPwd);
 
-			} else {
-				response.setContentType("text/html;charset=UTF-8");
-				response.getWriter().print(userPwd);
-
-			}
+			} 
+			
 		}
 
 	}
