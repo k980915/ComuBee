@@ -50,7 +50,17 @@ public class Board {
 		this.boardLike = boardLike;
 		this.count = count;
 	}
-	
+	public Board(int boardNo, String userId, String category, String title, String boardContent, Date createDate, int boardLike, int count) {
+		super();
+		this.boardNo = boardNo;
+		this.userId = userId;
+		this.category = category;
+		this.title = title;
+		this.boardContent=boardContent;
+		this.createDate = createDate;
+		this.boardLike = boardLike;
+		this.count = count;
+	}	
 	
 	
 	public Board(int boardNo, String userId, String atNo, String category, String contentsId, String title,

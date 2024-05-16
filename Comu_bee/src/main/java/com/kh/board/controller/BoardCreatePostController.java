@@ -117,13 +117,8 @@ public class BoardCreatePostController extends HttpServlet {
 			String content = multiRequest.getParameter("content");
 			String boardWriter = multiRequest.getParameter("userId");
 			String contentsId = multiRequest.getParameter("contentsId");
-			System.out.println(category);
-			System.out.println(title);
-			System.out.println(content);
-			System.out.println(boardWriter);
-			System.out.println(contentsId);
-			Board b = new Board();
 			
+			Board b = new Board();
 			b.setCategory(categoryNo);
 			b.setBoardContent(content);
 			b.setContentsId(contentsId);
@@ -133,36 +128,28 @@ public class BoardCreatePostController extends HttpServlet {
 			// 첨부파일 정보는 Attachment 테이블에 insert
 			
 			// 첨부파일이 없을 경우에 대비하여 있을 때 생성해서 전달하기
-			ArrayList<Attachment> atList = null; 
+			Attachment at = null; 
 			// 첨부파일이 있는지 없는지 판별하기
 
 			if(multiRequest.getOriginalFileName("uploadFile")!=null) {
-				for(int i=1;i<5;i++) {
-					String key = "file"+i; // key 값 작성
-					if(multiRequest.getOriginalFileName(key)!=null) {
-						Attachment at = new Attachment();
-						at.setOriginName(multiRequest.getOriginalFileName(key));
-						at.setChangeName(multiRequest.getFilesystemName(key));
-						at.setAtFilePath("/resources/uploadFiles/");
-
-						atList.add(at);
-					}
-			}
+				at = new Attachment();
+				at.setBoardNo(b.getBoardNo());
+				at.setOriginName(multiRequest.getOriginalFileName("uploadFile"));
+				at.setChangeName(multiRequest.getFilesystemName("uploadFile"));
+				at.setAtFilePath("/resources/uploadFiles/");
 			}
 			// 게시글 정보와 첨부파일 정보를 담았으니 서비스 요청하기
-			int result = new BoardService().insertBoard(b,atList);
+			int result = new BoardService().insertBoard(b,at);
 
 			if(result>0) {
 				// 세션에 게시글 등록 성공 메시지 담고
 				// 게시판 목록으로 이동시키기
 				session.setAttribute("alertMsg", "게시글 등록 성공");
-				
-
-			}else if(atList!= null) {
+			}else if(at!= null) {
 					//삭제하고자 하는 파일 경로로 파일 객체 연결한 뒤 삭제 메소드 실행
-					for(Attachment at :atList) {
-						new File(savePath+at.getChangeName()).delete();
-					}
+				new File(savePath+at.getChangeName()).delete();
+
+			}else {
 				session.setAttribute("alertMsg", "게시글 등록 실패");
 			}
 			response.sendRedirect(request.getContextPath()+"/list."+ca+"?currentPage=1");
