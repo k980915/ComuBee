@@ -106,7 +106,7 @@ public class RecommendListController extends HttpServlet {
 		ArrayList<Board> npbList = new BoardService().newPopList(b);
 		ArrayList<Board> bpbList=new BoardService().bestPopList(b);
 //		//위임하기 위한 데이터 담아주기
-		
+		System.out.println(list);
 		session.setAttribute("pi", pi);
 		session.setAttribute("list", list);
 		session.setAttribute("noList",noList);
