@@ -113,17 +113,13 @@ body::before {
 
 .board-menuBar a {
 	text-decoration: none;
-	color: white;
+	color: black;
 	font-size: 20px;
 	font-weight: bold;
 	display: block;
 	width: 100%;
 	height: 100%;
 	line-height: 50px;
-}
-
-.board-menuBar a:hover {
-	background-color: rgb(144, 142, 142);
 }
 /* 게시판 용 메뉴바 끝 */
 .logo-area, .search-area, .login-area {

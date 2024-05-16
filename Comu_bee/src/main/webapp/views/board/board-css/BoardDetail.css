@@ -10,6 +10,7 @@
     padding: 20px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);  /* 음영 더 진하게 수정 */
     border-radius: 8px;
+    margin: 0 auto; /* 중앙 정렬 */
 }
 
 
