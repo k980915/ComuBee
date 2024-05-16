@@ -114,7 +114,7 @@ table {
 .gradient-btn {
 	display: inline-block;
 	padding: 1em 2em;
-	border-radius: 0;
+	border-radius: 20px;
 	color: #b2876f;
 	margin-top: 2rem;
 	font-weight: bold;
@@ -126,7 +126,9 @@ table {
 		rgba(#b2876f, .8) 75%);
 	background-position: 1% 50%;
 	background-size: 400% 300%;
-	border: 1px solid #b2876f; @ include transition; &: hover { color :
+	border: 1px solid #b2876f; @ include transition; 
+	
+	&: hover { color :
 	white;
 	color: #fff;
 	background-position: 99% 50%;
