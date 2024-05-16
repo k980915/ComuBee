@@ -47,7 +47,7 @@ public class BoardUpdateController extends HttpServlet {
 		// 카테고리 목록
 		// 첨부 파일 정보
 		Board b = new BoardService().selectBoard(bno);
-		ArrayList<Attachment> at = new BoardService().selectAttachment(bno);
+		Attachment at = new BoardService().selectAttachment(bno);
 		// 출력문으로 출력해서 확인
 		request.setAttribute("b", b);
 		request.setAttribute("at", at);
@@ -74,39 +74,28 @@ public class BoardUpdateController extends HttpServlet {
 			b.setBoardNo(boardNo);
 			b.setTitle(title);
 			b.setBoardContent(content);
-			ArrayList<Attachment> atList=null;
+			Attachment at=null;
 			
 			if(multiRequest.getOriginalFileName("reUploadFile")!=null) {
-				for(int i=1;i<5;i++) {
-					String key = "file"+i; // key 값 작성
-					if(multiRequest.getOriginalFileName(key)!=null) {
-						Attachment at = new Attachment();
-						at.setOriginName(multiRequest.getOriginalFileName(key));
-						at.setChangeName(multiRequest.getFilesystemName(key));
-						at.setAtFilePath("/resources/uploadFiles/");
-
-						atList.add(at);
-					}
-					
-				}
+				at=new Attachment();
+				at.setOriginName(multiRequest.getOriginalFileName("reUploadFile"));
+				at.setChangeName(multiRequest.getFilesystemName("reUploadFile"));
+				at.setAtFilePath("resources/uploadFiles");
 			}
+	
 			if(multiRequest.getParameter("originFileNo")!=null) {
-				for(Attachment at : atList) {
-				at.setAtNo(Integer.parseInt(multiRequest.getParameter("originFileNo")));
-					}
-					
+				at.setAtNo(Integer.parseInt(multiRequest.getParameter("originFileNo")));				
 			}
-			int result=new BoardService().updateBoard(b, atList);
+			int result=new BoardService().updateBoard(b, at);
 			HttpSession session = request.getSession();
 			if(result>0) {
-				if(atList!=null) {
-					for(Attachment at :atList) {
+				if(at!=null) {
 						if(at!=null && at.getAtNo()!=0) {
 					// 기존 파일 삭제(파일 경로+원본파일(업로드된 이름)).delete
 							new File(savePath+multiRequest.getParameter("originFileName")).delete();					
 							}
 						}
-					}
+
 					session.setAttribute("alertMsg", "게시글 수정완료");
 				}else {
 					session.setAttribute("alertMsg", "게시글 수정실패");

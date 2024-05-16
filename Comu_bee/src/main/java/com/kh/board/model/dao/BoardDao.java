@@ -152,7 +152,7 @@ public class BoardDao {
 						bno,
 						rset.getString("USERID"),
 						rset.getString("ATNO"),
-						rset.getString("CATEGORYNO"),
+						rset.getString("CATEGORYNAME"),
 						rset.getString("CONTENTSID"),
 						rset.getString("TITLE"),
 						rset.getString("BOARDCONTENT"),
@@ -173,9 +173,9 @@ public class BoardDao {
 		return b;
 	}
 
-	public ArrayList<Attachment> selectAttachment(Connection conn, int bno) {
+	public Attachment selectAttachment(Connection conn, int bno) {
 		// TODO Auto-generated method stub
-		ArrayList<Attachment> atList = new ArrayList<>();
+		Attachment at = new Attachment();
 		PreparedStatement pstmt=null;
 		ResultSet rset=null;
 		String sql=prop.getProperty("selectAttachment");
@@ -183,8 +183,8 @@ public class BoardDao {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, bno);
 			rset=pstmt.executeQuery();
-			while(rset.next()) {
-				atList.add(new Attachment(
+			if(rset.next()) {
+				at=new Attachment(
 							rset.getInt("ATNO"),
 							rset.getInt("CATEGORYNO"),
 							rset.getInt("BOARDNO"),
@@ -192,7 +192,7 @@ public class BoardDao {
 							rset.getString("CHANGENAME"),
 							rset.getString("ATFILEPATH"),
 							rset.getDate("ATUPLOADDATE")
-						));
+						);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -201,7 +201,7 @@ public class BoardDao {
 			JDBCTemplate.close(rset);
 			JDBCTemplate.close(pstmt);
 		}		
-		return atList;
+		return at;
 	}
 
 	public ArrayList<Board> selectListById(Connection conn, PageInfo pi, String userId) {
@@ -260,6 +260,7 @@ public class BoardDao {
 						rset.getString("USERID"),
 						rset.getString("CATEGORYNAME"),
 						rset.getString("TITLE"),
+						rset.getString("BOARDCONTENT"),
 						rset.getDate("CREATEDATE"),
 						rset.getInt("BOARDLIKE"),
 						rset.getInt("COUNT")
@@ -411,8 +412,30 @@ public class BoardDao {
 		}
 		return noList;
 	}
-
-	public int insertBoard(Connection conn, Board b, ArrayList<Attachment> atList) {
+	public int selectBoardNo(Connection conn) {
+		// select 구문으로 시퀀스 발행시키기
+		int boardNo=0;
+		ResultSet rset = null;
+		Statement stmt = null;
+		String sql = prop.getProperty("selectBoardNo");
+		
+		try {
+			stmt=conn.createStatement();
+			rset=stmt.executeQuery(sql);
+			if(rset.next()) {
+				boardNo = rset.getInt("BNO");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(stmt);
+		}
+		return boardNo;
+	}
+	
+	public int insertBoard(Connection conn, Board b) {
 		// TODO Auto-generated method stub
 		int result=0;
 		PreparedStatement pstmt=null;
@@ -420,11 +443,12 @@ public class BoardDao {
 		
 		try {
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, b.getUserId());
-			pstmt.setString(2, b.getCategory());
-			pstmt.setString(3, b.getTitle());
-			pstmt.setString(4, b.getBoardContent());
-			pstmt.setString(5, b.getContentsId());
+			pstmt.setInt(1, b.getBoardNo());
+			pstmt.setString(2, b.getUserId());
+			pstmt.setString(3, b.getCategory());
+			pstmt.setString(4, b.getTitle());
+			pstmt.setString(5, b.getBoardContent());
+			pstmt.setString(6, b.getContentsId());
 			result=pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -432,6 +456,30 @@ public class BoardDao {
 		}finally {
 			JDBCTemplate.close(pstmt);
 		}
+		return result;
+	}
+	
+	public int insertAttachment(Connection conn, Attachment at,Board b) {
+		// TODO Auto-generated method stub
+		int result=0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertAttachment");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, b.getBoardNo());
+			pstmt.setString(2, at.getOriginName());
+			pstmt.setString(3, at.getChangeName());
+			pstmt.setString(4, at.getAtFilePath());
+			pstmt.setString(5,b.getCategory());
+			result=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
 		return result;
 	}
 
@@ -515,7 +563,7 @@ public class BoardDao {
 		return cList;
 	}
 
-	public int updateBoard(Connection conn, Board b, ArrayList<Attachment> atList) {
+	public int updateBoard(Connection conn, Board b, Attachment at) {
 		// TODO Auto-generated method stub
 		int result=0;
 		PreparedStatement pstmt=null;
@@ -716,12 +764,27 @@ public class BoardDao {
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
 			rset=pstmt.executeQuery();
-			while(rset.next());
+			while(rset.next()) {
+				list.add(new Board(
+						rset.getInt("BOARDNO"),
+						rset.getString("USERID"),
+						rset.getString("CATEGORYNAME"),
+						rset.getString("TITLE"),
+						rset.getString("BOARDCONTENT"),
+						rset.getDate("CREATEDATE"),
+						rset.getInt("BOARDLIKE"),
+						rset.getInt("COUNT")
+						));
+			};
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
 		}
 		return list;
 	}
+
 
 }
