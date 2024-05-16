@@ -15,7 +15,7 @@
 <body>
 
 <div align="center">
-	<h4 style ="color : white;">연도별 전체 방문자수 조회 : 
+	<h4 style ="color : black;">연도별 전체 방문자수 조회 : 
 	<select id="yearSelectId2" class="btn btn-light" >
 		<option value="2023년">2023년</option>
 		<option value="2024년">2024년</option>

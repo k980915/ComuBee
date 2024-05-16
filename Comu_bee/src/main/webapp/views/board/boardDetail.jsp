@@ -225,6 +225,7 @@
 	</div>	
 	
 	<script>
+	var userId11 = "${loginUser.userId}";
 		function updateBoard(){
 			var bno=${b.boardNo};
 			location.href="${contextPath}/update.bo?bno=${b.boardNo}"
@@ -248,12 +249,38 @@
 				},
 				success : function(result){
 					if(result>0){
-						alert("댓글 작성 성공");	
+					$("#replyContent").val("");
+						replyPoint(userId11)
+						
+						
+					}else{
+						alert("작성실패리플");
+					}
+				},
+				error : function(){
+					console.log("통신 오류")
+				}
+			
+			});
+			/* $(function(){
+				replyList();
+			}); */
+				
+		}
+		function replyPoint(userId11) {
+			console.log(userId11);
+			$.ajax({
+				url : "replyPoint.bo",
+				data : {
+					userId11 : userId11
+				},
+				success : function(result){
+					if(result>0){
+						alert("댓글 작성 완료, 포인트 10포인트 추가");	
 						replyList();
 					}else{
-						alert("작성실패");
+						alert("작성실패포인트");
 					}
-					$("#replyContent").val("");
 				},
 				error : function(){
 					console.log("통신 오류")
@@ -263,7 +290,6 @@
 			$(function(){
 				replyList();
 			});
-				
 		}
 		function replyList(){
 			var tr="";
