@@ -1,0 +1,166 @@
+@charset "UTF-8";
+
+/* Flex 레이아웃을 위한 폼 그룹 컨테이너 */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* 사용 가능한 공간을 채우도록 성장하는 폼 그룹 내의 텍스트 영역 */
+.form-group textarea {
+    flex-grow: 1;
+}
+
+/* 폼 제출 버튼의 스타일, 끝에 정렬 */
+.form-submit-button {
+    align-self: flex-end;
+    margin-top: 10px;
+}
+
+/* 폼 버튼을 위한 컨테이너, 끝에 버튼을 정렬하고 간격을 줌 */
+.form-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+/* 검색 버튼의 상단 여백 */
+.search-btn {
+    margin-top: 10px;
+}
+
+/* 스타일링된 페이지 콘텐츠를 위한 주요 컨테이너 */
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+/* 헤더와 게시물 제목의 스타일 */
+h2, .post-title {
+    margin-bottom: 20px;
+    color: black !important;
+}
+
+/* 일반 버튼 스타일 */
+button {
+    cursor: pointer;
+}
+
+/* 버튼의 호버 효과 */
+button:hover {
+    opacity: 0.9;
+}
+
+/* 버튼의 기본 포커스 제거 */
+button:focus {
+    outline: none;
+}
+
+/* 폼 레이블 텍스트 색상 */
+.form-label {
+    color: black !important;
+}
+
+.boardBody {
+    display: block;
+    vertical-align: top;
+    padding: 10px;
+    width: 70%;
+    background-color: #f4f4f4;
+    padding: 20px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    margin: 0 auto; /* 중앙 정렬 */
+}
+
+.boardMenuBar {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #8F684F;
+    border-radius: 6px;
+}
+
+h3 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    background-color: #f8f8f8;
+}
+
+.button {
+    padding: 6px 12px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+textarea, input[type="text"], select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: none;
+}
+
+.center-table {
+    margin: 0 auto;
+    max-width: 90%;
+}
+
+.boardMain button, .boardReply button {
+    padding: 8px 16px;
+    color: black;
+    background-color: #E0DFE6;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.boardMain button:hover, .boardReply button:hover {
+    background-color: #e0d0c0;
+}
+
+.boardFreeTitle input[type="text"] {
+    width: 100%;
+}
+
+/* 가로 정렬을 위한 Flexbox 설정 */
+.table-row {
+    display: flex;
+    align-items: center;
+}
+
+.table-row th,
+.table-row td {
+    flex: 1;
+    padding: 8px;
+}
+
+/* 제목 및 첨부파일 헤더 크기 줄이기 */
+.table-row .small-header {
+    flex: 0 0 10%; /* 기본 크기보다 줄임 */
+    padding: 8px;
+    background-color: #E0DFE6;
+}

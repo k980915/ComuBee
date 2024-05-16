@@ -112,9 +112,9 @@ table.type03 td {
 						value="${loginUser.joinDate}" readonly></td>
 				</tr>
 				<tr>
-					<th scope="row">포 인 트</th>
+				<th scope="row">포 인 트</th>
 					<td>
-						<h4>${loginUser.point}</h4>
+						<h4>${userPoint}</h4>
 					</td>
 				</tr>
 			</table>

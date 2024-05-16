@@ -35,6 +35,29 @@ String contextPath = request.getContextPath();
 	text-align: "center"
 }
 
+#loginid {
+	width: 175px;
+	height: 30px;
+	font-size: 15px;
+	border: 0;
+	border-radius: 15px;
+	outline: none;
+	padding-left: 10px;
+	background-color: rgb(233, 233, 233);
+}
+
+#loginpwd {
+	width: 175px;
+	height: 30px;
+	font-size: 15px;
+	border: 0;
+	border-radius: 15px;
+	outline: none;
+	padding-left: 10px;
+	background-color: rgb(233, 233, 233);
+}
+
+
 </style>
 </head>
 
@@ -56,13 +79,13 @@ String contextPath = request.getContextPath();
 				<table>
 					<tr>
 						<th></th>
-						<td><input type="text" name="userId" required
+						<td><input type="text" name="userId" id="loginid" required
 							placeholder="아이디"></td>
 						<td><button type="submit" class="btn btn-outline-dark">로그인</button></td>
 					</tr>
 					<tr>
 						<th></th>
-						<td><input type="password" name="userPwd" required
+						<td><input type="password" name="userPwd" id="loginpwd" required
 							placeholder="비밀번호"></td>
 				<th><input type="button" class="btn btn-outline-dark"
 					onclick="enrollForm();" value="회원가입"></th>
@@ -103,7 +126,7 @@ String contextPath = request.getContextPath();
 		%>
 		<div id="user-info">
 			<b>${loginUser.userId }님 환영합니다!</b>  <br>
-			<a href="${contextPath}/myPage.us" style="color: black;" >마이페이지</a> |
+			<a href="${contextPath}/myPage.us?userId=${loginUser.userId}" style="color: black;" >마이페이지</a> |
 			<a href="<%=contextPath%>/logout.us" style="color: black;">로그아웃</a>
 		</div>
 	</div>
