@@ -422,7 +422,8 @@ public class UserDao {
 		}
 		return list;
 	}
-
+	
+	//추천인작성시 포인트 추가구문
 	public int recomCheck(String recommender, Connection conn) {
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("recomCheck");
@@ -431,6 +432,27 @@ public class UserDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, recommender);
+
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch blosck
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+
+		return result;
+	}
+
+	public int boardPointCheck(String boardWriter, Connection conn) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("PointCheck");
+		int result = 0;
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, boardWriter);
 
 			result = pstmt.executeUpdate();
 			

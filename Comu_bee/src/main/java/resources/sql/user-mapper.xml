@@ -143,8 +143,11 @@
 	WHERE USERID = ?
 	</entry>
 
-
-
+	<entry key="PointCheck">
+	UPDATE MEMBERINFO
+	SET POINT = POINT+50
+	WHERE USERID = ?
+	</entry>
 
 
 

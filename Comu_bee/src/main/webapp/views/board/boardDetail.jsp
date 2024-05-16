@@ -222,6 +222,7 @@
 					if(result>0){
 						alert("댓글 작성 성공");	
 						replyList();
+						replyPoint(userId);
 					}else{
 						alert("작성실패");
 					}
@@ -236,6 +237,28 @@
 				replyList();
 			});
 				
+		}
+		function replyPoint(userId) {
+			$.ajax({
+				url : "replyPoint.bo",
+				data : {
+					userId : "${loginUser.userId}"
+				},
+				success : function(result){
+					if(result>0){
+						alert("댓글 작성 성공");	
+						replyList();
+						replyPoint(userId);
+					}else{
+						alert("작성실패");
+					}
+					$("#replyContent").val("");
+				},
+				error : function(){
+					console.log("통신 오류")
+				}
+			
+			});
 		}
 		function replyList(){
 			var tr="";

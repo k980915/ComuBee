@@ -173,6 +173,24 @@ public class UserService {
 		JDBCTemplate.close(conn);
 		return result;
 	}
+	public int boardPointCheck(String boardWriter) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+
+		int boardPointChecksu = new UserDao().boardPointCheck(boardWriter,conn);
+		
+		
+		if(boardPointChecksu>0) {//성공시 확정
+			JDBCTemplate.commit(conn); 
+		}else {//실패시 되돌리기
+			JDBCTemplate.rollback(conn);
+		}
+		
+		
+		JDBCTemplate.close(conn);
+		return boardPointChecksu;
+	}
+
 	
 	
 	

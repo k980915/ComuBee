@@ -17,6 +17,8 @@ import com.kh.board.model.service.BoardService;
 import com.kh.board.model.vo.Attachment;
 import com.kh.board.model.vo.Board;
 import com.kh.common.MyFileRenamePolicy;
+import com.kh.user.model.dao.UserDao;
+import com.kh.user.model.service.UserService;
 import com.oreilly.servlet.MultipartRequest;
 
 /**
@@ -155,9 +157,9 @@ public class BoardCreatePostController extends HttpServlet {
 			if(result>0) {
 				// 세션에 게시글 등록 성공 메시지 담고
 				// 게시판 목록으로 이동시키기
-				session.setAttribute("alertMsg", "게시글 등록 성공");
+				session.setAttribute("alertMsg", "게시글 등록 성공 ,포인트 50 적립 성공");
+				int boardPointChecksu = new UserService().boardPointCheck(boardWriter);
 				
-
 			}else if(atList!= null) {
 					//삭제하고자 하는 파일 경로로 파일 객체 연결한 뒤 삭제 메소드 실행
 					for(Attachment at :atList) {

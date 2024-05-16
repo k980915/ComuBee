@@ -31,7 +31,9 @@
 	color: black;
 }
 
-/* 추가된 스타일 */
+.td{
+	width: 150px;
+}
 #messages-area-1, #messages-area-2 {
 	margin-bottom: 0; /* 두 번째 테이블과의 하단 간격 제거 */
 }
