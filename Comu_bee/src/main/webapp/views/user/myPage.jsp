@@ -18,7 +18,7 @@ table.type03 {
 	border-top: 1px solid #ccc;
 	border-left: 3px solid white;
 	margin: 0px auto;
-	color: white;
+	color: black;
 }
 
 table.type03 th {
@@ -26,7 +26,7 @@ table.type03 th {
 	padding: 10px;
 	font-weight: bold;
 	vertical-align: top;
-	color: white;
+	color: black;
 	border-right: 1px solid #ccc;
 	border-bottom: 1px solid #ccc;
 }
@@ -77,7 +77,7 @@ table.type03 td {
 	<div class="outer">
 		<br>
 
-		<h2 align="center" style="color: white;">마이페이지</h2>
+		<h2 align="center" style="color: black;">마이페이지</h2>
 		<br>
 
 		<form id="myPage-form" action="${contextPath}/update.us" method="post">
@@ -129,10 +129,10 @@ table.type03 td {
 				<button type="button" class="btn btn-light" data-toggle="modal"
 					data-target="#deleteForm">회원탈퇴</button>
 					<br><br>
-					<a href="${contextPath}/myBoardList.us?myBoardCurrentPage=1&userId=${loginUser.userId}" style="color:white;"> 내가 쓴 글 &nbsp;</a><label style="color:white;">&nbsp; | &nbsp;</label> 
-					<a href="${contextPath}/myReplylist.us?myReplyCurrentPage=1&userId=${loginUser.userId}" style="color:white;"> 내가 쓴 댓글 &nbsp;</a><label style="color:white;">&nbsp; | &nbsp;</label>
-					<a href="${contextPath}/messageMain.ms?messageNewCurrentPage=1&userId=${loginUser.userId}" style="color:white;"> 쪽 지 &nbsp;</a><label style="color:white;">&nbsp; | &nbsp;</label>
-					<a href="${contextPath}/scrabList.sc?myScrabCurrentPage=1&userId=${loginUser.userId}" style="color:white;"> 찜	목 록 &nbsp;</a><label style="color:white;">&nbsp; | &nbsp;</label>
+					<a href="${contextPath}/myBoardList.us?myBoardCurrentPage=1&userId=${loginUser.userId}" style="color:black;"> 내가 쓴 글 &nbsp;</a><label style="color:black;">&nbsp; | &nbsp;</label> 
+					<a href="${contextPath}/myReplylist.us?myReplyCurrentPage=1&userId=${loginUser.userId}" style="color:black;"> 내가 쓴 댓글 &nbsp;</a><label style="color:black;">&nbsp; | &nbsp;</label>
+					<a href="${contextPath}/messageMain.ms?messageNewCurrentPage=1&userId=${loginUser.userId}" style="color:black;"> 쪽 지 &nbsp;</a><label style="color:black;">&nbsp; | &nbsp;</label>
+					<a href="${contextPath}/scrabList.sc?myScrabCurrentPage=1&userId=${loginUser.userId}" style="color:black;"> 찜	목 록 &nbsp;</a><label style="color:black;">&nbsp; | &nbsp;</label>
 		
 			</div>
 		</form>
@@ -260,8 +260,8 @@ table.type03 td {
 	      			//현재 입력한 비밀번호와 세션에 담겨있던 비밀번호가 일치한다면 
 	      			//정말 탈퇴할것인지 물어보고 그에 따른 처리하기 
 	      			var inputPwd = $("#deletePwd").val();
-	      			var userPwd = "<%=loginUser.getUserPwd()%>
-					"; // 안녕하세요
+	      			var userPwd = "<%=loginUser.getUserPwd()%>";
+					
 
 						//사용자가 입력한 비밀번호랑 세션 로그인정보에 있는 비밀번호와 일치한다면 
 						if (inputPwd == userPwd) {

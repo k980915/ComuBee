@@ -22,6 +22,7 @@
     padding: 12px;
     text-align: left;
     border: 1px solid #400040;
+    
 }
 
 /* 테이블 본문 셀 스타일 */
@@ -30,6 +31,7 @@
     color: #666;
     border: 1px solid #ddd;
     background-color: #FAF0E0;
+    
 }
 
 /* 테이블 행 호버 스타일 */
