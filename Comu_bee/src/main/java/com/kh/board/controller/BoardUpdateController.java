@@ -39,6 +39,7 @@ public class BoardUpdateController extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	
         request.setCharacterEncoding("UTF-8");
         if (ServletFileUpload.isMultipartContent(request)) {
             int maxSize = 10 * 1024 * 1024;
@@ -68,12 +69,10 @@ public class BoardUpdateController extends HttpServlet {
 			HttpSession session = request.getSession();
 			if(result>0) {
 				if(at!=null) {
-					session.setAttribute("alertMsg", "게시글 수정완료");
-
 					if(at!=null && at.getAtNo()!=0) {
-					// 기존 파일 삭제(파일 경로+원본파일(업로드된 이름)).delete
 						new File(savePath+multiRequest.getParameter("originFileName")).delete();					
 						}
+					session.setAttribute("alertMsg", "게시글 수정완료");
 					}
 				}else {
 					session.setAttribute("alertMsg", "게시글 수정실패");

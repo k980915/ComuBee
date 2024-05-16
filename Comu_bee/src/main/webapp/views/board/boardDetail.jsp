@@ -28,7 +28,7 @@
 									<tr>
 										<td>작성자 : </td>
 										<td class="boardWriter" width="300">${b.userId}</td>
-																				<c:if test="${loginUser.userId eq 'admin' or loginUser.userId eq b.userId}">
+										<c:if test="${loginUser.userId eq 'admin' or loginUser.userId eq b.userId}">
 											<td class="edit-buttons">
 												<button type="button" onclick="updateBoard();">수정</button>
 												<button type="button" onclick="deleteYN();">삭제</button>

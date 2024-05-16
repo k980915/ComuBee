@@ -293,7 +293,8 @@ public class BoardDao {
 			while(rset.next()) {
 				list.add(new Board(
 						rset.getInt("BOARDNO"),
-						rset.getString("TITLE")
+						rset.getString("TITLE"),
+						rset.getString("BOARDCONTENT")
 						));
 			}
 		} catch (SQLException e) {
@@ -321,6 +322,7 @@ public class BoardDao {
 				list.add(new Board(
 						rset.getInt("BOARDNO"),
 						rset.getString("TITLE"),
+						rset.getString("BOARDCONTENT"),
 						rset.getInt("BOARDLIKE")
 						));
 			}
@@ -563,7 +565,7 @@ public class BoardDao {
 		return cList;
 	}
 
-	public int updateBoard(Connection conn, Board b, Attachment at) {
+	public int updateBoard(Connection conn, Board b) {
 		// TODO Auto-generated method stub
 		int result=0;
 		PreparedStatement pstmt=null;
@@ -786,7 +788,6 @@ public class BoardDao {
 		return list;
 	}
 
-
 	public int updateAttachment(Connection conn, Attachment at) {
 		// TODO Auto-generated method stub
 		int result=0;
@@ -805,6 +806,7 @@ public class BoardDao {
 		}finally {
 			JDBCTemplate.close(pstmt);
 		}
+		System.out.println("결과는" +result);
 		return result;
 
 	}
