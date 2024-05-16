@@ -207,6 +207,15 @@ public class UserService {
 		System.out.println(result+"Ser");
 		return result;
 	}
+	public int getUserPoint(String userId) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int userPoint = new UserDao().getUserPoint(conn, userId);
+		
+		
+		JDBCTemplate.close(conn);
+		return userPoint;
+	}
 
 	
 	
