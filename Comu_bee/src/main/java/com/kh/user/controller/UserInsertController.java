@@ -50,6 +50,7 @@ public class UserInsertController extends HttpServlet {
 		String userGender = request.getParameter("gender");
 		String userBirth = request.getParameter("birth");
 		String userEmail = request.getParameter("email");
+		String recommender = request.getParameter("recommender");
 		
 
 		User u = new User(userId, userName, userPwd, userEmail, userBirth, userGender);

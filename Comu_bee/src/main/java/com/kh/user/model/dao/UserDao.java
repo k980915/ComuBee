@@ -357,8 +357,11 @@ public class UserDao {
 
 			rset = pstmt.executeQuery();
 			if (rset.next()) {
-				u = new User(
-						rset.getString("USERPWD"));
+				u = new User(rset.getString("USERID"),
+						rset.getString("USERNAME"),
+						rset.getString("USEREMAIL"),
+						rset.getString("USERPWD"),
+						rset.getString("STATUS"));
 						
 						
 			}
@@ -418,6 +421,27 @@ public class UserDao {
 			JDBCTemplate.close(pstmt);
 		}
 		return list;
+	}
+
+	public int recomCheck(String recommender, Connection conn) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("recomCheck");
+		int result = 0;
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, recommender);
+
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch blosck
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+
+		return result;
 	}
 
 }
