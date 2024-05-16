@@ -2,7 +2,6 @@ package com.kh.board.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -81,10 +80,10 @@ public class BoardUpdateController extends HttpServlet {
 				at.setOriginName(multiRequest.getOriginalFileName("reUploadFile"));
 				at.setChangeName(multiRequest.getFilesystemName("reUploadFile"));
 				at.setAtFilePath("resources/uploadFiles");
-			}
 	
-			if(multiRequest.getParameter("originFileNo")!=null) {
-				at.setAtNo(Integer.parseInt(multiRequest.getParameter("originFileNo")));				
+				if(multiRequest.getParameter("originFileNo")!=null) {
+					at.setAtNo(Integer.parseInt(multiRequest.getParameter("originFileNo")));				
+				}
 			}
 			int result=new BoardService().updateBoard(b, at);
 			HttpSession session = request.getSession();
