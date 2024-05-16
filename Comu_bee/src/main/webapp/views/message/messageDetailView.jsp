@@ -43,10 +43,17 @@
     border: 1px solid #ddd;
   	background-color: #FAF0E0;
 }
+.boardHeader {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 20px;
+}
 </style>
 </head>
 <body>
 	<%@ include file="/views/common/header.jsp"%>
+	<div class="container mt-4">
 	<button class="btn btn-outline-secondary create-post-button" id="sendView" onclick="sendList();">내가 보낸 쪽지</button>
 	<button class="btn btn-outline-secondary create-post-button" id="receiveView" onclick="receiveList();">내가 받은 쪽지</button>
 	<button class="btn btn-outline-secondary create-post-button" id="writeMessage" onclick="writeMessage();">쪽지 쓰기</button>
@@ -131,6 +138,7 @@
 			href="${contextPath}/scrabList.sc?myScrabCurrentPage=1&userId=${loginUser.userId}"
 			style="color: white;"> 찜 목 록 &nbsp;</a><label style="color: white;">&nbsp;
 			| &nbsp;</label>
+	</div>
 	</div>
 </body>
 </html>

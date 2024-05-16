@@ -17,6 +17,9 @@
         .pagination a {
             color: black; 
         }
+        td {
+   	 width: 100px; /* 원하는 크기로 조정 */
+}
     </style>
 
 </head>
