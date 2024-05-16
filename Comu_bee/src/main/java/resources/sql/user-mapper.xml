@@ -110,9 +110,9 @@
 	</entry>
 
 	<entry key="findPwd">
-		SELECT USERPWD FROM MEMBERINFO
+		SELECT USERID, USERNAME, USEREMAIL, USERPWD, STATUS FROM MEMBERINFO
 		WHERE USERID= ?
-		AND
+		AND STATUS='Y' AND
 		USERNAME=?
 		AND USEREMAIL= ?
 
@@ -137,7 +137,11 @@
 	</entry>
 
 
-
+	<entry key="recomCheck">
+	UPDATE MEMBERINFO
+	SET POINT = POINT+100
+	WHERE USERID = ?
+	</entry>
 
 
 

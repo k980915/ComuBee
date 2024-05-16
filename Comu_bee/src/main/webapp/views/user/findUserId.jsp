@@ -8,7 +8,31 @@
 <title>Insert title here</title>
 </head>
 
+<style>
 
+#fuserName {
+	width: 175px;
+	height: 35px;
+	font-size: 15px;
+	border: 0;
+	border-radius: 15px;
+	outline: none;
+	padding-left: 10px;
+	background-color: rgb(233, 233, 233);
+}
+
+#fuserEmail {
+	width: 175px;
+	height: 35px;
+	font-size: 15px;
+	border: 0;
+	border-radius: 15px;
+	outline: none;
+	padding-left: 10px;
+	background-color: rgb(233, 233, 233);
+}
+	
+</style>
 
 	
 
@@ -16,29 +40,36 @@
 	<%@ include file="/views/common/header.jsp"%>
 	<table align="center">
 		<tbody>
-			<h4 align="center">아이디 찾기</h4>
+			<h4 align="center">아이디 찾기</h4> <br>
 			<tr>
-				<th>이름</th>
-				<td><input type="text" id="fuserName" required></td>
+				<th>이름 &nbsp;</th>
+				<td><input type="text" id="fuserName" required></td> 
 			</tr>
 			<tr>
-				<th>이메일</th>
+				<td>&emsp;</td>
+			</tr>
+			
+			
+			<tr>
+				<th>이메일 &nbsp;</th>
 				<td><input type="email" id="fuserEmail" required></td>
 			</tr>
-		<tfoot>
+			
+		 	
 			<tr>
 				<td align="center" colspan="2">
-
+						<br>
 					<button type="button" id="findUserId" onclick="findUserId();">
-						<span>아이디 찾기</span>
+						<span">아이디 찾기</span>
 					</button>
 				</td>
 			</tr>
 
-		</tfoot>
+		
 	</table>
 
-
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	
 
 
 	<script>

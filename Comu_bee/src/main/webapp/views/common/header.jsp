@@ -149,6 +149,7 @@ img:hover {
 			<div>
 				<%@include file="/views/common/loginheader.jsp"%>
 			</div>
+			
 		</div>
 	</div>
 	<br>
