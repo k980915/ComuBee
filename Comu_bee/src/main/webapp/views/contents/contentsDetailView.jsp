@@ -6,12 +6,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
-	String posterPath = request.getParameter("posterPath");
+    String posterPath = request.getParameter("posterPath");
 
-	ArrayList<Contents> conList = (ArrayList<Contents>)request.getAttribute("conList");
-	ArrayList<Contents> bestList = (ArrayList<Contents>)request.getAttribute("bestList");
-	ArrayList<Board> boardList = (ArrayList<Board>)request.getAttribute("boardList");
-
+    ArrayList<Contents> conList = (ArrayList<Contents>)request.getAttribute("conList");
+    ArrayList<Contents> bestList = (ArrayList<Contents>)request.getAttribute("bestList");
+    ArrayList<Board> boardList = (ArrayList<Board>)request.getAttribute("boardList");
 %>
 
 
@@ -31,32 +30,53 @@
     <meta charset="UTF-8">
     <title>미디어 상세 페이지</title>
     <style>
-    	p {
-        	font-size: 50px;
-        	font-weight:bold;
-    	}
-    	span{
-    		font-size: 40px;
-    	}
-    	
-    	#snd th {
-    	    text-align: center;
-    	    height: 100px;
-    	    font-weight:bold;
-    	}
+        p {
+            font-size: 50px;
+            font-weight:bold;
+        }
+        span {
+            font-size: 40px;
+        }
+        
+        #snd th {
+            text-align: center;
+            height: 100px;
+            font-weight:bold;
+        }
 
-		table {
+        table {
             font-weight: bold;
-        }		
-		#trailer:hover{
-		cursor: pointer;
+        }       
+        #trailer:hover {
+            cursor: pointer;
+        }
+        #titleImg:hover {
+            cursor: default;
+            transform: none;
+            transition: none;
+        }
+        #snd #trd {
+		    border: none; /* trd 테이블의 모든 테두리를 없앱니다. */
 		}
-		#titleImg:hover {
-    cursor: default;
-    transform: none;
-    transition: none;
-}
 		
+		#snd #trd td {
+		    border: 2px solid white; /* trd 테이블의 내부 td 요소의 테두리를 설정합니다. */
+		}
+        #snd th{
+        	font-size : 25px;
+        	border : 2px solid white;
+        }
+        #reply, #reply td{
+        	border : 3px solid white;
+        }
+        .outer h1{
+        	font-size: 50px;      	
+        	font-weight: bold;
+        }
+        
+
+        
+        
     </style>
 </head>
 <body>
@@ -65,63 +85,63 @@
         <form action="${contextPath}/detail.co">
             <table style="width: 100%;" id="inform">
                 <c:forEach var="c" items="${list}">
-                <c:if test="${c.contentsId eq param.contentsId}">
-                    <tr>
-                        <td rowspan="3" style="width: 50%; height: 600px;">
-                            <img id="titleImg" src="${c.posterPath}" style="height: 800px; width: 100%;">
-                        </td>
-                        <td rowspan="3" style="width: 10%;"></td>
-                        <td colspan="3" style="width: 30%; height: 10px;" align="center">
-                            <p>${c.title}</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="3" style="height: 10px;" align="center">
-                            <span>${c.englishTitle}</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="3" rowspan="2">
-                            <table border="1" style="height: 600px;" id="snd"> 
-                                <tr>
-                                    <th>작품정보</th>
-                                    <th><a href="${contextPath}/list.rv?currentPage=1">커뮤니티</a></th>
-                                    <th id="trailer">트레일러</th>
-                                </tr>
-                                <tr>
-                                    <td colspan="3">
-                                        <table border="1" style="width: 100%; height: 100%;">
-                                            <tr>
-                                                <td style="height: 50px;">평점</td>
-                                                <td>${c.rate}</td>
-                                                <td>개봉일</td>
-                                                <td>${c.releaseDate}</td>
-                                            </tr>
-                                            <tr>
-                                                <td style="height: 50px;">연령제한</td>
-                                                <td>${c.ageLimit}</td>
-                                                <td>러닝타임</td>
-                                                <td>${c.runtime}</td>
-                                            </tr>
-                                            <tr>
-                                                <td style="height: 50px;">출연진</td>
-                                                <td>${c.actors}</td>
-                                                <td>감독</td>
-                                                <td>${c.director}</td>
-                                            </tr>
-                                            <tr>
-                                                <td style="height: 50px;" colspan="4">소개</td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="4" align="center">${c.overView}</td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                </c:if>
+                    <c:if test="${c.contentsId eq param.contentsId}">
+                        <tr>
+                            <td rowspan="3" style="width: 50%; height: 600px;">
+                                <img id="titleImg" src="${c.posterPath}" style="height: 800px; width: 100%;">
+                            </td>
+                            <td rowspan="3" style="width: 10%;"></td>
+                            <td colspan="3" style="width: 30%; height: 10px;" align="center">
+                                <p>${c.title}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="height: 10px;" align="center">
+                                <span>${c.englishTitle}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" rowspan="2">
+                                <table style="height: 600px;" id="snd"> 
+                                    <tr>
+                                        <th>작품정보</th>
+                                        <th><a href="${contextPath}/list.rv?currentPage=1">커뮤니티</a></th>
+                                        <th id="trailer">트레일러</th>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">
+                                            <table id="trd" style="width: 100%; height: 100%;">
+                                                <tr>
+                                                    <td style="height: 50px;">평점</td>
+                                                    <td>${c.rate}</td>
+                                                    <td>개봉일</td>
+                                                    <td>${c.releaseDate}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="height: 50px;">연령제한</td>
+                                                    <td>${c.ageLimit}</td>
+                                                    <td>러닝타임</td>
+                                                    <td>${c.runtime}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="height: 50px;">출연진</td>
+                                                    <td>${c.actors}</td>
+                                                    <td>감독</td>
+                                                    <td>${c.director}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="height: 50px;" colspan="4">소개</td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="4" align="center">${c.overView}</td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </c:if>
                 </c:forEach>
             </table> <br><br><br>
             
@@ -129,37 +149,35 @@
                 <div>
                     <a href="${contextPath}/list.rv?currentPage=1"><h1>한줄 리뷰</h1></a> 
                 </div> <br>
-	               <table border="1" id="reply">
-        <c:forEach var="c" items="${boardList}" varStatus="loop">
-            <c:if test="${c.contentsId eq param.contentsId}">
-                <c:if test="${loop.index <= 4}">
-                    <tr>
-                        <td width="800px;">작성자 : ${c.userId }</td>
-                        <td>작성일 : ${c.createDate }</td>
-                        <td rowspan="2" width="90px;" align="center" height="100px"">
-                            좋아요 ${c.boardLike }
-                        </td>
-                       
-                    </tr>
-                    <tr>
-                        <td id="move" colspan="2" width="1000px;">${c.boardContent }</td>
-                    </tr>
-                </c:if>
-            </c:if>
-        </c:forEach>
-    </table>
+                <table id="reply">
+                    <c:forEach var="c" items="${boardList}" varStatus="loop">
+                        <c:if test="${c.contentsId eq param.contentsId}">
+                            <c:if test="${loop.index <= 4}">
+                                <tr>
+                                    <td width="800px;">작성자 : ${c.userId }</td>
+                                    <td>작성일 : ${c.createDate }</td>
+                                    <td rowspan="2" width="90px;" align="center" height="100px"">
+                                        좋아요 ${c.boardLike }
+                                    </td>
+                                   
+                                </tr>
+                                <tr>
+                                    <td id="move" colspan="2" width="1000px;">${c.boardContent }</td>
+                                </tr>
+                            </c:if>
+                        </c:if>
+                    </c:forEach>
+                </table>
             </div> <br><br><br><br>
-			<div class="link" width="1200px;" height="700px;">
-	            <c:forEach var="c" items="${list}">
-                	<c:if test="${c.contentsId eq param.contentsId}">
-	           			<h1>트레일러 영상</h1> <br>
-	            			${c.link }
-					</c:if>
-			    </c:forEach>	
-			</div><br><br><br>
+            <div class="link" width="1200px;" height="700px;">
+                <c:forEach var="c" items="${list}">
+                    <c:if test="${c.contentsId eq param.contentsId}">
+                        <h1>트레일러 영상</h1> <br>
+                        ${c.link }
+                    </c:if>
+                </c:forEach>    
+            </div><br><br><br>
             
-            
-
             <h1>보러가기</h1> <br>
             <table>
                 <tr>
@@ -184,16 +202,15 @@
         
     </div>
     <script>
-	    $("#trailer").click(function(){
-	        var linkOffsetTop = $(".link").offset().top;
-	
-	        $('html, body').animate({
-	            scrollTop: linkOffsetTop
-	        }, 0);
-	    });
-		
+        $("#trailer").click(function(){
+            var linkOffsetTop = $(".link").offset().top;
     
-	</script>
+            $('html, body').animate({
+                scrollTop: linkOffsetTop
+            }, 0);
+        });
+        
+    </script>
 
 </body>
 </html>
