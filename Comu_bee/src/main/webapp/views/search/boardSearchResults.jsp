@@ -56,7 +56,6 @@
         </div>
     </form>
 </div>
-
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll(".boardSearchResult tbody tr").forEach(function(row) {
@@ -68,6 +67,11 @@
         });
     });
 </script>
-
+<br><br><br>
+<br><br><br>
+<br><br><br>
+<br><br><br>
+<br><br><br>
+<br><br><br>
 </body>
 </html>
