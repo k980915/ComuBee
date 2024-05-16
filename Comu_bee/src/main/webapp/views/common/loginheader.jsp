@@ -28,47 +28,12 @@ String contextPath = request.getContextPath();
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <style>
-.head-area {
-	overflow: hidden;
-	text-align: center;
-}
-
-.logo-area, .search-area, .login-area {
-	display: inline-block;
-	vertical-align: middle;
-}
-
-.logo-img {
-	width: 50px;
-	height: 50px;
-}
-
-.title {
-	border: none;
-	font-size: 35px;
-	font-weight: 900;
-}
-
-.search-area {
-	text-align: left;
-	margin-top: 10px;
-}
-
-.search-input {
-	width: 400px;
-	height: 40px;
-}
 
 .login-area {
 	margin-top: 20px;
 	float: right;
 	text-align: "center"
 }
-.btn btn-outline-light{
-	
-}
-
-
 
 </style>
 </head>

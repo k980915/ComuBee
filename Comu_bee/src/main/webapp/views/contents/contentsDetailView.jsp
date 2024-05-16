@@ -34,7 +34,7 @@
             font-size: 50px;
             font-weight:bold;
         }
-        span {
+        #subTitle {
             font-size: 40px;
         }
         
@@ -56,11 +56,11 @@
             transition: none;
         }
         #snd #trd {
-		    border: none; /* trd 테이블의 모든 테두리를 없앱니다. */
+		    border: none;
 		}
 		
 		#snd #trd td {
-		    border: 2px solid white; /* trd 테이블의 내부 td 요소의 테두리를 설정합니다. */
+		    border: 2px solid white;
 		}
         #snd th{
         	font-size : 25px;
@@ -72,16 +72,16 @@
         .outer h1{
         	font-size: 50px;      	
         	font-weight: bold;
-        }
-        
-
-        
-        
+        }     
+		.detail-outer {
+			margin-left: 400px;
+			margin-right: 400px;
+		}
     </style>
 </head>
 <body>
     <%@include file="/views/common/header.jsp" %>
-    <div class="outer">
+    <div class="detail-outer">
         <form action="${contextPath}/detail.co">
             <table style="width: 100%;" id="inform">
                 <c:forEach var="c" items="${list}">
@@ -97,7 +97,7 @@
                         </tr>
                         <tr>
                             <td colspan="3" style="height: 10px;" align="center">
-                                <span>${c.englishTitle}</span>
+                                <p id="subTitle">${c.englishTitle}</p>
                             </td>
                         </tr>
                         <tr>
@@ -169,7 +169,7 @@
                     </c:forEach>
                 </table>
             </div> <br><br><br><br>
-            <div class="link" width="1200px;" height="700px;">
+            <div class="link">
                 <c:forEach var="c" items="${list}">
                     <c:if test="${c.contentsId eq param.contentsId}">
                         <h1>트레일러 영상</h1> <br>

@@ -34,11 +34,6 @@ body::before {
 	z-index: -1;
 }
 
-.outer {
-	margin: auto;
-	margin-left: 200px;
-	margin-right: 200px;
-}
 
 .outer a {
 	color: black;
@@ -132,9 +127,10 @@ img:hover {
 				<table id="logo">
 					<tr>
 						<td><img src="resources/uploadFiles/logo.png" id="logo-img"></td>
-						<td><h1 class="title">
+						<td><span class="title">
 								COMU-BEE <br>
-							</h1></td>
+							</span>
+						</td>
 						<td></td>
 					</tr>
 				</table>

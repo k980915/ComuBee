@@ -171,3 +171,8 @@ textarea, input[type="text"], select {
 .edit-buttons {
     white-space: nowrap;
 }
+.boardOuter{
+	margin-left:200px;
+	margin-right:200px;
+	
+}
