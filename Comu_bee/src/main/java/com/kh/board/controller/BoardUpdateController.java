@@ -18,54 +18,33 @@ import com.kh.board.model.vo.Board;
 import com.kh.common.MyFileRenamePolicy;
 import com.oreilly.servlet.MultipartRequest;
 
-/**
- * Servlet implementation class BoardUpdateController
- */
 @WebServlet("/update.bo")
 public class BoardUpdateController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+    private static final long serialVersionUID = 1L;
+
     public BoardUpdateController() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
-		int bno = Integer.parseInt(request.getParameter("bno"));
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int bno = Integer.parseInt(request.getParameter("bno"));
 
-		//수정페이지로 전달하기
-		// 게시글 정보
-		// 카테고리 목록
-		// 첨부 파일 정보
-		Board b = new BoardService().selectBoard(bno);
-		Attachment at = new BoardService().selectAttachment(bno);
-		// 출력문으로 출력해서 확인
-		request.setAttribute("b", b);
-		request.setAttribute("at", at);
-		
-		request.getRequestDispatcher("views/board/boardUpdate.jsp").forward(request, response);
-	}
+        Board b = new BoardService().selectBoard(bno);
+        Attachment at = new BoardService().selectAttachment(bno);
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-//		doGet(request, response);
-		request.setCharacterEncoding("UTF-8");
-		if(ServletFileUpload.isMultipartContent(request)) {
-			int maxSize= 10*1024*1024;
-			String savePath = request.getSession().getServletContext().getRealPath("/resources/uploadFiles");
-			MultipartRequest multiRequest = new MultipartRequest(request,savePath,maxSize,"UTF-8", new MyFileRenamePolicy());
+        request.setAttribute("b", b);
+        request.setAttribute("at", at);
+        
+        request.getRequestDispatcher("views/board/boardUpdate.jsp").forward(request, response);
+    }
 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        if (ServletFileUpload.isMultipartContent(request)) {
+            int maxSize = 10 * 1024 * 1024;
+            String savePath = request.getSession().getServletContext().getRealPath("/resources/uploadFiles");
+
+            MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy());
 			int boardNo=Integer.parseInt(multiRequest.getParameter("boardNo"));
 			String title=multiRequest.getParameter("title");
 			String content=multiRequest.getParameter("content");
@@ -80,7 +59,7 @@ public class BoardUpdateController extends HttpServlet {
 				at.setOriginName(multiRequest.getOriginalFileName("reUploadFile"));
 				at.setChangeName(multiRequest.getFilesystemName("reUploadFile"));
 				at.setAtFilePath("resources/uploadFiles");
-	
+			
 				if(multiRequest.getParameter("originFileNo")!=null) {
 					at.setAtNo(Integer.parseInt(multiRequest.getParameter("originFileNo")));				
 				}
@@ -94,15 +73,7 @@ public class BoardUpdateController extends HttpServlet {
 							new File(savePath+multiRequest.getParameter("originFileName")).delete();					
 							}
 						}
-
-					session.setAttribute("alertMsg", "게시글 수정완료");
-				}else {
-					session.setAttribute("alertMsg", "게시글 수정실패");
-				}
-				response.sendRedirect(request.getContextPath()+"/detail.bo?bno="+boardNo);
-
-			}
-		}
-
-
+					}
+			    }
+    }
 }

@@ -98,7 +98,7 @@
                     </c:forEach>
                 </tr>
             </table>
-            <br><br>
+            <br><br><br><br><br>
             <div class="menu">
                 <h1>이런 작품은 어떠세요?</h1>
             </div>
@@ -119,7 +119,7 @@
                     </c:if>
                 </c:forEach>
             </table>
-            <br><br>
+            <br><br><br><br><br>
             <div class="menu">
                 <h1>평점 상위 컨텐츠</h1>
             </div>
@@ -128,7 +128,7 @@
                 <table id="best" style="display: inline-block;">
                     <tr>
                         <c:forEach var="content" items="${bestList}" varStatus="loop">
-                            <c:if test="${loop.index < 4}">
+                            <c:if test="${loop.index < 6}">
                                 <td>
                                     <input type="hidden" class="cid" value="${content.contentsId}">
                                     <img src="${content.posterPath}" style="height: 200px; width: 200px;">
@@ -139,7 +139,7 @@
                     </tr>
                     <tr align="center" id="bestTitle">
                         <c:forEach var="content" items="${bestList}" varStatus="loop">
-                            <c:if test="${loop.index < 4}">
+                            <c:if test="${loop.index < 6}">
                                 <td>${content.title}</td>
                                 <td></td>
                             </c:if>
