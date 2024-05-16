@@ -488,4 +488,26 @@ public class UserDao {
 		return result;
 	}
 
+	public int getUserPoint(Connection conn, String userId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int userPoint = 0;
+		String sql = prop.getProperty("getUserPoint");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			
+			rset=pstmt.executeQuery();
+			if(rset.next()) {
+				userPoint = rset.getInt("POINT");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}System.out.println("userPoint : "+userPoint);
+		return userPoint;
+	}
 }

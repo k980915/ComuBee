@@ -154,7 +154,9 @@
 	SET POINT = POINT+10
 	WHERE USERID = ?
 	</entry>
-
+	<entry key="getUserPoint">
+	SELECT POINT FROM MEMBERINFO WHERE USERID =?
+	</entry>
 
 
 

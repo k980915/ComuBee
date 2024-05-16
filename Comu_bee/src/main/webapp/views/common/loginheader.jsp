@@ -158,7 +158,7 @@ String contextPath = request.getContextPath();
 		%>
 		<div id="user-info">
 			<b>${loginUser.userId }님 환영합니다!</b>  <br>
-			<a href="${contextPath}/myPage.us" style="color: black;" >마이페이지</a> |
+			<a href="${contextPath}/myPage.us?userId=${loginUser.userId}" style="color: black;" >마이페이지</a> |
 			<a href="<%=contextPath%>/logout.us" style="color: black;">로그아웃</a>
 		</div>
 	</div>
