@@ -159,10 +159,10 @@ img:hover {
 					<button type="submit" class="search-button">검색</button>
 				</form>
 			</div>
-			
 			<div>
 				<%@include file="/views/common/loginheader.jsp"%>
 			</div>
+			
 		</div>
 	</div>
 	<br>
