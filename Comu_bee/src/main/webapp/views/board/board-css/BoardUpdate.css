@@ -1,10 +1,5 @@
 @charset "UTF-8";
 
-/* 페이지네이션 링크 색상 */
-.pagination a {
-    color: black;
-}
-
 /* Flex 레이아웃을 위한 폼 그룹 컨테이너 */
 .form-group {
     display: flex;
@@ -41,7 +36,7 @@
     margin: auto;
     padding: 20px;
     background-color: #fff;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);  /* 음영 더 진하게 수정 */
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
 }
 
@@ -71,13 +66,10 @@ button:focus {
     color: black !important;
 }
 
-.boardBody, .boardSide {
-    display: inline-block;
+.boardBody {
+    display: block;
     vertical-align: top;
     padding: 10px;
-}
-
-.boardBody {
     width: 70%;
     background-color: #f4f4f4;
     padding: 20px;
@@ -86,14 +78,7 @@ button:focus {
     margin: 0 auto; /* 중앙 정렬 */
 }
 
-.boardSide {
-    width: 28%;
-    border-left: 2px solid #8F684F;
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
-.boardMenuBar, .contentPopUp, .bestPopUp, .newPopUp {
+.boardMenuBar {
     margin-bottom: 20px;
     padding: 10px;
     background-color: #8F684F;
@@ -105,18 +90,15 @@ h3 {
     margin-bottom: 10px;
 }
 
-.table, .boardMain table, .popUp {
+.table {
     width: 100%;
     border-collapse: collapse;
 }
 
-.table th, .table td, .popUp th, .popUp td {
+.table th, .table td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
-}
-
-.table th, .popUp th {
     background-color: #f8f8f8;
 }
 
@@ -141,62 +123,9 @@ textarea, input[type="text"], select {
     resize: none;
 }
 
-.replyWriter {
-    width: 10%;
-    padding: 10px;
-    background-color: #8F684F;
-    border: 1px solid #eee;
-    white-space: nowrap;
-}
-
-.replyContent {
-    width: 75%;
-    padding: 10px;
-    background-color: #fafafa;
-    border: 1px solid #eee;
-}
-
-.replyDate {
-    width: 15%;
-    padding: 10px;
-    background-color: #fafafa;
-    border: 1px solid #eee;
-    white-space: nowrap;
-}
-
-.writtenReply {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.writtenReply th, .writtenReply td {
-    border-left: 2px solid #ccc;
-    border-right: 2px solid #ccc;
-    border-top: 2px solid #ccc;
-    padding: 10px;
-    text-align: left;
-    background-color: #E6D5B5;
-}
-
-.writtenReply tr:last-child th, .writtenReply tr:last-child td {
-    border-bottom: 2px solid #ccc;
-}
-
-.writtenReply th:first-child, .writtenReply td:first-child {
-    border-left: none;
-}
-
-.writtenReply th:last-child, .writtenReply td:last-child {
-    border-right: none;
-}
-
-.writtenReply tr:first-child th, .writtenReply tr:first-child td {
-    border-top: none;
-}
-
-.boardTitle td, .boardCreateDate, .boardCount, .boardLike, .boardContent span, .boardReply textarea, .boardReply button, .writtenReply th, .writtenReply td {
-    color: black;
-    background-color: transparent;
+.center-table {
+    margin: 0 auto;
+    max-width: 90%;
 }
 
 .boardMain button, .boardReply button {
@@ -213,44 +142,6 @@ textarea, input[type="text"], select {
     background-color: #e0d0c0;
 }
 
-.table th, .table td, .boardMain table th, .boardMain table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-}
-
-.center-table {
-    margin: 0 auto;
-    max-width: 90%;
-}
-
-.replyButton {
-    background-color: #E0DFE6;
-}
-
-.replyButton:hover {
-    background-color: #e0d0c0;
-}
-
-.boardMain .recommendButton, .boardMain .scrapButton {
-    float: right;
-    margin-left: 5px;
-    background-color: #E0DFE6;
-}
-
-.boardMain .recommendButton:hover, .boardMain .scrapButton:hover {
-    background-color: #e0d0c0;
-}
-
-.recommendButton .recommendText {
-    color: black;
-}
-
-.edit-buttons {
-    white-space: nowrap;
-}
-
-/* 제목 입력 칸을 더 길게 조정 */
 .boardFreeTitle input[type="text"] {
     width: 100%;
 }
@@ -265,4 +156,11 @@ textarea, input[type="text"], select {
 .table-row td {
     flex: 1;
     padding: 8px;
+}
+
+/* 제목 및 첨부파일 헤더 크기 줄이기 */
+.table-row .small-header {
+    flex: 0 0 10%; /* 기본 크기보다 줄임 */
+    padding: 8px;
+    background-color: #E0DFE6;
 }
