@@ -190,6 +190,23 @@ public class UserService {
 		JDBCTemplate.close(conn);
 		return boardPointChecksu;
 	}
+	public int replyPoint(String userId) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+
+		int result = new UserDao().replyPoint(userId,conn);
+		
+		
+		if(result>0) {//성공시 확정
+			JDBCTemplate.commit(conn); 
+		}else {//실패시 되돌리기
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		
+		System.out.println(result+"Ser");
+		return result;
+	}
 
 	
 	

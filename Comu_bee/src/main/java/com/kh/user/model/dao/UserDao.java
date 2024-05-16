@@ -466,4 +466,26 @@ public class UserDao {
 		return result;
 	}
 
+	public int replyPoint(String userId, Connection conn) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("replyPoint");
+		int result = 0;
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch blosck
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+
+		System.out.println(result+"Dao");
+		return result;
+	}
+
 }
