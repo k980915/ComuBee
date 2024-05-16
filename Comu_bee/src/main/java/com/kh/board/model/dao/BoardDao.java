@@ -799,7 +799,6 @@ public class BoardDao {
 			pstmt.setString(2, at.getChangeName());
 			pstmt.setString(3, at.getAtFilePath());
 			pstmt.setInt(4, at.getAtNo());
-			
 			result=pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -163,7 +163,7 @@
 <!-- 					<tbody> -->
 <%-- 						<c:forEach var="p" items="${pcList}"> --%>
 <!-- 							<tr> -->
-<%-- 								<td> <input type=hidden value='${p.contentsId}'> </td> --%>
+<%-- 								<td> <img src="${contextPath}${p.posterPath}"><input type=hidden value='${p.contentsId}'> </td> --%>
 <!-- 								<td> -->
 
 <!-- 								</td> -->
