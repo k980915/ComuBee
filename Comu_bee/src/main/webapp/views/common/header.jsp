@@ -34,12 +34,6 @@ body::before {
 	z-index: -1;
 }
 
-.outer {
-	margin: auto;
-	margin-left: 200px;
-	margin-right: 200px;
-}
-
 .outer a {
 	color: black;
 }
@@ -61,8 +55,8 @@ body::before {
 
 .title {
 	margin-left: 10px;
-	font-size: 50px;
-	font-weight: 900;
+	font-size: 55px;
+	font-weight: 700;
 	border: none;
 }
 
@@ -141,9 +135,10 @@ img:hover {
 				<table id="logo">
 					<tr>
 						<td><img src="resources/uploadFiles/logo.png" id="logo-img"></td>
-						<td><h1 class="title">
+						<td><span class="title">
 								COMU-BEE <br>
-							</h1></td>
+							</span>
+						</td>
 						<td></td>
 					</tr>
 				</table>

@@ -47,6 +47,7 @@
         table {
             font-weight: bold;
         }       
+        
         #trailer:hover {
             cursor: pointer;
         }
@@ -56,15 +57,18 @@
             transition: none;
         }
         #snd #trd {
-		    border: none; /* trd 테이블의 모든 테두리를 없앱니다. */
+		    border: none;
 		}
-		
+		#snd tr:nth-child(2){
+			background-color:#FAF0E0;
+		}
 		#snd #trd td {
-		    border: 2px solid white; /* trd 테이블의 내부 td 요소의 테두리를 설정합니다. */
+		    border: 0.5px solid brown;
 		}
         #snd th{
         	font-size : 25px;
         	border : 2px solid white;
+        	background-color: #8F684F;
         }
         #reply, #reply td{
         	border : 3px solid white;
@@ -72,16 +76,26 @@
         .outer h1{
         	font-size: 50px;      	
         	font-weight: bold;
-        }
-        
+        }     
+		.detail-outer {
+			margin-left: 400px;
+			margin-right: 400px;
+		}
+		.detail-outer a{
+			color:black;
+		}
+		.detail-outer h1{
+			font-weight:900;
+		}
+		#move{
+			background-color:#FAF0E0;
+		}
 
-        
-        
     </style>
 </head>
 <body>
     <%@include file="/views/common/header.jsp" %>
-    <div class="outer">
+    <div class="detail-outer">
         <form action="${contextPath}/detail.co">
             <table style="width: 100%;" id="inform">
                 <c:forEach var="c" items="${list}">
@@ -102,7 +116,7 @@
                         </tr>
                         <tr>
                             <td colspan="3" rowspan="2">
-                                <table style="height: 600px;" id="snd"> 
+                                <table style="height: 600px;" id="snd">
                                     <tr>
                                         <th>작품정보</th>
                                         <th><a href="${contextPath}/list.rv?currentPage=1">커뮤니티</a></th>
@@ -147,29 +161,25 @@
             
             <div class="review">
                 <div>
-                    <a href="${contextPath}/list.rv?currentPage=1"><h1>한줄 리뷰</h1></a> 
+                    <a href="${contextPath}/list.rv?currentPage=1"><h1>최근 한줄 리뷰</h1></a> 
                 </div> <br>
                 <table id="reply">
                     <c:forEach var="c" items="${boardList}" varStatus="loop">
                         <c:if test="${c.contentsId eq param.contentsId}">
                             <c:if test="${loop.index <= 4}">
                                 <tr>
-                                    <td width="800px;">작성자 : ${c.userId }</td>
-                                    <td>작성일 : ${c.createDate }</td>
-                                    <td rowspan="2" width="90px;" align="center" height="100px"">
-                                        좋아요 ${c.boardLike }
-                                    </td>
-                                   
+                                    <td width="800px;" height="50px" style="color:white; background-color:#8F684F;">작성자 : ${c.userId }</td>
+                                    <td style="color:white; background-color:#8F684F;">작성일 : ${c.createDate }</td>
                                 </tr>
                                 <tr>
-                                    <td id="move" colspan="2" width="1000px;">${c.boardContent }</td>
+                                    <td height="50px" id="move" colspan="2" width="1000px;">${c.boardContent }</td>
                                 </tr>
                             </c:if>
                         </c:if>
                     </c:forEach>
                 </table>
             </div> <br><br><br><br>
-            <div class="link" width="1200px;" height="700px;">
+            <div class="link">
                 <c:forEach var="c" items="${list}">
                     <c:if test="${c.contentsId eq param.contentsId}">
                         <h1>트레일러 영상</h1> <br>
