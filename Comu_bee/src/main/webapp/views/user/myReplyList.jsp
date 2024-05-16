@@ -15,6 +15,12 @@
         .pagination a {
             color: black; 
         }
+        .boardHeader {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 20px;
+}
     </style>
 
 </head>
@@ -22,14 +28,15 @@
 <body>
 
 <%@ include file="/views/board/boardMenuBar.jsp" %>
-	<div class="boardTitle">
-		<h2>내가 쓴 댓글 </h2>	
-	</div>
+	
 
     <canvas class="my-4 w-100" id="myChart" width="10000" height="380"></canvas>
 
 
-
+<div class="container mt-4">
+<div class="boardTitle">
+		<h2>내가 쓴 댓글 </h2>	
+	</div>
     <div class="table-responsive small">
         <table class="table table-striped table-sm table-hover">
             <thead>
@@ -122,6 +129,7 @@
 			href="${contextPath}/scrabList.sc?myScrabCurrentPage=1&userId=${loginUser.userId}"
 			style="color: white;"> 찜 목 록 &nbsp;</a><label style="color: white;">&nbsp;
 			| &nbsp;</label>
+	</div>
 	</div>
 
 
