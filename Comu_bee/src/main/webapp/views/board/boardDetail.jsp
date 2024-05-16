@@ -74,8 +74,8 @@
 							</tr>
 							<tr>
 								<c:if test="${b.category eq '추천'}">
-									<td class="boardToContent" onclick="location.href='/detail.co?contentsId=${contentsId}'">
-										<span class="linkedContent">${b.contentsId} 보러가기</span>
+									<td class="boardToContent" onclick="${contextPath}/">
+										${b.contentsId} 보러가기
 									</td> 
 								</c:if>
 							</tr>
@@ -186,18 +186,9 @@
 					<tbody>
 						<c:forEach var="bpb" items="${bpbList}">
 							<tr>
-								<c:choose>
-									<c:when test="${b.category eq '리뷰'}">
-										<td colspan="5">${bpb.boardContent}(${bpb.boardLike})
-											<input type=hidden value='${bpb.boardNo}'>
-										</td>
-									</c:when>
-									<c:otherwise>
-										<td colspan="5">${bpb.title}(${bpb.boardLike})
-											<input type=hidden value='${bpb.boardNo}'>
-										</td>
-									</c:otherwise>
-								</c:choose>
+								<td colspan="5">${bpb.title}(${bpb.boardLike})
+									<input type=hidden value='${bpb.boardNo}'>
+								</td><!-- 추천수 표시 -->
 							</tr>
 						</c:forEach>
 						
@@ -217,20 +208,9 @@
 					<tbody>
 						<c:forEach var="npb" items="${npbList}">
 							<tr>
-								<c:choose>
-									<c:when test="${b.category eq '리뷰'}">
-										<td colspan="5">
-											${npb.boardContent}
-											<input type=hidden value='${npb.boardNo}'>
-										</td>
-									</c:when>
-									<c:otherwise>
-										<td colspan="5">
-											${npb.title}
-											<input type=hidden value='${npb.boardNo}'>
-										</td>
-										</c:otherwise>
-									</c:choose>
+								<td colspan="5">${npb.title}
+									<input type=hidden value='${npb.boardNo}'>
+								</td>
 							</tr>
 						</c:forEach>
 						
@@ -248,7 +228,7 @@
 	var userId11 = "${loginUser.userId}";
 		function updateBoard(){
 			var bno=${b.boardNo};
-			location.href="${contextPath}/update.bo?bno=${b.boardNo}"
+			location.href="${contextPath}/update.bo?bno=${b.boardNo}";
 		}
 		function deleteYN(){
 			var result=window.confirm("정말 삭제하시겠습니까?");
@@ -430,7 +410,6 @@
 						+bpbList[i].boardNo+"'></td>"
 						+"</tr>"
 					};
-					
 					$(".bestPopUp tbody").html(str);
 				},
 				error : function(){

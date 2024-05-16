@@ -68,12 +68,17 @@ public class BoardUpdateController extends HttpServlet {
 			HttpSession session = request.getSession();
 			if(result>0) {
 				if(at!=null) {
-						if(at!=null && at.getAtNo()!=0) {
+					session.setAttribute("alertMsg", "게시글 수정완료");
+
+					if(at!=null && at.getAtNo()!=0) {
 					// 기존 파일 삭제(파일 경로+원본파일(업로드된 이름)).delete
-							new File(savePath+multiRequest.getParameter("originFileName")).delete();					
-							}
+						new File(savePath+multiRequest.getParameter("originFileName")).delete();					
 						}
 					}
-			    }
+				}else {
+					session.setAttribute("alertMsg", "게시글 수정실패");
+					}
+			response.sendRedirect(request.getContextPath()+"/detail.bo?bno="+boardNo);
+		    }
     }
 }

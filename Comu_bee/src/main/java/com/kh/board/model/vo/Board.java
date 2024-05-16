@@ -80,17 +80,15 @@ public class Board {
 		this.count = count;
 	}
 	
-	public Board(int boardNo, String title, String boardContent) {
+	public Board(int boardNo, String title) {
 		super();
 		this.boardNo = boardNo;
 		this.title = title;
-		this.boardContent=boardContent;
 	}
-	public Board(int boardNo, String title, String boardContent, int boardLike) {
+	public Board(int boardNo, String title, int boardLike) {
 		super();
 		this.boardNo = boardNo;
 		this.title = title;
-		this.boardContent=boardContent;
 		this.boardLike=boardLike;
 	}
 	public int getBoardNo() {

@@ -25,7 +25,7 @@
 						<input type="hidden" name="boardCategory" value="${category}">
 						<table border="1px solid black">
 							<thead>
-								<c:if test="${category ne '리뷰'}">
+								<c:if test="${category ne 'RECOMMEND'}">
 									<tr>
 										<th>제목</th>
 										<td class="boardFreeTitle" colspan="4">
@@ -51,9 +51,15 @@
 									<th>첨부파일</th>
 									<td colspan="3">
 										<c:if test="${at!=null}">
-											${at.originName}
-											 <input type="hidden" name="originFileNo" value="${at.atNo}">
-											 <input type="hidden" name="originFileName" value="${at.changeName}">
+											<c:forEach var="ats" items="${at}" >
+											${ats.originName}
+											<!-- 게시글에 첨부 파일이 있었던 경우, 해당 첨부 파일 정보를 등록한 DB에 있는 정보에 수정이 일어나야 한다.
+												 때문에 해당 데이터 식별자 용으로 fileNo를 전달해야 하고 또한 서버에 업로드된 파일이 필요 없어졌으니
+												 삭제를 위해 해당 파일명이 필요하다(서버에 업로드된 파일명)
+											 -->
+											 <input type="hidden" name="originFileNo" value="${ats.atNo}">
+											 <input type="hidden" name="originFileName" value="${ats.changeName}">
+											</c:forEach>
 										</c:if>
 											<input type="file" name="reUploadFile">					
 									</td>
