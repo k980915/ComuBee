@@ -63,6 +63,7 @@
 	width: 100px;
 }
 </style>
+
 <body>
 	<%@ include file="/views/common/header.jsp"%>
 
@@ -137,18 +138,17 @@
 						}
 						
 					},
-					error: function(){
-						alert("에러");
-					}
+					
 
-					alert(alertMessage);
+					
 
-				},
+				
 				error : function() {
 					alert("잘못된 정보입니다. 다시 입력해주세요.");
 				}
 
 			});
+				
 		}
 	</Script>
 
