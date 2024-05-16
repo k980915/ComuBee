@@ -37,7 +37,7 @@
                     <th scope="col">글 번호</th>
                     <th scope="col">댓글 번호</th>
                     <th scope="col">글쓴이</th>
-                    <th scope="col">댓그 내용</th>
+                    <th scope="col">댓글 내용</th>
                     <th scope="col">작성일</th>
                 </tr>                 	
             </thead>
@@ -56,7 +56,7 @@
 					</c:when>
 					<c:otherwise>
 						<tr>
-							<td>조회된 데이터가 없습니다.</td>
+							<td colspan="5">조회된 데이터가 없습니다.</td>
 						</tr>
 					</c:otherwise>
 				</c:choose>	
@@ -108,14 +108,21 @@
 		}
 	</script>
 	
-<div class="container mt-4">
-    <form action="${pageContext.request.contextPath}/board.se" method="get">
-        <div class="input-group mb-3">
-            <input type="text" name="title" class="form-control" placeholder="게시글 검색" aria-label="게시글 검색" aria-describedby="button-addon2">
-            <button class="btn btn-outline-secondary" type="submit" id="button-addon2">검색</button>
-        </div>
-    </form>
-</div>
+<div align="center">
+		<a
+			href="${contextPath}/myBoardList.us?myBoardCurrentPage=1&userId=${loginUser.userId}"
+			style="color: white;"> 내가 쓴 글 &nbsp;</a><label style="color: white;">&nbsp;
+			| &nbsp;</label> <a
+			href="${contextPath}/myReplylist.us?myReplyCurrentPage=1&userId=${loginUser.userId}"
+			style="color: white;"> 내가 쓴 댓글 &nbsp;</a><label style="color: white;">&nbsp;
+			| &nbsp;</label> <a
+			href="${contextPath}/messageMain.ms?messageNewCurrentPage=1&userId=${loginUser.userId}"
+			style="color: white;"> 쪽 지 &nbsp;</a><label style="color: white;">&nbsp;
+			| &nbsp;</label> <a
+			href="${contextPath}/scrabList.sc?myScrabCurrentPage=1&userId=${loginUser.userId}"
+			style="color: white;"> 찜 목 록 &nbsp;</a><label style="color: white;">&nbsp;
+			| &nbsp;</label>
+	</div>
 
 
 </body>

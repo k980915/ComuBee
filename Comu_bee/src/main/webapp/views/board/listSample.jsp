@@ -29,29 +29,23 @@
             <thead>
                 <tr>
                     <th scope="col">번호</th>
-                    <th scope="col">제목</th>
+                    <c:if test="${category eq '추천'}">
+                    	<th scope="col">게시판 종류</th>
+                    </c:if>
+                    <c:if test="${category ne '리뷰'}">
+                    	<th scope="col">제목</th>
+                    </c:if>
+                    <c:if test="${category eq '리뷰'}">
+                    	<th scope="col">내용</th>
+                    </c:if>
                     <th scope="col">작성자</th>
                     <c:if test="${loginUser.userId eq 'admin'}">
-                    <th scope="col" style="width: 100px;">관리</th>
+                    	<th scope="col" style="width: 100px;">관리</th>
                     </c:if>
                     <th scope="col">작성일</th>
                     <th scope="col">조회수</th>
                     <th scope="col" class="text-center">추천</th>
                 </tr>
-                
-                <c:if test="${not category eq '공지'}">
-                    <c:forEach items="${noList}" var="li">
-                        <tr>
-                            <td class="text-center">${li.boardNo}</td>
-                            <td colspan="2">${li.title}</td>
-                            <td>${li.userId}</td>
-                            <td>${li.createDate}</td>
-                            <td>${li.count}</td>
-                            <td class="text-center">${li.boardLike}</td>
-                        </tr>
-                    </c:forEach>
-                </c:if>
-                
             </thead>
             <tbody>
                 <c:choose>
@@ -59,7 +53,17 @@
                         <c:forEach items="${list}" var="li">
                             <tr>
                                 <td class="text-center">${li.boardNo}</td>
-                                <td class="boardListTitle">${li.title}</td>
+                                <c:if test="${category eq '추천'}">
+                                	<td>${li.category}게시판</td>
+                                </c:if>
+                                <c:choose>
+	                                <c:when test="${li.category ne '리뷰'}">
+	                                	<td class="boardListTitle">${li.title}</td>
+	                                </c:when>
+	                                <c:otherwise>
+	                                	<td class="boardListTitle">${li.boardContent}</td>
+	                                </c:otherwise>
+                                </c:choose>
                                 <td id="adminuserId">${li.userId}</td>
                                 
                                 <c:if test="${loginUser.userId eq 'admin'}">
@@ -101,7 +105,7 @@
             </c:forEach>
             <c:if test="${pi.currentPage lt pi.maxPage}">
                 <li class="page-item">
-                    <button aria-label="Next" onclick="next();" >
+                    <button aria-label="Next" onclick="next();">
                         <span aria-hidden="true">&raquo;</span>
                         <span class="sr-only">Next</span>
                     </button>

@@ -40,33 +40,27 @@ public class BoardDetailController extends HttpServlet {
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 		request.setCharacterEncoding("UTF-8");
 		int bno = Integer.parseInt(request.getParameter("bno"));
-		String userId = request.getParameter("userId");
 		BoardService bs = new BoardService();
 		HttpSession session = request.getSession();
 		int result=new BoardService().increaseCount(bno);
-		int scrabChecked = bs.scrabCheck(bno,userId);
 		if(result>0) {
 			ArrayList<Category> cList = bs.selectCategoryList();
 			Board b = new BoardService().selectBoard(bno);
-//			System.out.println(b);
 			// 첨부파일 정보도 조회하기
-			ArrayList<Attachment> atList = bs.selectAttachment(bno);
-//			System.out.println(at);
+			Attachment at = bs.selectAttachment(bno);
 			ArrayList<Contents> bestContList=bs.bestContList();
 			ArrayList<Board> newPopList=bs.newPopList(b);
 			ArrayList<Board> bestPopList=bs.bestPopList(b);
 			ArrayList<Reply> rList = bs.replyList(bno);
 			ArrayList<Board> list = (ArrayList<Board>)session.getAttribute("list");
 			request.setAttribute("b",b);
-			request.setAttribute("atList",atList);
+			request.setAttribute("at",at);
 			request.setAttribute("cList", cList);
 			request.setAttribute("rList", rList);
 			request.setAttribute("newPopList", newPopList);
 			request.setAttribute("bestPopList", bestPopList);
 			request.setAttribute("bestContList", bestContList);
 			request.setAttribute("list",list);
-			request.setAttribute("scrabChecked", scrabChecked);
-			System.out.println("scrabChecked : "+scrabChecked);
 			request.getRequestDispatcher("views/board/boardDetail.jsp").forward(request, response);
 			
 		}else {

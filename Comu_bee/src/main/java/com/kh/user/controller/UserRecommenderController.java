@@ -1,4 +1,4 @@
-package com.kh.scrab.controller;
+package com.kh.user.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,20 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
-import com.kh.board.model.service.BoardService;
+import com.kh.user.model.service.UserService;
 
 /**
- * Servlet implementation class ScrabViewController
+ * Servlet implementation class UserIdCheckController
  */
-@WebServlet("/scrabUpdate.sc")
-public class ScrabViewController extends HttpServlet {
+@WebServlet("/recomCheck.us")
+public class UserRecommenderController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ScrabViewController() {
+    public UserRecommenderController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,16 +28,17 @@ public class ScrabViewController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int bno = Integer.parseInt(request.getParameter("bno"));
-		BoardService bs = new BoardService();
-		int result=0;
-		int like=bs.countLike(bno);
-		System.out.println("추천갯수 : "+like);
-		result=bs.updateBoardLike(bno,like);
-		if(result>0) {
-			response.setContentType("json/application; charset=UTF-8");
-			new Gson().toJson(like,response.getWriter());
+		String recommender = request.getParameter("recommender");
+		int result = new UserService().recomCheck(recommender);
+		
+		String responseStr="";
+		
+		if(result>0) { //포인트 추가
+			responseStr ="NNNNN";
+		}else { //포인트 추가 X
+			responseStr="NNNNY";
 		}
+		response.getWriter().print(responseStr); 
 	}
 
 	/**

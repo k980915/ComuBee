@@ -16,19 +16,21 @@ import com.kh.message.model.vo.Message;
 @WebServlet("/sendMessage.ms")
 public class MessageSendController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public MessageSendController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public MessageSendController() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
@@ -49,13 +51,10 @@ public class MessageSendController extends HttpServlet {
 		Message m = new Message(senderId, receiverId,message);
 		int result=new MessageService().sendMessage(m);
 		if(result>0) {
-			request.setAttribute("alertMsg", "메시지 전송 성공");
+			request.setAttribute("sendAlert", "메시지 전송 성공");
 		}else {
-			request.setAttribute("alertMsg", "메시지 전송 실패");
+			request.setAttribute("sendAlert", "메시지 전송 실패");
 		}
-		response.sendRedirect(request.getContextPath());
-		
-		
+		request.getRequestDispatcher("views/message/writeMessageView.jsp").forward(request, response);
 	}
-
 }

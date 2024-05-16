@@ -54,6 +54,7 @@ public class FindPwdController extends HttpServlet {
 		
 		System.out.println(userPwd);
 
+
 			if (u!=null &&u.getUserId().equals(userId)&& u.getUserName().equals(userName) && u.getUserPwd().equals(userEmail2)) {
 				
 				response.setContentType("text/html;charset=UTF-8");

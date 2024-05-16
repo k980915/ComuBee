@@ -105,35 +105,40 @@
 	
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
-
-	<Script>
-		function findUserPwd() {
-
-			var findUserId = $("#userIdf").val();
-			var findUserName = $("#userNamef").val();
-			var findUserEmail = $("#userEmailf").val();
-			console.log(findUserId);
-			console.log(findUserName);
-			console.log(findUserEmail);
-
-			$.ajax({
-				url : "${contextPath}/findPwd.us",
-				type : "post",
-				data : {
-					findUserId : findUserId,
-					findUserName : findUserName,
-					findUserEmail : findUserEmail
-				},
-				success : function(userPwd) {
-
-					console.log("통신 성공");
-					if (userPwd != null) {
+	
+		
+		<Script>
+			function findUserPwd(){
+				
+				var findUserId =$("#userIdf").val();
+				var findUserName=$("#userNamef").val();
+				var findUserEmail=$("#userEmailf").val();
+				console.log(findUserId);
+				console.log(findUserName);
+				console.log(findUserEmail);
+				
+				$.ajax({
+					url:"${contextPath}/findPwd.us",
+					type:"post",
+					data:{
+						findUserId: findUserId,
+						findUserName: findUserName,
+						findUserEmail: findUserEmail
+					},
+					success: function(userPwd){
 						
-						var alertMessage = "사용자 비밀번호는 " + userPwd + "입니다";
-
-					} else {
-
-						alert("실패");
+						console.log("통신 성공");
+						
+						if(userPwd != null){
+						alert("사용자의 비밀번호는 "+userPwd+"입니다");
+							
+						}else{
+						alert("사용자의 정보를 다시 입력하세요");
+						}
+						
+					},
+					error: function(){
+						alert("에러");
 					}
 
 					alert(alertMessage);

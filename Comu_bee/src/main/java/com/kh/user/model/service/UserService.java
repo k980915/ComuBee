@@ -163,6 +163,16 @@ public class UserService {
 		
 		return list;
 	}
+	//추천인 제도 구문
+	public int recomCheck(String recommender) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = new UserDao().recomCheck(recommender,conn);
+		
+		
+		JDBCTemplate.close(conn);
+		return result;
+	}
 	
 	
 	
