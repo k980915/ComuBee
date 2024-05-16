@@ -75,6 +75,13 @@ public class User {
 	
 	
 	
+	
+
+
+
+
+
+
 
 	public User(String userId, String userPwd) {
 		super();

@@ -357,8 +357,11 @@ public class UserDao {
 
 			rset = pstmt.executeQuery();
 			if (rset.next()) {
-				u = new User(
-						rset.getString("USERPWD"));
+				u = new User(rset.getString("USERID"),
+						rset.getString("USERNAME"),
+						rset.getString("USEREMAIL"),
+						rset.getString("USERPWD"),
+						rset.getString("STATUS"));
 						
 						
 			}
