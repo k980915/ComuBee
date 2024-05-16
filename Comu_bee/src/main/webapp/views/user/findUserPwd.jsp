@@ -7,62 +7,7 @@
 <title>Insert title here</title>
 </head>
 
-<style>
-#userIdf {
-	width: 175px;
-	height: 30px;
-	font-size: 15px;
-	border: 0;
-	border-radius: 15px;
-	outline: none;
-	padding-left: 10px;
-	background-color: rgb(233, 233, 233);
-}
 
-#userNamef {
-	width: 175px;
-	height: 30px;
-	font-size: 15px;
-	border: 0;
-	border-radius: 15px;
-	outline: none;
-	padding-left: 10px;
-	background-color: rgb(233, 233, 233);
-}
-
-#userEmailf {
-	width: 175px;
-	height: 30px;
-	font-size: 15px;
-	border: 0;
-	border-radius: 15px;
-	outline: none;
-	padding-left: 10px;
-	background-color: rgb(233, 233, 233);
-}
-
-.gradient-btn {
-	display: inline-block;
-	padding: 1em 2em;
-	border-radius: 20px;
-	color: #b2876f;
-	margin-top: 2rem;
-	font-weight: bold;
-	font-size: 15px;
-	letter-spacing: 2px;
-	text-transform: uppercase;
-	text-decoration: none;
-	background: linear-gradient(to right, rgba(#b2876f, 0) 25%,
-		rgba(#b2876f, .8) 75%);
-	background-position: 1% 50%;
-	background-size: 400% 300%;
-	border: 1px solid #b2876f; @ include transition; &: hover { color :
-	white;
-	color: #fff;
-	background-position: 99% 50%;
-	width: 100px;
-}
-</style>
 <body>
 	<%@ include file="/views/common/header.jsp"%>
 
@@ -137,18 +82,17 @@
 						}
 						
 					},
-					error: function(){
-						alert("에러");
-					}
+					
 
-					alert(alertMessage);
+					
 
-				},
+				
 				error : function() {
 					alert("잘못된 정보입니다. 다시 입력해주세요.");
 				}
 
 			});
+				
 		}
 	</Script>
 

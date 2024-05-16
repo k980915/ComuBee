@@ -33,6 +33,8 @@ public class UserIdCheckController extends HttpServlet {
 		
 		String responseStr="";
 		
+		
+		
 		if(flag) {
 			responseStr ="NNNNN";
 		}else {

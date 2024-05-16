@@ -160,7 +160,7 @@ table {
 				</tr>
 				<tr>
 					<td>* 비밀번호</td>
-					<td><input type="password" name="userPwd" id="userPwd"
+					<td><input type="password" name="userPwd" id="userPwd" oninput="pwCheck()"
 						required></td>
 					<td></td>
 				</tr>
@@ -168,9 +168,10 @@ table {
 					<td colspan="3"><hr></td>
 				</tr>
 				<tr>
-					<td>* 비밀번호확인</td>
-					<td><input type="password" name="pwChk" id="pwChk" required></td>
+					<td>* 비밀번호 확인</td>
+					<td><input type="password" name="pwChk" id="pwChk"  required></td>
 					<td></td>
+					<td> <span id="pwConfirm"></span></td>
 				</tr>
 				<tr>
 					<td colspan="3"><hr></td>
@@ -234,6 +235,12 @@ table {
 	<script>
 		function idCheck() {
 			var inputId = $("#userId").val();
+			
+			
+		        
+			console.log(inputId);
+			
+			
 			$.ajax({
 				url : "${contextPath}/idCheck.us",
 				data : {
@@ -256,6 +263,8 @@ table {
 
 		}
 	</script>
+		
+
 
 	<script>
 		function recomCheck() {
@@ -282,6 +291,17 @@ table {
 				}
 			});
 		}
+	</script>
+	
+	<script>
+	
+	function pwChk(){
+	    if($('#userPwd').val() == $('#pwChk').val()){
+	        $('#pwConfirm').text('비밀번호 일치').css('color', 'green')
+	    }else{
+	        $('#pwConfirm').text('비밀번호 불일치').css('color', 'red')
+	    }
+	}
 	</script>
 
 
