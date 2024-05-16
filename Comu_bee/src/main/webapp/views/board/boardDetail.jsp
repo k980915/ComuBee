@@ -17,30 +17,45 @@
 		
 		<div class="boardBody">
 			<div class="boardMenuBar">
-				<h3>${category}게시판</h3>
+				<h3>${b.category}게시판</h3>
 			</div>
 			<div class="boardMain">
 				<div class="boardTitle">
 					<table border="1px solid black">  
 						<thead>
-							<tr>
-								<c:if test="${category ne '리뷰'}">
-									<td>제목</td>
-									<td class="boardFreeTitle">${b.title}</td>
-								</c:if>
-								<c:if test="${loginUser.userId eq 'admin' or loginUser.userId eq b.userId}">
-									<td class="edit-buttons">
-										<button type="button" onclick="updateBoard();">수정</button>
-										<button type="button" onclick="deleteYN();">삭제</button>
-                                    </td>
-								</c:if>
-								<td class="boardCreateDate">${b.createDate}</td>
-							</tr>
-							<tr>
-								<td>작성자 : </td>
-								<td class="boardWriter" width="300" colspan="${loginUser.userId eq 'admin' or loginUser.userId eq b.userId ? '2' : '1'}">${b.userId}</td>
-								<td class="boardCount" width="150">조회수 : ${b.count}</td>
-							</tr>
+							<c:choose>
+								<c:when test="${b.category eq '리뷰'}">
+									<tr>
+										<td>작성자 : </td>
+										<td class="boardWriter" width="300">${b.userId}</td>
+																				<c:if test="${loginUser.userId eq 'admin' or loginUser.userId eq b.userId}">
+											<td class="edit-buttons">
+												<button type="button" onclick="updateBoard();">수정</button>
+												<button type="button" onclick="deleteYN();">삭제</button>
+		                                    </td>
+										</c:if>
+										<td class="boardCount" width="150">조회수 : ${b.count}</td>
+									</tr>
+								</c:when>
+								<c:otherwise>
+									<tr>
+										<td>제목</td>
+										<td class="boardFreeTitle">${b.title}</td>
+										<c:if test="${loginUser.userId eq 'admin' or loginUser.userId eq b.userId}">
+											<td class="edit-buttons">
+												<button type="button" onclick="updateBoard();">수정</button>
+												<button type="button" onclick="deleteYN();">삭제</button>
+		                                    </td>
+										</c:if>
+										<td class="boardCreateDate">${b.createDate}</td>
+									</tr>
+									<tr>
+										<td>작성자 : </td>
+										<td class="boardWriter" width="300" colspan="${loginUser.userId eq 'admin' or loginUser.userId eq b.userId ? '2' : '1'}">${b.userId}</td>
+										<td class="boardCount" width="150">조회수 : ${b.count}</td>
+									</tr>
+								</c:otherwise>
+							</c:choose>
 						</thead>
 						<tbody>
 							<tr>
@@ -55,7 +70,7 @@
 										<span class="recommendText boardLikeTotal">추천 수 : ${b.boardLike}</span>
 										<span class="recommendText">추천하기</span> 
 									</button> </td>
-								<td> <button onclick="scrab();">찜해놓기</button></td>
+								<td> <button class="scrabButton" onclick="scrab();">찜해놓기</button></td>
 							</tr>
 							<tr>
 								<c:if test="${b.category eq '추천'}">
@@ -63,6 +78,19 @@
 										${b.contentsId} 보러가기
 									</td> 
 								</c:if>
+							</tr>
+							<tr>
+								<th>첨부파일</th><!-- 첨부파일이 있는 경우와 없는 경우 처리하기 -->
+								<td colspan="3">
+									<c:choose>
+										<c:when test="${empty at}">
+											첨부파일이 없습니다.
+										</c:when>
+										<c:otherwise>
+											<a download="${at.changeName}" href="${contextPath}${at.atFilePath}${at.changeName}">${at.originName}</a>
+										</c:otherwise>
+									</c:choose>
+								</td>
 							</tr>
 						</tbody>
 					</table>
@@ -132,17 +160,17 @@
 							<th onclick="searchNewCont();">최신</th>
 						</tr>
 					</thead>
-					<tbody>
-						<c:forEach var="p" items="${pcList}">
-							<tr>
-								<td> <input type=hidden value='${p.contentsId}'> </td>
-								<td>
+<!-- 					<tbody> -->
+<%-- 						<c:forEach var="p" items="${pcList}"> --%>
+<!-- 							<tr> -->
+<%-- 								<td> <input type=hidden value='${p.contentsId}'> </td> --%>
+<!-- 								<td> -->
 
-								</td>
-							</tr>
-						</c:forEach>
+<!-- 								</td> -->
+<!-- 							</tr> -->
+<%-- 						</c:forEach> --%>
 						
-					</tbody>
+<!-- 					</tbody> -->
 				</table>		
 			</div>
 			<div class="bestPopUp">
@@ -319,21 +347,7 @@
                 }
             });
         }
-        function scrabUpdate(){
-            var tr="";
-            $.ajax({
-                url : "scrabUpdate.sc",
-                data : {
-                    bno : ${b.boardNo}
-                },
-                success : function(like){
-                    $(".boardLikeTotal").text(like);
-                },
-                error : function(){
-                    console.log("통신 오류");
-                }
-            });
-        }
+    
 		function recommendBoard(){
 			if('${loginUser.userId}'==''){
 				alert("추천은 로그인 후 이용 가능합니다.");

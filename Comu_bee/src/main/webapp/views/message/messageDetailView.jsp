@@ -22,7 +22,9 @@
 	margin-left: 20px;
 	/* Adjust the margin to push the buttons to the right */
 }
-
+.readCheck:hover {
+    cursor: pointer;
+}
 .slide {
 	float: right;
 }
@@ -37,10 +39,19 @@
 #messages-area-1, #messages-area-2 {
 	margin-bottom: 0; /* 두 번째 테이블과의 하단 간격 제거 */
 }
+#tarea {
+    padding: 10px;
+    color: #666;
+    border: 1px solid #ddd;
+  	background-color: #FAF0E0;
+}
 </style>
 </head>
 <body>
 	<%@ include file="/views/common/header.jsp"%>
+	<button class="btn btn-outline-secondary create-post-button" id="sendView" onclick="sendList();">내가 보낸 쪽지</button>
+	<button class="btn btn-outline-secondary create-post-button" id="receiveView" onclick="receiveList();">내가 받은 쪽지</button>
+	<button class="btn btn-outline-secondary create-post-button" id="writeMessage" onclick="writeMessage();">쪽지 쓰기</button>
 
 	<div id="messages-area-1" class="table-responsive small">
 		<table border="1" align="center"
@@ -48,11 +59,11 @@
 
 			<thead>
 				<tr>
-					<td>쪽지 번호</td>
-					<td>작성자</td>
-					<td>받는이</td>
-					<td>작성일</td>
-					<td>확인여부</td>
+					<th>쪽지 번호</th>
+					<th>작성자</th>
+					<th>받는이</th>
+					<th>작성일</th>
+					<th>확인여부</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -66,14 +77,8 @@
 			</tbody>
 		</table>
 	</div>
-	<div id="messages-area-2" class="table-responsive small">
-		<table border="1" width=""
-			class="table table-striped table-sm table-hover">
-			<tr height="150">
-				<td class="text-center" width="150">쪽지 내용</td>
-				<td class="text-center">${ms.messageContent}</td>
-			</tr>
-		</table>
+	<div id="messages-area-2" class="table-responsive small" align="center">
+		${ms.messageContent}
 	</div>
 	<script>
 		$(".readCheck").click(function() {
@@ -98,6 +103,36 @@
 				}
 			});
 		});
+		function sendList(){
+			location.href='sendList.ms?userId=${loginUser.userId}&sendListCurrentPage=1';
+		}
+		function receiveList(){
+			location.href='receiveList.ms?userId=${loginUser.userId}&receiveListCurrentPage=1';
+		}
+		function writeMessage(){
+			location.href='goSendMessageForm.ms?userId=${loginUser.userId}';
+		}
 	</script>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<div align="center">
+		<a
+			href="${contextPath}/myBoardList.us?myBoardCurrentPage=1&userId=${loginUser.userId}"
+			style="color: white;"> 내가 쓴 글 &nbsp;</a><label style="color: white;">&nbsp;
+			| &nbsp;</label> <a
+			href="${contextPath}/myReplylist.us?myReplyCurrentPage=1&userId=${loginUser.userId}"
+			style="color: white;"> 내가 쓴 댓글 &nbsp;</a><label style="color: white;">&nbsp;
+			| &nbsp;</label> <a
+			href="${contextPath}/messageMain.ms?messageNewCurrentPage=1&userId=${loginUser.userId}"
+			style="color: white;"> 쪽 지 &nbsp;</a><label style="color: white;">&nbsp;
+			| &nbsp;</label> <a
+			href="${contextPath}/scrabList.sc?myScrabCurrentPage=1&userId=${loginUser.userId}"
+			style="color: white;"> 찜 목 록 &nbsp;</a><label style="color: white;">&nbsp;
+			| &nbsp;</label>
+	</div>
 </body>
 </html>
