@@ -70,7 +70,7 @@
 										<span class="recommendText boardLikeTotal">추천 수 : ${b.boardLike}</span>
 										<span class="recommendText">추천하기</span> 
 									</button> </td>
-								<td> <button onclick="scrab();">찜해놓기</button></td>
+								<td> <button class="scrabButton" onclick="scrab();">찜해놓기</button></td>
 							</tr>
 							<tr>
 								<c:if test="${b.category eq '추천'}">
@@ -324,21 +324,7 @@
                 }
             });
         }
-        function scrabUpdate(){
-            var tr="";
-            $.ajax({
-                url : "scrabUpdate.sc",
-                data : {
-                    bno : ${b.boardNo}
-                },
-                success : function(like){
-                    $(".boardLikeTotal").text(like);
-                },
-                error : function(){
-                    console.log("통신 오류");
-                }
-            });
-        }
+    
 		function recommendBoard(){
 			if('${loginUser.userId}'==''){
 				alert("추천은 로그인 후 이용 가능합니다.");

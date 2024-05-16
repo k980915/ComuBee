@@ -42,7 +42,7 @@ public class MessageReceiveListController extends HttpServlet {
 		int endPage; //페이지 하단에 보여질 페이징바의 끝수
 		
 		String userId=request.getParameter("userId");
-		listCount = new MessageService().sendMessageCount(userId);
+		listCount = new MessageService().receiveMessageCount(userId);
 		//currentPage 현재 페이지정보 
 		currentPage = Integer.parseInt(request.getParameter("receiveListCurrentPage"));
 		

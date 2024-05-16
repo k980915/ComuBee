@@ -65,7 +65,6 @@ public class MessageSendListController extends HttpServlet {
 		ArrayList<Message> list = new MessageService().selectSendMessage(pi,userId);
 		request.setAttribute("list", list);
 		request.setAttribute("pi", pi);
-		
 		request.getRequestDispatcher("views/message/sendMessageView.jsp").forward(request, response);
 		
 	}
