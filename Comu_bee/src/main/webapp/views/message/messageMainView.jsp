@@ -39,12 +39,12 @@
 
 			<thead>
 				<tr>
-					<td>쪽지 번호</td>
-					<td>작성자</td>
-					<td>받는이</td>
-					<td>내용</td>
-					<td>작성일</td>
-					<td>확인여부</td>
+					<th>쪽지 번호</th>
+					<th>작성자</th>
+					<th>받는이</th>
+					<th>내용</th>
+					<th>작성일</th>
+					<th>확인여부</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -53,16 +53,16 @@
 						<c:forEach var="m" items="${list}">
 							<tr>
 								<td class="text-center">${m.mNo}</td>
-								<td class="boardListTitle">${m.sendName }</td>
+								<td >${m.sendName }</td>
 								<td>${m.receiveName}</td>
 								<c:choose>
 										<c:when test="${fn:length(m.messageContent) > 10}">
 											<c:set var="shortenedContent"
 												value="${fn:substring(m.messageContent, 0, 10)}..." />
-											<td>${shortenedContent }</td>
+											<td class="boardListTitle">${shortenedContent }</td>
 										</c:when>
 										<c:otherwise>
-											<td>${m.messageContent }</td>
+											<td class="boardListTitle">${m.messageContent }</td>
 										</c:otherwise>
 									</c:choose>
 								<td>${m.sendDate }</td>
@@ -72,7 +72,7 @@
 					</c:when>
 					<c:otherwise>
 						<tr>
-							<td colspan="5">새로운 쪽지가 없습니다</td>
+							<td colspan="6">새로운 쪽지가 없습니다</td>
 						</tr>
 					</c:otherwise>
 				</c:choose>
@@ -258,5 +258,20 @@
  */ 
 		
 	</script>
+	<div align="center">
+		<a
+			href="${contextPath}/myBoardList.us?myBoardCurrentPage=1&userId=${loginUser.userId}"
+			style="color: white;"> 내가 쓴 글 &nbsp;</a><label style="color: white;">&nbsp;
+			| &nbsp;</label> <a
+			href="${contextPath}/myReplylist.us?myReplyCurrentPage=1&userId=${loginUser.userId}"
+			style="color: white;"> 내가 쓴 댓글 &nbsp;</a><label style="color: white;">&nbsp;
+			| &nbsp;</label> <a
+			href="${contextPath}/messageMain.ms?messageNewCurrentPage=1&userId=${loginUser.userId}"
+			style="color: white;"> 쪽 지 &nbsp;</a><label style="color: white;">&nbsp;
+			| &nbsp;</label> <a
+			href="${contextPath}/scrabList.sc?myScrabCurrentPage=1&userId=${loginUser.userId}"
+			style="color: white;"> 찜 목 록 &nbsp;</a><label style="color: white;">&nbsp;
+			| &nbsp;</label>
+	</div>
 </body>
 </html>

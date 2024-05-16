@@ -16,7 +16,7 @@ FROM (
 	
 </entry>
 <entry key="selectReceiveMessage">
-	SELECT * 
+SELECT * 
 FROM (
 	SELECT ROWNUM RNUM,S.* 
 	FROM (SELECT*FROM MESSAGE WHERE RECEIVENAME=?
