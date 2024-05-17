@@ -47,7 +47,7 @@ public class FreeListController extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("category", "자유");
 		String category=(String)session.getAttribute("category");
-		request.setAttribute("cat", "fr");
+		session.setAttribute("cat", "fr");
 		//listCount - 현재 게시글 개수 - DB에서 조회해 오기
 		listCount = new BoardService().listCount(category);
 		

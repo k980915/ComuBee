@@ -47,7 +47,7 @@ public class NoticeListController extends HttpServlet {
 		int endPage; // 페이지 하단에 보여질 페이징바의 끝수
 		HttpSession session = request.getSession();
 
-		request.setAttribute("cat","no");
+		session.setAttribute("cat","no");
 		session.setAttribute("category","공지");
 		String category=(String)session.getAttribute("category");
 		//listCount - 현재 게시글 개수 - DB에서 조회해 오기

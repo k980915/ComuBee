@@ -74,8 +74,8 @@
 							</tr>
 							<tr>
 								<c:if test="${b.category eq '리뷰'}">
-									<td class="boardToContent" onclick="location.href='detail.co?contentsId=${contentsId}'">
-										<span>${b.contentsId} 보러가기</span>
+									<td class="boardToContent" onclick="location.href='detail.co?contentsId=${b.contentsId}'" colspan="4">
+										<span>보러가기</span>
 									</td> 
 								</c:if>
 							</tr>
@@ -189,14 +189,14 @@
 						<c:when test="${b.category eq '리뷰'}">
 							<tr>
 								<td colspan="5">${bpb.boardContent}(${bpb.boardLike})
-									<input type=hidden value='${npb.boardNo}'>
+									<input type=hidden value='${bpb.boardNo}'>
 								</td>
 							</tr>
 						</c:when>
 						<c:otherwise>
 							<tr>
 								<td colspan="5">${bpb.title}(${bpb.boardLike})
-									<input type=hidden value='${npb.boardNo}'>
+									<input type=hidden value='${bpb.boardNo}'>
 								</td>
 							</tr>			
 						</c:otherwise>

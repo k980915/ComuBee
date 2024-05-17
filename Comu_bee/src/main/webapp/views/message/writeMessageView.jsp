@@ -78,7 +78,7 @@
 	        <input type="submit" value="메시지 보내기" >
 	        <input type="reset" value="지우기">
 	    </form>
-	</div>
+	</div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	<c:if test="${not empty sendAlert}">
     <script>
         alert("${sendAlert}");

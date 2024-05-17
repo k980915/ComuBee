@@ -48,7 +48,7 @@ public class RecommendListController extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("category", "추천");	
 		String ca = (String)session.getAttribute("category");
-		request.setAttribute("cat", "rc");
+		session.setAttribute("cat", "rc");
 		//listCount - 현재 게시글 개수 - DB에서 조회해 오기
 		listCount = new BoardService().listCount(ca);
 		
