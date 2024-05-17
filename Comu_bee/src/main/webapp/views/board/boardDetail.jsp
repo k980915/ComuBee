@@ -74,7 +74,7 @@
 							</tr>
 							<tr>
 								<c:if test="${b.category eq '리뷰'}">
-									<td class="boardToContent" onclick="location.href='detail.co?contentsId=${b.contentsId}'" colspan="4">
+									<td class="boardToContent" onclick="location.href='detail.co?contentsId=${b.contentsId}'" colspan="4" align="center">
 										<span>보러가기</span>
 									</td> 
 								</c:if>
