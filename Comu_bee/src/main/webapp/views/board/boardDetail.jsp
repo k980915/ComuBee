@@ -157,14 +157,13 @@
 					<thead>
 						<tr>
 							<th onclick="searchBestCont();">추천</th>
-							<th onclick="searchNewCont();">최신</th>
 						</tr>
 					</thead>
 					<tbody>
 						<c:forEach var="p" items="${pcList}">
 							<tr>
 								<td> 
-									<img src="${content.posterPath}" style="width: 100px; height: 140px;">								
+									<img src="${p.posterPath}" style="width: 200px; height: 200px;">								
 									<input type=hidden value='${p.contentsId}'> <br>
 									${p.title}
 								</td>
@@ -186,13 +185,23 @@
 					</thead>
 					<tbody>
 						<c:forEach var="bpb" items="${bpbList}">
+						<c:choose>
+						<c:when test="${b.category eq '리뷰'}">
+							<tr>
+								<td colspan="5">${bpb.boardContent}(${bpb.boardLike})
+									<input type=hidden value='${npb.boardNo}'>
+								</td>
+							</tr>
+						</c:when>
+						<c:otherwise>
 							<tr>
 								<td colspan="5">${bpb.title}(${bpb.boardLike})
-									<input type=hidden value='${bpb.boardNo}'>
-								</td><!-- 추천수 표시 -->
-							</tr>
-						</c:forEach>
-						
+									<input type=hidden value='${npb.boardNo}'>
+								</td>
+							</tr>			
+						</c:otherwise>
+						</c:choose>
+						</c:forEach>	
 					</tbody>
 				</table>
 			</div>
@@ -208,13 +217,23 @@
 					</thead>
 					<tbody>
 						<c:forEach var="npb" items="${npbList}">
+						<c:choose>
+						<c:when test="${b.category eq '리뷰'}">
+							<tr>
+								<td colspan="5">${npb.boardContent}
+									<input type=hidden value='${npb.boardNo}'>
+								</td>
+							</tr>
+						</c:when>
+						<c:otherwise>
 							<tr>
 								<td colspan="5">${npb.title}
 									<input type=hidden value='${npb.boardNo}'>
 								</td>
-							</tr>
+							</tr>			
+						</c:otherwise>
+						</c:choose>
 						</c:forEach>
-						
 					</tbody>
 				</table>
 				
@@ -449,52 +468,7 @@
 			location.href='detail.bo?bno='+bno;
 		})
 								
-// 			function searchBestCont(){
-// 				$.ajax({
-// 					url : "PopUp.co",
-// 					data : {
-// 						search : "best"
-// 					},
-// 					success : function(pcList){
-// 						var str = "";
-// 						for(var i in pcList){
-// 							str+="<tr>"
-// 							+"<td>"+pcList[i].title+
-// 							"<input type=hidden value='"
-// 							+pcList[i].boardNo+"'></td>"
-// 							+"</tr>"
-// 						};
-// 						$(".contentPopUp thead").html(str);
-// 					},
-// 					error : function(){
-// 						console.log("통신오류")
-// 					}
-					
-// 				});
-// 			}
-// 			function searchNewCont(){
-// 				$.ajax({
-// 					url : "PopUp.co",
-// 					data : {
-// 						search : "new"
-// 					},
-// 					success : function(pcList){
-// 						var str = "";
-// 						for(var i in pcList){
-// 							str+="<tr>"
-// 							+"<td>"+pcList[i].title+
-// 							"<input type=hidden value='"
-// 							+pcList[i].boardNo+"'></td>"
-// 							+"</tr>"
-// 						};
-// 						$(".contentPopUp thead").html(str);
-// 					},
-// 					error : function(){
-// 						console.log("통신오류")
-// 					}
-					
-// 				});
-// 			}
+
 			</script>
 </body>
 </html>
