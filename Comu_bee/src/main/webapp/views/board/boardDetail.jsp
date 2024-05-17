@@ -153,7 +153,7 @@
 		<div class="boardSide">
 			<div class="contentPopUp">
 				<h3>컨텐츠</h3>
-				<table class="popUp">
+				<table class="conPopUp">
 					<thead>
 						<tr>
 							<th onclick="searchBestCont();">추천</th>
@@ -164,7 +164,7 @@
 							<tr>
 								<td> 
 									<img src="${p.posterPath}" style="width: 200px; height: 200px;">								
-									<input type=hidden value='${p.contentsId}'> <br>
+									<input type=hidden value="${p.contentsId}"> <br>
 									${p.title}
 								</td>
 							</tr>
@@ -467,7 +467,10 @@
 			var bno = $(this).children().children().val();
 			location.href='detail.bo?bno='+bno;
 		})
-								
+		$(".conPopUp tbody").on("click","tr",function(){
+			var bno = $(this).children().children().eq(1).val();
+			location.href='detail.co?contentsId='+bno;
+		})						
 
 			</script>
 </body>
