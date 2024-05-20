@@ -88,7 +88,7 @@
 				AND CATEGORYNAME=?
 				ORDER BY CREATEDATE DESC)
 				)
-				WHERE "ROWNUM" BETWEEN 1 AND 3
+				WHERE "ROWNUM" BETWEEN 1 AND 5
 		
 	</entry>
 	<entry key="bestPopList">
@@ -101,7 +101,7 @@
 				AND CATEGORYNAME=?
 				ORDER BY BOARDLIKE DESC)
 				)
-				WHERE "ROWNUM" BETWEEN 1 AND 3
+				WHERE "ROWNUM" BETWEEN 1 AND 5
 		
 	</entry>
 	<entry key="bestContList">
@@ -117,7 +117,7 @@
 				ORDER BY RATE DESC
 				)	
 			)
-		WHERE "ROWNUM" BETWEEN 1 AND 5
+		WHERE "ROWNUM" BETWEEN 1 AND 3
 	</entry>
 	<entry key="deleteBoard">
 		UPDATE BOARD SET STATUS='N'

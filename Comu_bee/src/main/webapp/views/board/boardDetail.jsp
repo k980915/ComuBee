@@ -164,7 +164,7 @@
 						<c:forEach var="p" items="${pcList}">
 							<tr>
 								<td> 
-									<img src="${content.posterPath}" style="width: 100px; height: 140px;">								
+									<img src="${p.posterPath}" style="width: 100px; height: 140px;">								
 									<input type=hidden value='${p.contentsId}'> <br>
 									${p.title}
 								</td>
@@ -186,35 +186,52 @@
 					</thead>
 					<tbody>
 						<c:forEach var="bpb" items="${bpbList}">
+						<c:choose>
+						<c:when test="${b.category eq '리뷰'}">
+							<tr>
+								<td colspan="5">${bpb.boardContent}(${bpb.boardLike})
+									<input type=hidden value='${npb.boardNo}'>
+								</td>
+							</tr>
+						</c:when>
+						<c:otherwise>
 							<tr>
 								<td colspan="5">${bpb.title}(${bpb.boardLike})
-									<input type=hidden value='${bpb.boardNo}'>
-								</td><!-- 추천수 표시 -->
-							</tr>
-						</c:forEach>
-						
-					</tbody>
+									<input type=hidden value='${npb.boardNo}'>
+								</td>
+							</tr>			
+						</c:otherwise>
+						</c:choose>
+						</c:forEach>	
 				</table>
 			</div>
 			<div class="newPopUp">
 				<h3>신규 게시글</h3>
 				<table class="popUp">
 					<thead class="npbCa">
-						<tr>
 							<c:forEach var="c" items="${cList}">
 								<th>${c.categoryName}</th>
 							</c:forEach>
-						</tr>
 					</thead>
 					<tbody>
 						<c:forEach var="npb" items="${npbList}">
+						<c:choose>
+						<c:when test="${b.category eq '리뷰'}">
+							<tr>
+								<td colspan="5">${npb.boardContent}
+									<input type=hidden value='${npb.boardNo}'>
+								</td>
+							</tr>
+						</c:when>
+						<c:otherwise>
 							<tr>
 								<td colspan="5">${npb.title}
 									<input type=hidden value='${npb.boardNo}'>
 								</td>
-							</tr>
-						</c:forEach>
-						
+							</tr>			
+						</c:otherwise>
+						</c:choose>
+						</c:forEach>			
 					</tbody>
 				</table>
 				
