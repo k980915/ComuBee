@@ -74,8 +74,8 @@
 							</tr>
 							<tr>
 								<c:if test="${b.category eq '리뷰'}">
-									<td class="boardToContent" onclick="location.href='detail.co?contentsId=${contentsId}'">
-										<span>${b.contentsId} 보러가기</span>
+									<td class="boardToContent" onclick="location.href='detail.co?contentsId=${b.contentsId}'" colspan="4" align="center">
+										<span>보러가기</span>
 									</td> 
 								</c:if>
 							</tr>
@@ -153,7 +153,7 @@
 		<div class="boardSide">
 			<div class="contentPopUp">
 				<h3>컨텐츠</h3>
-				<table class="popUp">
+				<table class="conPopUp">
 					<thead>
 						<tr>
 							<th onclick="searchBestCont();">추천</th>
@@ -164,7 +164,7 @@
 							<tr>
 								<td> 
 									<img src="${p.posterPath}" style="width: 200px; height: 200px;">								
-									<input type=hidden value='${p.contentsId}'> <br>
+									<input type=hidden value="${p.contentsId}"> <br>
 									${p.title}
 								</td>
 							</tr>
@@ -189,14 +189,14 @@
 						<c:when test="${b.category eq '리뷰'}">
 							<tr>
 								<td colspan="5">${bpb.boardContent}(${bpb.boardLike})
-									<input type=hidden value='${npb.boardNo}'>
+									<input type=hidden value='${bpb.boardNo}'>
 								</td>
 							</tr>
 						</c:when>
 						<c:otherwise>
 							<tr>
 								<td colspan="5">${bpb.title}(${bpb.boardLike})
-									<input type=hidden value='${npb.boardNo}'>
+									<input type=hidden value='${bpb.boardNo}'>
 								</td>
 							</tr>			
 						</c:otherwise>
@@ -467,7 +467,10 @@
 			var bno = $(this).children().children().val();
 			location.href='detail.bo?bno='+bno;
 		})
-								
+		$(".conPopUp tbody").on("click","tr",function(){
+			var bno = $(this).children().children().eq(1).val();
+			location.href='detail.co?contentsId='+bno;
+		})						
 
 			</script>
 </body>

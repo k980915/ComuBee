@@ -47,7 +47,7 @@ public class ReviewListController extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("category","리뷰");
 		String category = (String)session.getAttribute("category");
-		request.setAttribute("cat", "rv");
+		session.setAttribute("cat", "rv");
 		//listCount - 현재 게시글 개수 - DB에서 조회해 오기
 		listCount = new BoardService().listCount(category);
 		
